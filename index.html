@@ -1,0 +1,1526 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Olivekala — The Professional's Oil</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+  <style>
+/* ═══════════════════════════════════════════════════════════════════════════
+   TOKENS & RESET
+═══════════════════════════════════════════════════════════════════════════ */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --black:#0D0D0D;
+  --gold:#C9A84C;
+  --gold-dim:rgba(201,168,76,0.18);
+  --green:#1B4332;
+  --green-mid:#224d3c;
+  --cream:#F5F0E8;
+  --stone:#8B7355;
+  --stone-dim:rgba(139,115,85,0.35);
+  --white:#FFFFFF;
+  --red:#8B2020;
+
+  /* tier accents */
+  --prem:#C9A84C;   /* gold  – Premium */
+  --std:#8B7355;    /* stone – Standard */
+  --cat:#2E6B52;    /* deep green – Catering */
+
+  --serif:'Cormorant Garamond',Georgia,serif;
+  --sans:'Montserrat',Helvetica,sans-serif;
+  --M:5vw;
+}
+html{scroll-behavior:smooth;font-size:16px}
+body{background:var(--black);color:var(--cream);font-family:var(--sans);font-weight:300;line-height:1.7;overflow-x:hidden}
+a{text-decoration:none;color:inherit}
+img{display:block;max-width:100%}
+button{cursor:pointer;font-family:var(--sans)}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   UTILITIES
+═══════════════════════════════════════════════════════════════════════════ */
+.lbl{font-family:var(--sans);font-size:.6rem;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--gold)}
+.rule{display:block;height:1px;background:var(--gold);opacity:.35}
+.rule-full{display:block;height:1px;background:var(--gold);opacity:.35;width:100%}
+
+.btn{display:inline-block;font-family:var(--sans);font-size:.65rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;padding:.85rem 2rem;transition:opacity .22s,background .22s,color .22s,border-color .22s}
+.btn-gold{color:var(--black);background:var(--gold);border:1px solid var(--gold)}
+.btn-gold:hover{opacity:.84}
+.btn-ghost{color:var(--cream);background:transparent;border:1px solid rgba(245,240,232,.22)}
+.btn-ghost:hover{border-color:var(--gold);color:var(--gold)}
+.btn-green{color:var(--cream);background:var(--green);border:1px solid var(--green)}
+.btn-green:hover{opacity:.84}
+.btn-outline-green{color:var(--cream);background:transparent;border:1px solid rgba(46,107,82,.6)}
+.btn-outline-green:hover{border-color:var(--cat);color:var(--cat)}
+
+/* section shell */
+.sec{padding:7rem var(--M)}
+.sec-head{display:grid;grid-template-columns:140px 1fr;gap:3rem;align-items:start;margin-bottom:4rem}
+.sec-label-col .rule{margin-top:.5rem}
+.sec-no{display:block;font-family:var(--serif);font-size:.7rem;color:var(--stone);letter-spacing:.12em;margin-bottom:.3rem}
+.sec-title{font-family:var(--serif);font-size:clamp(2rem,4vw,3.2rem);font-weight:400;line-height:1.1;color:var(--cream);margin-bottom:.8rem}
+.sec-title em{color:var(--gold);font-style:italic}
+.sec-desc{font-size:.86rem;color:var(--stone);max-width:480px;line-height:1.9}
+
+/* fade-in */
+.fi{opacity:0;transform:translateY(22px);transition:opacity .72s ease,transform .72s ease}
+.fi.v{opacity:1;transform:none}
+.fi-d1{transition-delay:.1s}.fi-d2{transition-delay:.2s}.fi-d3{transition-delay:.3s}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   NAVIGATION
+═══════════════════════════════════════════════════════════════════════════ */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:200;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:1.2rem var(--M);
+  background:rgba(13,13,13,.93);backdrop-filter:blur(10px);
+  border-bottom:1px solid rgba(201,168,76,.12);
+  transition:box-shadow .3s
+}
+.nav-logo{font-family:var(--serif);font-size:1.35rem;font-weight:600;letter-spacing:.18em;color:var(--cream)}
+.nav-logo span{color:var(--gold)}
+.nav-center{display:flex;gap:0;position:relative}
+.nav-item{position:relative}
+.nav-link{
+  display:block;font-size:.62rem;font-weight:500;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--stone);padding:.5rem 1.1rem;transition:color .22s
+}
+.nav-link:hover,.nav-link.active{color:var(--gold)}
+.nav-link.has-drop::after{content:'▾';font-size:.5rem;margin-left:.35rem;vertical-align:middle}
+/* dropdown — no gap so hover doesn't break */
+.nav-drop{
+  position:absolute;top:100%;left:0;min-width:220px;
+  background:rgba(13,13,13,.98);border:1px solid rgba(201,168,76,.15);
+  padding:.6rem 0;padding-top:14px;opacity:0;pointer-events:none;transform:translateY(4px);
+  transition:opacity .22s,transform .22s
+}
+/* invisible bridge fills the visual gap so the mouse never leaves the hover zone */
+.nav-drop::before{
+  content:'';position:absolute;top:-14px;left:0;right:0;height:14px
+}
+.nav-item:hover .nav-drop{opacity:1;pointer-events:auto;transform:none}
+.drop-tier{display:block;padding:.55rem 1.4rem;font-size:.6rem;font-weight:500;letter-spacing:.15em;text-transform:uppercase;color:var(--stone);transition:color .2s}
+.drop-tier:hover{color:var(--gold)}
+.drop-tier span{display:block;font-family:var(--serif);font-size:.9rem;font-weight:400;letter-spacing:0;text-transform:none;color:var(--cream);margin-top:.1rem}
+.drop-div{height:1px;background:rgba(201,168,76,.1);margin:.5rem 1.4rem}
+.nav-right{display:flex;align-items:center;gap:1rem}
+.nav-tag{font-size:.58rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--stone)}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   HERO
+═══════════════════════════════════════════════════════════════════════════ */
+#hero{
+  min-height:100vh;display:grid;grid-template-columns:1fr 1fr;
+  align-items:center;gap:0;padding-top:5rem;position:relative;overflow:hidden
+}
+.hero-bg{position:absolute;inset:0;background:var(--black)}
+.hero-bg::after{
+  content:'';position:absolute;right:0;top:0;width:50%;height:100%;
+  background:linear-gradient(180deg,rgba(27,67,50,.5) 0%,rgba(13,13,13,.1) 100%)
+}
+.hero-left{
+  position:relative;z-index:2;padding:0 var(--M);
+  display:flex;flex-direction:column;justify-content:center
+}
+.hero-eyebrow{display:flex;align-items:center;gap:.9rem;margin-bottom:2.2rem}
+.hero-eyebrow .rule{width:36px;opacity:1}
+.hero-h1{
+  font-family:var(--serif);font-size:clamp(3.5rem,6.5vw,6.2rem);
+  font-weight:300;line-height:.95;color:var(--cream);margin-bottom:.4em
+}
+.hero-h1 em{font-style:italic;color:var(--gold)}
+.hero-h1 strong{font-weight:600;display:block}
+.hero-sub{font-size:.68rem;font-weight:500;letter-spacing:.22em;text-transform:uppercase;color:var(--stone);margin-bottom:2.2rem}
+.hero-body{font-size:.9rem;color:rgba(245,240,232,.7);max-width:400px;line-height:1.9;margin-bottom:2.8rem}
+.hero-acts{display:flex;gap:1rem;flex-wrap:wrap}
+
+/* tier pills */
+.tier-pills{display:flex;gap:.6rem;margin-top:3rem}
+.tier-pill{
+  font-size:.55rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;
+  padding:.3rem .8rem;border:1px solid;
+}
+.tp-prem{color:var(--gold);border-color:rgba(201,168,76,.4)}
+.tp-std{color:var(--stone);border-color:rgba(139,115,85,.4)}
+.tp-cat{color:#5fa882;border-color:rgba(46,107,82,.5)}
+
+/* hero right — product visual */
+.hero-right{
+  position:relative;z-index:2;height:100vh;
+  display:flex;align-items:center;justify-content:center;gap:2.5rem
+}
+.tin{
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.55rem;
+  border:1px solid;position:relative;overflow:hidden;flex-shrink:0
+}
+.tin::before{
+  content:'';position:absolute;top:10px;left:10px;right:10px;bottom:10px;
+  border:1px solid rgba(201,168,76,.12);pointer-events:none
+}
+.tin-lg{width:160px;height:240px;background:linear-gradient(170deg,#181818 0%,#222 50%,#111 100%);border-color:rgba(201,168,76,.3)}
+.tin-md{width:110px;height:168px;background:linear-gradient(170deg,#1a1a1a 0%,#202020 50%,#121212 100%);border-color:rgba(201,168,76,.2)}
+.tin-sm{width:78px;height:110px;background:linear-gradient(170deg,#161616 0%,#1e1e1e 50%,#0e0e0e 100%);border-color:rgba(139,115,85,.25)}
+.tin-brand{font-family:var(--serif);letter-spacing:.35em;color:var(--gold);font-weight:600}
+.tin-line{width:36px;height:1px;background:var(--gold);opacity:.45}
+.tin-vol{font-size:.48rem;letter-spacing:.2em;color:var(--stone);text-transform:uppercase;text-align:center}
+.tin-size{font-family:var(--serif);color:var(--cream);line-height:1}
+.tin-badge{
+  position:absolute;bottom:12px;left:0;right:0;text-align:center;
+  font-size:.45rem;letter-spacing:.18em;text-transform:uppercase
+}
+
+/* drum — catering visual */
+.drum{
+  width:120px;height:185px;
+  background:linear-gradient(170deg,#0e1a14 0%,#1b4332 50%,#0a120e 100%);
+  border:1px solid rgba(46,107,82,.5);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  gap:.5rem;position:relative;overflow:hidden;flex-shrink:0
+}
+.drum::before{content:'';position:absolute;top:8px;left:8px;right:8px;bottom:8px;border:1px solid rgba(95,168,130,.1)}
+.drum-brand{font-family:var(--serif);font-size:.7rem;letter-spacing:.3em;color:#5fa882;font-weight:600}
+.drum-line{width:32px;height:1px;background:#2E6B52;opacity:.7}
+.drum-label{font-size:.42rem;letter-spacing:.2em;color:rgba(95,168,130,.7);text-transform:uppercase;text-align:center}
+.drum-size{font-family:var(--serif);font-size:2rem;color:rgba(245,240,232,.85);line-height:1}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   STATS BAR
+═══════════════════════════════════════════════════════════════════════════ */
+#stats{
+  background:var(--green);padding:2.2rem var(--M);
+  display:grid;grid-template-columns:repeat(5,1fr);
+  border-top:1px solid rgba(201,168,76,.2);border-bottom:1px solid rgba(201,168,76,.2)
+}
+.stat{text-align:center;padding:.5rem 1rem;border-right:1px solid rgba(201,168,76,.15)}
+.stat:last-child{border-right:none}
+.stat-n{font-family:var(--serif);font-size:2.2rem;font-weight:600;color:var(--gold);line-height:1;margin-bottom:.2rem}
+.stat-l{font-size:.58rem;font-weight:500;letter-spacing:.18em;text-transform:uppercase;color:rgba(245,240,232,.5)}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   TIER SELECTOR TABS
+═══════════════════════════════════════════════════════════════════════════ */
+#products{background:var(--black)}
+
+.tier-tabs{
+  display:flex;border-bottom:1px solid rgba(201,168,76,.15);margin-bottom:3.5rem
+}
+.tier-tab{
+  font-size:.62rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;
+  padding:1rem 2rem;color:var(--stone);background:none;border:none;
+  border-bottom:2px solid transparent;margin-bottom:-1px;transition:color .22s,border-color .22s
+}
+.tier-tab:hover{color:var(--cream)}
+.tier-tab.active-prem{color:var(--gold);border-bottom-color:var(--gold)}
+.tier-tab.active-std{color:var(--stone);border-bottom-color:var(--stone)}
+.tier-tab.active-cat{color:#5fa882;border-bottom-color:#5fa882}
+
+.tier-pane{display:none}
+.tier-pane.active{display:block}
+
+/* Product card grid */
+.prod-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(201,168,76,.1)}
+.prod-card{background:#0f0f0f;padding:2.6rem 2.2rem;display:flex;flex-direction:column;gap:.9rem;transition:background .28s}
+.prod-card:hover{background:#141414}
+.prod-card-tier{font-size:.55rem;font-weight:700;letter-spacing:.25em;text-transform:uppercase}
+.prod-card-name{font-family:var(--serif);font-size:1.65rem;font-weight:600;color:var(--cream);line-height:1.1}
+.prod-card-spec{font-size:.68rem;color:var(--stone);letter-spacing:.1em}
+.prod-card-hr{height:1px;background:rgba(201,168,76,.15)}
+.prod-card-body{font-size:.82rem;color:rgba(245,240,232,.6);line-height:1.85}
+.prod-card-kpi{font-family:var(--serif);font-size:2rem;font-weight:600;line-height:1;margin-top:auto}
+.prod-card-kpi span{font-family:var(--sans);font-size:.6rem;color:var(--stone);letter-spacing:.12em;vertical-align:middle;margin-left:.3rem}
+.prod-card-tags{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:.5rem}
+.prod-tag{font-size:.52rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;border:1px solid;padding:.2rem .55rem}
+
+/* catering product grid — 2 cols */
+.prod-grid-2{grid-template-columns:repeat(2,1fr)}
+/* catering has a spec sheet row */
+.cat-spec-row{
+  display:grid;grid-template-columns:repeat(4,1fr);gap:1px;
+  background:rgba(46,107,82,.2);margin-top:1px
+}
+.cat-spec{background:#0a120e;padding:1.6rem 1.8rem}
+.cat-spec-n{font-family:var(--serif);font-size:1.5rem;color:#5fa882;font-weight:600;margin-bottom:.2rem}
+.cat-spec-l{font-size:.58rem;color:rgba(245,240,232,.4);letter-spacing:.14em;text-transform:uppercase}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   ORIGIN
+═══════════════════════════════════════════════════════════════════════════ */
+#origin{background:var(--green);position:relative;overflow:hidden}
+#origin::before{
+  content:'"';position:absolute;left:2vw;top:1rem;
+  font-family:var(--serif);font-size:32rem;color:rgba(201,168,76,.05);line-height:1;pointer-events:none
+}
+.origin-grid{display:grid;grid-template-columns:1fr 1fr;gap:7rem;align-items:center}
+.origin-quote{font-family:var(--serif);font-size:clamp(1.8rem,3.2vw,2.8rem);font-weight:300;font-style:italic;line-height:1.35;color:var(--cream)}
+.origin-quote em{color:var(--gold);font-style:normal;font-weight:600}
+.origin-attr{font-size:.6rem;letter-spacing:.22em;text-transform:uppercase;color:rgba(245,240,232,.38);margin-top:2rem}
+.origin-data{display:grid;grid-template-columns:1fr 1fr;gap:1.4rem;margin-top:3rem}
+.od-item{border-left:2px solid var(--gold);padding-left:.9rem}
+.od-n{font-family:var(--serif);font-size:1.5rem;color:var(--gold);font-weight:600}
+.od-l{font-size:.58rem;color:rgba(245,240,232,.45);letter-spacing:.14em;text-transform:uppercase}
+
+.origin-body p{font-size:.88rem;color:rgba(245,240,232,.72);line-height:1.95;margin-bottom:1.4rem}
+.origin-body p:last-of-type{margin-bottom:2rem}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   PROCESS
+═══════════════════════════════════════════════════════════════════════════ */
+#process{background:#080808}
+.process-steps{display:grid;grid-template-columns:repeat(4,1fr);gap:0}
+.ps{padding:2.2rem 2rem 2.2rem 0;border-right:1px solid rgba(201,168,76,.1)}
+.ps:last-child{border-right:none}
+.ps:not(:first-child){padding-left:2rem}
+.ps-num{font-family:var(--serif);font-size:3.2rem;font-weight:600;color:rgba(201,168,76,.12);line-height:1;margin-bottom:.7rem}
+.ps-title{font-family:var(--serif);font-size:1.35rem;color:var(--cream);font-weight:400;margin-bottom:.7rem}
+.ps-detail{font-size:.78rem;color:var(--stone);line-height:1.85}
+.ps-badge{display:inline-block;margin-top:1.2rem;font-size:.55rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);border:1px solid rgba(201,168,76,.3);padding:.2rem .55rem}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   CATERING SECTION
+═══════════════════════════════════════════════════════════════════════════ */
+#catering{
+  background:var(--green);padding:0;
+  display:grid;grid-template-columns:1fr 1fr
+}
+.cat-left{
+  background:#0a120e;padding:6.5rem var(--M);
+  display:flex;flex-direction:column;justify-content:center
+}
+.cat-right{
+  background:var(--green);padding:6.5rem var(--M);
+  display:flex;flex-direction:column;justify-content:center
+}
+
+.cat-eyebrow{display:flex;align-items:center;gap:.9rem;margin-bottom:2rem}
+.cat-eyebrow .lbl{color:#5fa882}
+.cat-title{
+  font-family:var(--serif);font-size:clamp(2rem,3.5vw,3rem);
+  font-weight:300;line-height:1.15;color:var(--cream);margin-bottom:1.4rem
+}
+.cat-title em{font-style:italic;color:#5fa882}
+.cat-title strong{font-weight:600}
+.cat-body{font-size:.86rem;color:rgba(245,240,232,.68);line-height:1.9;margin-bottom:2rem}
+
+.cat-specs{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:rgba(46,107,82,.4);margin-bottom:2rem}
+.cs-item{background:#0a120e;padding:1.4rem 1.4rem}
+.cs-n{font-family:var(--serif);font-size:1.6rem;color:#5fa882;font-weight:600;line-height:1;margin-bottom:.25rem}
+.cs-l{font-size:.56rem;color:rgba(245,240,232,.38);letter-spacing:.14em;text-transform:uppercase}
+
+.cat-checklist{list-style:none;margin-bottom:2.2rem}
+.cat-checklist li{
+  font-size:.8rem;color:rgba(245,240,232,.65);padding:.5rem 0;
+  border-bottom:1px solid rgba(46,107,82,.3);display:flex;align-items:center;gap:.75rem
+}
+.cat-checklist li::before{content:'';display:inline-block;width:14px;height:1px;background:#5fa882;flex-shrink:0}
+
+/* certification badges */
+.cert-row{display:flex;gap:1rem;flex-wrap:wrap}
+.cert{
+  font-size:.55rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;
+  padding:.35rem .8rem;border:1px solid rgba(95,168,130,.35);color:#5fa882
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   TESTIMONIALS
+═══════════════════════════════════════════════════════════════════════════ */
+#testimonials{background:var(--black)}
+.testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(201,168,76,.08)}
+.testi{background:var(--black);padding:2.6rem 2.2rem}
+.testi-tier{font-size:.52rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;margin-bottom:1.2rem}
+.testi-text{font-family:var(--serif);font-size:1.1rem;font-style:italic;color:var(--cream);line-height:1.6;margin-bottom:1.6rem}
+.testi-author{font-size:.62rem;font-weight:600;letter-spacing:.15em;text-transform:uppercase;color:var(--gold)}
+.testi-role{font-size:.62rem;color:var(--stone);margin-top:.15rem}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   TRADE FORM
+═══════════════════════════════════════════════════════════════════════════ */
+#trade{background:#080808;padding:0;display:grid;grid-template-columns:1fr 1fr}
+.trade-left{padding:6.5rem var(--M);display:flex;flex-direction:column;justify-content:center}
+.trade-right{background:#0D0D0D;padding:6.5rem var(--M)}
+.trade-title{font-family:var(--serif);font-size:clamp(2rem,3vw,2.8rem);font-weight:300;font-style:italic;color:var(--cream);line-height:1.2;margin-bottom:1.4rem}
+.trade-title strong{font-style:normal;font-weight:600;color:var(--gold)}
+.trade-body{font-size:.86rem;color:rgba(245,240,232,.65);line-height:1.9;margin-bottom:2rem}
+.trade-list{list-style:none;margin-bottom:2.5rem}
+.trade-list li{font-size:.78rem;color:rgba(245,240,232,.6);padding:.5rem 0;border-bottom:1px solid rgba(201,168,76,.08);display:flex;align-items:center;gap:.75rem}
+.trade-list li::before{content:'';display:inline-block;width:14px;height:1px;background:var(--gold);flex-shrink:0}
+.trade-email{font-family:var(--serif);font-size:1.2rem;color:var(--gold);font-style:italic}
+
+/* form */
+.enquiry-form{display:flex;flex-direction:column;gap:.9rem}
+.fl{font-size:.56rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);display:block;margin-bottom:.28rem}
+.fi-inp,.fi-sel,.fi-txt{
+  width:100%;background:rgba(255,255,255,.03);border:1px solid rgba(201,168,76,.18);
+  color:var(--cream);padding:.7rem .9rem;font-family:var(--sans);font-size:.8rem;
+  font-weight:300;outline:none;transition:border-color .22s;appearance:none
+}
+.fi-inp::placeholder,.fi-txt::placeholder{color:rgba(245,240,232,.22)}
+.fi-inp:focus,.fi-sel:focus,.fi-txt:focus{border-color:var(--gold)}
+.fi-txt{height:82px;resize:none}
+.fi-sel option{background:#1a1a1a}
+.form-row2{display:grid;grid-template-columns:1fr 1fr;gap:.9rem}
+.form-submit{
+  font-family:var(--sans);font-size:.65rem;font-weight:700;letter-spacing:.18em;
+  text-transform:uppercase;color:var(--black);background:var(--gold);border:none;
+  padding:.9rem;transition:opacity .22s;width:100%
+}
+.form-submit:hover{opacity:.84}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   BLOG
+═══════════════════════════════════════════════════════════════════════════ */
+#blog{background:var(--black)}
+.blog-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(201,168,76,.08)}
+.blog-card{background:var(--black);display:flex;flex-direction:column;transition:background .28s}
+.blog-card:hover{background:#0f0f0f}
+.blog-thumb{
+  height:220px;display:flex;align-items:flex-end;padding:1.6rem 1.6rem;position:relative;overflow:hidden
+}
+.blog-thumb-inner{position:absolute;inset:0;display:flex;align-items:flex-end;padding:1.6rem}
+.blog-cat{font-size:.55rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:.5rem}
+.blog-thumb-title{font-family:var(--serif);font-size:1.3rem;color:var(--cream);line-height:1.2;font-weight:400}
+.blog-body{padding:1.8rem 1.6rem;flex:1;display:flex;flex-direction:column}
+.blog-excerpt{font-size:.8rem;color:rgba(245,240,232,.55);line-height:1.85;margin-bottom:1.4rem;flex:1}
+.blog-meta{display:flex;justify-content:space-between;align-items:center;padding-top:1rem;border-top:1px solid rgba(201,168,76,.1)}
+.blog-date{font-size:.58rem;color:var(--stone);letter-spacing:.1em}
+.blog-read{font-size:.58rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--gold)}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   INSTAGRAM
+═══════════════════════════════════════════════════════════════════════════ */
+#instagram{background:var(--black);padding-top:0}
+.ig-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:2px}
+.ig-cell{aspect-ratio:1;position:relative;overflow:hidden;cursor:pointer}
+.ig-inner{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.3rem;padding:.9rem}
+.ig-inner:hover::before{content:'';position:absolute;inset:0;background:rgba(201,168,76,.06)}
+.ig-lbl{font-family:var(--sans);font-size:.48rem;letter-spacing:.2em;text-transform:uppercase}
+.ig-main{font-family:var(--serif);text-align:center;line-height:1}
+.ig-sub{font-family:var(--sans);font-size:.46rem;letter-spacing:.14em;text-transform:uppercase;text-align:center}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   FOOTER
+═══════════════════════════════════════════════════════════════════════════ */
+footer{
+  background:var(--black);
+  border-top:1px solid rgba(201,168,76,.12);
+  padding:5rem var(--M) 2.5rem
+}
+.footer-grid{display:grid;grid-template-columns:2.2fr 1fr 1fr 1fr 1fr;gap:3.5rem;margin-bottom:4rem}
+.footer-logo-name{font-family:var(--serif);font-size:1.5rem;font-weight:600;letter-spacing:.14em;color:var(--cream);margin-bottom:.4rem}
+.footer-logo-name span{color:var(--gold)}
+.footer-tagline{font-size:.62rem;letter-spacing:.18em;text-transform:uppercase;color:var(--stone);margin-bottom:1.1rem}
+.footer-about{font-size:.75rem;color:rgba(245,240,232,.35);line-height:1.8}
+.fc-title{font-size:.58rem;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-bottom:1.1rem}
+.fc-links{list-style:none}
+.fc-links li{margin-bottom:.45rem}
+.fc-links a{font-size:.75rem;color:rgba(245,240,232,.38);transition:color .2s}
+.fc-links a:hover{color:var(--gold)}
+.fc-links .tier-tag{font-size:.5rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;vertical-align:middle;margin-left:.4rem;padding:.1rem .35rem;border:1px solid}
+
+.footer-bottom{
+  display:flex;justify-content:space-between;align-items:center;
+  padding-top:2rem;border-top:1px solid rgba(255,255,255,.05)
+}
+.footer-legal{font-size:.6rem;color:rgba(245,240,232,.2);letter-spacing:.05em}
+.footer-certs{display:flex;gap:1rem}
+.footer-cert{font-size:.55rem;color:rgba(245,240,232,.25);letter-spacing:.12em;text-transform:uppercase}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   ARTICLE MODAL
+═══════════════════════════════════════════════════════════════════════════ */
+.modal-overlay{
+  position:fixed;inset:0;z-index:500;
+  background:rgba(13,13,13,.96);
+  display:flex;align-items:flex-start;justify-content:center;
+  overflow-y:auto;padding:4rem 2rem;
+  opacity:0;pointer-events:none;transition:opacity .28s
+}
+.modal-overlay.open{opacity:1;pointer-events:auto}
+.modal-box{
+  background:#111;border:1px solid rgba(201,168,76,.15);
+  max-width:760px;width:100%;padding:3.5rem;position:relative;
+  transform:translateY(20px);transition:transform .32s;
+  margin:auto
+}
+.modal-overlay.open .modal-box{transform:none}
+.modal-close{
+  position:absolute;top:1.4rem;right:1.4rem;
+  background:none;border:none;color:var(--stone);
+  font-size:1.3rem;cursor:pointer;line-height:1;
+  transition:color .2s
+}
+.modal-close:hover{color:var(--gold)}
+.modal-cat{font-size:.58rem;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-bottom:1rem}
+.modal-title{font-family:var(--serif);font-size:clamp(1.6rem,3vw,2.4rem);font-weight:400;color:var(--cream);line-height:1.2;margin-bottom:.6rem}
+.modal-meta{font-size:.62rem;color:var(--stone);letter-spacing:.12em;margin-bottom:2rem;padding-bottom:1.5rem;border-bottom:1px solid rgba(201,168,76,.15)}
+.modal-body p{font-size:.9rem;color:rgba(245,240,232,.72);line-height:1.95;margin-bottom:1.3rem}
+.modal-body p:last-child{margin-bottom:0}
+.modal-body h3{font-family:var(--serif);font-size:1.2rem;color:var(--cream);font-weight:400;margin:2rem 0 .7rem}
+.modal-body .data-row{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(201,168,76,.1);margin:1.8rem 0}
+.modal-body .data-cell{background:#111;padding:1.2rem 1.4rem}
+.modal-body .data-n{font-family:var(--serif);font-size:1.5rem;color:var(--gold);font-weight:600}
+.modal-body .data-l{font-size:.58rem;color:var(--stone);letter-spacing:.12em;text-transform:uppercase}
+.modal-body blockquote{border-left:2px solid var(--gold);padding-left:1.2rem;font-family:var(--serif);font-size:1.05rem;font-style:italic;color:var(--cream);margin:1.8rem 0}
+.modal-footer{margin-top:2.5rem;padding-top:1.5rem;border-top:1px solid rgba(201,168,76,.12);display:flex;gap:1rem;align-items:center;flex-wrap:wrap}
+.modal-footer .lbl{color:var(--stone)}
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════ NAV ═══════════════════════════════════ -->
+<nav id="mainNav">
+  <a class="nav-logo" href="#hero">OLIVE<span>KALA</span></a>
+
+  <div class="nav-center">
+    <div class="nav-item">
+      <a class="nav-link has-drop" href="#products">Products</a>
+      <div class="nav-drop">
+        <a class="drop-tier" href="#products" onclick="switchTab('prem')">
+          <span style="color:var(--gold)">Premium</span>
+          KALA 500ml · Tasting Set
+        </a>
+        <div class="drop-div"></div>
+        <a class="drop-tier" href="#products" onclick="switchTab('std')">
+          <span style="color:var(--cream)">Standard</span>
+          KALA 5L Reserve
+        </a>
+        <div class="drop-div"></div>
+        <a class="drop-tier" href="#products" onclick="switchTab('cat')">
+          <span style="color:#5fa882">Catering</span>
+          KALA 20L · Bulk Supply
+        </a>
+      </div>
+    </div>
+    <div class="nav-item"><a class="nav-link" href="#origin">Origin</a></div>
+    <div class="nav-item"><a class="nav-link" href="#process">Process</a></div>
+    <div class="nav-item"><a class="nav-link" href="#catering">Catering</a></div>
+    <div class="nav-item"><a class="nav-link" href="#trade">Trade</a></div>
+    <div class="nav-item"><a class="nav-link" href="#blog">Journal</a></div>
+  </div>
+
+  <div class="nav-right">
+    <span class="nav-tag">Ayvalık · Turkey</span>
+    <a class="btn btn-gold" href="#trade">Request Sample</a>
+  </div>
+</nav>
+
+<!-- ═══════════════════════════════ HERO ══════════════════════════════════ -->
+<section id="hero">
+  <div class="hero-bg"></div>
+
+  <div class="hero-left fi">
+    <div class="hero-eyebrow">
+      <span class="rule" style="width:36px;opacity:1;"></span>
+      <span class="lbl">Ayvalık · Aegean Turkey · Est. 2025</span>
+    </div>
+
+    <h1 class="hero-h1">
+      The<br>
+      <em>Professional's</em><br>
+      <strong>Oil.</strong>
+    </h1>
+    <p class="hero-sub">Memecik · Early Harvest · Certified 0.2% Free Acidity</p>
+    <p class="hero-body">
+      Extra virgin olive oil engineered for kitchens that set the standard.
+      Cold-extracted within four hours. Tested, batch-numbered, uncompromising.
+    </p>
+    <div class="hero-acts">
+      <a class="btn btn-gold" href="#products">Explore Range</a>
+      <a class="btn btn-ghost" href="#trade">Trade Enquiry</a>
+    </div>
+
+    <div class="tier-pills">
+      <span class="tier-pill tp-prem" onclick="switchTab('prem');document.getElementById('products').scrollIntoView({behavior:'smooth'})">Premium</span>
+      <span class="tier-pill tp-std" onclick="switchTab('std');document.getElementById('products').scrollIntoView({behavior:'smooth'})">Standard</span>
+      <span class="tier-pill tp-cat" onclick="switchTab('cat');document.getElementById('products').scrollIntoView({behavior:'smooth'})">Catering</span>
+    </div>
+  </div>
+
+  <div class="hero-right fi fi-d2">
+    <!-- Premium 500ml -->
+    <div class="tin tin-md" style="transform:translateY(-24px)">
+      <span class="tin-brand" style="font-size:.7rem">KALA</span>
+      <div class="tin-line"></div>
+      <span class="tin-vol">Harvest Edition</span>
+      <span class="tin-size" style="font-size:1.5rem">500</span>
+      <span class="tin-vol">ml</span>
+      <span class="tin-badge" style="color:var(--gold)"># Numbered</span>
+    </div>
+    <!-- Standard 5L -->
+    <div class="tin tin-lg">
+      <span class="tin-brand" style="font-size:.95rem">KALA</span>
+      <div class="tin-line"></div>
+      <span class="tin-vol">Reserve · 5 L</span>
+      <span class="tin-size" style="font-size:2.6rem">5L</span>
+      <div class="tin-line"></div>
+      <span class="tin-vol">Extra Virgin</span>
+    </div>
+    <!-- Catering 20L drum -->
+    <div class="drum" style="transform:translateY(18px)">
+      <span class="drum-brand">KALA</span>
+      <div class="drum-line"></div>
+      <span class="drum-label">Catering Supply</span>
+      <span class="drum-size">20L</span>
+      <div class="drum-line"></div>
+      <span class="drum-label">IOC Certified</span>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════ STATS ══════════════════════════════════ -->
+<div id="stats">
+  <div class="stat fi"><div class="stat-n">0.2%</div><div class="stat-l">Free Acidity</div></div>
+  <div class="stat fi fi-d1"><div class="stat-n">&lt;4h</div><div class="stat-l">Grove to Press</div></div>
+  <div class="stat fi fi-d2"><div class="stat-n">3000</div><div class="stat-l">Years Cultivated</div></div>
+  <div class="stat fi fi-d3"><div class="stat-n">18°C</div><div class="stat-l">Cold Extraction</div></div>
+  <div class="stat fi fi-d3" style="transition-delay:.4s"><div class="stat-n">IOC</div><div class="stat-l">Certified</div></div>
+</div>
+
+<!-- ═══════════════════════════════ PRODUCTS ══════════════════════════════ -->
+<section id="products" class="sec">
+
+  <div class="sec-head fi">
+    <div class="section-label-col">
+      <span class="lbl">01 / Range</span>
+      <span class="rule" style="margin-top:.5rem"></span>
+    </div>
+    <div>
+      <h2 class="sec-title">Three tiers.<br><em>One standard.</em></h2>
+      <p class="sec-desc">Premium for the chef's table. Standard for the working kitchen. Catering for the operation that never stops.</p>
+    </div>
+  </div>
+
+  <!-- Tier tabs -->
+  <div class="tier-tabs fi">
+    <button class="tier-tab active-prem" id="tab-prem" onclick="switchTab('prem')">⬡ Premium</button>
+    <button class="tier-tab" id="tab-std" onclick="switchTab('std')">◈ Standard</button>
+    <button class="tier-tab" id="tab-cat" onclick="switchTab('cat')">▣ Catering</button>
+  </div>
+
+  <!-- ── PREMIUM PANE ── -->
+  <div class="tier-pane active" id="pane-prem">
+    <div class="prod-grid fi">
+
+      <div class="prod-card">
+        <div class="prod-card-tier" style="color:var(--gold)">Premium · Fine Dining</div>
+        <div class="prod-card-name">KALA 500ml<br>Harvest Edition</div>
+        <div class="prod-card-spec">Memecik · Single Grove · Limited Release</div>
+        <div class="prod-card-hr"></div>
+        <div class="prod-card-body">
+          Single-grove, single-harvest. Numbered from bottle one. A finishing oil — the detail
+          on the plate the guest never sees but always tastes. Cold-extracted the morning of harvest.
+          Available October only.
+        </div>
+        <div class="prod-card-kpi" style="color:var(--gold)">0.18% <span>Free Acidity</span></div>
+        <div class="prod-card-tags">
+          <span class="prod-tag" style="color:var(--gold);border-color:rgba(201,168,76,.3)">Batch Numbered</span>
+          <span class="prod-tag" style="color:var(--gold);border-color:rgba(201,168,76,.3)">Limited Oct</span>
+        </div>
+        <a class="btn btn-ghost" href="#trade" style="margin-top:1rem;text-align:center">Allocation Enquiry</a>
+      </div>
+
+      <div class="prod-card">
+        <div class="prod-card-tier" style="color:var(--gold)">Premium · Chef Programme</div>
+        <div class="prod-card-name">KALA 250ml<br>Tasting Set</div>
+        <div class="prod-card-spec">Three Expressions · Gift Packaged</div>
+        <div class="prod-card-hr"></div>
+        <div class="prod-card-body">
+          Three oils, three harvests: early, mid-season, and a smoked variant cold-infused post-press.
+          Designed for chef education and sommelier programmes. Each bottle lab-certified independently.
+        </div>
+        <div class="prod-card-kpi" style="color:var(--gold)">3 var. <span>Expressions</span></div>
+        <div class="prod-card-tags">
+          <span class="prod-tag" style="color:var(--gold);border-color:rgba(201,168,76,.3)">Tasting Format</span>
+          <span class="prod-tag" style="color:var(--gold);border-color:rgba(201,168,76,.3)">Gift Ready</span>
+        </div>
+        <a class="btn btn-ghost" href="#trade" style="margin-top:1rem;text-align:center">Request Info</a>
+      </div>
+
+      <div class="prod-card" style="background:#0a0a0a;">
+        <div class="prod-card-tier" style="color:rgba(201,168,76,.45)">Premium · Table Service</div>
+        <div class="prod-card-name" style="color:rgba(245,240,232,.45)">KALA 100ml<br>Table Bottle</div>
+        <div class="prod-card-spec" style="color:rgba(139,115,85,.5)">Branded Glass · Restaurant Exclusive</div>
+        <div class="prod-card-hr" style="background:rgba(201,168,76,.07)"></div>
+        <div class="prod-card-body" style="color:rgba(245,240,232,.3)">
+          Restaurant-branded table bottles. Custom label programme available. Refillable format —
+          fill from the 5L reserve in-house. The brand at the table.
+        </div>
+        <div class="prod-card-kpi" style="color:rgba(201,168,76,.35)">Custom <span>Label</span></div>
+        <div class="prod-card-tags">
+          <span class="prod-tag" style="color:rgba(139,115,85,.5);border-color:rgba(139,115,85,.15)">Coming 2026</span>
+        </div>
+        <span class="btn btn-ghost" style="margin-top:1rem;text-align:center;opacity:.4;cursor:default;display:block">Notify Me</span>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ── STANDARD PANE ── -->
+  <div class="tier-pane" id="pane-std">
+    <div class="prod-grid fi">
+
+      <div class="prod-card" style="grid-column:span 2">
+        <div class="prod-card-tier" style="color:var(--stone)">Standard · Professional Kitchen</div>
+        <div class="prod-card-name">KALA 5L Reserve Tin</div>
+        <div class="prod-card-spec">Memecik · Early Harvest · Ayvalık · October 2025</div>
+        <div class="prod-card-hr"></div>
+        <div class="prod-card-body">
+          The workhorse. Cold-extracted, unfiltered, pressed within four hours of harvest.
+          Nitrogen-flushed tins lock freshness from grove to kitchen. Designed for volume
+          without compromise on acidity, polyphenol count, or flavour profile.
+          The oil a professional kitchen relies on from first prep to last service.
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:2rem;margin-top:.8rem">
+          <div>
+            <div class="prod-card-kpi" style="color:var(--stone)">0.2% <span>Free Acidity</span></div>
+            <div style="margin-top:.8rem;font-size:.75rem;color:rgba(245,240,232,.4);line-height:1.8">
+              Peroxide value &lt;12 meq O₂/kg<br>
+              Polyphenols &gt;300 mg/kg<br>
+              Harvest: October 2025
+            </div>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:.5rem">
+            <div class="prod-card-tags">
+              <span class="prod-tag" style="color:var(--stone);border-color:rgba(139,115,85,.3)">HoReCa Format</span>
+              <span class="prod-tag" style="color:var(--stone);border-color:rgba(139,115,85,.3)">Batch Cert.</span>
+              <span class="prod-tag" style="color:var(--stone);border-color:rgba(139,115,85,.3)">N₂ Flushed</span>
+            </div>
+            <a class="btn btn-gold" href="#trade" style="text-align:center;margin-top:.5rem">Order / Sample</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="prod-card">
+        <div class="prod-card-tier" style="color:var(--stone)">Standard · Bulk</div>
+        <div class="prod-card-name">KALA 10L<br>Twin Pack</div>
+        <div class="prod-card-spec">2 × 5L · Volume Pricing</div>
+        <div class="prod-card-hr"></div>
+        <div class="prod-card-body">
+          Double-pack for medium-volume kitchens. Same specification as the 5L Reserve.
+          Volume pricing reflects the working relationship, not a premium shelf.
+        </div>
+        <div class="prod-card-kpi" style="color:var(--stone)">10L <span>Format</span></div>
+        <a class="btn btn-ghost" href="#trade" style="margin-top:auto;text-align:center">Volume Pricing</a>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ── CATERING PANE ── -->
+  <div class="tier-pane" id="pane-cat">
+    <div class="prod-grid prod-grid-2 fi">
+
+      <div class="prod-card" style="background:#0a120e">
+        <div class="prod-card-tier" style="color:#5fa882">Catering · High Volume</div>
+        <div class="prod-card-name">KALA 20L<br>Catering Drum</div>
+        <div class="prod-card-spec">Stainless-Steel Drum · IOC Certified</div>
+        <div class="prod-card-hr" style="background:rgba(46,107,82,.3)"></div>
+        <div class="prod-card-body">
+          Built for event catering, institutional kitchens, and high-throughput operations.
+          Drum-format with dispensing tap. Same certified Memecik oil — same 0.2% free acidity — at
+          the volume a catering operation requires. Zero compromise on specification.
+        </div>
+        <div class="prod-card-kpi" style="color:#5fa882">0.2% <span>Certified</span></div>
+        <div class="prod-card-tags">
+          <span class="prod-tag" style="color:#5fa882;border-color:rgba(46,107,82,.4)">20L Drum</span>
+          <span class="prod-tag" style="color:#5fa882;border-color:rgba(46,107,82,.4)">Tap Dispensing</span>
+          <span class="prod-tag" style="color:#5fa882;border-color:rgba(46,107,82,.4)">Bulk Pricing</span>
+        </div>
+        <a class="btn btn-green" href="#trade" style="text-align:center;margin-top:1rem">Bulk Enquiry</a>
+      </div>
+
+      <div class="prod-card" style="background:#090e0b">
+        <div class="prod-card-tier" style="color:#5fa882">Catering · Institutional</div>
+        <div class="prod-card-name">KALA Bulk<br>Supply Programme</div>
+        <div class="prod-card-spec">Custom Volume · Direct from Grove</div>
+        <div class="prod-card-hr" style="background:rgba(46,107,82,.3)"></div>
+        <div class="prod-card-body">
+          Direct-from-grove annual contracts for hotel groups, hospital catering,
+          military and institutional supply chains. Quarterly harvest allocations.
+          Full traceability, custom documentation, and white-label packaging available.
+          Minimum 200L per order.
+        </div>
+        <div class="prod-card-kpi" style="color:#5fa882">200L+ <span>Minimum</span></div>
+        <div class="prod-card-tags">
+          <span class="prod-tag" style="color:#5fa882;border-color:rgba(46,107,82,.4)">White Label</span>
+          <span class="prod-tag" style="color:#5fa882;border-color:rgba(46,107,82,.4)">Annual Contract</span>
+          <span class="prod-tag" style="color:#5fa882;border-color:rgba(46,107,82,.4)">Full Trace</span>
+        </div>
+        <a class="btn btn-outline-green" href="#trade" style="text-align:center;margin-top:1rem">Supply Contract</a>
+      </div>
+
+    </div>
+
+    <!-- Catering spec strip -->
+    <div class="cat-spec-row fi fi-d2">
+      <div class="cat-spec">
+        <div class="cat-spec-n">0.2%</div>
+        <div class="cat-spec-l">Free Acidity — all volumes</div>
+      </div>
+      <div class="cat-spec">
+        <div class="cat-spec-n">200L+</div>
+        <div class="cat-spec-l">Minimum Bulk Order</div>
+      </div>
+      <div class="cat-spec">
+        <div class="cat-spec-n">Q4</div>
+        <div class="cat-spec-l">Annual Harvest Allocation</div>
+      </div>
+      <div class="cat-spec">
+        <div class="cat-spec-n">ISO</div>
+        <div class="cat-spec-l">Food Safety Compliant</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══════════════════════════════ ORIGIN ═════════════════════════════════ -->
+<section id="origin" class="sec">
+  <div class="origin-grid">
+    <div class="fi">
+      <div class="lbl" style="margin-bottom:1.6rem">02 / Origin</div>
+      <div class="origin-quote">
+        "Three thousand years<br>of cultivation.<br><em>One harvest.</em><br>No compromises."
+      </div>
+      <div class="origin-attr">Ayvalık · Aegean Turkey · Memecik Cultivar</div>
+      <div class="origin-data">
+        <div class="od-item"><div class="od-n">Oct</div><div class="od-l">Harvest Window</div></div>
+        <div class="od-item"><div class="od-n">38.7°</div><div class="od-l">North Latitude</div></div>
+        <div class="od-item"><div class="od-n">Memecik</div><div class="od-l">Heritage Cultivar</div></div>
+        <div class="od-item"><div class="od-n">IOC</div><div class="od-l">Certified Standard</div></div>
+      </div>
+    </div>
+    <div class="origin-body fi fi-d2">
+      <p>
+        Ayvalık sits at the northern edge of the olive's natural growing range.
+        The cool nights slow ripening of the Memecik variety — concentrating polyphenols,
+        building a complexity that warm-climate oils rarely achieve.
+        It is not the easiest place to grow olives. That is precisely the point.
+      </p>
+      <p>
+        We harvest at 10–20% ripeness — before the olive has completed its sugar cycle — to
+        fix free acidity below 0.2% and capture a bitterness and pepper finish that professional
+        palates recognise immediately. The oil is pressed cold, within four hours of leaving the grove.
+        No overnight storage. No fermentation. No shortcuts.
+      </p>
+      <p>
+        The result is not wellness oil. It is not a lifestyle product. It is the ingredient
+        a chef reaches for when the dish depends on it.
+      </p>
+      <a class="btn btn-ghost" href="#process">See the Process</a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════ PROCESS ════════════════════════════════ -->
+<section id="process" class="sec">
+  <div class="sec-head fi">
+    <div>
+      <span class="lbl">03 / Process</span>
+      <span class="rule" style="margin-top:.5rem"></span>
+    </div>
+    <div>
+      <h2 class="sec-title">Grove  ›  Press  ›  Tin.<br><em>Four hours.</em></h2>
+      <p class="sec-desc">Every step is a constraint we impose on ourselves. Quality does not scale by cutting corners.</p>
+    </div>
+  </div>
+
+  <div class="process-steps fi">
+    <div class="ps">
+      <div class="ps-num">01</div>
+      <div class="ps-title">Early Harvest</div>
+      <div class="ps-detail">Picked at 10–20% ripeness. Green fruit, high polyphenols, low free acidity. Hand-combed where terrain demands it. No mechanical damage to the fruit surface.</div>
+      <span class="ps-badge">October Only</span>
+    </div>
+    <div class="ps">
+      <div class="ps-num">02</div>
+      <div class="ps-title">Same-Day Press</div>
+      <div class="ps-detail">Fruit moves from grove to press within four hours. No overnight storage, no fermentation. Cold extraction at 18°C — temperature never exceeded. Continuous two-phase decanter.</div>
+      <span class="ps-badge">&lt;4 hours</span>
+    </div>
+    <div class="ps">
+      <div class="ps-num">03</div>
+      <div class="ps-title">Lab Certification</div>
+      <div class="ps-detail">Every batch tested for free acidity, peroxide value, UV absorption, and polyphenol concentration. IOC-standard methodology. Certificates available on request — no exceptions.</div>
+      <span class="ps-badge">IOC Certified</span>
+    </div>
+    <div class="ps">
+      <div class="ps-num">04</div>
+      <div class="ps-title">Tin & Dispatch</div>
+      <div class="ps-detail">Filled into nitrogen-flushed tins and drums. Batch-numbered. Temperature-controlled logistics to the professional kitchen's door. Shelf life: 18 months from press date.</div>
+      <span class="ps-badge">Batch Numbered</span>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════ CATERING SECTION ══════════════════════ -->
+<section id="catering">
+  <div class="cat-left fi">
+    <div class="cat-eyebrow">
+      <span class="rule" style="width:32px;opacity:1;background:#2E6B52"></span>
+      <span class="lbl" style="color:#5fa882">04 / Catering Supply</span>
+    </div>
+    <h2 class="cat-title">
+      Built for<br>
+      <em>volume.</em><br>
+      <strong>Certified for</strong><br>
+      <strong>excellence.</strong>
+    </h2>
+    <p class="cat-body">
+      The KALA Catering range applies the same extraction standards, the same lab certification,
+      and the same Ayvalık Memecik grove to high-volume operations.
+      Whether you are running 200 covers a night or supplying a hotel group across three cities,
+      the number on the certificate does not change: 0.2%.
+    </p>
+
+    <div class="cat-specs fi fi-d1">
+      <div class="cs-item"><div class="cs-n">0.2%</div><div class="cs-l">Free Acidity · All Formats</div></div>
+      <div class="cs-item"><div class="cs-n">20L</div><div class="cs-l">Standard Catering Drum</div></div>
+      <div class="cs-item"><div class="cs-n">200L+</div><div class="cs-l">Bulk Minimum</div></div>
+      <div class="cs-item"><div class="cs-n">Q4</div><div class="cs-l">Annual Allocation Lock</div></div>
+    </div>
+
+    <div class="cert-row fi fi-d2">
+      <span class="cert">IOC Certified</span>
+      <span class="cert">ISO Food Safety</span>
+      <span class="cert">Batch Traceable</span>
+      <span class="cert">White Label Available</span>
+    </div>
+  </div>
+
+  <div class="cat-right fi fi-d2">
+    <div class="lbl" style="color:#5fa882;margin-bottom:1.8rem">Who We Supply</div>
+
+    <ul class="cat-checklist">
+      <li>Hotel groups and resort F&B operations</li>
+      <li>Event catering and banqueting kitchens</li>
+      <li>Airline and premium hospitality catering</li>
+      <li>Institutional and hospital food service</li>
+      <li>Corporate cafeteria and staff dining</li>
+      <li>Distributor and import partners (EMEA)</li>
+    </ul>
+
+    <div style="font-size:.78rem;color:rgba(245,240,232,.55);line-height:1.9;margin-bottom:2rem">
+      Annual supply contracts include fixed-harvest pricing, preferred allocation from the October press,
+      dedicated batch certification documentation, and the option to white-label under your own brand.
+      A sample kit (3 × 500ml, certified) ships within 5 working days.
+    </div>
+
+    <div style="display:flex;gap:1rem;flex-wrap:wrap">
+      <a class="btn btn-green" href="#trade">Catering Enquiry</a>
+      <a class="btn btn-outline-green" href="#trade">Download Spec Sheet</a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════ TESTIMONIALS ═══════════════════════════ -->
+<section id="testimonials" class="sec" style="padding-top:5rem;padding-bottom:0">
+  <div class="sec-head fi">
+    <div>
+      <span class="lbl">05 / Reviews</span>
+      <span class="rule" style="margin-top:.5rem"></span>
+    </div>
+    <div>
+      <h2 class="sec-title">What the kitchen<br><em>says.</em></h2>
+    </div>
+  </div>
+  <div class="testi-grid fi">
+    <div class="testi">
+      <div class="testi-tier" style="color:var(--gold)">⬡ Premium · Fine Dining</div>
+      <div class="testi-text">"The best finishing oil I have used. Consistent batch after batch — which is what you need at this level. The acidity holds up to what the certificate says."</div>
+      <div class="testi-author">Executive Chef</div>
+      <div class="testi-role">Fine Dining Restaurant, Istanbul</div>
+    </div>
+    <div class="testi">
+      <div class="testi-tier" style="color:var(--stone)">◈ Standard · Professional</div>
+      <div class="testi-text">"We use the 5L Reserve across the entire kitchen. For that price-point and that acidity, there is nothing comparable in this market. Our guests notice it."</div>
+      <div class="testi-author">Head Chef & Co-owner</div>
+      <div class="testi-role">Bistrot, Izmir</div>
+    </div>
+    <div class="testi">
+      <div class="testi-tier" style="color:#5fa882">▣ Catering · Hotel Group</div>
+      <div class="testi-text">"We switched the entire group — five properties — to the KALA catering supply. The spec sheet was compelling. The oil confirmed it."</div>
+      <div class="testi-author">Head of Procurement</div>
+      <div class="testi-role">Luxury Hotel Group, Bodrum</div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════ TRADE FORM ═════════════════════════════ -->
+<section id="trade">
+  <div class="trade-left fi">
+    <span class="lbl" style="margin-bottom:1.8rem">06 / Trade</span>
+    <h2 class="trade-title">For kitchens<br>that never <strong>stop.</strong></h2>
+    <p class="trade-body">
+      Direct supply. No intermediaries, no shelf markups on integrity.
+      We work with restaurants, hotels, caterers, and distributors on a direct-from-grove basis.
+      Full traceability. Competitive pricing for volume commitments.
+    </p>
+    <ul class="trade-list">
+      <li>5L tins — standard HoReCa format</li>
+      <li>20L catering drums — dispensing tap</li>
+      <li>Annual allocation contracts (Q4 harvest)</li>
+      <li>Sample kit dispatched within 5 working days</li>
+      <li>Batch certificates on every order</li>
+      <li>White-label and custom packaging available</li>
+    </ul>
+    <div class="trade-email">trade@olivekala.com</div>
+  </div>
+  <div class="trade-right fi fi-d2">
+    <span class="lbl" style="margin-bottom:1.8rem">Request Sample or Pricing</span>
+    <form class="enquiry-form" onsubmit="handleSubmit(event)">
+      <div class="form-row2">
+        <div><label class="fl">Name</label><input class="fi-inp" type="text" placeholder="Chef / Buyer name" /></div>
+        <div><label class="fl">Establishment</label><input class="fi-inp" type="text" placeholder="Restaurant / Hotel" /></div>
+      </div>
+      <div><label class="fl">Email</label><input class="fi-inp" type="email" placeholder="your@email.com" /></div>
+      <div><label class="fl">Sector</label>
+        <select class="fi-sel">
+          <option value="">Select...</option>
+          <option>Fine Dining Restaurant</option>
+          <option>Hotel & Resort</option>
+          <option>Event Catering</option>
+          <option>Institutional / Corporate</option>
+          <option>Distributor / Importer</option>
+          <option>Retail</option>
+          <option>Other</option>
+        </select>
+      </div>
+      <div class="form-row2">
+        <div><label class="fl">Tier of Interest</label>
+          <select class="fi-sel">
+            <option value="">Select...</option>
+            <option>Premium (500ml / Tasting Set)</option>
+            <option>Standard (5L Reserve)</option>
+            <option>Catering (20L / Bulk)</option>
+            <option>Multiple Tiers</option>
+          </select>
+        </div>
+        <div><label class="fl">Monthly Volume</label>
+          <select class="fi-sel">
+            <option value="">Select...</option>
+            <option>Under 20L</option>
+            <option>20–50L</option>
+            <option>50–200L</option>
+            <option>200L+</option>
+          </select>
+        </div>
+      </div>
+      <div><label class="fl">Message (optional)</label>
+        <textarea class="fi-txt" placeholder="Tell us about your kitchen or operation..."></textarea>
+      </div>
+      <button class="form-submit" type="submit">Send Trade Enquiry</button>
+    </form>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════ BLOG ═══════════════════════════════════ -->
+<section id="blog" class="sec">
+  <div class="sec-head fi">
+    <div>
+      <span class="lbl">07 / Journal</span>
+      <span class="rule" style="margin-top:.5rem"></span>
+    </div>
+    <div>
+      <h2 class="sec-title">The craft,<br><em>explained.</em></h2>
+      <p class="sec-desc">We write for professionals. No wellness copy. No lifestyle claims. Just the science, the geography, and the decisions that produce the oil in your kitchen.</p>
+    </div>
+  </div>
+
+  <div class="blog-grid fi">
+
+    <!-- Article 1 -->
+    <div class="blog-card" onclick="openArticle('a1')" style="cursor:pointer">
+      <div class="blog-thumb" style="background:linear-gradient(180deg,transparent 20%,rgba(13,13,13,.92) 100%),linear-gradient(135deg,#0D1A0D 0%,#1B4332 100%)">
+        <div class="blog-thumb-inner">
+          <div>
+            <div class="blog-cat">Origin &amp; Science</div>
+            <div class="blog-thumb-title">The case for early harvest — why we pick before peak ripeness</div>
+          </div>
+        </div>
+      </div>
+      <div class="blog-body">
+        <div class="blog-excerpt">Most producers wait for the Memecik olive to reach maximum yield. We do the opposite. At 10–20% ripeness, free acidity sits below 0.2% and polyphenol concentration peaks. Here is the chemistry behind the decision.</div>
+        <div class="blog-meta"><span class="blog-date">October 2025</span><span class="blog-read">Read →</span></div>
+      </div>
+    </div>
+
+    <!-- Article 2 -->
+    <div class="blog-card" onclick="openArticle('a2')" style="cursor:pointer">
+      <div class="blog-thumb" style="background:linear-gradient(180deg,transparent 20%,rgba(13,13,13,.92) 100%),linear-gradient(135deg,#0D0D0D 0%,#1a1208 100%)">
+        <div class="blog-thumb-inner">
+          <div>
+            <div class="blog-cat">Quality &amp; Specification</div>
+            <div class="blog-thumb-title">What 0.2% free acidity actually means on the pass</div>
+          </div>
+        </div>
+      </div>
+      <div class="blog-body">
+        <div class="blog-excerpt">The IOC ceiling is 0.8%. Most commercial oils sit at 0.5–0.7% — technically compliant, perceptibly mediocre. At 0.2%, the chemistry changes in ways a trained palate detects immediately: cleaner finish, longer pepper, structural intensity.</div>
+        <div class="blog-meta"><span class="blog-date">November 2025</span><span class="blog-read">Read →</span></div>
+      </div>
+    </div>
+
+    <!-- Article 3 -->
+    <div class="blog-card" onclick="openArticle('a3')" style="cursor:pointer">
+      <div class="blog-thumb" style="background:linear-gradient(180deg,transparent 20%,rgba(13,13,13,.92) 100%),linear-gradient(135deg,#090e0b 0%,#1B4332 100%)">
+        <div class="blog-thumb-inner">
+          <div>
+            <div class="blog-cat">Geography</div>
+            <div class="blog-thumb-title">Ayvalık: why 38.7° north latitude is the point</div>
+          </div>
+        </div>
+      </div>
+      <div class="blog-body">
+        <div class="blog-excerpt">Ayvalık is not the obvious place to grow olives. Cooler nights, slower sugar accumulation — a fruit that struggles. That struggle is the specification. Latitude is not just geography; it is flavour.</div>
+        <div class="blog-meta"><span class="blog-date">December 2025</span><span class="blog-read">Read →</span></div>
+      </div>
+    </div>
+
+    <!-- Article 4 -->
+    <div class="blog-card" onclick="openArticle('a4')" style="cursor:pointer">
+      <div class="blog-thumb" style="background:linear-gradient(180deg,transparent 20%,rgba(13,13,13,.92) 100%),linear-gradient(135deg,#0a0a0a 0%,#1a1208 100%)">
+        <div class="blog-thumb-inner">
+          <div>
+            <div class="blog-cat">Kitchen Application</div>
+            <div class="blog-thumb-title">Cooking with high-polyphenol oil — what the heat does</div>
+          </div>
+        </div>
+      </div>
+      <div class="blog-body">
+        <div class="blog-excerpt">The conventional wisdom is to reserve premium EVOO for finishing. That advice was written for fragile mass-market oil. High-polyphenol structure handles heat differently. We ran the tests. The data is below.</div>
+        <div class="blog-meta"><span class="blog-date">January 2026</span><span class="blog-read">Read →</span></div>
+      </div>
+    </div>
+
+    <!-- Article 5 -->
+    <div class="blog-card" onclick="openArticle('a5')" style="cursor:pointer">
+      <div class="blog-thumb" style="background:linear-gradient(180deg,transparent 20%,rgba(13,13,13,.92) 100%),linear-gradient(135deg,#0e1a14 0%,#1B4332 100%)">
+        <div class="blog-thumb-inner">
+          <div>
+            <div class="blog-cat">Supply Chain</div>
+            <div class="blog-thumb-title">Why four hours matters — the oxidation window</div>
+          </div>
+        </div>
+      </div>
+      <div class="blog-body">
+        <div class="blog-excerpt">Between the moment the olive breaks from the branch and the moment the oil is sealed in a nitrogen-flushed tin, every hour is a liability. The four-hour rule is not a marketing claim. It is chemistry.</div>
+        <div class="blog-meta"><span class="blog-date">February 2026</span><span class="blog-read">Read →</span></div>
+      </div>
+    </div>
+
+    <!-- Article 6 -->
+    <div class="blog-card" onclick="openArticle('a6')" style="cursor:pointer">
+      <div class="blog-thumb" style="background:linear-gradient(180deg,transparent 20%,rgba(13,13,13,.92) 100%),linear-gradient(135deg,#0a0a0a 0%,#0D1A0D 100%)">
+        <div class="blog-thumb-inner">
+          <div>
+            <div class="blog-cat">Catering &amp; Volume</div>
+            <div class="blog-thumb-title">Can a catering oil be a quality oil? The argument for not accepting the trade-off</div>
+          </div>
+        </div>
+      </div>
+      <div class="blog-body">
+        <div class="blog-excerpt">The industry assumption is that volume and quality are inversely related. The KALA 20L drum meets the same IOC lab threshold as the numbered 500ml bottle. Here is why that is achievable at scale.</div>
+        <div class="blog-meta"><span class="blog-date">March 2026</span><span class="blog-read">Read →</span></div>
+      </div>
+    </div>
+
+  </div>
+
+  <div style="text-align:center;margin-top:3rem" class="fi">
+    <button class="btn btn-ghost" onclick="openArticle('a1')">Read Latest Article</button>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════ INSTAGRAM ══════════════════════════════ -->
+<section id="instagram" class="sec" style="padding-top:0;padding-bottom:5rem">
+  <div class="sec-head fi" style="margin-bottom:2rem">
+    <div>
+      <span class="lbl">@olivekala</span>
+      <span class="rule" style="margin-top:.5rem"></span>
+    </div>
+    <div>
+      <h2 class="sec-title" style="font-size:1.6rem">The grove.<br>The kitchen. The standard.</h2>
+    </div>
+  </div>
+
+  <div class="ig-grid fi">
+    <div class="ig-cell" style="background:#0D0D0D;border:1px solid #1a1a1a">
+      <div class="ig-inner">
+        <span class="ig-lbl" style="color:var(--gold)">OLIVE</span>
+        <span class="ig-main" style="font-size:2rem;color:var(--cream)">KALA</span>
+        <span class="ig-sub" style="color:var(--stone)">AYVALIK · 2025</span>
+      </div>
+    </div>
+    <div class="ig-cell" style="background:#111">
+      <div class="ig-inner">
+        <span class="ig-lbl" style="color:var(--stone)">RESERVE</span>
+        <span class="ig-main" style="font-size:2.4rem;color:var(--gold);font-weight:600">0.2%</span>
+        <span class="ig-lbl" style="color:var(--gold)">FREE ACIDITY</span>
+        <span class="ig-sub" style="color:var(--stone)">EARLY HARVEST</span>
+      </div>
+    </div>
+    <div class="ig-cell" style="background:var(--green)">
+      <div class="ig-inner">
+        <span class="ig-lbl" style="color:var(--stone)">O R I G I N</span>
+        <span class="ig-main" style="font-size:1.7rem;color:var(--cream);font-weight:600">AYVALIK</span>
+        <span class="ig-sub" style="color:var(--stone)">Three thousand years.</span>
+      </div>
+    </div>
+    <div class="ig-cell" style="background:#0a0a0a">
+      <div class="ig-inner">
+        <span class="ig-sub" style="color:var(--stone)">THE PROFESSIONAL'S OIL</span>
+        <span class="ig-main" style="font-size:1.35rem;color:var(--cream);font-style:italic">At the pass.</span>
+      </div>
+    </div>
+    <div class="ig-cell" style="background:#0a120e">
+      <div class="ig-inner">
+        <span class="ig-lbl" style="color:#5fa882">CATERING</span>
+        <span class="ig-main" style="font-size:1.8rem;color:#5fa882;font-weight:600">20L</span>
+        <span class="ig-sub" style="color:rgba(95,168,130,.6)">BULK CERTIFIED</span>
+      </div>
+    </div>
+    <div class="ig-cell" style="background:var(--green)">
+      <div class="ig-inner">
+        <span class="ig-lbl" style="color:var(--gold)">O C T O B E R</span>
+        <span class="ig-main" style="font-size:1.2rem;color:var(--gold);font-style:italic">The harvest<br>begins.</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════ ARTICLE MODALS ════════════════════════ -->
+
+<!-- Article 1 -->
+<div class="modal-overlay" id="modal-a1" onclick="closeOnOverlay(event,'a1')">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeArticle('a1')">✕</button>
+    <div class="modal-cat">Origin &amp; Science · October 2025</div>
+    <h1 class="modal-title">The case for early harvest — why we pick before peak ripeness</h1>
+    <div class="modal-meta">Olivekala Journal &nbsp;·&nbsp; 5 min read &nbsp;·&nbsp; Ayvalık, Turkey</div>
+    <div class="modal-body">
+      <p>Most olive oil producers wait. They let the Memecik fruit ripen fully because a mature olive gives more volume per tree — sometimes 20–30% more oil by weight than a green, early-picked fruit. The economic logic is obvious. The quality logic runs the other way.</p>
+      <p>At 10–20% ripeness, before the olive has completed its sugar and fatty-acid cycle, two things are true simultaneously: free acidity is at its lowest, and polyphenol concentration is at its highest. These two values move in opposite directions as the fruit matures — acidity rises as enzymatic activity accelerates, polyphenols fall as the olive converts them into pigment and energy for ripening.</p>
+      <h3>The chemistry of the green fruit</h3>
+      <p>Free acidity in olive oil is a measure of degradation — specifically the proportion of free fatty acids produced when the fruit's cell walls break down. A freshly picked, undamaged green olive has minimal enzymatic activity and almost no cell-wall breakdown. Its free fatty acid content is correspondingly low. By the time the same fruit reaches full purple-black ripeness, enzymatic activity has been running for weeks. Every bruise, every delay, every degree of temperature above ambient accelerates the process.</p>
+      <p>Polyphenols — specifically oleocanthal, oleuropein, and hydroxytyrosol — are the compounds responsible for the peppery, bitter finish that distinguishes premium EVOO from neutral commercial oil. They are also potent antioxidants, which means they protect the oil's structure during cooking and storage. Early-picked Memecik registers polyphenol concentrations above 300 mg/kg. The same grove's oil at full ripeness: typically 80–120 mg/kg.</p>
+      <div class="data-row">
+        <div class="data-cell"><div class="data-n">0.2%</div><div class="data-l">Free Acidity · Early Pick</div></div>
+        <div class="data-cell"><div class="data-n">300+</div><div class="data-l">mg/kg Polyphenols</div></div>
+        <div class="data-cell"><div class="data-n">10–20%</div><div class="data-l">Ripeness at Harvest</div></div>
+      </div>
+      <h3>The yield trade-off</h3>
+      <p>We lose volume. An early-picked tree gives roughly 12–15% oil by weight. A fully ripe fruit gives 18–22%. Over a grove of several thousand trees, the difference is significant. We accept it because the alternative is an oil that meets the letter of the IOC's extra virgin standard while failing its spirit. The IOC ceiling for free acidity is 0.8%. Most commercial oils sit at 0.5–0.7% — technically extra virgin, perceptibly ordinary.</p>
+      <blockquote>"The early pick is a decision to make less oil and better oil. In a market where most decisions run the other way, that requires a specific kind of conviction."</blockquote>
+      <p>KALA's October harvest is the only harvest we run. There is no second picking, no late-season volume batch, no blending with mid-season fruit to reduce the financial cost of the early pick. One press window. One specification. The tin in your kitchen is the direct result of that decision.</p>
+    </div>
+    <div class="modal-footer">
+      <span class="lbl">Next article:</span>
+      <button class="btn btn-ghost" style="padding:.5rem 1.2rem;font-size:.6rem" onclick="closeArticle('a1');openArticle('a2')">What 0.2% means on the pass →</button>
+    </div>
+  </div>
+</div>
+
+<!-- Article 2 -->
+<div class="modal-overlay" id="modal-a2" onclick="closeOnOverlay(event,'a2')">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeArticle('a2')">✕</button>
+    <div class="modal-cat">Quality &amp; Specification · November 2025</div>
+    <h1 class="modal-title">What 0.2% free acidity actually means on the pass</h1>
+    <div class="modal-meta">Olivekala Journal &nbsp;·&nbsp; 6 min read &nbsp;·&nbsp; Ayvalık, Turkey</div>
+    <div class="modal-body">
+      <p>The number 0.2% appears on the KALA tin, on every batch certificate, and in every conversation we have with buyers. It requires explanation — not because it is complicated, but because most people have no reference point for what it means in practice.</p>
+      <p>The International Olive Council sets 0.8% as the maximum free acidity permitted for extra virgin classification. It is a generous ceiling. A surveyor of shelves would find that most oils marketed as premium extra virgin sit between 0.5% and 0.7% — compliant, but nowhere near the top of the achievable range. At 0.2%, we are sitting at roughly a quarter of that ceiling.</p>
+      <h3>What free acidity is, precisely</h3>
+      <p>Free acidity is not a flavour compound directly — it is a marker of degradation. Oleic acid, the primary fatty acid in olive oil, remains bound in triglyceride form in an intact, freshly pressed olive. The moment degradation begins — through enzymatic activity in bruised fruit, oxidation during storage, or excessive heat during extraction — fatty acids cleave from their glycerol backbone and become "free." The percentage of these unbound fatty acids is the free acidity figure.</p>
+      <p>An oil at 0.7% has undergone significantly more degradation than an oil at 0.2% — it has been in the degradation process longer, at higher temperatures, or from more damaged fruit. The palate detects this indirectly: as a flat, slightly greasy quality in the mid-palate, a short finish, an absence of the structural bitterness that marks genuinely fresh oil.</p>
+      <div class="data-row">
+        <div class="data-cell"><div class="data-n">0.8%</div><div class="data-l">IOC EVOO Maximum</div></div>
+        <div class="data-cell"><div class="data-n">0.5–0.7%</div><div class="data-l">Typical Commercial</div></div>
+        <div class="data-cell"><div class="data-n">0.2%</div><div class="data-l">KALA Standard</div></div>
+      </div>
+      <h3>On the pass: what actually changes</h3>
+      <p>A chef working with an oil at 0.2% is working with a structurally intact product. The polyphenols that drive flavour complexity are present and active. The oil tolerates moderate heat better than a higher-acidity alternative — the antioxidant load that accompanies low acidity provides genuine structural protection at temperature. The finish is longer, with a measurable pepper note at the back of the throat that trained palates associate with freshness and polyphenol density.</p>
+      <blockquote>"The difference between 0.4% and 0.2% is not a number on a certificate. It is a quality decision made at every point between the grove and the tin."</blockquote>
+      <p>Every KALA batch is independently tested and certified. The certificate accompanies every commercial order. The number does not shift between seasons because the decisions that produce it — early pick, same-day press, cold extraction — do not shift either. The specification is not an aspiration. It is the outcome of a controlled process, repeated to the same standard each October.</p>
+    </div>
+    <div class="modal-footer">
+      <span class="lbl">Next article:</span>
+      <button class="btn btn-ghost" style="padding:.5rem 1.2rem;font-size:.6rem" onclick="closeArticle('a2');openArticle('a3')">Ayvalık — the latitude argument →</button>
+    </div>
+  </div>
+</div>
+
+<!-- Article 3 -->
+<div class="modal-overlay" id="modal-a3" onclick="closeOnOverlay(event,'a3')">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeArticle('a3')">✕</button>
+    <div class="modal-cat">Geography · December 2025</div>
+    <h1 class="modal-title">Ayvalık: why 38.7° north latitude is the point</h1>
+    <div class="modal-meta">Olivekala Journal &nbsp;·&nbsp; 5 min read &nbsp;·&nbsp; Ayvalık, Turkey</div>
+    <div class="modal-body">
+      <p>Ayvalık is not the intuitive choice. The olive's heartland runs from Andalusia through Tunisia to the Levant — warm, predictable, high-yield growing conditions that produce consistent, voluminous harvests. Ayvalık sits at the northern edge of the olive's viable range. The winters are cooler, the growing season is shorter, and the Memecik variety grown here matures slowly under conditions that would simply be suboptimal for any producer optimising for yield.</p>
+      <p>That suboptimality is the point.</p>
+      <h3>Stress physiology and flavour</h3>
+      <p>Plants under moderate environmental stress produce secondary metabolites as a protective response. In olives, that response manifests primarily as polyphenol synthesis — the same compounds that give high-quality EVOO its bitterness, its pepper finish, and its antioxidant load. A Memecik olive grown in Ayvalık's cooler northern conditions builds polyphenols at a higher rate than the same variety grown in a warmer, more forgiving climate.</p>
+      <p>The mechanism is analogous to what happens with alpine herbs versus lowland equivalents, or with high-altitude coffee versus valley-grown beans. Slower maturation, cooler nights, and the marginal stress of a difficult growing environment concentrate flavour compounds in ways that optimal conditions do not replicate.</p>
+      <div class="data-row">
+        <div class="data-cell"><div class="data-n">38.7°N</div><div class="data-l">Latitude · Ayvalık</div></div>
+        <div class="data-cell"><div class="data-n">Memecik</div><div class="data-l">Heritage Cultivar</div></div>
+        <div class="data-cell"><div class="data-n">3000yr</div><div class="data-l">Cultivation History</div></div>
+      </div>
+      <h3>The Memecik cultivar specifically</h3>
+      <p>Memecik is a Turkish heritage variety rarely grown outside the Aegean region. It is not widely known internationally — it has not been aggressively marketed the way Arbequina or Picual have, and it lacks the commercial infrastructure of the Italian or Greek designations. What it has is a flavour profile that chefs who encounter it tend to find arresting: a pronounced green, slightly grassy character in early harvest, a firm bitterness, and a finish that outlasts most competing varieties.</p>
+      <blockquote>"The grove has been here for three thousand years. We are simply the latest people to understand what it produces when you harvest it correctly."</blockquote>
+      <p>The combination of Ayvalık's latitude, the Memecik cultivar's natural polyphenol tendency, and an early-harvest protocol produces an oil that could not be replicated by moving the production south or switching the variety. The geography is not incidental to the specification. It is the specification.</p>
+    </div>
+    <div class="modal-footer">
+      <span class="lbl">Next article:</span>
+      <button class="btn btn-ghost" style="padding:.5rem 1.2rem;font-size:.6rem" onclick="closeArticle('a3');openArticle('a4')">Cooking with high-polyphenol oil →</button>
+    </div>
+  </div>
+</div>
+
+<!-- Article 4 -->
+<div class="modal-overlay" id="modal-a4" onclick="closeOnOverlay(event,'a4')">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeArticle('a4')">✕</button>
+    <div class="modal-cat">Kitchen Application · January 2026</div>
+    <h1 class="modal-title">Cooking with high-polyphenol oil — what the heat does</h1>
+    <div class="modal-meta">Olivekala Journal &nbsp;·&nbsp; 7 min read &nbsp;·&nbsp; Ayvalık, Turkey</div>
+    <div class="modal-body">
+      <p>The standard advice is to keep premium extra virgin olive oil away from heat. Use it for finishing, for dressings, for the table — but not for cooking. This advice was written for standard commercial oil and has been applied wholesale to all extra virgin, regardless of specification. It is, for high-polyphenol oil, partially wrong.</p>
+      <p>The smoke point of extra virgin olive oil is typically cited at 190–210°C. This is accurate for most commercial EVOO, where the free acidity is 0.5–0.8% and the polyphenol count is low. At 0.2% free acidity and 300+ mg/kg polyphenols, the structural chemistry is different.</p>
+      <h3>Why polyphenols matter at temperature</h3>
+      <p>Polyphenols in EVOO function as natural antioxidants. Their role in the bottle is to slow oxidative degradation during storage. Their role in the pan is analogous: they scavenge free radicals produced during heating, protecting the oil's fatty-acid structure from oxidation. An oil with a high polyphenol load — particularly oleocanthal and hydroxytyrosol — degrades more slowly under heat than a structurally equivalent oil with lower polyphenol content.</p>
+      <p>This does not mean KALA oil should be used for deep frying at 180°C as a primary cooking medium. It means that moderate-heat applications — sautéing aromatics, building a sauce base, finishing a protein in the pan — do not destroy the oil's character the way they would with a fragile, lower-specification product.</p>
+      <div class="data-row">
+        <div class="data-cell"><div class="data-n">190°C</div><div class="data-l">Approx. Smoke Point</div></div>
+        <div class="data-cell"><div class="data-n">300+</div><div class="data-l">mg/kg Polyphenols</div></div>
+        <div class="data-cell"><div class="data-n">Stable</div><div class="data-l">to 160°C Sustained</div></div>
+      </div>
+      <h3>Practical kitchen applications</h3>
+      <p>Where we have seen chefs use KALA most effectively under heat: building soffritto bases where olive character should persist into the finished dish; pan-finishing fish, where a 30-second high-heat contact needs an oil that does not burn before the protein is done; in pasta cooking water — a small addition that seasons without the soapy quality of lower-grade oil at temperature.</p>
+      <blockquote>"The finishing argument has been overstated. A structurally sound oil handles a hot pan differently to a fragile one. Test it before you assume."</blockquote>
+      <p>We do not claim that KALA performs as a neutral cooking oil. We claim that its specification makes it more versatile than the standard advice suggests — and that a kitchen using it only as a finishing oil is leaving half its potential on the shelf.</p>
+    </div>
+    <div class="modal-footer">
+      <span class="lbl">Next article:</span>
+      <button class="btn btn-ghost" style="padding:.5rem 1.2rem;font-size:.6rem" onclick="closeArticle('a4');openArticle('a5')">The four-hour oxidation window →</button>
+    </div>
+  </div>
+</div>
+
+<!-- Article 5 -->
+<div class="modal-overlay" id="modal-a5" onclick="closeOnOverlay(event,'a5')">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeArticle('a5')">✕</button>
+    <div class="modal-cat">Supply Chain · February 2026</div>
+    <h1 class="modal-title">Why four hours matters — the oxidation window</h1>
+    <div class="modal-meta">Olivekala Journal &nbsp;·&nbsp; 6 min read &nbsp;·&nbsp; Ayvalık, Turkey</div>
+    <div class="modal-body">
+      <p>The moment an olive breaks from its branch, degradation begins. This is not metaphor or marketing language — it is the biochemistry of a fruit that has evolved to begin fermenting and decomposing as soon as it separates from its parent tree. Cell walls rupture under the pressure of handling. Polyphenol oxidase, an enzyme present in the flesh, begins converting polyphenols into melanin — the same browning process visible when you cut an apple. Lipase enzymes begin cleaving fatty acids from their triglyceride bonds, incrementally raising free acidity.</p>
+      <p>All of this happens whether or not you can see it. The olives in the harvest bin look fine. The process is running.</p>
+      <h3>What happens each hour</h3>
+      <p>Quantifying the degradation rate is not straightforward — temperature, harvest handling method, and the ambient humidity all affect the speed. As a general approximation based on published IOC research and our own batch testing over the 2025 harvest: free acidity increases by roughly 0.03–0.06 percentage points per hour under ambient Aegean October conditions (approximately 18–22°C). Polyphenol concentration falls faster — an estimated 8–12% reduction per four-hour window beyond the first press opportunity.</p>
+      <div class="data-row">
+        <div class="data-cell"><div class="data-n">&lt;4h</div><div class="data-l">Grove to Press Target</div></div>
+        <div class="data-cell"><div class="data-n">+0.05%</div><div class="data-l">Acidity Rise / Hour (est.)</div></div>
+        <div class="data-cell"><div class="data-n">−10%</div><div class="data-l">Polyphenol Loss / 4hr Delay</div></div>
+      </div>
+      <h3>Overnight storage — the industry norm</h3>
+      <p>The standard industry practice is overnight fruit storage — harvested fruit is collected during the day and pressed the following morning. This is logistically sensible and economically efficient. It also means the fruit has been degrading for eight to sixteen hours before it reaches the press. For a producer optimising for IOC compliance rather than specification, this is entirely acceptable. Free acidity will still be within the 0.8% ceiling. The polyphenol count will be lower, the structural freshness will be diminished, but the certificate will be valid.</p>
+      <blockquote>"Every hour between the grove and the press is a decision — to prioritise logistics over specification. We made that decision once, in one direction, and we have not revisited it."</blockquote>
+      <p>The four-hour rule requires running the press in shifts during harvest, absorbing the higher operational cost of continuous extraction, and accepting the logistical constraints of a same-day commitment. The alternative is a better-organised harvest that produces inferior oil. We chose the harder schedule.</p>
+    </div>
+    <div class="modal-footer">
+      <span class="lbl">Next article:</span>
+      <button class="btn btn-ghost" style="padding:.5rem 1.2rem;font-size:.6rem" onclick="closeArticle('a5');openArticle('a6')">Can catering oil be quality oil? →</button>
+    </div>
+  </div>
+</div>
+
+<!-- Article 6 -->
+<div class="modal-overlay" id="modal-a6" onclick="closeOnOverlay(event,'a6')">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeArticle('a6')">✕</button>
+    <div class="modal-cat">Catering &amp; Volume · March 2026</div>
+    <h1 class="modal-title">Can a catering oil be a quality oil? The argument for not accepting the trade-off</h1>
+    <div class="modal-meta">Olivekala Journal &nbsp;·&nbsp; 6 min read &nbsp;·&nbsp; Ayvalık, Turkey</div>
+    <div class="modal-body">
+      <p>The assumption is structural: catering format implies bulk pricing implies reduced specification. This is the logic that has produced an entire category of catering oils — technically extra virgin, commercially functional, professionally indistinguishable from neutral vegetable oil at temperature. The category exists because someone, somewhere in each supply chain, accepted the trade-off.</p>
+      <p>We do not accept it as structurally necessary. Our argument is that the trade-off is a choice, not an inevitability — and that the choice has almost always been made on the wrong side of the quality line because the buyers in institutional procurement are not the people eating the food.</p>
+      <h3>The specification argument</h3>
+      <p>KALA's 20L catering drum is filled from the same October press as the numbered 500ml Harvest Edition. The same Memecik fruit, the same cold-extraction run, the same batch tested against the same IOC parameters. Free acidity: 0.2%. Polyphenols: above 300 mg/kg. Peroxide value: below 12 meq O₂/kg. The certificate that accompanies the 20L drum and the certificate that accompanies the 500ml bottle are drawn from the same batch data.</p>
+      <p>The format changes. The oil does not.</p>
+      <div class="data-row">
+        <div class="data-cell"><div class="data-n">0.2%</div><div class="data-l">Free Acidity · All Formats</div></div>
+        <div class="data-cell"><div class="data-n">20L</div><div class="data-l">Catering Drum</div></div>
+        <div class="data-cell"><div class="data-n">Same</div><div class="data-l">Batch Certified</div></div>
+      </div>
+      <h3>Why this matters for large operations</h3>
+      <p>A hotel group running five properties through a central procurement function is making an oil decision that affects every plate of food served across those properties for the year. If that decision defaults to the catering category's standard specification — free acidity at 0.6%, polyphenols at 80 mg/kg — the gap between what the kitchen could be producing and what it is producing is significant, measurable, and invisible to the procurement function that made the decision.</p>
+      <blockquote>"The chef at the pass is not involved in the procurement decision. The person who made that decision is not at the pass. This information gap is where quality goes to die."</blockquote>
+      <p>We supply catering operations directly, with full batch documentation, on the basis that the decision-maker should see the same numbers the chef would care about if they were consulted. In our experience, when a procurement director sees the actual specification comparison rather than just a price-per-litre table, the conversation changes. The oil in the 20L drum is the argument. The price is the footnote.</p>
+    </div>
+    <div class="modal-footer">
+      <span class="lbl">Explore catering supply:</span>
+      <a class="btn btn-green" href="#catering" onclick="closeArticle('a6')" style="padding:.5rem 1.4rem;font-size:.6rem">Catering Programme</a>
+      <a class="btn btn-ghost" href="#trade" onclick="closeArticle('a6')" style="padding:.5rem 1.2rem;font-size:.6rem">Request Sample</a>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════ FOOTER ═════════════════════════════════ -->
+<footer>
+  <div class="footer-grid">
+    <div>
+      <div class="footer-logo-name">OLIVE<span>KALA</span></div>
+      <div class="footer-tagline">The Professional's Oil</div>
+      <div class="footer-about">
+        Extra virgin olive oil from Ayvalık, Aegean Turkey.<br>
+        Three tiers. One extraction standard. Zero compromise.
+      </div>
+      <div style="margin-top:1.5rem;display:flex;gap:.7rem;flex-wrap:wrap">
+        <span style="font-size:.55rem;color:rgba(245,240,232,.25);letter-spacing:.12em;text-transform:uppercase;border:1px solid rgba(255,255,255,.08);padding:.2rem .55rem">IOC Certified</span>
+        <span style="font-size:.55rem;color:rgba(245,240,232,.25);letter-spacing:.12em;text-transform:uppercase;border:1px solid rgba(255,255,255,.08);padding:.2rem .55rem">ISO Food Safety</span>
+        <span style="font-size:.55rem;color:rgba(245,240,232,.25);letter-spacing:.12em;text-transform:uppercase;border:1px solid rgba(255,255,255,.08);padding:.2rem .55rem">Batch Traceable</span>
+      </div>
+    </div>
+
+    <div>
+      <div class="fc-title">Premium</div>
+      <ul class="fc-links">
+        <li><a href="#products" onclick="switchTab('prem')">KALA 500ml Harvest Edition <span class="tier-tag" style="color:var(--gold);border-color:rgba(201,168,76,.3)">new</span></a></li>
+        <li><a href="#products" onclick="switchTab('prem')">KALA 250ml Tasting Set</a></li>
+        <li><a href="#products" onclick="switchTab('prem')">KALA 100ml Table Bottle</a></li>
+        <li><a href="#trade">Allocation Enquiry</a></li>
+      </ul>
+    </div>
+
+    <div>
+      <div class="fc-title">Standard</div>
+      <ul class="fc-links">
+        <li><a href="#products" onclick="switchTab('std')">KALA 5L Reserve Tin</a></li>
+        <li><a href="#products" onclick="switchTab('std')">KALA 10L Twin Pack</a></li>
+        <li><a href="#trade">Volume Pricing</a></li>
+        <li><a href="#trade">Batch Certificates</a></li>
+      </ul>
+    </div>
+
+    <div>
+      <div class="fc-title">Catering</div>
+      <ul class="fc-links">
+        <li><a href="#products" onclick="switchTab('cat')">KALA 20L Catering Drum <span class="tier-tag" style="color:#5fa882;border-color:rgba(46,107,82,.35)">new</span></a></li>
+        <li><a href="#products" onclick="switchTab('cat')">Bulk Supply Programme</a></li>
+        <li><a href="#catering">Catering Page</a></li>
+        <li><a href="#trade">Supply Contract</a></li>
+      </ul>
+    </div>
+
+    <div>
+      <div class="fc-title">Company</div>
+      <ul class="fc-links">
+        <li><a href="#origin">Origin Story</a></li>
+        <li><a href="#process">Process</a></li>
+        <li><a href="#blog">Journal</a></li>
+        <li><a href="#trade">Trade Enquiry</a></li>
+        <li><a href="mailto:trade@olivekala.com">trade@olivekala.com</a></li>
+        <li><a href="#">Ayvalık, Turkey</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <span class="footer-legal">© 2025 Olivekala A.Ş. All rights reserved.</span>
+    <div class="footer-certs">
+      <span class="footer-cert">Ayvalık · Aegean</span>
+      <span class="footer-cert">IOC Member</span>
+      <span class="footer-cert">@olivekala</span>
+    </div>
+  </div>
+</footer>
+
+<!-- ═══════════════════════════════ JS ═════════════════════════════════════ -->
+<script>
+/* ── Tier tab switcher ── */
+function switchTab(tier) {
+  ['prem','std','cat'].forEach(t => {
+    document.getElementById('pane-' + t).classList.remove('active');
+    const btn = document.getElementById('tab-' + t);
+    btn.classList.remove('active-prem','active-std','active-cat');
+  });
+  document.getElementById('pane-' + tier).classList.add('active');
+  document.getElementById('tab-' + tier).classList.add('active-' + tier);
+}
+
+/* ── Article modals ── */
+function openArticle(id) {
+  const overlay = document.getElementById('modal-' + id);
+  if (!overlay) return;
+  overlay.classList.add('open');
+  document.body.style.overflow = 'hidden';
+  overlay.scrollTop = 0;
+}
+function closeArticle(id) {
+  const overlay = document.getElementById('modal-' + id);
+  if (!overlay) return;
+  overlay.classList.remove('open');
+  document.body.style.overflow = '';
+}
+function closeOnOverlay(e, id) {
+  // only close if the click is directly on the overlay backdrop, not a child
+  if (e.target === e.currentTarget) closeArticle(id);
+}
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') {
+    document.querySelectorAll('.modal-overlay.open').forEach(m => {
+      m.classList.remove('open');
+    });
+    document.body.style.overflow = '';
+  }
+});
+
+/* ── Scroll fade-in ── */
+const fis = document.querySelectorAll('.fi');
+const io = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add('v'); io.unobserve(e.target); }
+  });
+}, { threshold: 0.07 });
+fis.forEach(el => io.observe(el));
+
+/* ── Nav shadow + active link ── */
+const nav = document.getElementById('mainNav');
+const sections = document.querySelectorAll('section[id], div[id="stats"]');
+const navLinks = document.querySelectorAll('.nav-link');
+
+window.addEventListener('scroll', () => {
+  nav.style.boxShadow = window.scrollY > 50 ? '0 4px 40px rgba(0,0,0,.7)' : 'none';
+
+  let current = '';
+  sections.forEach(s => {
+    if (window.scrollY >= s.offsetTop - 120) current = s.id;
+  });
+  navLinks.forEach(l => {
+    l.classList.remove('active');
+    if (l.getAttribute('href') === '#' + current) l.classList.add('active');
+  });
+});
+
+/* ── Form submit ── */
+function handleSubmit(e) {
+  e.preventDefault();
+  const btn = e.target.querySelector('.form-submit');
+  btn.textContent = 'Sent — we will be in touch.';
+  btn.style.background = 'var(--green)';
+  btn.style.color = 'var(--cream)';
+  btn.disabled = true;
+}
+</script>
+</body>
+</html>
