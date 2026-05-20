@@ -467,6 +467,156 @@ footer{
 .modal-body blockquote{border-left:2px solid var(--gold);padding-left:1.2rem;font-family:var(--serif);font-size:1.05rem;font-style:italic;color:var(--cream);margin:1.8rem 0}
 .modal-footer{margin-top:2.5rem;padding-top:1.5rem;border-top:1px solid rgba(201,168,76,.12);display:flex;gap:1rem;align-items:center;flex-wrap:wrap}
 .modal-footer .lbl{color:var(--stone)}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   RESPONSIVE
+═══════════════════════════════════════════════════════════════════════════ */
+
+/* ── Tablet: ≤ 1024px ── */
+@media (max-width:1024px){
+  :root{--M:4vw}
+
+  /* Nav */
+  .nav-center{gap:0}
+  .nav-link{padding:.5rem .7rem;font-size:.58rem}
+  .nav-tag{display:none}
+
+  /* Hero */
+  #hero{grid-template-columns:1fr;min-height:auto;padding:8rem var(--M) 5rem}
+  .hero-right{
+    display:none /* hide the 3-tin visual on tablet/mobile — too wide */
+  }
+  .hero-h1{font-size:clamp(3rem,8vw,5rem)}
+
+  /* Stats */
+  #stats{grid-template-columns:repeat(3,1fr)}
+  #stats .stat:last-child{display:none}
+
+  /* Products grid → 2 cols */
+  .prod-grid{grid-template-columns:repeat(2,1fr)}
+  .prod-card[style*="grid-column:span 2"]{grid-column:span 2}
+
+  /* Sec head */
+  .sec-head{grid-template-columns:1fr;gap:1rem}
+
+  /* Origin */
+  .origin-grid{grid-template-columns:1fr;gap:3rem}
+
+  /* Process */
+  .process-steps{grid-template-columns:repeat(2,1fr)}
+  .ps{border-right:none;border-bottom:1px solid rgba(201,168,76,.1);padding:1.8rem 0}
+  .ps:last-child{border-bottom:none}
+  .ps:not(:first-child){padding-left:0}
+
+  /* Catering split */
+  #catering{grid-template-columns:1fr}
+  .cat-left,.cat-right{padding:5rem var(--M)}
+
+  /* Testimonials */
+  .testi-grid{grid-template-columns:1fr}
+
+  /* Trade */
+  #trade{grid-template-columns:1fr}
+  .trade-left,.trade-right{padding:5rem var(--M)}
+
+  /* Blog */
+  .blog-grid{grid-template-columns:repeat(2,1fr)}
+
+  /* Instagram */
+  .ig-grid{grid-template-columns:repeat(3,1fr)}
+
+  /* Footer */
+  .footer-grid{grid-template-columns:1fr 1fr;gap:2.5rem}
+  .footer-grid>div:first-child{grid-column:span 2}
+}
+
+/* ── Mobile: ≤ 640px ── */
+@media (max-width:640px){
+  :root{--M:5vw}
+
+  /* Nav — collapse to logo + CTA only */
+  nav{padding:1rem var(--M)}
+  .nav-center{display:none}
+  .nav-right .nav-tag{display:none}
+  .nav-right .btn{font-size:.58rem;padding:.6rem 1.1rem}
+
+  /* Mobile hamburger hint */
+  .nav-logo{font-size:1.1rem}
+
+  /* Hero */
+  #hero{padding:7rem var(--M) 4rem;min-height:auto}
+  .hero-h1{font-size:clamp(2.6rem,11vw,4rem);line-height:1}
+  .hero-sub{font-size:.6rem}
+  .hero-body{font-size:.84rem}
+  .hero-acts{flex-direction:column;gap:.7rem}
+  .hero-acts .btn{text-align:center;width:100%}
+  .tier-pills{flex-wrap:wrap}
+
+  /* Stats */
+  #stats{grid-template-columns:repeat(2,1fr)}
+  #stats .stat:nth-child(5){display:none}
+
+  /* Section */
+  .sec{padding:4.5rem var(--M)}
+  .sec-title{font-size:clamp(1.7rem,7vw,2.4rem)}
+
+  /* Tier tabs — scrollable */
+  .tier-tabs{overflow-x:auto;-webkit-overflow-scrolling:touch;flex-wrap:nowrap;padding-bottom:2px}
+  .tier-tab{white-space:nowrap;padding:.75rem 1.2rem;font-size:.58rem}
+
+  /* Products → single col */
+  .prod-grid{grid-template-columns:1fr}
+  .prod-grid-2{grid-template-columns:1fr}
+  .prod-card[style*="grid-column:span 2"]{grid-column:span 1}
+  .cat-spec-row{grid-template-columns:repeat(2,1fr)}
+
+  /* Catering specs */
+  .cat-specs{grid-template-columns:1fr 1fr}
+
+  /* Process → single col */
+  .process-steps{grid-template-columns:1fr}
+  .ps{border-right:none;border-bottom:1px solid rgba(201,168,76,.1);padding:1.5rem 0}
+  .ps:not(:first-child){padding-left:0}
+
+  /* Origin data */
+  .origin-data{grid-template-columns:1fr 1fr}
+  .story-data{grid-template-columns:1fr 1fr}
+
+  /* Testimonials */
+  .testi-grid{grid-template-columns:1fr}
+
+  /* Trade form */
+  .form-row2{grid-template-columns:1fr}
+  #trade{grid-template-columns:1fr}
+  .trade-left,.trade-right{padding:4rem var(--M)}
+
+  /* Blog → single col */
+  .blog-grid{grid-template-columns:1fr}
+
+  /* Instagram → 2 cols */
+  .ig-grid{grid-template-columns:repeat(2,1fr)}
+
+  /* Modal */
+  .modal-overlay{padding:0}
+  .modal-box{padding:2rem 1.4rem;min-height:100vh;border:none}
+  .modal-title{font-size:1.5rem}
+  .modal-body .data-row{grid-template-columns:1fr}
+  .modal-footer{flex-direction:column;align-items:flex-start}
+
+  /* Footer */
+  .footer-grid{grid-template-columns:1fr;gap:2rem}
+  .footer-grid>div:first-child{grid-column:span 1}
+  .footer-bottom{flex-direction:column;gap:.8rem;text-align:center}
+  .footer-certs{flex-wrap:wrap;justify-content:center}
+
+  /* Section head */
+  .sec-head{grid-template-columns:1fr;gap:.8rem}
+
+  /* Catering section */
+  #catering{grid-template-columns:1fr}
+  .cat-left,.cat-right{padding:4rem var(--M)}
+  .cat-title{font-size:clamp(1.8rem,8vw,2.6rem)}
+}
 </style>
 </head>
 <body>
@@ -653,7 +803,14 @@ footer{
         <div class="prod-card-tags">
           <span class="prod-tag" style="color:rgba(139,115,85,.5);border-color:rgba(139,115,85,.15)">Coming 2026</span>
         </div>
-        <span class="btn btn-ghost" style="margin-top:1rem;text-align:center;opacity:.4;cursor:default;display:block">Notify Me</span>
+        <div id="notify-wrap" style="margin-top:1rem">
+          <button class="btn btn-ghost" style="width:100%;text-align:center" onclick="toggleNotify()">Notify Me</button>
+          <form id="notify-form" style="display:none;margin-top:.7rem" onsubmit="submitNotify(event)">
+            <input id="notify-email" class="fi-inp" type="email" placeholder="your@email.com" required style="width:100%;margin-bottom:.5rem" />
+            <button class="form-submit" type="submit" style="background:var(--stone);color:var(--black)">Notify Me When Available</button>
+            <div id="notify-thanks" style="display:none;font-size:.72rem;color:#5fa882;margin-top:.5rem;letter-spacing:.08em">You're on the list — we'll be in touch.</div>
+          </form>
+        </div>
       </div>
 
     </div>
@@ -1511,6 +1668,20 @@ window.addEventListener('scroll', () => {
     if (l.getAttribute('href') === '#' + current) l.classList.add('active');
   });
 });
+
+/* ── Notify Me toggle ── */
+function toggleNotify() {
+  const form = document.getElementById('notify-form');
+  const isHidden = form.style.display === 'none';
+  form.style.display = isHidden ? 'block' : 'none';
+  if (isHidden) document.getElementById('notify-email').focus();
+}
+function submitNotify(e) {
+  e.preventDefault();
+  document.getElementById('notify-form').querySelector('button[type=submit]').style.display = 'none';
+  document.getElementById('notify-email').style.display = 'none';
+  document.getElementById('notify-thanks').style.display = 'block';
+}
 
 /* ── Form submit ── */
 function handleSubmit(e) {
