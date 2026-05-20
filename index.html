@@ -699,6 +699,50 @@ nav.nav-open .ham-btn span:nth-child(3){transform:translateY(-6.5px) rotate(-45d
 .float-wa{background:#25D366;color:#fff}
 .float-wa svg{width:24px;height:24px;fill:#fff}
 .float-wa:hover{background:#1ebe5d}
+
+/* ══════════════════════════════════════════════════════════════
+   LANGUAGE SWITCHER
+══════════════════════════════════════════════════════════════ */
+.lang-sw{position:relative}
+.lang-cur{
+  background:none;border:1px solid rgba(201,168,76,.2);color:var(--stone);
+  font-family:var(--sans);font-size:.58rem;font-weight:600;letter-spacing:.14em;
+  text-transform:uppercase;padding:.35rem .65rem;cursor:pointer;white-space:nowrap;
+  transition:color .2s,border-color .2s
+}
+.lang-cur:hover{color:var(--gold);border-color:rgba(201,168,76,.4)}
+.lang-drop{
+  position:absolute;top:calc(100% + 10px);right:0;min-width:130px;
+  background:rgba(13,13,13,.98);border:1px solid rgba(201,168,76,.15);
+  padding:.4rem 0;opacity:0;pointer-events:none;transform:translateY(6px);
+  transition:opacity .2s,transform .2s;z-index:400
+}
+.lang-drop.open{opacity:1;pointer-events:auto;transform:none}
+.lang-drop button{
+  display:block;width:100%;text-align:left;padding:.5rem 1.1rem;
+  background:none;border:none;color:var(--stone);cursor:pointer;
+  font-family:var(--sans);font-size:.62rem;font-weight:400;letter-spacing:.06em;
+  transition:color .15s,background .15s
+}
+.lang-drop button:hover,.lang-drop button.active{color:var(--gold);background:rgba(201,168,76,.07)}
+
+/* RTL adjustments for Arabic */
+.rtl .lang-drop{right:auto;left:0;text-align:right}
+.rtl .lang-drop button{text-align:right}
+.rtl .nav-center{flex-direction:row-reverse}
+.rtl .hero-left{text-align:right}
+.rtl .hero-eyebrow{flex-direction:row-reverse}
+.rtl .hero-acts{flex-direction:row-reverse}
+.rtl .tier-pills{flex-direction:row-reverse}
+.rtl .origin-quote{text-align:right}
+.rtl .od-item{border-left:none;border-right:2px solid var(--gold);padding-left:0;padding-right:.9rem;text-align:right}
+.rtl .sec-head{text-align:right}
+.rtl .trade-list{text-align:right;padding-right:1.2rem;padding-left:0}
+.rtl .cat-checklist{text-align:right;padding-right:1.2rem;padding-left:0}
+.rtl .footer-grid{text-align:right}
+.rtl .footer-bottom{flex-direction:row-reverse}
+.rtl .ham-btn{margin-right:0;margin-left:0}
+.rtl .float-wrap{right:auto;left:1.4rem}
 </style>
 </head>
 <body>
@@ -709,35 +753,48 @@ nav.nav-open .ham-btn span:nth-child(3){transform:translateY(-6.5px) rotate(-45d
 
   <div class="nav-center">
     <div class="nav-item">
-      <a class="nav-link has-drop" href="#products">Products</a>
+      <a class="nav-link has-drop" href="#products" data-i18n="nav.products">Products</a>
       <div class="nav-drop">
         <a class="drop-tier" href="#products" onclick="switchTab('prem')">
           <span style="color:var(--gold)">Premium</span>
-          KALA 500ml · Tasting Set
+          <span data-i18n="nav.drop.prem">KALA 500ml · Tasting Set</span>
         </a>
         <div class="drop-div"></div>
         <a class="drop-tier" href="#products" onclick="switchTab('std')">
           <span style="color:var(--cream)">Standard</span>
-          KALA 5L Reserve
+          <span data-i18n="nav.drop.std">KALA 5L Reserve</span>
         </a>
         <div class="drop-div"></div>
         <a class="drop-tier" href="#products" onclick="switchTab('cat')">
           <span style="color:#5fa882">Catering</span>
-          KALA 15L · Bulk Supply
+          <span data-i18n="nav.drop.cat">KALA 15L · Bulk Supply</span>
         </a>
       </div>
     </div>
-    <div class="nav-item"><a class="nav-link" href="#origin">Origin</a></div>
-    <div class="nav-item"><a class="nav-link" href="#process">Process</a></div>
-    <div class="nav-item"><a class="nav-link" href="#catering">Catering</a></div>
-    <div class="nav-item"><a class="nav-link" href="#trade">Trade</a></div>
-    <div class="nav-item"><a class="nav-link" href="#blog">Journal</a></div>
+    <div class="nav-item"><a class="nav-link" href="#origin" data-i18n="nav.origin">Origin</a></div>
+    <div class="nav-item"><a class="nav-link" href="#process" data-i18n="nav.process">Process</a></div>
+    <div class="nav-item"><a class="nav-link" href="#catering" data-i18n="nav.catering">Catering</a></div>
+    <div class="nav-item"><a class="nav-link" href="#trade" data-i18n="nav.trade">Trade</a></div>
+    <div class="nav-item"><a class="nav-link" href="#blog" data-i18n="nav.journal">Journal</a></div>
   </div>
 
   <div class="nav-right">
     <span class="nav-tag">Ayvalık · Turkey</span>
-    <a class="btn btn-gold" href="#trade">Request Sample</a>
-    <button class="ham-btn" id="hamBtn" aria-label="Menu" aria-expanded="false">
+    <a class="btn btn-gold" href="#trade" data-i18n="nav.cta">Request Sample</a>
+    <div class="lang-sw" id="langSw">
+      <button class="lang-cur" id="langCur" onclick="toggleLangMenu(event)" aria-haspopup="true" aria-expanded="false">EN ▾</button>
+      <div class="lang-drop" id="langDrop" role="menu">
+        <button onclick="setLanguage('en')" class="active" role="menuitem">🇬🇧 English</button>
+        <button onclick="setLanguage('tr')" role="menuitem">🇹🇷 Türkçe</button>
+        <button onclick="setLanguage('de')" role="menuitem">🇩🇪 Deutsch</button>
+        <button onclick="setLanguage('ar')" role="menuitem">🇸🇦 العربية</button>
+        <button onclick="setLanguage('ru')" role="menuitem">🇷🇺 Русский</button>
+        <button onclick="setLanguage('fr')" role="menuitem">🇫🇷 Français</button>
+        <button onclick="setLanguage('es')" role="menuitem">🇪🇸 Español</button>
+        <button onclick="setLanguage('it')" role="menuitem">🇮🇹 Italiano</button>
+      </div>
+    </div>
+        <button class="ham-btn" id="hamBtn" aria-label="Menu" aria-expanded="false">
       <span></span><span></span><span></span>
     </button>
   </div>
@@ -750,7 +807,7 @@ nav.nav-open .ham-btn span:nth-child(3){transform:translateY(-6.5px) rotate(-45d
   <div class="hero-left fi">
     <div class="hero-eyebrow">
       <span class="rule" style="width:36px;opacity:1;"></span>
-      <span class="lbl">Ayvalık · Aegean Turkey · Est. 2025</span>
+      <span class="lbl" data-i18n="hero.eyebrow">Ayvalık · Aegean Turkey · Est. 2025</span>
     </div>
 
     <h1 class="hero-h1">
@@ -758,14 +815,14 @@ nav.nav-open .ham-btn span:nth-child(3){transform:translateY(-6.5px) rotate(-45d
       <em>Professional's</em><br>
       <strong>Oil.</strong>
     </h1>
-    <p class="hero-sub">Memecik · Early Harvest · Certified 0.2% Free Acidity</p>
-    <p class="hero-body">
+    <p class="hero-sub" data-i18n="hero.sub">Memecik · Early Harvest · Certified 0.2% Free Acidity</p>
+    <p class="hero-body" data-i18n="hero.body">
       Extra virgin olive oil engineered for kitchens that set the standard.
       Cold-extracted within four hours. Tested, batch-numbered, uncompromising.
     </p>
     <div class="hero-acts">
-      <a class="btn btn-gold" href="#products">Explore Range</a>
-      <a class="btn btn-ghost" href="#trade">Trade Enquiry</a>
+      <a class="btn btn-gold" href="#products" data-i18n="hero.cta1">Explore Range</a>
+      <a class="btn btn-ghost" href="#trade" data-i18n="hero.cta2">Trade Enquiry</a>
     </div>
 
     <div class="tier-pills">
@@ -808,11 +865,11 @@ nav.nav-open .ham-btn span:nth-child(3){transform:translateY(-6.5px) rotate(-45d
 
 <!-- ═══════════════════════════════ STATS ══════════════════════════════════ -->
 <div id="stats">
-  <div class="stat fi"><div class="stat-n">0.2%</div><div class="stat-l">Free Acidity</div></div>
-  <div class="stat fi fi-d1"><div class="stat-n">&lt;4h</div><div class="stat-l">Grove to Press</div></div>
-  <div class="stat fi fi-d2"><div class="stat-n">3000</div><div class="stat-l">Years Cultivated</div></div>
-  <div class="stat fi fi-d3"><div class="stat-n">18°C</div><div class="stat-l">Cold Extraction</div></div>
-  <div class="stat fi fi-d3" style="transition-delay:.4s"><div class="stat-n">IOC</div><div class="stat-l">Certified</div></div>
+  <div class="stat fi"><div class="stat-n">0.2%</div><div class="stat-l" data-i18n="stat.1">Free Acidity</div></div>
+  <div class="stat fi fi-d1"><div class="stat-n">&lt;4h</div><div class="stat-l" data-i18n="stat.2">Grove to Press</div></div>
+  <div class="stat fi fi-d2"><div class="stat-n">3000</div><div class="stat-l" data-i18n="stat.3">Years Cultivated</div></div>
+  <div class="stat fi fi-d3"><div class="stat-n">18°C</div><div class="stat-l" data-i18n="stat.4">Cold Extraction</div></div>
+  <div class="stat fi fi-d3" style="transition-delay:.4s"><div class="stat-n">IOC</div><div class="stat-l" data-i18n="stat.5">Certified</div></div>
 </div>
 
 <!-- ═══════════════════════════════ PRODUCTS ══════════════════════════════ -->
@@ -820,20 +877,20 @@ nav.nav-open .ham-btn span:nth-child(3){transform:translateY(-6.5px) rotate(-45d
 
   <div class="sec-head fi">
     <div class="section-label-col">
-      <span class="lbl">01 / Range</span>
+      <span class="lbl" data-i18n="sec.prod.lbl">01 / Range</span>
       <span class="rule" style="margin-top:.5rem"></span>
     </div>
     <div>
-      <h2 class="sec-title">Three tiers.<br><em>One standard.</em></h2>
-      <p class="sec-desc">Premium for the chef's table. Standard for the working kitchen. Catering for the operation that never stops.</p>
+      <h2 class="sec-title" data-i18n="sec.prod.title">Three tiers.<br><em>One standard.</em></h2>
+      <p class="sec-desc" data-i18n="sec.prod.desc">Premium for the chef's table. Standard for the working kitchen. Catering for the operation that never stops.</p>
     </div>
   </div>
 
   <!-- Tier tabs -->
   <div class="tier-tabs fi">
-    <button class="tier-tab active-prem" id="tab-prem" onclick="switchTab('prem')">⬡ Premium</button>
-    <button class="tier-tab" id="tab-std" onclick="switchTab('std')">◈ Standard</button>
-    <button class="tier-tab" id="tab-cat" onclick="switchTab('cat')">▣ Catering</button>
+    <button class="tier-tab active-prem" id="tab-prem" onclick="switchTab('prem')" data-i18n="tab.prem">⬡ Premium</button>
+    <button class="tier-tab" id="tab-std" onclick="switchTab('std')" data-i18n="tab.std">◈ Standard</button>
+    <button class="tier-tab" id="tab-cat" onclick="switchTab('cat')" data-i18n="tab.cat">▣ Catering</button>
   </div>
 
   <!-- ── PREMIUM PANE ── -->
@@ -855,7 +912,7 @@ nav.nav-open .ham-btn span:nth-child(3){transform:translateY(-6.5px) rotate(-45d
           <span class="prod-tag" style="color:var(--gold);border-color:rgba(201,168,76,.3)">Batch Numbered</span>
           <span class="prod-tag" style="color:var(--gold);border-color:rgba(201,168,76,.3)">Limited Oct</span>
         </div>
-        <a class="btn btn-ghost" href="#trade" style="margin-top:1rem;text-align:center">Allocation Enquiry</a>
+        <a class="btn btn-ghost" href="#trade" style="margin-top:1rem;text-align:center" data-i18n="prem.cta1">Allocation Enquiry</a>
       </div>
 
       <div class="prod-card">
@@ -872,7 +929,7 @@ nav.nav-open .ham-btn span:nth-child(3){transform:translateY(-6.5px) rotate(-45d
           <span class="prod-tag" style="color:var(--gold);border-color:rgba(201,168,76,.3)">Tasting Format</span>
           <span class="prod-tag" style="color:var(--gold);border-color:rgba(201,168,76,.3)">Gift Ready</span>
         </div>
-        <a class="btn btn-ghost" href="#trade" style="margin-top:1rem;text-align:center">Request Info</a>
+        <a class="btn btn-ghost" href="#trade" style="margin-top:1rem;text-align:center" data-i18n="prem.cta2">Request Info</a>
       </div>
 
       <div class="prod-card" style="background:#0a0a0a;">
@@ -949,7 +1006,7 @@ nav.nav-open .ham-btn span:nth-child(3){transform:translateY(-6.5px) rotate(-45d
           Volume pricing reflects the working relationship, not a premium shelf.
         </div>
         <div class="prod-card-kpi" style="color:var(--stone)">10L <span>Format</span></div>
-        <a class="btn btn-ghost" href="#trade" style="margin-top:auto;text-align:center">Volume Pricing</a>
+        <a class="btn btn-ghost" href="#trade" style="margin-top:auto;text-align:center" data-i18n="std.cta">Volume Pricing</a>
       </div>
 
     </div>
@@ -975,7 +1032,7 @@ nav.nav-open .ham-btn span:nth-child(3){transform:translateY(-6.5px) rotate(-45d
           <span class="prod-tag" style="color:#5fa882;border-color:rgba(46,107,82,.4)">Tap Dispensing</span>
           <span class="prod-tag" style="color:#5fa882;border-color:rgba(46,107,82,.4)">Bulk Pricing</span>
         </div>
-        <a class="btn btn-green" href="#trade" style="text-align:center;margin-top:1rem">Bulk Enquiry</a>
+        <a class="btn btn-green" href="#trade" style="text-align:center;margin-top:1rem" data-i18n="cat.cta.bulk">Bulk Enquiry</a>
       </div>
 
       <div class="prod-card" style="background:#090e0b">
@@ -995,7 +1052,7 @@ nav.nav-open .ham-btn span:nth-child(3){transform:translateY(-6.5px) rotate(-45d
           <span class="prod-tag" style="color:#5fa882;border-color:rgba(46,107,82,.4)">Annual Contract</span>
           <span class="prod-tag" style="color:#5fa882;border-color:rgba(46,107,82,.4)">Full Trace</span>
         </div>
-        <a class="btn btn-outline-green" href="#trade" style="text-align:center;margin-top:1rem">Supply Contract</a>
+        <a class="btn btn-outline-green" href="#trade" style="text-align:center;margin-top:1rem" data-i18n="cat.cta.supply">Supply Contract</a>
       </div>
 
     </div>
@@ -1027,16 +1084,16 @@ nav.nav-open .ham-btn span:nth-child(3){transform:translateY(-6.5px) rotate(-45d
 <section id="origin" class="sec">
   <div class="origin-grid">
     <div class="fi">
-      <div class="lbl" style="margin-bottom:1.6rem">02 / Origin</div>
+      <div class="lbl" style="margin-bottom:1.6rem" data-i18n="sec.origin.lbl">02 / Origin</div>
       <div class="origin-quote">
         "Three thousand years<br>of cultivation.<br><em>One harvest.</em><br>No compromises."
       </div>
-      <div class="origin-attr">Ayvalık · Aegean Turkey · Memecik Cultivar</div>
+      <div class="origin-attr" data-i18n="origin.attr">Ayvalık · Aegean Turkey · Memecik Cultivar</div>
       <div class="origin-data">
-        <div class="od-item"><div class="od-n">Oct</div><div class="od-l">Harvest Window</div></div>
-        <div class="od-item"><div class="od-n">38.7°</div><div class="od-l">North Latitude</div></div>
-        <div class="od-item"><div class="od-n">Memecik</div><div class="od-l">Heritage Cultivar</div></div>
-        <div class="od-item"><div class="od-n">IOC</div><div class="od-l">Certified Standard</div></div>
+        <div class="od-item"><div class="od-n">Oct</div><div class="od-l" data-i18n="origin.d1">Harvest Window</div></div>
+        <div class="od-item"><div class="od-n">38.7°</div><div class="od-l" data-i18n="origin.d2">North Latitude</div></div>
+        <div class="od-item"><div class="od-n">Memecik</div><div class="od-l" data-i18n="origin.d3">Heritage Cultivar</div></div>
+        <div class="od-item"><div class="od-n">IOC</div><div class="od-l" data-i18n="origin.d4">Certified Standard</div></div>
       </div>
     </div>
     <div class="origin-body fi fi-d2">
@@ -1056,7 +1113,7 @@ nav.nav-open .ham-btn span:nth-child(3){transform:translateY(-6.5px) rotate(-45d
         The result is not wellness oil. It is not a lifestyle product. It is the ingredient
         a chef reaches for when the dish depends on it.
       </p>
-      <a class="btn btn-ghost" href="#process">See the Process</a>
+      <a class="btn btn-ghost" href="#process" data-i18n="origin.cta">See the Process</a>
     </div>
   </div>
 </section>
@@ -1065,39 +1122,39 @@ nav.nav-open .ham-btn span:nth-child(3){transform:translateY(-6.5px) rotate(-45d
 <section id="process" class="sec">
   <div class="sec-head fi">
     <div>
-      <span class="lbl">03 / Process</span>
+      <span class="lbl" data-i18n="sec.process.lbl">03 / Process</span>
       <span class="rule" style="margin-top:.5rem"></span>
     </div>
     <div>
-      <h2 class="sec-title">Grove  ›  Press  ›  Tin.<br><em>Four hours.</em></h2>
-      <p class="sec-desc">Every step is a constraint we impose on ourselves. Quality does not scale by cutting corners.</p>
+      <h2 class="sec-title" data-i18n="sec.process.title">Grove  ›  Press  ›  Tin.<br><em>Four hours.</em></h2>
+      <p class="sec-desc" data-i18n="sec.process.desc">Every step is a constraint we impose on ourselves. Quality does not scale by cutting corners.</p>
     </div>
   </div>
 
   <div class="process-steps fi">
     <div class="ps">
       <div class="ps-num">01</div>
-      <div class="ps-title">Early Harvest</div>
+      <div class="ps-title" data-i18n="ps1.title">Early Harvest</div>
       <div class="ps-detail">Picked at 10–20% ripeness. Green fruit, high polyphenols, low free acidity. Hand-combed where terrain demands it. No mechanical damage to the fruit surface.</div>
-      <span class="ps-badge">October Only</span>
+      <span class="ps-badge" data-i18n="ps1.badge">October Only</span>
     </div>
     <div class="ps">
       <div class="ps-num">02</div>
-      <div class="ps-title">Same-Day Press</div>
+      <div class="ps-title" data-i18n="ps2.title">Same-Day Press</div>
       <div class="ps-detail">Fruit moves from grove to press within four hours. No overnight storage, no fermentation. Cold extraction at 18°C — temperature never exceeded. Continuous two-phase decanter.</div>
       <span class="ps-badge">&lt;4 hours</span>
     </div>
     <div class="ps">
       <div class="ps-num">03</div>
-      <div class="ps-title">Lab Certification</div>
+      <div class="ps-title" data-i18n="ps3.title">Lab Certification</div>
       <div class="ps-detail">Every batch tested for free acidity, peroxide value, UV absorption, and polyphenol concentration. IOC-standard methodology. Certificates available on request — no exceptions.</div>
-      <span class="ps-badge">IOC Certified</span>
+      <span class="ps-badge" data-i18n="ps3.badge">IOC Certified</span>
     </div>
     <div class="ps">
       <div class="ps-num">04</div>
-      <div class="ps-title">Tin & Dispatch</div>
+      <div class="ps-title" data-i18n="ps4.title">Tin & Dispatch</div>
       <div class="ps-detail">Filled into nitrogen-flushed tins and drums. Batch-numbered. Temperature-controlled logistics to the professional kitchen's door. Shelf life: 18 months from press date.</div>
-      <span class="ps-badge">Batch Numbered</span>
+      <span class="ps-badge" data-i18n="ps4.badge">Batch Numbered</span>
     </div>
   </div>
 </section>
@@ -1107,7 +1164,7 @@ nav.nav-open .ham-btn span:nth-child(3){transform:translateY(-6.5px) rotate(-45d
   <div class="cat-left fi">
     <div class="cat-eyebrow">
       <span class="rule" style="width:32px;opacity:1;background:#2E6B52"></span>
-      <span class="lbl" style="color:#5fa882">04 / Catering Supply</span>
+      <span class="lbl" style="color:#5fa882" data-i18n="sec.cat.lbl">04 / Catering Supply</span>
     </div>
     <h2 class="cat-title">
       Built for<br>
@@ -1138,7 +1195,7 @@ nav.nav-open .ham-btn span:nth-child(3){transform:translateY(-6.5px) rotate(-45d
   </div>
 
   <div class="cat-right fi fi-d2">
-    <div class="lbl" style="color:#5fa882;margin-bottom:1.8rem">Who We Supply</div>
+    <div class="lbl" style="color:#5fa882;margin-bottom:1.8rem" data-i18n="cat.who.lbl">Who We Supply</div>
 
     <ul class="cat-checklist">
       <li>Hotel groups and resort F&B operations</li>
@@ -1156,8 +1213,8 @@ nav.nav-open .ham-btn span:nth-child(3){transform:translateY(-6.5px) rotate(-45d
     </div>
 
     <div style="display:flex;gap:1rem;flex-wrap:wrap">
-      <a class="btn btn-green" href="#trade">Catering Enquiry</a>
-      <a class="btn btn-outline-green" href="kala_catering_spec.pdf" download="KALA_Catering_Spec_Sheet.pdf">Download Spec Sheet</a>
+      <a class="btn btn-green" href="#trade" data-i18n="cat.cta1">Catering Enquiry</a>
+      <a class="btn btn-outline-green" href="kala_catering_spec.pdf" download="KALA_Catering_Spec_Sheet.pdf" data-i18n="cat.cta2">Download Spec Sheet</a>
     </div>
   </div>
 </section>
@@ -1166,11 +1223,11 @@ nav.nav-open .ham-btn span:nth-child(3){transform:translateY(-6.5px) rotate(-45d
 <section id="testimonials" class="sec" style="padding-top:5rem;padding-bottom:0">
   <div class="sec-head fi">
     <div>
-      <span class="lbl">05 / Reviews</span>
+      <span class="lbl" data-i18n="sec.testi.lbl">05 / Reviews</span>
       <span class="rule" style="margin-top:.5rem"></span>
     </div>
     <div>
-      <h2 class="sec-title">What the kitchen<br><em>says.</em></h2>
+      <h2 class="sec-title" data-i18n="sec.testi.title">What the kitchen<br><em>says.</em></h2>
     </div>
   </div>
   <div class="testi-grid fi">
@@ -1198,8 +1255,8 @@ nav.nav-open .ham-btn span:nth-child(3){transform:translateY(-6.5px) rotate(-45d
 <!-- ═══════════════════════════════ TRADE FORM ═════════════════════════════ -->
 <section id="trade">
   <div class="trade-left fi">
-    <span class="lbl" style="margin-bottom:1.8rem">06 / Trade</span>
-    <h2 class="trade-title">For kitchens<br>that never <strong>stop.</strong></h2>
+    <span class="lbl" style="margin-bottom:1.8rem" data-i18n="sec.trade.lbl">06 / Trade</span>
+    <h2 class="trade-title" data-i18n="trade.title">For kitchens<br>that never <strong>stop.</strong></h2>
     <p class="trade-body">
       Direct supply. No intermediaries, no shelf markups on integrity.
       We work with restaurants, hotels, caterers, and distributors on a direct-from-grove basis.
@@ -1216,7 +1273,7 @@ nav.nav-open .ham-btn span:nth-child(3){transform:translateY(-6.5px) rotate(-45d
     <div class="trade-email">trade@olivekala.com</div>
   </div>
   <div class="trade-right fi fi-d2">
-    <span class="lbl" style="margin-bottom:1.8rem">Request Sample or Pricing</span>
+    <span class="lbl" style="margin-bottom:1.8rem" data-i18n="trade.form.lbl">Request Sample or Pricing</span>
     <form class="enquiry-form" onsubmit="handleSubmit(event)">
       <div class="form-row2">
         <div><label class="fl">Name</label><input class="fi-inp" type="text" placeholder="Chef / Buyer name" /></div>
@@ -1258,7 +1315,7 @@ nav.nav-open .ham-btn span:nth-child(3){transform:translateY(-6.5px) rotate(-45d
       <div><label class="fl">Message (optional)</label>
         <textarea class="fi-txt" placeholder="Tell us about your kitchen or operation..."></textarea>
       </div>
-      <button class="form-submit" type="submit">Send Trade Enquiry</button>
+      <button class="form-submit" type="submit" data-i18n="trade.form.submit">Send Trade Enquiry</button>
     </form>
   </div>
 </section>
@@ -1267,12 +1324,12 @@ nav.nav-open .ham-btn span:nth-child(3){transform:translateY(-6.5px) rotate(-45d
 <section id="blog" class="sec">
   <div class="sec-head fi">
     <div>
-      <span class="lbl">07 / Journal</span>
+      <span class="lbl" data-i18n="sec.blog.lbl">07 / Journal</span>
       <span class="rule" style="margin-top:.5rem"></span>
     </div>
     <div>
-      <h2 class="sec-title">The craft,<br><em>explained.</em></h2>
-      <p class="sec-desc">We write for professionals. No wellness copy. No lifestyle claims. Just the science, the geography, and the decisions that produce the oil in your kitchen.</p>
+      <h2 class="sec-title" data-i18n="sec.blog.title">The craft,<br><em>explained.</em></h2>
+      <p class="sec-desc" data-i18n="sec.blog.desc">We write for professionals. No wellness copy. No lifestyle claims. Just the science, the geography, and the decisions that produce the oil in your kitchen.</p>
     </div>
   </div>
 
@@ -1284,7 +1341,7 @@ nav.nav-open .ham-btn span:nth-child(3){transform:translateY(-6.5px) rotate(-45d
         <div class="blog-thumb-inner">
           <div>
             <div class="blog-cat">Origin &amp; Science</div>
-            <div class="blog-thumb-title">The case for early harvest — why we pick before peak ripeness</div>
+            <div class="blog-thumb-title" data-i18n="a1.title">The case for early harvest — why we pick before peak ripeness</div>
           </div>
         </div>
       </div>
@@ -1300,7 +1357,7 @@ nav.nav-open .ham-btn span:nth-child(3){transform:translateY(-6.5px) rotate(-45d
         <div class="blog-thumb-inner">
           <div>
             <div class="blog-cat">Quality &amp; Specification</div>
-            <div class="blog-thumb-title">What 0.2% free acidity actually means on the pass</div>
+            <div class="blog-thumb-title" data-i18n="a2.title">What 0.2% free acidity actually means on the pass</div>
           </div>
         </div>
       </div>
@@ -1316,7 +1373,7 @@ nav.nav-open .ham-btn span:nth-child(3){transform:translateY(-6.5px) rotate(-45d
         <div class="blog-thumb-inner">
           <div>
             <div class="blog-cat">Geography</div>
-            <div class="blog-thumb-title">Ayvalık: why 38.7° north latitude is the point</div>
+            <div class="blog-thumb-title" data-i18n="a3.title">Ayvalık: why 38.7° north latitude is the point</div>
           </div>
         </div>
       </div>
@@ -1332,7 +1389,7 @@ nav.nav-open .ham-btn span:nth-child(3){transform:translateY(-6.5px) rotate(-45d
         <div class="blog-thumb-inner">
           <div>
             <div class="blog-cat">Kitchen Application</div>
-            <div class="blog-thumb-title">Cooking with high-polyphenol oil — what the heat does</div>
+            <div class="blog-thumb-title" data-i18n="a4.title">Cooking with high-polyphenol oil — what the heat does</div>
           </div>
         </div>
       </div>
@@ -1348,7 +1405,7 @@ nav.nav-open .ham-btn span:nth-child(3){transform:translateY(-6.5px) rotate(-45d
         <div class="blog-thumb-inner">
           <div>
             <div class="blog-cat">Supply Chain</div>
-            <div class="blog-thumb-title">Why four hours matters — the oxidation window</div>
+            <div class="blog-thumb-title" data-i18n="a5.title">Why four hours matters — the oxidation window</div>
           </div>
         </div>
       </div>
@@ -1364,7 +1421,7 @@ nav.nav-open .ham-btn span:nth-child(3){transform:translateY(-6.5px) rotate(-45d
         <div class="blog-thumb-inner">
           <div>
             <div class="blog-cat">Catering &amp; Volume</div>
-            <div class="blog-thumb-title">Can a catering oil be a quality oil? The argument for not accepting the trade-off</div>
+            <div class="blog-thumb-title" data-i18n="a6.title">Can a catering oil be a quality oil? The argument for not accepting the trade-off</div>
           </div>
         </div>
       </div>
@@ -1377,7 +1434,7 @@ nav.nav-open .ham-btn span:nth-child(3){transform:translateY(-6.5px) rotate(-45d
   </div>
 
   <div style="text-align:center;margin-top:3rem" class="fi">
-    <button class="btn btn-ghost" onclick="openArticle('a1')">Read Latest Article</button>
+    <button class="btn btn-ghost" onclick="openArticle('a1')" data-i18n="blog.read.latest">Read Latest Article</button>
   </div>
 </section>
 
@@ -1389,7 +1446,7 @@ nav.nav-open .ham-btn span:nth-child(3){transform:translateY(-6.5px) rotate(-45d
       <span class="rule" style="margin-top:.5rem"></span>
     </div>
     <div>
-      <h2 class="sec-title" style="font-size:1.6rem">The grove.<br>The kitchen. The standard.</h2>
+      <h2 class="sec-title" style="font-size:1.6rem" data-i18n="ig.title">The grove.<br>The kitchen. The standard.</h2>
     </div>
   </div>
 
@@ -1625,7 +1682,7 @@ nav.nav-open .ham-btn span:nth-child(3){transform:translateY(-6.5px) rotate(-45d
   <div class="footer-grid">
     <div>
       <div class="footer-logo-name">OLIVE<span>KALA</span></div>
-      <div class="footer-tagline">The Professional's Oil</div>
+      <div class="footer-tagline" data-i18n="footer.tagline">The Professional's Oil</div>
       <div class="footer-about">
         Extra virgin olive oil from Ayvalık, Aegean Turkey.<br>
         Three tiers. One extraction standard. Zero compromise.
@@ -1681,7 +1738,7 @@ nav.nav-open .ham-btn span:nth-child(3){transform:translateY(-6.5px) rotate(-45d
   </div>
 
   <div class="footer-bottom">
-    <span class="footer-legal">© 2025 Olivekala A.Ş. All rights reserved.</span>
+    <span class="footer-legal" data-i18n="footer.legal">© 2025 Olivekala A.Ş. All rights reserved.</span>
     <div class="footer-certs">
       <span class="footer-cert">Ayvalık · Aegean</span>
       <span class="footer-cert">IOC Member</span>
@@ -1802,6 +1859,487 @@ window.addEventListener('scroll', () => {
   backTop.classList.toggle('visible', window.scrollY > 400);
 }, {passive: true});
 function scrollToTop(){ window.scrollTo({top:0,behavior:'smooth'}); }
+
+/* ══════════════════════════════════════════════════════════════
+   INTERNATIONALISATION  (EN · TR · DE · AR · RU · FR)
+══════════════════════════════════════════════════════════════ */
+const LANG_META = {
+  en:{name:'English',dir:'ltr',code:'EN'},
+  tr:{name:'Türkçe',dir:'ltr',code:'TR'},
+  de:{name:'Deutsch',dir:'ltr',code:'DE'},
+  ar:{name:'العربية',dir:'rtl',code:'AR'},
+  ru:{name:'Русский',dir:'ltr',code:'RU'},
+  fr:{name:'Français',dir:'ltr',code:'FR'},
+  es:{name:'Español',dir:'ltr',code:'ES'},
+  it:{name:'Italiano',dir:'ltr',code:'IT'}
+};
+
+const T = {
+en:{
+  'nav.products':'Products','nav.origin':'Origin','nav.process':'Process',
+  'nav.catering':'Catering','nav.trade':'Trade','nav.journal':'Journal',
+  'nav.cta':'Request Sample',
+  'nav.drop.prem':'KALA 500ml · Tasting Set','nav.drop.std':'KALA 5L Reserve','nav.drop.cat':'KALA 15L · Bulk Supply',
+  'hero.eyebrow':'Ayvalık · Aegean Turkey · Est. 2025',
+  'hero.sub':'Memecik · Early Harvest · Certified 0.2% Free Acidity',
+  'hero.body':'Extra virgin olive oil engineered for kitchens that set the standard. Cold-extracted within four hours. Tested, batch-numbered, uncompromising.',
+  'hero.cta1':'Explore Range','hero.cta2':'Trade Enquiry',
+  'pill.prem':'Premium','pill.std':'Standard','pill.cat':'Catering',
+  'stat.1':'Free Acidity','stat.2':'Grove to Press','stat.3':'Years Cultivated','stat.4':'Cold Extraction','stat.5':'Certified',
+  'sec.prod.lbl':'01 / Range',
+  'sec.prod.title':'Three tiers.<br><em>One standard.</em>',
+  'sec.prod.desc':'Premium for the chef\'s table. Standard for the working kitchen. Catering for the operation that never stops.',
+  'tab.prem':'⬡ Premium','tab.std':'◈ Standard','tab.cat':'▣ Catering',
+  'prem.cta1':'Allocation Enquiry','prem.cta2':'Request Info',
+  'std.cta':'Volume Pricing',
+  'cat.cta.bulk':'Bulk Enquiry','cat.cta.supply':'Supply Contract',
+  'sec.origin.lbl':'02 / Origin',
+  'origin.attr':'Ayvalık · Aegean Turkey · Memecik Cultivar',
+  'origin.d1':'Harvest Window','origin.d2':'North Latitude','origin.d3':'Heritage Cultivar','origin.d4':'Certified Standard',
+  'origin.cta':'See the Process',
+  'sec.process.lbl':'03 / Process',
+  'sec.process.title':'Grove &nbsp;›&nbsp; Press &nbsp;›&nbsp; Tin.<br><em>Four hours.</em>',
+  'sec.process.desc':'Every step is a constraint we impose on ourselves. Quality does not scale by cutting corners.',
+  'ps1.title':'Early Harvest','ps1.badge':'October Only',
+  'ps2.title':'Same-Day Press',
+  'ps3.title':'Lab Certification','ps3.badge':'IOC Certified',
+  'ps4.title':'Tin &amp; Dispatch','ps4.badge':'Batch Numbered',
+  'sec.cat.lbl':'04 / Catering Supply','cat.who.lbl':'Who We Supply',
+  'cat.cta1':'Catering Enquiry','cat.cta2':'Download Spec Sheet',
+  'sec.testi.lbl':'05 / Reviews',
+  'sec.testi.title':'What the kitchen<br><em>says.</em>',
+  'sec.trade.lbl':'06 / Trade',
+  'trade.title':'For kitchens<br>that never <strong>stop.</strong>',
+  'trade.form.lbl':'Request Sample or Pricing','trade.form.submit':'Send Trade Enquiry',
+  'sec.blog.lbl':'07 / Journal',
+  'sec.blog.title':'The craft,<br><em>explained.</em>',
+  'sec.blog.desc':'We write for professionals. No wellness copy. No lifestyle claims. Just the science, the geography, and the decisions that produce the oil in your kitchen.',
+  'a1.title':'The case for early harvest — why we pick before peak ripeness',
+  'a2.title':'What 0.2% free acidity actually means on the pass',
+  'a3.title':'Ayvalık: why 38.7° north latitude is the point',
+  'a4.title':'Cooking with high-polyphenol oil — what the heat does',
+  'a5.title':'Why four hours matters — the oxidation window',
+  'a6.title':'Can a catering oil be a quality oil? The argument for not accepting the trade-off',
+  'blog.read.latest':'Read Latest Article',
+  'ig.title':'The grove.<br>The kitchen. The standard.',
+  'footer.tagline':'The Professional\'s Oil',
+  'footer.legal':'© 2025 Olivekala A.Ş. All rights reserved.'
+},
+
+tr:{
+  'nav.products':'Ürünler','nav.origin':'Köken','nav.process':'Süreç',
+  'nav.catering':'Toplu Tedarik','nav.trade':'Ticaret','nav.journal':'Dergi',
+  'nav.cta':'Numune Talep Et',
+  'nav.drop.prem':'KALA 500ml · Tadım Seti','nav.drop.std':'KALA 5L Rezerv','nav.drop.cat':'KALA 15L · Toplu Tedarik',
+  'hero.eyebrow':'Ayvalık · Ege Türkiye · Est. 2025',
+  'hero.sub':'Memecik · Erken Hasat · Sertifikalı %0,2 Serbest Asit',
+  'hero.body':'Standartları belirleyen mutfaklar için özel üretilmiş natürel sızma zeytinyağı. Dört saat içinde soğuk sıkım. Test edilmiş, parti numaralı, taviz vermez.',
+  'hero.cta1':'Ürünleri Keşfet','hero.cta2':'Ticari Bilgi Al',
+  'pill.prem':'Premium','pill.std':'Standart','pill.cat':'Toplu Tedarik',
+  'stat.1':'Serbest Asit','stat.2':'Bahçeden Presye','stat.3':'Yıllık Kültür','stat.4':'Soğuk Sıkım','stat.5':'Sertifikalı',
+  'sec.prod.lbl':'01 / Ürün Serisi',
+  'sec.prod.title':'Üç seviye.<br><em>Tek standart.</em>',
+  'sec.prod.desc':'Şef masası için Premium. Çalışan mutfak için Standart. Durmayan operasyon için Toplu Tedarik.',
+  'tab.prem':'⬡ Premium','tab.std':'◈ Standart','tab.cat':'▣ Toplu Tedarik',
+  'prem.cta1':'Tahsisat Bilgisi','prem.cta2':'Bilgi Al',
+  'std.cta':'Hacim Fiyatı',
+  'cat.cta.bulk':'Toplu Fiyat Teklifi','cat.cta.supply':'Tedarik Sözleşmesi',
+  'sec.origin.lbl':'02 / Köken',
+  'origin.attr':'Ayvalık · Ege Türkiye · Memecik Çeşidi',
+  'origin.d1':'Hasat Dönemi','origin.d2':'Kuzey Enlemi','origin.d3':'Geleneksel Çeşit','origin.d4':'Sertifikalı Standart',
+  'origin.cta':'Süreci Görün',
+  'sec.process.lbl':'03 / Süreç',
+  'sec.process.title':'Bahçe &nbsp;›&nbsp; Pres &nbsp;›&nbsp; Teneke.<br><em>Dört saat.</em>',
+  'sec.process.desc':'Her adım kendi kendimize koyduğumuz bir kısıt. Kalite, köşeleri kısayollarla geçmekle ölçeklenemez.',
+  'ps1.title':'Erken Hasat','ps1.badge':'Yalnızca Ekim',
+  'ps2.title':'Aynı Gün Pres',
+  'ps3.title':'Laboratuvar Sertifikasyonu','ps3.badge':'IOC Sertifikalı',
+  'ps4.title':'Teneke &amp; Sevkiyat','ps4.badge':'Parti Numaralı',
+  'sec.cat.lbl':'04 / Toplu Tedarik','cat.who.lbl':'Kimleriz Tedarik Ediyoruz',
+  'cat.cta1':'Toplu Tedarik Talebi','cat.cta2':'Teknik Çizelgeyi İndir',
+  'sec.testi.lbl':'05 / Yorumlar',
+  'sec.testi.title':'Mutfak ne<br><em>diyor.</em>',
+  'sec.trade.lbl':'06 / Ticaret',
+  'trade.title':'Hiç durmayan<br>mutfaklar için <strong>buradayız.</strong>',
+  'trade.form.lbl':'Numune veya Fiyat Talebi','trade.form.submit':'Ticari Talep Gönder',
+  'sec.blog.lbl':'07 / Dergi',
+  'sec.blog.title':'Zanaat,<br><em>açıklandı.</em>',
+  'sec.blog.desc':'Profesyoneller için yazıyoruz. Yaşam tarzı mesajı yok, wellness iddiası yok. Yalnızca bilim, coğrafya ve mutfağınızdaki yağı üreten kararlar.',
+  'a1.title':'Erken hasatın savunması — neden olgunluk öncesi topluyoruz',
+  'a2.title':'%0,2 serbest asidin serviste ne anlama geldiği',
+  'a3.title':'Ayvalık: 38,7° kuzey enleminin önemi',
+  'a4.title':'Yüksek polifenollü yağla pişirme — ısı ne yapar',
+  'a5.title':'Dört saat neden önemlidir — oksidasyon penceresi',
+  'a6.title':'Catering yağı kaliteli olabilir mi? Fedakarlığı reddetmenin argümanı',
+  'blog.read.latest':'Son Makaleyi Oku',
+  'ig.title':'Bahçe.<br>Mutfak. Standart.',
+  'footer.tagline':'Profesyonelin Yağı',
+  'footer.legal':'© 2025 Olivekala A.Ş. Tüm hakları saklıdır.'
+},
+
+de:{
+  'nav.products':'Produkte','nav.origin':'Herkunft','nav.process':'Prozess',
+  'nav.catering':'Catering','nav.trade':'Handel','nav.journal':'Journal',
+  'nav.cta':'Muster Anfragen',
+  'nav.drop.prem':'KALA 500ml · Verkostungsset','nav.drop.std':'KALA 5L Reserve','nav.drop.cat':'KALA 15L · Großlieferung',
+  'hero.eyebrow':'Ayvalık · Ägäische Türkei · Gegr. 2025',
+  'hero.sub':'Memecik · Frühernte · Zertifiziert 0,2% Freie Säure',
+  'hero.body':'Natives Olivenöl Extra, entwickelt für Küchen, die Maßstäbe setzen. Kaltgepresst innerhalb von vier Stunden. Geprüft, chargennummeriert, kompromisslos.',
+  'hero.cta1':'Sortiment Erkunden','hero.cta2':'Handelsanfrage',
+  'pill.prem':'Premium','pill.std':'Standard','pill.cat':'Catering',
+  'stat.1':'Freie Säure','stat.2':'Hain bis Presse','stat.3':'Jahre kultiviert','stat.4':'Kaltextraktion','stat.5':'Zertifiziert',
+  'sec.prod.lbl':'01 / Sortiment',
+  'sec.prod.title':'Drei Stufen.<br><em>Ein Standard.</em>',
+  'sec.prod.desc':'Premium für den Cheftisch. Standard für die Arbeitsküche. Catering für den Betrieb, der nie stoppt.',
+  'tab.prem':'⬡ Premium','tab.std':'◈ Standard','tab.cat':'▣ Catering',
+  'prem.cta1':'Zuteilung Anfragen','prem.cta2':'Info Anfordern',
+  'std.cta':'Mengenpreis',
+  'cat.cta.bulk':'Großmengenanfrage','cat.cta.supply':'Liefervertrag',
+  'sec.origin.lbl':'02 / Herkunft',
+  'origin.attr':'Ayvalık · Ägäische Türkei · Memecik Sorte',
+  'origin.d1':'Erntezeitfenster','origin.d2':'Nördliche Breite','origin.d3':'Traditionelle Sorte','origin.d4':'Zertifizierter Standard',
+  'origin.cta':'Prozess Ansehen',
+  'sec.process.lbl':'03 / Prozess',
+  'sec.process.title':'Hain &nbsp;›&nbsp; Presse &nbsp;›&nbsp; Dose.<br><em>Vier Stunden.</em>',
+  'sec.process.desc':'Jeder Schritt ist eine Einschränkung, die wir uns selbst auferlegen. Qualität lässt sich nicht durch Abkürzungen skalieren.',
+  'ps1.title':'Frühernte','ps1.badge':'Nur Oktober',
+  'ps2.title':'Tagespressung',
+  'ps3.title':'Laborzertifizierung','ps3.badge':'IOC Zertifiziert',
+  'ps4.title':'Abfüllung &amp; Versand','ps4.badge':'Chargennummeriert',
+  'sec.cat.lbl':'04 / Catering Versorgung','cat.who.lbl':'Unsere Abnehmer',
+  'cat.cta1':'Catering Anfrage','cat.cta2':'Datenblatt Herunterladen',
+  'sec.testi.lbl':'05 / Bewertungen',
+  'sec.testi.title':'Was die Küche<br><em>sagt.</em>',
+  'sec.trade.lbl':'06 / Handel',
+  'trade.title':'Für Küchen,<br>die nie <strong>aufhören.</strong>',
+  'trade.form.lbl':'Muster oder Preisanfrage','trade.form.submit':'Handelsanfrage Absenden',
+  'sec.blog.lbl':'07 / Journal',
+  'sec.blog.title':'Das Handwerk,<br><em>erklärt.</em>',
+  'sec.blog.desc':'Wir schreiben für Profis. Kein Wellness-Text. Keine Lifestyle-Versprechen. Nur Wissenschaft, Geographie und die Entscheidungen, die das Öl in Ihrer Küche produzieren.',
+  'a1.title':'Das Argument für die Frühernte — warum wir vor dem Höhepunkt ernten',
+  'a2.title':'Was 0,2% freie Säure an der Ausgabe wirklich bedeutet',
+  'a3.title':'Ayvalık: warum 38,7° nördliche Breite entscheidend ist',
+  'a4.title':'Kochen mit polyphenolreichem Öl — was die Hitze bewirkt',
+  'a5.title':'Warum vier Stunden zählen — das Oxidationsfenster',
+  'a6.title':'Kann Catering-Öl Qualitätsöl sein? Das Argument gegen den Kompromiss',
+  'blog.read.latest':'Neuesten Artikel Lesen',
+  'ig.title':'Der Hain.<br>Die Küche. Der Standard.',
+  'footer.tagline':'Das Öl des Profis',
+  'footer.legal':'© 2025 Olivekala A.Ş. Alle Rechte vorbehalten.'
+},
+
+ar:{
+  'nav.products':'المنتجات','nav.origin':'المنشأ','nav.process':'العملية',
+  'nav.catering':'التموين','nav.trade':'التجارة','nav.journal':'المجلة',
+  'nav.cta':'طلب عينة',
+  'nav.drop.prem':'KALA 500ml · طقم التذوق','nav.drop.std':'KALA 5L احتياطي','nav.drop.cat':'KALA 15L · توريد بالجملة',
+  'hero.eyebrow':'أيفاليك · تركيا الإيجية · تأسست 2025',
+  'hero.sub':'ميميجيك · حصاد مبكر · حموضة حرة معتمدة 0.2%',
+  'hero.body':'زيت زيتون بكر ممتاز مصنَّع للمطابخ التي تضع المعايير. يُستخلص بالبرودة في أقل من أربع ساعات. مُختبَر، مُرقَّم بالدفعات، لا تنازلات.',
+  'hero.cta1':'استكشف المنتجات','hero.cta2':'استفسار تجاري',
+  'pill.prem':'بريميوم','pill.std':'ستاندارد','pill.cat':'توريد',
+  'stat.1':'الحموضة الحرة','stat.2':'من البستان إلى المعصرة','stat.3':'سنوات الزراعة','stat.4':'استخلاص بارد','stat.5':'معتمد',
+  'sec.prod.lbl':'01 / النطاق',
+  'sec.prod.title':'ثلاثة مستويات.<br><em>معيار واحد.</em>',
+  'sec.prod.desc':'بريميوم لطاولة الشيف. ستاندارد للمطبخ العامل. توريد للعمليات التي لا تتوقف.',
+  'tab.prem':'⬡ بريميوم','tab.std':'◈ ستاندارد','tab.cat':'▣ توريد',
+  'prem.cta1':'استفسار تخصيص','prem.cta2':'طلب معلومات',
+  'std.cta':'أسعار الكميات',
+  'cat.cta.bulk':'استفسار بالجملة','cat.cta.supply':'عقد توريد',
+  'sec.origin.lbl':'02 / المنشأ',
+  'origin.attr':'أيفاليك · تركيا الإيجية · صنف ميميجيك',
+  'origin.d1':'موسم الحصاد','origin.d2':'خط العرض الشمالي','origin.d3':'الصنف التراثي','origin.d4':'معيار معتمد',
+  'origin.cta':'اطلع على العملية',
+  'sec.process.lbl':'03 / العملية',
+  'sec.process.title':'البستان &nbsp;›&nbsp; المعصرة &nbsp;›&nbsp; العلبة.<br><em>أربع ساعات.</em>',
+  'sec.process.desc':'كل خطوة قيد نفرضه على أنفسنا. الجودة لا تنمو بقطع الطريق.',
+  'ps1.title':'الحصاد المبكر','ps1.badge':'أكتوبر فقط',
+  'ps2.title':'العصر في نفس اليوم',
+  'ps3.title':'شهادة المختبر','ps3.badge':'معتمد IOC',
+  'ps4.title':'التعبئة &amp; الشحن','ps4.badge':'مُرقَّم بالدفعة',
+  'sec.cat.lbl':'04 / توريد التموين','cat.who.lbl':'من نزوّد',
+  'cat.cta1':'استفسار التموين','cat.cta2':'تحميل الكتيب التقني',
+  'sec.testi.lbl':'05 / التقييمات',
+  'sec.testi.title':'ما يقوله<br><em>المطبخ.</em>',
+  'sec.trade.lbl':'06 / التجارة',
+  'trade.title':'للمطابخ التي<br>لا <strong>تتوقف.</strong>',
+  'trade.form.lbl':'طلب عينة أو أسعار','trade.form.submit':'إرسال استفسار تجاري',
+  'sec.blog.lbl':'07 / المجلة',
+  'sec.blog.title':'الحرفة،<br><em>مُوضَّحة.</em>',
+  'sec.blog.desc':'نكتب للمحترفين. لا نسخ صحية. لا ادعاءات أسلوب حياة. فقط العلم والجغرافيا والقرارات التي تنتج الزيت في مطبخك.',
+  'a1.title':'الحجة من أجل الحصاد المبكر — لماذا نقطف قبل اكتمال النضج',
+  'a2.title':'ما معنى 0.2% حموضة حرة فعلياً عند التقديم',
+  'a3.title':'أيفاليك: لماذا تُعدّ خط العرض 38.7 شمالاً هو النقطة',
+  'a4.title':'الطهي بزيت عالي البوليفينول — ما يفعله الحرارة',
+  'a5.title':'لماذا تهم الأربع ساعات — نافذة الأكسدة',
+  'a6.title':'هل يمكن أن يكون زيت التموين زيتاً جيداً؟ الحجة لعدم قبول التنازل',
+  'blog.read.latest':'اقرأ أحدث مقال',
+  'ig.title':'البستان.<br>المطبخ. المعيار.',
+  'footer.tagline':'زيت المحترف',
+  'footer.legal':'© 2025 Olivekala A.Ş. جميع الحقوق محفوظة.'
+},
+
+ru:{
+  'nav.products':'Продукты','nav.origin':'Происхождение','nav.process':'Процесс',
+  'nav.catering':'Кейтеринг','nav.trade':'Торговля','nav.journal':'Журнал',
+  'nav.cta':'Запросить образец',
+  'nav.drop.prem':'KALA 500мл · Дегустационный набор','nav.drop.std':'KALA 5L Резерв','nav.drop.cat':'KALA 15L · Оптовые поставки',
+  'hero.eyebrow':'Айвалык · Эгейская Турция · Осн. 2025',
+  'hero.sub':'Memecik · Ранний урожай · Сертиф. кислотность 0,2%',
+  'hero.body':'Оливковое масло Extra Virgin для кухонь, задающих стандарты. Холодная экстракция в течение четырёх часов. Протестировано, пронумеровано по партиям, без компромиссов.',
+  'hero.cta1':'Изучить ассортимент','hero.cta2':'Торговый запрос',
+  'pill.prem':'Премиум','pill.std':'Стандарт','pill.cat':'Кейтеринг',
+  'stat.1':'Свободная кислотность','stat.2':'От рощи до пресса','stat.3':'Лет культивации','stat.4':'Холодная экстракция','stat.5':'Сертифицировано',
+  'sec.prod.lbl':'01 / Ассортимент',
+  'sec.prod.title':'Три уровня.<br><em>Один стандарт.</em>',
+  'sec.prod.desc':'Премиум для стола шефа. Стандарт для рабочей кухни. Кейтеринг для непрерывной работы.',
+  'tab.prem':'⬡ Премиум','tab.std':'◈ Стандарт','tab.cat':'▣ Кейтеринг',
+  'prem.cta1':'Запросить квоту','prem.cta2':'Запросить информацию',
+  'std.cta':'Оптовые цены',
+  'cat.cta.bulk':'Запрос оптовых поставок','cat.cta.supply':'Договор поставки',
+  'sec.origin.lbl':'02 / Происхождение',
+  'origin.attr':'Айвалык · Эгейская Турция · Сорт Memecik',
+  'origin.d1':'Окно сбора урожая','origin.d2':'Северная широта','origin.d3':'Исторический сорт','origin.d4':'Сертифицированный стандарт',
+  'origin.cta':'Узнать о процессе',
+  'sec.process.lbl':'03 / Процесс',
+  'sec.process.title':'Роща &nbsp;›&nbsp; Пресс &nbsp;›&nbsp; Банка.<br><em>Четыре часа.</em>',
+  'sec.process.desc':'Каждый шаг — это ограничение, которое мы сами на себя накладываем. Качество не масштабируется за счёт компромиссов.',
+  'ps1.title':'Ранний урожай','ps1.badge':'Только октябрь',
+  'ps2.title':'Отжим в день сбора',
+  'ps3.title':'Лабораторная сертификация','ps3.badge':'Сертификат IOC',
+  'ps4.title':'Разлив &amp; доставка','ps4.badge':'Партийная нумерация',
+  'sec.cat.lbl':'04 / Кейтеринг','cat.who.lbl':'Кому мы поставляем',
+  'cat.cta1':'Запрос кейтеринга','cat.cta2':'Скачать паспорт продукта',
+  'sec.testi.lbl':'05 / Отзывы',
+  'sec.testi.title':'Что говорит<br><em>кухня.</em>',
+  'sec.trade.lbl':'06 / Торговля',
+  'trade.title':'Для кухонь,<br>которые никогда не <strong>останавливаются.</strong>',
+  'trade.form.lbl':'Запрос образца или цен','trade.form.submit':'Отправить торговый запрос',
+  'sec.blog.lbl':'07 / Журнал',
+  'sec.blog.title':'Мастерство,<br><em>объяснённое.</em>',
+  'sec.blog.desc':'Мы пишем для профессионалов. Никакого велнес-контента. Никаких заявлений о стиле жизни. Только наука, география и решения, которые создают масло в вашей кухне.',
+  'a1.title':'Аргумент в пользу раннего сбора — почему мы собираем до пика зрелости',
+  'a2.title':'Что 0,2% свободной кислотности действительно означает на выходе',
+  'a3.title':'Айвалык: почему 38,7° северной широты — это ключ',
+  'a4.title':'Готовка на масле с высоким содержанием полифенолов — что делает жара',
+  'a5.title':'Почему важны четыре часа — окно окисления',
+  'a6.title':'Может ли кейтеринговое масло быть качественным? Аргумент против компромисса',
+  'blog.read.latest':'Читать последнюю статью',
+  'ig.title':'Роща.<br>Кухня. Стандарт.',
+  'footer.tagline':'Масло профессионала',
+  'footer.legal':'© 2025 Olivekala A.Ş. Все права защищены.'
+},
+
+fr:{
+  'nav.products':'Produits','nav.origin':'Origine','nav.process':'Procédé',
+  'nav.catering':'Restauration','nav.trade':'Commerce','nav.journal':'Journal',
+  'nav.cta':'Demander un échantillon',
+  'nav.drop.prem':'KALA 500ml · Coffret dégustation','nav.drop.std':'KALA 5L Réserve','nav.drop.cat':'KALA 15L · Approvisionnement',
+  'hero.eyebrow':'Ayvalık · Turquie Égéenne · Est. 2025',
+  'hero.sub':'Memecik · Récolte précoce · Acidité libre certifiée 0,2%',
+  'hero.body':'Huile d\'olive extra vierge conçue pour les cuisines qui définissent la norme. Extraite à froid en moins de quatre heures. Testée, numérotée par lot, sans compromis.',
+  'hero.cta1':'Explorer la gamme','hero.cta2':'Demande commerciale',
+  'pill.prem':'Premium','pill.std':'Standard','pill.cat':'Restauration',
+  'stat.1':'Acidité libre','stat.2':'Du verger à la presse','stat.3':'Années de culture','stat.4':'Extraction à froid','stat.5':'Certifié',
+  'sec.prod.lbl':'01 / Gamme',
+  'sec.prod.title':'Trois niveaux.<br><em>Une norme.</em>',
+  'sec.prod.desc':'Premium pour la table du chef. Standard pour la cuisine de travail. Restauration pour l\'opération qui ne s\'arrête jamais.',
+  'tab.prem':'⬡ Premium','tab.std':'◈ Standard','tab.cat':'▣ Restauration',
+  'prem.cta1':'Demande d\'allocation','prem.cta2':'Demander des infos',
+  'std.cta':'Tarifs volume',
+  'cat.cta.bulk':'Demande en gros','cat.cta.supply':'Contrat d\'approvisionnement',
+  'sec.origin.lbl':'02 / Origine',
+  'origin.attr':'Ayvalık · Turquie Égéenne · Cultivar Memecik',
+  'origin.d1':'Fenêtre de récolte','origin.d2':'Latitude Nord','origin.d3':'Cultivar historique','origin.d4':'Norme certifiée',
+  'origin.cta':'Voir le procédé',
+  'sec.process.lbl':'03 / Procédé',
+  'sec.process.title':'Verger &nbsp;›&nbsp; Presse &nbsp;›&nbsp; Bidon.<br><em>Quatre heures.</em>',
+  'sec.process.desc':'Chaque étape est une contrainte que nous nous imposons. La qualité ne s\'obtient pas en coupant les coins.',
+  'ps1.title':'Récolte précoce','ps1.badge':'Octobre seulement',
+  'ps2.title':'Pressage le jour même',
+  'ps3.title':'Certification laboratoire','ps3.badge':'Certifié IOC',
+  'ps4.title':'Mise en boîte &amp; expédition','ps4.badge':'Numéroté par lot',
+  'sec.cat.lbl':'04 / Approvisionnement restauration','cat.who.lbl':'Nos clients',
+  'cat.cta1':'Demande restauration','cat.cta2':'Télécharger la fiche technique',
+  'sec.testi.lbl':'05 / Avis',
+  'sec.testi.title':'Ce que la cuisine<br><em>dit.</em>',
+  'sec.trade.lbl':'06 / Commerce',
+  'trade.title':'Pour les cuisines<br>qui ne s\'<strong>arrêtent jamais.</strong>',
+  'trade.form.lbl':'Demande d\'échantillon ou de tarif','trade.form.submit':'Envoyer la demande commerciale',
+  'sec.blog.lbl':'07 / Journal',
+  'sec.blog.title':'Le savoir-faire,<br><em>expliqué.</em>',
+  'sec.blog.desc':'Nous écrivons pour les professionnels. Pas de contenu bien-être. Pas de promesses lifestyle. Seulement la science, la géographie et les décisions qui produisent l\'huile dans votre cuisine.',
+  'a1.title':'L\'argument de la récolte précoce — pourquoi nous cueillons avant la pleine maturité',
+  'a2.title':'Ce que 0,2% d\'acidité libre signifie vraiment au pass',
+  'a3.title':'Ayvalık : pourquoi 38,7° de latitude nord est le point clé',
+  'a4.title':'Cuisiner avec une huile riche en polyphénols — ce que fait la chaleur',
+  'a5.title':'Pourquoi quatre heures sont cruciales — la fenêtre d\'oxydation',
+  'a6.title':'Une huile de restauration peut-elle être une huile de qualité ? L\'argument contre le compromis',
+  'blog.read.latest':'Lire le dernier article',
+  'ig.title':'Le verger.<br>La cuisine. La norme.',
+  'footer.tagline':'L\'huile du professionnel',
+  'footer.legal':'© 2025 Olivekala A.Ş. Tous droits réservés.'
+},
+es:{
+  'nav.products':'Productos','nav.origin':'Origen','nav.process':'Proceso',
+  'nav.catering':'Restauración','nav.trade':'Comercio','nav.journal':'Diario',
+  'nav.cta':'Solicitar muestra',
+  'nav.drop.prem':'Prensado en frío Premium','nav.drop.std':'Estándar Profesional','nav.drop.cat':'Suministro para restauración',
+  'hero.eyebrow':'Prensado en frío · Ayvalık, Turquía',
+  'hero.sub':'Aceite de oliva virgen extra para cocinas profesionales.',
+  'hero.body':'Poliphenol alto. Acidez libre 0,2%. Prensado el mismo día de la cosecha. Entrega directa a cocinas con estrella Michelin, hoteles boutique y operadores de restauración.',
+  'hero.cta1':'Ver productos','hero.cta2':'Solicitar catálogo',
+  'pill.prem':'Premium','pill.std':'Estándar','pill.cat':'Restauración',
+  'stat.1':'Variedad Ayvalık','stat.2':'Acidez libre','stat.3':'Recogida temprana','stat.4':'Prensado en frío',
+  'sec.prod.lbl':'01 / Productos','sec.prod.title':'Tres líneas.<br><em>Una norma.</em>',
+  'sec.prod.desc':'Cada línea sirve a un perfil de cocina diferente. Los tres comparten el mismo lugar de origen, la misma fecha de prensado y el mismo umbral de calidad.',
+  'tab.prem':'Premium','tab.std':'Estándar','tab.cat':'Restauración',
+  'prem.cta1':'Descargar ficha técnica','prem.cta2':'Solicitar muestra',
+  'std.cta':'Solicitar precio estándar',
+  'cat.cta.bulk':'Consulta granel','cat.cta.supply':'Solicitud de suministro',
+  'sec.origin.lbl':'02 / Origen',
+  'origin.attr':'Finca monovarietales · 38.7°N · Cosecha temprana · Prensado el mismo día',
+  'origin.d1':'Nuestros olivos crecen en laderas calcáreas a 180–320 m de altitud en la D.O. Ayvalık — el microclima de alto polifenol.',
+  'origin.d2':'La recogida comienza en octubre, semanas antes de la madurez completa, cuando el índice de polifenol alcanza su máximo.',
+  'origin.d3':'Prensado a menos de 27°C dentro de las 4 horas siguientes a la cosecha. Sin almacenamiento intermedio.',
+  'origin.d4':'Cada lote lleva número de prensa, fecha de cosecha y ficha de análisis. No existe concepto de mezcla.',
+  'origin.cta':'Ver todos los parámetros de calidad',
+  'sec.process.lbl':'03 / Proceso',
+  'sec.process.title':'Huerto &nbsp;›&nbsp; Prensa &nbsp;›&nbsp; Lata.<br><em>Cuatro horas.</em>',
+  'sec.process.desc':'La cadena de custodia que importa.',
+  'ps1.title':'Cosecha temprana','ps1.badge':'Sin compromiso',
+  'ps2.title':'Prensado el mismo día','ps2.badge':'&lt;4 horas',
+  'ps3.title':'Certificación de laboratorio','ps3.badge':'Certificado IOC',
+  'ps4.title':'Enlatado &amp; envío','ps4.badge':'Lote numerado',
+  'sec.cat.lbl':'04 / Suministro restauración','cat.who.lbl':'Nuestros clientes',
+  'cat.cta1':'Consulta restauración','cat.cta2':'Descargar ficha técnica',
+  'sec.testi.lbl':'05 / Opiniones',
+  'sec.testi.title':'Lo que la cocina<br><em>dice.</em>',
+  'sec.trade.lbl':'06 / Comercio',
+  'trade.title':'Para las cocinas<br>que nunca <strong>paran.</strong>',
+  'trade.form.lbl':'Solicitud de muestra o precio','trade.form.submit':'Enviar solicitud comercial',
+  'sec.blog.lbl':'07 / Diario',
+  'sec.blog.title':'El oficio,<br><em>explicado.</em>',
+  'sec.blog.desc':'Escribimos para profesionales. Sin contenido de bienestar. Sin promesas de estilo de vida. Solo ciencia, geografía y las decisiones que producen el aceite en su cocina.',
+  'a1.title':'El argumento de la cosecha temprana — por qué recogemos antes de la madurez completa',
+  'a2.title':'Qué significa realmente 0,2% de acidez libre en el pase',
+  'a3.title':'Ayvalık: por qué 38,7°N de latitud es el punto clave',
+  'a4.title':'Cocinar con aceite rico en polifenoles — qué hace el calor',
+  'a5.title':'Por qué cuatro horas son cruciales — la ventana de oxidación',
+  'a6.title':'¿Puede un aceite de restauración ser un aceite de calidad? El argumento contra la concesión',
+  'blog.read.latest':'Leer el último artículo',
+  'ig.title':'El huerto.<br>La cocina. El estándar.',
+  'footer.tagline':'El aceite del profesional',
+  'footer.legal':'© 2025 Olivekala A.Ş. Todos los derechos reservados.'
+},
+it:{
+  'nav.products':'Prodotti','nav.origin':'Origine','nav.process':'Processo',
+  'nav.catering':'Ristorazione','nav.trade':'Commercio','nav.journal':'Diario',
+  'nav.cta':'Richiedi campione',
+  'nav.drop.prem':'Premium Spremitura a freddo','nav.drop.std':'Standard Professionale','nav.drop.cat':'Fornitura ristorazione',
+  'hero.eyebrow':'Spremitura a freddo · Ayvalık, Turchia',
+  'hero.sub':'Olio extravergine di oliva per cucine professionali.',
+  'hero.body':'Alto contenuto di polifenoli. Acidità libera 0,2%. Spremitura il giorno della raccolta. Consegna diretta a cucine stellate Michelin, hotel boutique e operatori della ristorazione.',
+  'hero.cta1':'Vedi prodotti','hero.cta2':'Richiedi catalogo',
+  'pill.prem':'Premium','pill.std':'Standard','pill.cat':'Ristorazione',
+  'stat.1':'Varietà Ayvalık','stat.2':'Acidità libera','stat.3':'Raccolta precoce','stat.4':'Spremitura a freddo',
+  'sec.prod.lbl':'01 / Prodotti','sec.prod.title':'Tre linee.<br><em>Uno standard.</em>',
+  'sec.prod.desc':'Ogni linea serve un profilo di cucina diverso. Tutte e tre condividono la stessa origine, la stessa data di spremitura e la stessa soglia di qualità.',
+  'tab.prem':'Premium','tab.std':'Standard','tab.cat':'Ristorazione',
+  'prem.cta1':'Scarica scheda tecnica','prem.cta2':'Richiedi campione',
+  'std.cta':'Richiedi prezzo standard',
+  'cat.cta.bulk':'Richiesta sfuso','cat.cta.supply':'Richiesta di fornitura',
+  'sec.origin.lbl':'02 / Origine',
+  'origin.attr':'Tenuta monovarietale · 38.7°N · Raccolta precoce · Spremitura il giorno stesso',
+  'origin.d1':'I nostri ulivi crescono su pendii calcarei a 180–320 m di altitudine nella D.O. Ayvalık — il microclima ad alto contenuto di polifenoli.',
+  'origin.d2':'La raccolta inizia ad ottobre, settimane prima della piena maturità, quando l\'indice di polifenoli raggiunge il picco.',
+  'origin.d3':'Spremitura a meno di 27°C entro 4 ore dalla raccolta. Nessuno stoccaggio intermedio.',
+  'origin.d4':'Ogni lotto porta il numero di pressa, la data di raccolta e la scheda di analisi. Nessun concetto di blend.',
+  'origin.cta':'Vedi tutti i parametri di qualità',
+  'sec.process.lbl':'03 / Processo',
+  'sec.process.title':'Uliveto &nbsp;›&nbsp; Pressa &nbsp;›&nbsp; Latta.<br><em>Quattro ore.</em>',
+  'sec.process.desc':'La catena di custodia che conta.',
+  'ps1.title':'Raccolta precoce','ps1.badge':'Zero compromessi',
+  'ps2.title':'Spremitura il giorno stesso','ps2.badge':'&lt;4 ore',
+  'ps3.title':'Certificazione di laboratorio','ps3.badge':'Certificato IOC',
+  'ps4.title':'Inscatolamento &amp; spedizione','ps4.badge':'Numerato per lotto',
+  'sec.cat.lbl':'04 / Fornitura ristorazione','cat.who.lbl':'I nostri clienti',
+  'cat.cta1':'Richiesta ristorazione','cat.cta2':'Scarica scheda tecnica',
+  'sec.testi.lbl':'05 / Testimonianze',
+  'sec.testi.title':'Quello che la cucina<br><em>dice.</em>',
+  'sec.trade.lbl':'06 / Commercio',
+  'trade.title':'Per le cucine<br>che non <strong>si fermano mai.</strong>',
+  'trade.form.lbl':'Richiesta di campione o prezzo','trade.form.submit':'Invia richiesta commerciale',
+  'sec.blog.lbl':'07 / Diario',
+  'sec.blog.title':'Il mestiere,<br><em>spiegato.</em>',
+  'sec.blog.desc':'Scriviamo per i professionisti. Niente contenuti wellness. Niente promesse di lifestyle. Solo scienza, geografia e le decisioni che producono l\'olio nella tua cucina.',
+  'a1.title':'L\'argomento della raccolta precoce — perché raccogliamo prima della piena maturità',
+  'a2.title':'Cosa significa davvero 0,2% di acidità libera nel servizio',
+  'a3.title':'Ayvalık: perché 38,7°N di latitudine è il punto chiave',
+  'a4.title':'Cucinare con olio ricco di polifenoli — cosa fa il calore',
+  'a5.title':'Perché quattro ore sono cruciali — la finestra di ossidazione',
+  'a6.title':'Un olio da ristorazione può essere un olio di qualità? L\'argomento contro il compromesso',
+  'blog.read.latest':'Leggi l\'ultimo articolo',
+  'ig.title':'L\'uliveto.<br>La cucina. Lo standard.',
+  'footer.tagline':'L\'olio del professionista',
+  'footer.legal':'© 2025 Olivekala A.Ş. Tutti i diritti riservati.'
+}
+};
+
+/* ── Language switcher logic ── */
+function toggleLangMenu(e) {
+  e.stopPropagation();
+  const drop = document.getElementById('langDrop');
+  const cur  = document.getElementById('langCur');
+  const open = drop.classList.toggle('open');
+  cur.setAttribute('aria-expanded', open);
+}
+document.addEventListener('click', () => {
+  const d = document.getElementById('langDrop');
+  if (d) { d.classList.remove('open'); document.getElementById('langCur').setAttribute('aria-expanded','false'); }
+});
+
+function setLanguage(lang) {
+  const t = T[lang];
+  if (!t) return;
+  const meta = LANG_META[lang];
+  /* update root */
+  document.documentElement.lang = lang;
+  document.documentElement.dir  = meta.dir;
+  document.body.classList.toggle('rtl', meta.dir === 'rtl');
+  /* apply all keys */
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const val = t[el.getAttribute('data-i18n')];
+    if (val !== undefined) el.innerHTML = val;
+  });
+  /* update switcher button */
+  const cur = document.getElementById('langCur');
+  if (cur) cur.textContent = meta.code + ' ▾';
+  /* update active state */
+  document.querySelectorAll('#langDrop button').forEach(btn => {
+    const m = btn.getAttribute('onclick').match(/'(\w+)'/);
+    btn.classList.toggle('active', m && m[1] === lang);
+  });
+  /* float-wrap RTL */
+  const fw = document.querySelector('.float-wrap');
+  if (fw) { fw.style.right = meta.dir==='rtl' ? 'auto' : '1.4rem'; fw.style.left = meta.dir==='rtl' ? '1.4rem' : 'auto'; }
+  /* persist */
+  try { localStorage.setItem('ok_lang', lang); } catch(e) {}
+  /* close dropdown */
+  const drop = document.getElementById('langDrop');
+  if (drop) { drop.classList.remove('open'); cur && cur.setAttribute('aria-expanded','false'); }
+}
+
+/* ── Auto-detect on first load ── */
+(function initLang() {
+  try {
+    const saved = localStorage.getItem('ok_lang');
+    if (saved && T[saved]) { setLanguage(saved); return; }
+  } catch(e) {}
+  const bl = (navigator.language || 'en').slice(0,2).toLowerCase();
+  if (T[bl]) setLanguage(bl);
+})();
+
 </script>
 
 <!-- ══════════ FLOATING BUTTONS ══════════ -->
