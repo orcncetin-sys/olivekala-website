@@ -810,11 +810,7 @@ nav.nav-open .ham-btn span:nth-child(3){transform:translateY(-6.5px) rotate(-45d
       <span class="lbl" data-i18n="hero.eyebrow">Ayvalık · Aegean Turkey · Est. 2025</span>
     </div>
 
-    <h1 class="hero-h1">
-      The<br>
-      <em>Professional's</em><br>
-      <strong>Oil.</strong>
-    </h1>
+    <h1 class="hero-h1" data-i18n="hero.title">The<br><em>Professional's</em><br><strong>Oil.</strong></h1>
     <p class="hero-sub" data-i18n="hero.sub">Memecik · Early Harvest · Certified 0.2% Free Acidity</p>
     <p class="hero-body" data-i18n="hero.body">
       Extra virgin olive oil engineered for kitchens that set the standard.
@@ -858,7 +854,7 @@ nav.nav-open .ham-btn span:nth-child(3){transform:translateY(-6.5px) rotate(-45d
       <span class="drum-label">Catering Supply</span>
       <span class="drum-size">15L</span>
       <div class="drum-line"></div>
-      <span class="drum-label">IOC Certified</span>
+      <span class="drum-label" data-i18n="cert.ioc">IOC Certified</span>
     </div>
   </div>
 </section>
@@ -943,14 +939,14 @@ nav.nav-open .ham-btn span:nth-child(3){transform:translateY(-6.5px) rotate(-45d
         </div>
         <div class="prod-card-kpi" style="color:rgba(201,168,76,.35)">Custom <span data-i18n="kpi.label">Label</span></div>
         <div class="prod-card-tags">
-          <span class="prod-tag" style="color:rgba(139,115,85,.5);border-color:rgba(139,115,85,.15)">Coming 2026</span>
+          <span class="prod-tag" style="color:rgba(139,115,85,.5);border-color:rgba(139,115,85,.15)" data-i18n="coming.tag">Coming 2026</span>
         </div>
         <div id="notify-wrap" style="margin-top:1rem">
-          <button class="btn btn-ghost" style="width:100%;text-align:center" onclick="toggleNotify()">Notify Me</button>
+          <button class="btn btn-ghost" style="width:100%;text-align:center" onclick="toggleNotify()" data-i18n="notify.btn">Notify Me</button>
           <form id="notify-form" style="display:none;margin-top:.7rem" onsubmit="submitNotify(event)">
             <input id="notify-email" class="fi-inp" type="email" placeholder="your@email.com" required style="width:100%;margin-bottom:.5rem" />
-            <button class="form-submit" type="submit" style="background:var(--stone);color:var(--black)">Notify Me When Available</button>
-            <div id="notify-thanks" style="display:none;font-size:.72rem;color:#5fa882;margin-top:.5rem;letter-spacing:.08em">You're on the list — we'll be in touch.</div>
+            <button class="form-submit" type="submit" style="background:var(--stone);color:var(--black)" data-i18n="notify.submit">Notify Me When Available</button>
+            <div id="notify-thanks" style="display:none;font-size:.72rem;color:#5fa882;margin-top:.5rem;letter-spacing:.08em" data-i18n="notify.thanks">You're on the list — we'll be in touch.</div>
           </form>
         </div>
       </div>
@@ -1187,10 +1183,10 @@ nav.nav-open .ham-btn span:nth-child(3){transform:translateY(-6.5px) rotate(-45d
     </div>
 
     <div class="cert-row fi fi-d2">
-      <span class="cert">IOC Certified</span>
-      <span class="cert">ISO Food Safety</span>
-      <span class="cert">Batch Traceable</span>
-      <span class="cert">White Label Available</span>
+      <span class="cert" data-i18n="cert.ioc">IOC Certified</span>
+      <span class="cert" data-i18n="cert.iso">ISO Food Safety</span>
+      <span class="cert" data-i18n="cert.trace">Batch Traceable</span>
+      <span class="cert" data-i18n="cert.wl">White Label Available</span>
     </div>
   </div>
 
@@ -1233,21 +1229,21 @@ nav.nav-open .ham-btn span:nth-child(3){transform:translateY(-6.5px) rotate(-45d
   <div class="testi-grid fi">
     <div class="testi">
       <div class="testi-tier" style="color:var(--gold)">⬡ Premium · Fine Dining</div>
-      <div class="testi-text">"The best finishing oil I have used. Consistent batch after batch — which is what you need at this level. The acidity holds up to what the certificate says."</div>
-      <div class="testi-author">Executive Chef</div>
-      <div class="testi-role">Fine Dining Restaurant, Istanbul</div>
+      <div class="testi-text"><span data-i18n="t1.text">"The best finishing oil I have used. Consistent batch after batch — which is what you need at this level. The acidity holds up to what the certificate says."</span></div>
+      <div class="testi-author" data-i18n="t1.author">Executive Chef</div>
+      <div class="testi-role" data-i18n="t1.role">Fine Dining Restaurant, Istanbul</div>
     </div>
     <div class="testi">
       <div class="testi-tier" style="color:var(--stone)">◈ Standard · Professional</div>
-      <div class="testi-text">"We use the 5L Reserve across the entire kitchen. For that price-point and that acidity, there is nothing comparable in this market. Our guests notice it."</div>
+      <div class="testi-text"><span data-i18n="t2.text">"We use the 5L Reserve across the entire kitchen. For that price-point and that acidity, there is nothing comparable in this market. Our guests notice it."</span></div>
       <div class="testi-author">Head Chef & Co-owner</div>
-      <div class="testi-role">Bistrot, Izmir</div>
+      <div class="testi-role" data-i18n="t2.role">Bistrot, Izmir</div>
     </div>
     <div class="testi">
       <div class="testi-tier" style="color:#5fa882">▣ Catering · Hotel Group</div>
-      <div class="testi-text">"We switched the entire group — five properties — to the KALA catering supply. The spec sheet was compelling. The oil confirmed it."</div>
-      <div class="testi-author">Head of Procurement</div>
-      <div class="testi-role">Luxury Hotel Group, Bodrum</div>
+      <div class="testi-text"><span data-i18n="t3.text">"We switched the entire group — five properties — to the KALA catering supply. The spec sheet was compelling. The oil confirmed it."</span></div>
+      <div class="testi-author" data-i18n="t3.author">Head of Procurement</div>
+      <div class="testi-role" data-i18n="t3.role">Luxury Hotel Group, Bodrum</div>
     </div>
   </div>
 </section>
@@ -1922,7 +1918,7 @@ en:{
   'a6.title':'Can a catering oil be a quality oil? The argument for not accepting the trade-off',
   'blog.read.latest':'Read Latest Article',
   'ig.title':'The grove.<br>The kitchen. The standard.',
-  'footer.tagline':'The Professional\'s Oil',
+  'footer.tagline':'The Professional\'s Oil','hero.title':'The<br><em>Professional\'s</em><br><strong>Oil.</strong>',
   'footer.legal':'© 2025 Olivekala A.Ş. All rights reserved.'
 ,
   'origin.quote':'"Three thousand years<br>of cultivation.<br><em>One harvest.</em><br>No compromises."',
@@ -2002,7 +1998,7 @@ en:{
   'tag.tap':'Tap Dispensing',
   'tag.bulk':'Bulk Pricing',
   'tag.wl':'White Label',
-  'tag.anncon':'Annual Contract',
+  'tag.anncon':'Annual Contract','cert.ioc':'IOC Certified','cert.iso':'ISO Food Safety','cert.trace':'Batch Traceable','cert.wl':'White Label Available','coming.tag':'Coming 2026','notify.btn':'Notify Me','notify.submit':'Notify Me When Available','notify.thanks':'You're on the list — we'll be in touch.','t1.text':'"The best finishing oil I have used. Consistent batch after batch — which is what you need at this level. The acidity holds up to what the certificate says."','t1.author':'Executive Chef','t1.role':'Fine Dining Restaurant, Istanbul','t2.text':'"We use the 5L Reserve across the entire kitchen. For that price-point and that acidity, there is nothing comparable in this market. Our guests notice it."','t2.author':'Head Chef &amp; Co-owner','t2.role':'Bistrot, Izmir','t3.text':'"We switched the entire group — five properties — to the KALA catering supply. The spec sheet was compelling. The oil confirmed it."','t3.author':'Head of Procurement','t3.role':'Luxury Hotel Group, Bodrum',
   'tag.trace':'Full Trace',
   'std.btn.order':'Order / Sample',
   'std.btn.spec':'Spec Sheet',
@@ -2081,7 +2077,7 @@ tr:{
   'a6.title':'Catering yağı kaliteli olabilir mi? Fedakarlığı reddetmenin argümanı',
   'blog.read.latest':'Son Makaleyi Oku',
   'ig.title':'Bahçe.<br>Mutfak. Standart.',
-  'footer.tagline':'Profesyonellerin Yağı',
+  'footer.tagline':'Profesyonellerin Yağı','hero.title':'Profesyonellerin<br><em>Yağı.</em>',
   'footer.legal':'© 2025 Olivekala A.Ş. Tüm hakları saklıdır.'
 ,
   'origin.quote':'"Üç bin yıllık<br>zeytincilik.<br><em>Tek hasat.</em><br>Sıfır taviz."',
@@ -2155,14 +2151,14 @@ tr:{
   'tag.tasting':'Tatma Formatı',
   'tag.gift':'Hediye Hazır',
   'tag.horeca':'HoReCa Format',
-  'tag.bcert':'Parti Sert.',
+  'tag.bcert':'Parti Takibi',
   'tag.n2':'N₂ Doldurmalı',
   'tag.15l':'15L Bidon',
   'tag.tap':'Dispensing Musluk',
   'tag.bulk':'Toplu Fiyat',
-  'tag.wl':'Beyaz Etiket',
-  'tag.anncon':'Yıllık Sözleşme',
-  'tag.trace':'Tam İzleme',
+  'tag.wl':'Beyaz Etiket Şişe İmkanı',
+  'tag.anncon':'Yıllık Sözleşme','cert.ioc':'IOC Sertifikalı','cert.iso':'ISO Gıda Güvenliği','cert.trace':'Parti Takibi','cert.wl':'Beyaz Etiket Şişe İmkanı','coming.tag':'2026'da Geliyor','notify.btn':'Beni Bilgilendir','notify.submit':'Hazır Olunca Bildir','notify.thanks':'Listeye eklendiniz — yakında iletişime geçeceğiz.','t1.text':'"Kullandığım en iyi bitirme yağı. Parti parti tutarlı — bu seviyede buna ihtiyacınız var. Asidite sertifikanın söylediğiyle örtüşüyor."','t1.author':'İcra Şefi','t1.role':'Fine Dining Restoran, İstanbul','t2.text':'"5L Reserve'i tüm mutfakta kullanıyoruz. Bu fiyat ve asidite için bu pazarda karşılaştırılabilir hiçbir şey yok. Misafirlerimiz fark ediyor."','t2.author':'Baş Şef &amp; Ortak','t2.role':'Bistro, İzmir','t3.text':'"Tüm grubu — beş tesis — KALA catering tedarikine geçirdik. Teknik döküman ikna ediciydi. Yağ da bunu doğruladı."','t3.author':'Satın Alma Direktörü','t3.role':'Lüks Otel Grubu, Bodrum',
+  'tag.trace':'Parti Takibi',
   'std.btn.order':'Sipariş / Numune',
   'std.btn.spec':'Teknik Çizelge',
   'cstrip.l1':'Serbest Asit — tüm hacimler',
@@ -2240,7 +2236,7 @@ de:{
   'a6.title':'Kann Catering-Öl Qualitätsöl sein? Das Argument gegen den Kompromiss',
   'blog.read.latest':'Neuesten Artikel Lesen',
   'ig.title':'Der Hain.<br>Die Küche. Der Standard.',
-  'footer.tagline':'Das Öl des Profis',
+  'footer.tagline':'Das Öl des Profis','hero.title':'Das Öl der<br><em>Profis.</em>',
   'footer.legal':'© 2025 Olivekala A.Ş. Alle Rechte vorbehalten.'
 ,
   'origin.quote':'"Dreitausend Jahre<br>Olivenanbau.<br><em>Eine Ernte.</em><br>Keine Kompromisse."',
@@ -2314,13 +2310,13 @@ de:{
   'tag.tasting':'Tasting-Format',
   'tag.gift':'Geschenkbereit',
   'tag.horeca':'HoReCa-Format',
-  'tag.bcert':'Chargenzeugnis',
+  'tag.bcert':'Chargen-Zertif.',
   'tag.n2':'N₂-gespült',
   'tag.15l':'15-L-Fass',
   'tag.tap':'Zapfhahn',
   'tag.bulk':'Mengenpreis',
   'tag.wl':'White Label',
-  'tag.anncon':'Jahresvertrag',
+  'tag.anncon':'Jahresvertrag','cert.ioc':'IOC-Zertifiziert','cert.iso':'ISO Lebensmittelsicherheit','cert.trace':'Chargenverfolgung','cert.wl':'White Label möglich','coming.tag':'Kommt 2026','notify.btn':'Benachrichtigen','notify.submit':'Informiert werden','notify.thanks':'Sie sind auf der Liste — wir melden uns.','t1.text':'"Das beste Finishing-Öl, das ich je verwendet habe. Charge für Charge konsistent — genau das braucht man auf diesem Niveau. Die Azidität entspricht dem Zertifikat."','t1.author':'Küchenchef','t1.role':'Fine-Dining-Restaurant, Istanbul','t2.text':'"Wir verwenden das 5L Reserve in der gesamten Küche. Für diesen Preis und diese Azidität gibt es auf diesem Markt nichts Vergleichbares. Unsere Gäste bemerken es."','t2.author':'Chefkoch &amp; Mitinhaber','t2.role':'Bistrot, Izmir','t3.text':'"Wir haben die gesamte Gruppe — fünf Häuser — auf KALA Catering-Lieferung umgestellt. Das Datenblatt war überzeugend. Das Öl hat es bestätigt."','t3.author':'Einkaufsleiter','t3.role':'Luxushotelgruppe, Bodrum',
   'tag.trace':'Vollrückverfolgung',
   'std.btn.order':'Bestellen / Muster',
   'std.btn.spec':'Datenblatt',
@@ -2399,7 +2395,7 @@ ar:{
   'a6.title':'هل يمكن أن يكون زيت التموين زيتاً جيداً؟ الحجة لعدم قبول التنازل',
   'blog.read.latest':'اقرأ أحدث مقال',
   'ig.title':'البستان.<br>المطبخ. المعيار.',
-  'footer.tagline':'زيت المحترف',
+  'footer.tagline':'زيت المحترف','hero.title':'زيت<br><em>المحترفين.</em>',
   'footer.legal':'© 2025 Olivekala A.Ş. جميع الحقوق محفوظة.'
 ,
   'origin.quote':'"ثلاثة آلاف عام<br>من الزراعة.<br><em>حصاد واحد.</em><br>لا تنازلات."',
@@ -2479,7 +2475,7 @@ ar:{
   'tag.tap':'صنبور توزيع',
   'tag.bulk':'تسعير الجملة',
   'tag.wl':'وسم أبيض',
-  'tag.anncon':'عقد سنوي',
+  'tag.anncon':'عقد سنوي','cert.ioc':'معتمد IOC','cert.iso':'سلامة غذائية ISO','cert.trace':'تتبع الدُّفعة','cert.wl':'وسم أبيض متاح','coming.tag':'قريباً 2026','notify.btn':'أبلغني','notify.submit':'أبلغني عند التوفر','notify.thanks':'أنت في القائمة — سنتواصل معك قريباً.','t1.text':'"أفضل زيت إنهاء استخدمته. متسق من دُفعة إلى أخرى — وهذا ما تحتاجه على هذا المستوى. الحموضة تتطابق مع ما يقوله الشهادة."','t1.author':'رئيس الطهاة التنفيذي','t1.role':'مطعم فاخر، إسطنبول','t2.text':'"نستخدم 5L Reserve في المطبخ بأكمله. بهذا السعر وهذه الحموضة، لا يوجد ما يضاهيه في هذا السوق. يلاحظ ضيوفنا الفرق."','t2.author':'رئيس الطهاة &amp; الشريك','t2.role':'مطعم بيسترو، إزمير','t3.text':'"حولنا المجموعة بأكملها — خمس منشآت — إلى توريد KALA للضيافة. ورقة المواصفات كانت مقنعة. الزيت أكد ذلك."','t3.author':'مدير المشتريات','t3.role':'مجموعة فنادق فاخرة، بودروم',
   'tag.trace':'تتبع كامل',
   'std.btn.order':'طلب / عينة',
   'std.btn.spec':'الجدول التقني',
@@ -2558,7 +2554,7 @@ ru:{
   'a6.title':'Может ли кейтеринговое масло быть качественным? Аргумент против компромисса',
   'blog.read.latest':'Читать последнюю статью',
   'ig.title':'Роща.<br>Кухня. Стандарт.',
-  'footer.tagline':'Масло профессионала',
+  'footer.tagline':'Масло профессионала','hero.title':'Масло<br><em>профессионала.</em>',
   'footer.legal':'© 2025 Olivekala A.Ş. Все права защищены.'
 ,
   'origin.quote':'"Три тысячи лет<br>возделывания.<br><em>Один урожай.</em><br>Без компромиссов."',
@@ -2632,13 +2628,13 @@ ru:{
   'tag.tasting':'Дегуст. формат',
   'tag.gift':'Подарочный',
   'tag.horeca':'Формат HoReCa',
-  'tag.bcert':'Партийн. серт.',
+  'tag.bcert':'Партионный серт.',
   'tag.n2':'Промывка N₂',
   'tag.15l':'Бочка 15 л',
   'tag.tap':'Кран-дозатор',
   'tag.bulk':'Оптовая цена',
   'tag.wl':'Частная марка',
-  'tag.anncon':'Годовой контракт',
+  'tag.anncon':'Годовой контракт','cert.ioc':'Сертификат IOC','cert.iso':'ISO Безопасность питания','cert.trace':'Прослеживаемость партии','cert.wl':'White Label доступен','coming.tag':'Скоро в 2026','notify.btn':'Уведомить меня','notify.submit':'Уведомить о доступности','notify.thanks':'Вы в списке — мы свяжемся с вами.','t1.text':'"Лучшее финишное масло из всех, что я использовал. Партия за партией — стабильно. Это именно то, что нужно на таком уровне. Кислотность соответствует сертификату."','t1.author':'Шеф-повар','t1.role':'Ресторан Fine Dining, Стамбул','t2.text':'"Мы используем 5L Reserve на всей кухне. По соотношению цены и кислотности — ничего сопоставимого на этом рынке нет. Наши гости замечают разницу."','t2.author':'Шеф-повар &amp; Совладелец','t2.role':'Бистро, Измир','t3.text':'"Мы перевели всю группу — пять объектов — на поставки KALA для кейтеринга. Техническое описание было убедительным. Масло подтвердило это."','t3.author':'Руководитель отдела закупок','t3.role':'Группа люкс-отелей, Бодрум',
   'tag.trace':'Полная прослеж.',
   'std.btn.order':'Заказ / Образец',
   'std.btn.spec':'Технический лист',
@@ -2717,7 +2713,7 @@ fr:{
   'a6.title':'Une huile de restauration peut-elle être une huile de qualité ? L\'argument contre le compromis',
   'blog.read.latest':'Lire le dernier article',
   'ig.title':'Le verger.<br>La cuisine. La norme.',
-  'footer.tagline':'L\'huile du professionnel',
+  'footer.tagline':'L\'huile du professionnel','hero.title':'L\'huile du<br><em>professionnel.</em>',
   'footer.legal':'© 2025 Olivekala A.Ş. Tous droits réservés.'
 ,
   'origin.quote':'"Trois mille ans<br>de culture.<br><em>Une récolte.</em><br>Aucun compromis."',
@@ -2797,7 +2793,7 @@ fr:{
   'tag.tap':'Robinet de soutirage',
   'tag.bulk':'Tarif vrac',
   'tag.wl':'White Label',
-  'tag.anncon':'Contrat annuel',
+  'tag.anncon':'Contrat annuel','cert.ioc':'Certifié IOC','cert.iso':'Sécurité alimentaire ISO','cert.trace':'Traçabilité de lot','cert.wl':'Marque blanche disponible','coming.tag':'Disponible en 2026','notify.btn':'Me notifier','notify.submit':'Notifier à disponibilité','notify.thanks':'Vous êtes sur la liste — nous vous contacterons.','t1.text':'"La meilleure huile de finition que j'aie utilisée. Constante lot après lot — c'est ce dont on a besoin à ce niveau. L'acidité correspond au certificat."','t1.author':'Chef exécutif','t1.role':'Restaurant gastronomique, Istanbul','t2.text':'"Nous utilisons le 5L Reserve dans toute la cuisine. Pour ce rapport qualité-prix et cette acidité, rien de comparable sur ce marché. Nos clients le remarquent."','t2.author':'Chef &amp; Co-propriétaire','t2.role':'Bistrot, Izmir','t3.text':'"Nous avons basculé tout le groupe — cinq établissements — vers l'approvisionnement traiteur KALA. La fiche technique était convaincante. L'huile l'a confirmé."','t3.author':'Responsable des achats','t3.role':'Groupe hôtelier de luxe, Bodrum',
   'tag.trace':'Traçabilité complète',
   'std.btn.order':'Commander / Échantillon',
   'std.btn.spec':'Fiche technique',
@@ -2877,7 +2873,7 @@ es:{
   'a6.title':'¿Puede un aceite de restauración ser un aceite de calidad? El argumento contra la concesión',
   'blog.read.latest':'Leer el último artículo',
   'ig.title':'El huerto.<br>La cocina. El estándar.',
-  'footer.tagline':'El aceite del profesional',
+  'footer.tagline':'El aceite del profesional','hero.title':'El aceite del<br><em>profesional.</em>',
   'footer.legal':'© 2025 Olivekala A.Ş. Todos los derechos reservados.'
 ,
   'origin.quote':'"Tres mil años<br>de cultivo.<br><em>Una cosecha.</em><br>Sin concesiones."',
@@ -2957,7 +2953,7 @@ es:{
   'tag.tap':'Grifo dispensador',
   'tag.bulk':'Precio granel',
   'tag.wl':'Marca blanca',
-  'tag.anncon':'Contrato anual',
+  'tag.anncon':'Contrato anual','cert.ioc':'Certificado IOC','cert.iso':'Seguridad alimentaria ISO','cert.trace':'Trazabilidad de lote','cert.wl':'Marca blanca disponible','coming.tag':'Disponible en 2026','notify.btn':'Notificarme','notify.submit':'Notificar cuando esté disponible','notify.thanks':'Estás en la lista — nos pondremos en contacto.','t1.text':'"El mejor aceite de acabado que he usado. Consistente lote tras lote — eso es lo que necesitas a este nivel. La acidez se corresponde con lo que dice el certificado."','t1.author':'Chef ejecutivo','t1.role':'Restaurante fine dining, Estambul','t2.text':'"Usamos el 5L Reserve en toda la cocina. Por ese precio y esa acidez, no hay nada comparable en este mercado. Nuestros clientes lo notan."','t2.author':'Chef principal &amp; Copropietario','t2.role':'Bistró, Esmirna','t3.text':'"Cambiamos todo el grupo — cinco propiedades — al suministro de catering KALA. La ficha técnica era convincente. El aceite lo confirmó."','t3.author':'Responsable de compras','t3.role':'Grupo hotelero de lujo, Bodrum',
   'tag.trace':'Trazabilidad completa',
   'std.btn.order':'Pedir / Muestra',
   'std.btn.spec':'Ficha técnica',
@@ -3037,7 +3033,7 @@ it:{
   'a6.title':'Un olio da ristorazione può essere un olio di qualità? L\'argomento contro il compromesso',
   'blog.read.latest':'Leggi l\'ultimo articolo',
   'ig.title':'L\'uliveto.<br>La cucina. Lo standard.',
-  'footer.tagline':'L\'olio del professionista',
+  'footer.tagline':'L\'olio del professionista','hero.title':'L\'olio del<br><em>professionista.</em>',
   'footer.legal':'© 2025 Olivekala A.Ş. Tutti i diritti riservati.'
 ,
   'origin.quote':'"Tremila anni<br>di coltivazione.<br><em>Un raccolto.</em><br>Nessun compromesso."',
@@ -3117,7 +3113,7 @@ it:{
   'tag.tap':'Rubinetto dispensatore',
   'tag.bulk':'Prezzo sfuso',
   'tag.wl':'White Label',
-  'tag.anncon':'Contratto annuale',
+  'tag.anncon':'Contratto annuale','cert.ioc':'Certificato IOC','cert.iso':'Sicurezza alimentare ISO','cert.trace':'Tracciabilità del lotto','cert.wl':'White Label disponibile','coming.tag':'In arrivo nel 2026','notify.btn':'Avvisami','notify.submit':'Avvisami quando disponibile','notify.thanks':'Sei nella lista — ti contatteremo presto.','t1.text':'"Il miglior olio da finitura che abbia mai usato. Costante lotto dopo lotto — è quello che serve a questo livello. L'acidità corrisponde a quanto indicato nel certificato."','t1.author':'Chef esecutivo','t1.role':'Ristorante fine dining, Istanbul','t2.text':'"Usiamo il 5L Reserve in tutta la cucina. Per quel prezzo e quella acidità, non c'è niente di paragonabile in questo mercato. I nostri ospiti lo notano."','t2.author':'Chef &amp; Comproprietario','t2.role':'Bistrot, Smirne','t3.text':'"Abbiamo convertito l'intero gruppo — cinque strutture — alla fornitura catering KALA. La scheda tecnica era convincente. L'olio lo ha confermato."','t3.author':'Responsabile acquisti','t3.role':'Gruppo alberghiero di lusso, Bodrum',
   'tag.trace':'Tracciabilità completa',
   'std.btn.order':'Ordina / Campione',
   'std.btn.spec':'Scheda tecnica',
