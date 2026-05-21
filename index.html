@@ -210,7 +210,7 @@ nav{
   display:flex;border-bottom:1px solid rgba(201,168,76,.15);margin-bottom:3.5rem
 }
 .tier-tab{
-  font-size:.62rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;
+  font-size:.62rem;font-weight:600;letter-spacing:.18em;
   padding:1rem 2rem;color:var(--stone);background:none;border:none;
   border-bottom:2px solid transparent;margin-bottom:-1px;transition:color .22s,border-color .22s
 }
@@ -884,9 +884,9 @@ nav.nav-open .ham-btn span:nth-child(3){transform:translateY(-6.5px) rotate(-45d
 
   <!-- Tier tabs -->
   <div class="tier-tabs fi">
-    <button class="tier-tab active-prem" id="tab-prem" onclick="switchTab('prem')" data-i18n="tab.prem">⬡ Premium</button>
-    <button class="tier-tab" id="tab-std" onclick="switchTab('std')" data-i18n="tab.std">◈ Standard</button>
-    <button class="tier-tab" id="tab-cat" onclick="switchTab('cat')" data-i18n="tab.cat">▣ Catering</button>
+    <button class="tier-tab active-prem" id="tab-prem" onclick="switchTab('prem')" data-i18n="tab.prem">⬡ PREMIUM</button>
+    <button class="tier-tab" id="tab-std" onclick="switchTab('std')" data-i18n="tab.std">◈ STANDARD</button>
+    <button class="tier-tab" id="tab-cat" onclick="switchTab('cat')" data-i18n="tab.cat">▣ CATERING</button>
   </div>
 
   <!-- ── PREMIUM PANE ── -->
@@ -1713,8 +1713,8 @@ nav.nav-open .ham-btn span:nth-child(3){transform:translateY(-6.5px) rotate(-45d
     <div>
       <div class="fc-title" data-i18n="footer.col.cat">Catering</div>
       <ul class="fc-links">
-        <li><a href="#products" onclick="switchTab('cat')">KALA 15L Catering Drum <span class="tier-tag" style="color:#5fa882;border-color:rgba(46,107,82,.35)">new</span></a></li>
-        <li><a href="#products" onclick="switchTab('cat')">Bulk Supply Programme</a></li>
+        <li><a href="#products" onclick="switchTab('cat')" data-i18n="footer.catlink">KALA 15L Catering Drum <span class="tier-tag" style="color:#5fa882;border-color:rgba(46,107,82,.35)">new</span></a></li>
+        <li><a href="#products" onclick="switchTab('cat')" data-i18n="footer.bulk">Bulk Supply Programme</a></li>
         <li><a href="#catering" data-i18n="footer.l.catpage">Catering Page</a></li>
         <li><a href="#trade" data-i18n="footer.l.supply">Supply Contract</a></li>
       </ul>
@@ -1885,7 +1885,7 @@ en:{
   'sec.prod.lbl':'01 / Range',
   'sec.prod.title':'Three tiers.<br><em>One standard.</em>',
   'sec.prod.desc':'Premium for the chef\'s table. Standard for the working kitchen. Catering for the operation that never stops.',
-  'tab.prem':'⬡ Premium','tab.std':'◈ Standard','tab.cat':'▣ Catering',
+  'tab.prem':'⬡ PREMIUM','tab.std':'◈ STANDARD','tab.cat':'▣ CATERING',
   'prem.cta1':'Allocation Enquiry','prem.cta2':'Request Info',
   'std.cta':'Volume Pricing',
   'cat.cta.bulk':'Bulk Enquiry','cat.cta.supply':'Supply Contract',
@@ -2044,7 +2044,7 @@ tr:{
   'sec.prod.lbl':'01 / Ürün Serisi',
   'sec.prod.title':'Üç seviye.<br><em>Tek standart.</em>',
   'sec.prod.desc':'Şef masası için Premium. Çalışan mutfak için Standart. Durmayan operasyon için Toplu Tedarik.',
-  'tab.prem':'⬡ Premium','tab.std':'◈ Standart','tab.cat':'▣ Toplu Tedarik',
+  'tab.prem':'⬡ PREMIUM','tab.std':'◈ STANDART','tab.cat':'▣ CATERING',
   'prem.cta1':'Tahsisat Bilgisi','prem.cta2':'Bilgi Al',
   'std.cta':'Hacim Fiyatı',
   'cat.cta.bulk':'Toplu Fiyat Teklifi','cat.cta.supply':'Tedarik Sözleşmesi',
@@ -2187,6 +2187,9 @@ tr:{
   'footer.l.trade':'Ticaret Talebi',
   'footer.cert1':'Ayvalık · Ege',
   'footer.cert2':'IOC Üyesi',
+'tag.new':'YENİ',
+'footer.catlink':'KALA 15L Catering Bidonu',
+'footer.bulk':'Toplu Tedarik Programı',
 'modal.next.lbl':'Sonraki makale:',
 'a6.foot.lbl':'Catering tedarikini keşfet:',
 'a6.foot.cater':'Catering Programı',
@@ -2230,7 +2233,7 @@ de:{
   'sec.prod.lbl':'01 / Sortiment',
   'sec.prod.title':'Drei Stufen.<br><em>Ein Standard.</em>',
   'sec.prod.desc':'Premium für den Cheftisch. Standard für die Arbeitsküche. Catering für den Betrieb, der nie stoppt.',
-  'tab.prem':'⬡ Premium','tab.std':'◈ Standard','tab.cat':'▣ Catering',
+  'tab.prem':'⬡ PREMIUM','tab.std':'◈ STANDARD','tab.cat':'▣ CATERING',
   'prem.cta1':'Zuteilung Anfragen','prem.cta2':'Info Anfordern',
   'std.cta':'Mengenpreis',
   'cat.cta.bulk':'Großmengenanfrage','cat.cta.supply':'Liefervertrag',
@@ -2373,6 +2376,9 @@ de:{
   'footer.l.trade':'Handelsanfrage',
   'footer.cert1':'Ayvalık · Ägäis',
   'footer.cert2':'IOC-Mitglied',
+'tag.new':'NEU',
+'footer.catlink':'KALA 15L Catering-Kanister',
+'footer.bulk':'Großmengen-Programm',
 'modal.next.lbl':'Nächster Artikel:',
 'a6.foot.lbl':'Catering-Versorgung erkunden:',
 'a6.foot.cater':'Catering-Programm',
@@ -2559,6 +2565,9 @@ ar:{
   'footer.l.trade':'استفسار تجاري',
   'footer.cert1':'أيفاليك · إيجه',
   'footer.cert2':'عضو IOC',
+'tag.new':'جديد',
+'footer.catlink':'برميل كاترينج KALA 15 لتر',
+'footer.bulk':'برنامج التوريد بالجملة',
 'modal.next.lbl':'المقال التالي:',
 'a6.foot.lbl':'استكشف توريد التموين:',
 'a6.foot.cater':'برنامج التموين',
@@ -2602,7 +2611,7 @@ ru:{
   'sec.prod.lbl':'01 / Ассортимент',
   'sec.prod.title':'Три уровня.<br><em>Один стандарт.</em>',
   'sec.prod.desc':'Премиум для стола шефа. Стандарт для рабочей кухни. Кейтеринг для непрерывной работы.',
-  'tab.prem':'⬡ Премиум','tab.std':'◈ Стандарт','tab.cat':'▣ Кейтеринг',
+  'tab.prem':'⬡ ПРЕМИУМ','tab.std':'◈ СТАНДАРТ','tab.cat':'▣ КЕЙТЕРИНГ',
   'prem.cta1':'Запросить квоту','prem.cta2':'Запросить информацию',
   'std.cta':'Оптовые цены',
   'cat.cta.bulk':'Запрос оптовых поставок','cat.cta.supply':'Договор поставки',
@@ -2745,6 +2754,9 @@ ru:{
   'footer.l.trade':'Торговый запрос',
   'footer.cert1':'Айвалык · Эгей',
   'footer.cert2':'Член МСО',
+'tag.new':'НОВИНКА',
+'footer.catlink':'KALA 15Л Кейтеринг-канистра',
+'footer.bulk':'Программа оптовых поставок',
 'modal.next.lbl':'Следующая статья:',
 'a6.foot.lbl':'Изучить кейтеринг-поставку:',
 'a6.foot.cater':'Программа кейтеринга',
@@ -2788,7 +2800,7 @@ fr:{
   'sec.prod.lbl':'01 / Gamme',
   'sec.prod.title':'Trois niveaux.<br><em>Une norme.</em>',
   'sec.prod.desc':'Premium pour la table du chef. Standard pour la cuisine de travail. Restauration pour l\'opération qui ne s\'arrête jamais.',
-  'tab.prem':'⬡ Premium','tab.std':'◈ Standard','tab.cat':'▣ Restauration',
+  'tab.prem':'⬡ PREMIUM','tab.std':'◈ STANDARD','tab.cat':'▣ RESTAURATION',
   'prem.cta1':'Demande d\'allocation','prem.cta2':'Demander des infos',
   'std.cta':'Tarifs volume',
   'cat.cta.bulk':'Demande en gros','cat.cta.supply':'Contrat d\'approvisionnement',
@@ -2931,6 +2943,9 @@ fr:{
   'footer.l.trade':'Demande commerciale',
   'footer.cert1':'Ayvalık · Égée',
   'footer.cert2':'Membre COI',
+'tag.new':'NOUVEAU',
+'footer.catlink':'Bidon KALA 15L Restauration',
+'footer.bulk':'Programme Approvisionnement Vrac',
 'modal.next.lbl':'Article suivant :',
 'a6.foot.lbl':'Explorer l'approvisionnement :',
 'a6.foot.cater':'Programme restauration',
@@ -2972,7 +2987,7 @@ es:{
   'stat.1':'Variedad Ayvalık','stat.2':'Acidez libre','stat.3':'Recogida temprana','stat.4':'Prensado en frío',
   'sec.prod.lbl':'01 / Productos','sec.prod.title':'Tres líneas.<br><em>Una norma.</em>',
   'sec.prod.desc':'Cada línea sirve a un perfil de cocina diferente. Los tres comparten el mismo lugar de origen, la misma fecha de prensado y el mismo umbral de calidad.',
-  'tab.prem':'Premium','tab.std':'Estándar','tab.cat':'Restauración',
+  'tab.prem':'⬡ PREMIUM','tab.std':'◈ ESTÁNDAR','tab.cat':'▣ RESTAURACIÓN',
   'prem.cta1':'Descargar ficha técnica','prem.cta2':'Solicitar muestra',
   'std.cta':'Solicitar precio estándar',
   'cat.cta.bulk':'Consulta granel','cat.cta.supply':'Solicitud de suministro',
@@ -3118,6 +3133,9 @@ es:{
   'footer.l.trade':'Consulta comercial',
   'footer.cert1':'Ayvalık · Egeo',
   'footer.cert2':'Miembro COI',
+'tag.new':'NUEVO',
+'footer.catlink':'Bidón KALA 15L Restauración',
+'footer.bulk':'Programa Suministro a Granel',
 'modal.next.lbl':'Siguiente artículo:',
 'a6.foot.lbl':'Explorar suministro de restauración:',
 'a6.foot.cater':'Programa de restauración',
@@ -3159,7 +3177,7 @@ it:{
   'stat.1':'Varietà Ayvalık','stat.2':'Acidità libera','stat.3':'Raccolta precoce','stat.4':'Spremitura a freddo',
   'sec.prod.lbl':'01 / Prodotti','sec.prod.title':'Tre linee.<br><em>Uno standard.</em>',
   'sec.prod.desc':'Ogni linea serve un profilo di cucina diverso. Tutte e tre condividono la stessa origine, la stessa data di spremitura e la stessa soglia di qualità.',
-  'tab.prem':'Premium','tab.std':'Standard','tab.cat':'Ristorazione',
+  'tab.prem':'⬡ PREMIUM','tab.std':'◈ STANDARD','tab.cat':'▣ RISTORAZIONE',
   'prem.cta1':'Scarica scheda tecnica','prem.cta2':'Richiedi campione',
   'std.cta':'Richiedi prezzo standard',
   'cat.cta.bulk':'Richiesta sfuso','cat.cta.supply':'Richiesta di fornitura',
@@ -3305,6 +3323,9 @@ it:{
   'footer.l.trade':'Richiesta commerciale',
   'footer.cert1':'Ayvalık · Egeo',
   'footer.cert2':'Membro COI',
+'tag.new':'NUOVO',
+'footer.catlink':'Tanica KALA 15L Ristorazione',
+'footer.bulk':'Programma Fornitura Volume',
 'modal.next.lbl':'Articolo successivo:',
 'a6.foot.lbl':'Esplora la fornitura catering:',
 'a6.foot.cater':'Programma Catering',
