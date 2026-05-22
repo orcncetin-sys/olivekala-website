@@ -1234,19 +1234,19 @@ nav.nav-open .ham-btn span:nth-child(3){transform:translateY(-6.5px) rotate(-45d
   </div>
   <div class="testi-grid fi">
     <div class="testi">
-      <div class="testi-tier" style="color:var(--gold)">⬡ Premium · Fine Dining</div>
+      <div class="testi-tier" style="color:var(--gold)" data-i18n="t1.tier">⬡ Premium · Fine Dining</div>
       <div class="testi-text"><span data-i18n="t1.text">"The best finishing oil I have used. Consistent batch after batch — which is what you need at this level. The acidity holds up to what the certificate says."</span></div>
       <div class="testi-author" data-i18n="t1.author">Executive Chef</div>
       <div class="testi-role" data-i18n="t1.role">Fine Dining Restaurant, Istanbul</div>
     </div>
     <div class="testi">
-      <div class="testi-tier" style="color:var(--stone)">◈ Standard · Professional</div>
+      <div class="testi-tier" style="color:var(--stone)" data-i18n="t2.tier">◈ Standard · Professional</div>
       <div class="testi-text"><span data-i18n="t2.text">"We use the 5L Reserve across the entire kitchen. For that price-point and that acidity, there is nothing comparable in this market. Our guests notice it."</span></div>
-      <div class="testi-author">Head Chef & Co-owner</div>
+      <div class="testi-author" data-i18n="t2.author">Head Chef & Co-owner</div>
       <div class="testi-role" data-i18n="t2.role">Bistrot, Izmir</div>
     </div>
     <div class="testi">
-      <div class="testi-tier" style="color:#5fa882">▣ Catering · Hotel Group</div>
+      <div class="testi-tier" style="color:#5fa882" data-i18n="t3.tier">▣ Catering · Hotel Group</div>
       <div class="testi-text"><span data-i18n="t3.text">"We switched the entire group — five properties — to the KALA catering supply. The spec sheet was compelling. The oil confirmed it."</span></div>
       <div class="testi-author" data-i18n="t3.author">Head of Procurement</div>
       <div class="testi-role" data-i18n="t3.role">Luxury Hotel Group, Bodrum</div>
@@ -1690,9 +1690,9 @@ nav.nav-open .ham-btn span:nth-child(3){transform:translateY(-6.5px) rotate(-45d
         Three tiers. One extraction standard. Zero compromise.
       </div>
       <div style="margin-top:1.5rem;display:flex;gap:.7rem;flex-wrap:wrap">
-        <span style="font-size:.55rem;color:rgba(245,240,232,.25);letter-spacing:.12em;text-transform:uppercase;border:1px solid rgba(255,255,255,.08);padding:.2rem .55rem">IOC Certified</span>
-        <span style="font-size:.55rem;color:rgba(245,240,232,.25);letter-spacing:.12em;text-transform:uppercase;border:1px solid rgba(255,255,255,.08);padding:.2rem .55rem">ISO Food Safety</span>
-        <span style="font-size:.55rem;color:rgba(245,240,232,.25);letter-spacing:.12em;text-transform:uppercase;border:1px solid rgba(255,255,255,.08);padding:.2rem .55rem">Batch Traceable</span>
+        <span style="font-size:.55rem;color:rgba(245,240,232,.25);letter-spacing:.12em;text-transform:uppercase;border:1px solid rgba(255,255,255,.08);padding:.2rem .55rem" data-i18n="cert.ioc">IOC Certified</span>
+        <span style="font-size:.55rem;color:rgba(245,240,232,.25);letter-spacing:.12em;text-transform:uppercase;border:1px solid rgba(255,255,255,.08);padding:.2rem .55rem" data-i18n="cert.iso">ISO Food Safety</span>
+        <span style="font-size:.55rem;color:rgba(245,240,232,.25);letter-spacing:.12em;text-transform:uppercase;border:1px solid rgba(255,255,255,.08);padding:.2rem .55rem" data-i18n="cert.trace">Batch Traceable</span>
       </div>
     </div>
 
@@ -2193,6 +2193,10 @@ tr:{
   'footer.l.trade':'Ticaret Talebi',
   'footer.cert1':'AYVALIK · EGE',
   'footer.cert2':'IOC ÜYESİ',
+'t1.tier':'⬡ Premium · Fine Dining',
+'t2.tier':'◈ Standart · Profesyonel',
+'t3.tier':'▣ Catering · Otel Grubu',
+'t2.author':'Baş Şef &amp; Ortak',
 'blog.read':'Oku →',
 'a1.blog.cat':'Köken &amp; Bilim',
 'a2.blog.cat':'Kalite &amp; Spesifikasyon',
@@ -2258,7 +2262,7 @@ de:{
   'cat.cta.bulk':'Großmengenanfrage','cat.cta.supply':'Liefervertrag',
   'sec.origin.lbl':'02 / Herkunft',
   'origin.attr':'Ayvalık · Ägäische Türkei · Memecik Sorte',
-  'origin.d1':'Erntezeitfenster','origin.d2':'Nördliche Breite','origin.d3':'Traditionelle Sorte','origin.d4':'Zertifizierter Standard',
+  'origin.d0':'Okt','origin.d1':'Erntezeitfenster','origin.d2':'Nördliche Breite','origin.d3':'Traditionelle Sorte','origin.d4':'Zertifizierter Standard',
   'origin.cta':'Prozess Ansehen',
   'sec.process.lbl':'03 / Prozess',
   'sec.process.title':'Hain &nbsp;›&nbsp; Presse &nbsp;›&nbsp; Dose.<br><em>Vier Stunden.</em>',
@@ -2395,6 +2399,10 @@ de:{
   'footer.l.trade':'Handelsanfrage',
   'footer.cert1':'Ayvalık · Ägäis',
   'footer.cert2':'IOC-Mitglied',
+'t1.tier':'⬡ Premium · Fine Dining',
+'t2.tier':'◈ Standard · Professionell',
+'t3.tier':'▣ Catering · Hotelgruppe',
+'t2.author':'Küchenchef &amp; Mitinhaber',
 'blog.read':'Lesen →',
 'a1.blog.cat':'Herkunft &amp; Wissenschaft',
 'a2.blog.cat':'Qualität &amp; Spezifikation',
@@ -2460,7 +2468,7 @@ ar:{
   'cat.cta.bulk':'استفسار بالجملة','cat.cta.supply':'عقد توريد',
   'sec.origin.lbl':'02 / المنشأ',
   'origin.attr':'أيفاليك · تركيا الإيجية · صنف ميميجيك',
-  'origin.d1':'موسم الحصاد','origin.d2':'خط العرض الشمالي','origin.d3':'الصنف التراثي','origin.d4':'معيار معتمد',
+  'origin.d0':'أكتوبر','origin.d1':'موسم الحصاد','origin.d2':'خط العرض الشمالي','origin.d3':'الصنف التراثي','origin.d4':'معيار معتمد',
   'origin.cta':'اطلع على العملية',
   'sec.process.lbl':'03 / العملية',
   'sec.process.title':'البستان &nbsp;›&nbsp; المعصرة &nbsp;›&nbsp; العلبة.<br><em>أربع ساعات.</em>',
@@ -2597,6 +2605,10 @@ ar:{
   'footer.l.trade':'استفسار تجاري',
   'footer.cert1':'أيفاليك · إيجه',
   'footer.cert2':'عضو IOC',
+'t1.tier':'⬡ بريميوم · فاين دايننج',
+'t2.tier':'◈ ستاندارد · احترافي',
+'t3.tier':'▣ تموين · مجموعة فندقية',
+'t2.author':'رئيس الطهاة &amp; الشريك',
 'blog.read':'اقرأ →',
 'a1.blog.cat':'الأصل &amp; العلم',
 'a2.blog.cat':'الجودة &amp; المواصفات',
@@ -2662,7 +2674,7 @@ ru:{
   'cat.cta.bulk':'Запрос оптовых поставок','cat.cta.supply':'Договор поставки',
   'sec.origin.lbl':'02 / Происхождение',
   'origin.attr':'Айвалык · Эгейская Турция · Сорт Memecik',
-  'origin.d1':'Окно сбора урожая','origin.d2':'Северная широта','origin.d3':'Исторический сорт','origin.d4':'Сертифицированный стандарт',
+  'origin.d0':'Окт','origin.d1':'Окно сбора урожая','origin.d2':'Северная широта','origin.d3':'Исторический сорт','origin.d4':'Сертифицированный стандарт',
   'origin.cta':'Узнать о процессе',
   'sec.process.lbl':'03 / Процесс',
   'sec.process.title':'Роща &nbsp;›&nbsp; Пресс &nbsp;›&nbsp; Банка.<br><em>Четыре часа.</em>',
@@ -2799,6 +2811,10 @@ ru:{
   'footer.l.trade':'Торговый запрос',
   'footer.cert1':'Айвалык · Эгей',
   'footer.cert2':'Член МСО',
+'t1.tier':'⬡ Премиум · Файн-дайнинг',
+'t2.tier':'◈ Стандарт · Профессионал',
+'t3.tier':'▣ Кейтеринг · Отельная группа',
+'t2.author':'Шеф-повар &amp; Совладелец',
 'blog.read':'Читать →',
 'a1.blog.cat':'Происхождение &amp; Наука',
 'a2.blog.cat':'Качество &amp; Спецификация',
@@ -3001,6 +3017,10 @@ fr:{
   'footer.l.trade':'Demande commerciale',
   'footer.cert1':'Ayvalık · Égée',
   'footer.cert2':'Membre COI',
+'t1.tier':'⬡ Premium · Fine Dining',
+'t2.tier':'◈ Standard · Professionnel',
+'t3.tier':'▣ Restauration · Groupe hôtelier',
+'t2.author':'Chef de cuisine &amp; Copropriétaire',
 'blog.read':'Lire →',
 'a1.blog.cat':'Origine &amp; Science',
 'a2.blog.cat':'Qualité &amp; Spécification',
@@ -3064,10 +3084,10 @@ es:{
   'cat.cta.bulk':'Consulta granel','cat.cta.supply':'Solicitud de suministro',
   'sec.origin.lbl':'02 / Origen',
   'origin.attr':'Finca monovarietales · 38.7°N · Cosecha temprana · Prensado el mismo día',
-  'origin.d1':'Nuestros olivos crecen en laderas calcáreas a 180–320 m de altitud en la D.O. Ayvalık — el microclima de alto polifenol.',
-  'origin.d2':'La recogida comienza en octubre, semanas antes de la madurez completa, cuando el índice de polifenol alcanza su máximo.',
-  'origin.d3':'Prensado a menos de 27°C dentro de las 4 horas siguientes a la cosecha. Sin almacenamiento intermedio.',
-  'origin.d4':'Cada lote lleva número de prensa, fecha de cosecha y ficha de análisis. No existe concepto de mezcla.',
+  'origin.d0':'Oct','origin.d1':'Ventana de cosecha',
+  'origin.d2':'Latitud Norte',
+  'origin.d3':'Variedad tradicional',
+  'origin.d4':'Estándar certificado',
   'origin.cta':'Ver todos los parámetros de calidad',
   'sec.process.lbl':'03 / Proceso',
   'sec.process.title':'Huerto &nbsp;›&nbsp; Prensa &nbsp;›&nbsp; Lata.<br><em>Cuatro horas.</em>',
@@ -3204,6 +3224,10 @@ es:{
   'footer.l.trade':'Consulta comercial',
   'footer.cert1':'Ayvalık · Egeo',
   'footer.cert2':'Miembro COI',
+'t1.tier':'⬡ Premium · Fine Dining',
+'t2.tier':'◈ Estándar · Profesional',
+'t3.tier':'▣ Restauración · Grupo hotelero',
+'t2.author':'Jefe de cocina &amp; Copropietario',
 'blog.read':'Leer →',
 'a1.blog.cat':'Origen &amp; Ciencia',
 'a2.blog.cat':'Calidad &amp; Especificación',
@@ -3267,10 +3291,10 @@ it:{
   'cat.cta.bulk':'Richiesta sfuso','cat.cta.supply':'Richiesta di fornitura',
   'sec.origin.lbl':'02 / Origine',
   'origin.attr':'Tenuta monovarietale · 38.7°N · Raccolta precoce · Spremitura il giorno stesso',
-  'origin.d1':'I nostri ulivi crescono su pendii calcarei a 180–320 m di altitudine nella D.O. Ayvalık — il microclima ad alto contenuto di polifenoli.',
-  'origin.d2':'La raccolta inizia ad ottobre, settimane prima della piena maturità, quando l\'indice di polifenoli raggiunge il picco.',
-  'origin.d3':'Spremitura a meno di 27°C entro 4 ore dalla raccolta. Nessuno stoccaggio intermedio.',
-  'origin.d4':'Ogni lotto porta il numero di pressa, la data di raccolta e la scheda di analisi. Nessun concetto di blend.',
+  'origin.d0':'Ott','origin.d1':'Finestra di raccolta',
+  'origin.d2':'Latitudine Nord',
+  'origin.d3':'Cultivar tradizionale',
+  'origin.d4':'Standard certificato',
   'origin.cta':'Vedi tutti i parametri di qualità',
   'sec.process.lbl':'03 / Processo',
   'sec.process.title':'Uliveto &nbsp;›&nbsp; Pressa &nbsp;›&nbsp; Latta.<br><em>Quattro ore.</em>',
@@ -3407,6 +3431,10 @@ it:{
   'footer.l.trade':'Richiesta commerciale',
   'footer.cert1':'Ayvalık · Egeo',
   'footer.cert2':'Membro COI',
+'t1.tier':'⬡ Premium · Fine Dining',
+'t2.tier':'◈ Standard · Professionale',
+'t3.tier':'▣ Ristorazione · Gruppo alberghiero',
+'t2.author':'Chef &amp; Comproprietario',
 'blog.read':'Leggi →',
 'a1.blog.cat':'Origine &amp; Scienza',
 'a2.blog.cat':'Qualità &amp; Specifica',
