@@ -1003,11 +1003,11 @@ nav.nav-open .ham-btn span:nth-child(3){transform:translateY(-6.5px) rotate(-45d
         <!-- Format strip -->
         <div style="display:flex;gap:1.2rem;margin:.6rem 0;flex-wrap:wrap">
           <div style="font-size:.68rem;letter-spacing:.1em;color:var(--stone)">
-            <span style="color:rgba(201,168,76,.5);margin-right:.4em">◈ GLASS</span>500ml · 1L
+            <span style="color:rgba(201,168,76,.5);margin-right:.4em" data-i18n="fmt.glass">◈ GLASS</span>500ml · 1L
           </div>
           <div style="font-size:.68rem;letter-spacing:.1em;color:rgba(201,168,76,.25)">|</div>
           <div style="font-size:.68rem;letter-spacing:.1em;color:var(--stone)">
-            <span style="color:rgba(201,168,76,.5);margin-right:.4em">▣ TIN</span>1L · 3L · 5L
+            <span style="color:rgba(201,168,76,.5);margin-right:.4em" data-i18n="fmt.tin">▣ TIN</span>1L · 3L · 5L
           </div>
         </div>
         <div class="prod-card-hr"></div>
@@ -1047,12 +1047,12 @@ nav.nav-open .ham-btn span:nth-child(3){transform:translateY(-6.5px) rotate(-45d
       <div class="prod-card" id="pc-shot" style="border-color:rgba(201,168,76,.15);background:rgba(201,168,76,.03)">
         <div class="prod-card-tier" style="color:var(--gold)" data-i18n="pc.shot.tier">◉ Ritual · Daily Protocol</div>
         <div class="prod-card-name">KALA Morning Shot</div>
-        <div class="prod-card-spec">40ml · 6-Pack · Cold-pressed Memecik</div>
+        <div class="prod-card-spec" data-i18n="pc.shot.spec">40ml · 6-Pack · Cold-pressed Memecik</div>
         <div class="prod-card-hr"></div>
         <div class="prod-card-body">
           <span data-i18n="pc.shot.body">Single-extraction. 40ml per shot. The day's olive oil requirement in one dose — polyphenol load intact, free acidity certified. Sold as a 6-pack.</span>
         </div>
-        <div class="prod-card-kpi" style="color:var(--gold)" data-i18n="pc.shot.kpi">0.3% <span data-i18n="kpi.fa">Free Acidity</span></div>
+        <div class="prod-card-kpi" style="color:var(--gold)">0.3% <span data-i18n="kpi.fa">Free Acidity</span></div>
         <div class="prod-card-tags">
           <span class="prod-tag" style="color:var(--gold);border-color:rgba(201,168,76,.3)" data-i18n="pc.shot.tag1">6-Pack</span>
           <span class="prod-tag" style="color:var(--gold);border-color:rgba(201,168,76,.3)" data-i18n="pc.shot.tag2">40ml Shot</span>
@@ -1270,7 +1270,7 @@ nav.nav-open .ham-btn span:nth-child(3){transform:translateY(-6.5px) rotate(-45d
       <div class="ps-num">02</div>
       <div class="ps-title" data-i18n="ps2.title">Same-Day Press</div>
       <div class="ps-detail" data-i18n="ps2.detail">Fruit moves from grove to press within four hours. No overnight storage, no fermentation. Cold extraction at 24°C — temperature never exceeded. Continuous two-phase decanter.</div>
-      <span class="ps-badge">&lt;4 hours</span>
+      <span class="ps-badge" data-i18n="ps2.badge">&lt;4 hours</span>
     </div>
     <div class="ps">
       <div class="ps-num">03</div>
@@ -2030,7 +2030,7 @@ en:{
   'sec.process.title':'Grove &nbsp;›&nbsp; Press &nbsp;›&nbsp; Tin.<br><em>Four hours.</em>',
   'sec.process.desc':'Every step is a constraint we impose on ourselves. Quality does not scale by cutting corners.',
   'ps1.title':'Early Harvest','ps1.badge':'October Only',
-  'ps2.title':'Same-Day Press',
+  'ps2.title':'Same-Day Press','ps2.badge':'&lt;4 hours',
   'ps3.title':'Lab Certification','ps3.badge':'IOC Certified',
   'ps4.title':'Tin &amp; Dispatch','ps4.badge':'Batch Numbered',
   'sec.cat.lbl':'04 / Catering Supply','cat.who.lbl':'Who We Supply',
@@ -2106,6 +2106,7 @@ en:{
   'form.estab.ph':'Restaurant / Hotel',
   'form.msg.ph':'Tell us about your kitchen or operation...'
 ,
+  'fmt.glass':'◈ GLASS','fmt.tin':'▣ TIN',
   'pc1.tier':'Premium · Fine Dining',
   'pc2.tier':'Premium · Chef Programme',
   'pc3.tier':'Premium · Table Service',
@@ -2203,7 +2204,7 @@ tr:{
   'sec.process.title':'Bahçe &nbsp;›&nbsp; Pres &nbsp;›&nbsp; Teneke.<br><em>Dört saat.</em>',
   'sec.process.desc':'Her adım kendi kendimize koyduğumuz bir kısıt. Kalite, köşeleri kısayollarla geçmekle ölçeklenemez.',
   'ps1.title':'Erken Hasat','ps1.badge':'Yalnızca Ekim',
-  'ps2.title':'Aynı Gün Pres',
+  'ps2.title':'Aynı Gün Pres','ps2.badge':'&lt;4 saat',
   'ps3.title':'Laboratuvar Sertifikasyonu','ps3.badge':'IOC Sertifikalı',
   'ps4.title':'Teneke &amp; Sevkiyat','ps4.badge':'Parti Numaralı',
   'sec.cat.lbl':'04 / TOPLU TEDARİK','cat.who.lbl':'KİMLERİZ TEDARİK EDİYORUZ',
@@ -2266,6 +2267,8 @@ tr:{
   'form.estab.ph':'Restoran / Otel',
   'form.msg.ph':'Mutfağınız veya operasyonunuz hakkında bilgi verin...'
 ,
+  'fmt.glass':'◈ CAM','fmt.tin':'▣ TENEKE',
+  'pc.shot.tier':'◉ Ritual · Günlük Protokol','pc.shot.spec':'40ml · 6\'lı Paket · Soğuk Sıkım Memecik','pc.shot.body':'Tek ekstraksiyon. Şot başına 40ml. Günlük zeytin yağı ihtiyacı tek dozda — polifenol yükü tam, serbest asit sertifikalı. 6\'lı paket olarak satılır.','pc.shot.tag1':'6\'lı Paket','pc.shot.tag2':'40ml Shot','pc.shot.kpi.l':'Sertifikalı',
   'pc1.tier':'PREMIUM · FINE DINING',
   'pc2.tier':'PREMIUM · ŞEF PROGRAMI',
   'pc3.tier':'PREMIUM · MASA SERVİSİ',
@@ -2410,7 +2413,7 @@ de:{
   'sec.process.title':'Hain &nbsp;›&nbsp; Presse &nbsp;›&nbsp; Dose.<br><em>Vier Stunden.</em>',
   'sec.process.desc':'Jeder Schritt ist eine Einschränkung, die wir uns selbst auferlegen. Qualität lässt sich nicht durch Abkürzungen skalieren.',
   'ps1.title':'Frühernte','ps1.badge':'Nur Oktober',
-  'ps2.title':'Tagespressung',
+  'ps2.title':'Tagespressung','ps2.badge':'&lt;4 Stunden',
   'ps3.title':'Laborzertifizierung','ps3.badge':'IOC Zertifiziert',
   'ps4.title':'Abfüllung &amp; Versand','ps4.badge':'Chargennummeriert',
   'sec.cat.lbl':'04 / Catering Versorgung','cat.who.lbl':'Unsere Abnehmer',
@@ -2473,6 +2476,8 @@ de:{
   'form.estab.ph':'Restaurant / Hotel',
   'form.msg.ph':'Erzählen Sie uns von Ihrer Küche oder Ihrem Betrieb...'
 ,
+  'fmt.glass':'◈ GLAS','fmt.tin':'▣ DOSE',
+  'pc.shot.tier':'◉ Ritual · Tagesprotokoll','pc.shot.spec':'40ml · 6er-Pack · Kaltgepresster Memecik','pc.shot.body':'Einzelextraktion. 40ml pro Shot. Der tägliche Olivenölbedarf in einer Dosis — Polyphenolgehalt intakt, freie Säure zertifiziert. Als 6er-Pack erhältlich.','pc.shot.tag1':'6er-Pack','pc.shot.tag2':'40ml Shot','pc.shot.kpi.l':'Zertifiziert',
   'pc1.tier':'Premium · Fine Dining',
   'pc2.tier':'Premium · Köcheprogramm',
   'pc3.tier':'Premium · Tischservice',
@@ -2617,7 +2622,7 @@ ar:{
   'sec.process.title':'البستان &nbsp;›&nbsp; المعصرة &nbsp;›&nbsp; العلبة.<br><em>أربع ساعات.</em>',
   'sec.process.desc':'كل خطوة قيد نفرضه على أنفسنا. الجودة لا تنمو بقطع الطريق.',
   'ps1.title':'الحصاد المبكر','ps1.badge':'أكتوبر فقط',
-  'ps2.title':'العصر في نفس اليوم',
+  'ps2.title':'العصر في نفس اليوم','ps2.badge':'&lt;4 ساعات',
   'ps3.title':'شهادة المختبر','ps3.badge':'معتمد IOC',
   'ps4.title':'التعبئة &amp; الشحن','ps4.badge':'مُرقَّم بالدفعة',
   'sec.cat.lbl':'04 / توريد التموين','cat.who.lbl':'من نزوّد',
@@ -2680,6 +2685,8 @@ ar:{
   'form.estab.ph':'المطعم / الفندق',
   'form.msg.ph':'أخبرنا عن مطبخك أو عمليتك...'
 ,
+  'fmt.glass':'◈ زجاج','fmt.tin':'▣ علبة',
+  'pc.shot.tier':'◉ ريتشوال · البروتوكول اليومي','pc.shot.spec':'40ml · علبة 6 · ميميجيك معصور بارد','pc.shot.body':'استخراج واحد. 40ml لكل شوت. احتياج زيت الزيتون اليومي في جرعة واحدة — الحمولة الفينولية كاملة، الحموضة الحرة معتمدة. يباع على شكل علبة 6.','pc.shot.tag1':'علبة 6','pc.shot.tag2':'40ml شوت','pc.shot.kpi.l':'معتمد',
   'pc1.tier':'بريميوم · فاين دايننج',
   'pc2.tier':'بريميوم · برنامج الطهاة',
   'pc3.tier':'بريميوم · خدمة المائدة',
@@ -2824,7 +2831,7 @@ ru:{
   'sec.process.title':'Роща &nbsp;›&nbsp; Пресс &nbsp;›&nbsp; Банка.<br><em>Четыре часа.</em>',
   'sec.process.desc':'Каждый шаг — это ограничение, которое мы сами на себя накладываем. Качество не масштабируется за счёт компромиссов.',
   'ps1.title':'Ранний урожай','ps1.badge':'Только октябрь',
-  'ps2.title':'Отжим в день сбора',
+  'ps2.title':'Отжим в день сбора','ps2.badge':'&lt;4 часа',
   'ps3.title':'Лабораторная сертификация','ps3.badge':'Сертификат IOC',
   'ps4.title':'Разлив &amp; доставка','ps4.badge':'Партийная нумерация',
   'sec.cat.lbl':'04 / Кейтеринг','cat.who.lbl':'Кому мы поставляем',
@@ -2887,6 +2894,8 @@ ru:{
   'form.estab.ph':'Ресторан / Отель',
   'form.msg.ph':'Расскажите о вашей кухне или операции...'
 ,
+  'fmt.glass':'◈ СТЕКЛО','fmt.tin':'▣ БАНКА',
+  'pc.shot.tier':'◉ Ритуал · Ежедневный протокол','pc.shot.spec':'40мл · Упаковка 6 · Холодный отжим Memecik','pc.shot.body':'Одинарная экстракция. 40мл на шот. Дневная норма оливкового масла в одной дозе — полифенолы сохранены, кислотность сертифицирована. Продаётся упаковкой по 6.','pc.shot.tag1':'Упаковка 6','pc.shot.tag2':'40мл Шот','pc.shot.kpi.l':'Сертифицировано',
   'pc1.tier':'Премиум · Fine Dining',
   'pc2.tier':'Премиум · Программа шефов',
   'pc3.tier':'Премиум · Сервировка стола',
@@ -3031,7 +3040,7 @@ fr:{
   'sec.process.title':'Verger &nbsp;›&nbsp; Presse &nbsp;›&nbsp; Bidon.<br><em>Quatre heures.</em>',
   'sec.process.desc':'Chaque étape est une contrainte que nous nous imposons. La qualité ne s\'obtient pas en coupant les coins.',
   'ps1.title':'Récolte précoce','ps1.badge':'Octobre seulement',
-  'ps2.title':'Pressage le jour même',
+  'ps2.title':'Pressage le jour même','ps2.badge':'&lt;4 heures',
   'ps3.title':'Certification laboratoire','ps3.badge':'Certifié IOC',
   'ps4.title':'Mise en boîte &amp; expédition','ps4.badge':'Numéroté par lot',
   'sec.cat.lbl':'04 / Approvisionnement restauration','cat.who.lbl':'Nos clients',
@@ -3094,6 +3103,8 @@ fr:{
   'form.estab.ph':'Restaurant / Hôtel',
   'form.msg.ph':'Parlez-nous de votre cuisine ou de votre opération...'
 ,
+  'fmt.glass':'◈ VERRE','fmt.tin':'▣ BOÎTE',
+  'pc.shot.tier':'◉ Ritual · Protocole Quotidien','pc.shot.spec':'40ml · Pack 6 · Memecik pressé à froid','pc.shot.body':'Extraction unique. 40ml par shot. L\'apport quotidien en huile d\'olive en une dose — charge polyphénolique intacte, acidité libre certifiée. Vendu en pack de 6.','pc.shot.tag1':'Pack 6','pc.shot.tag2':'Shot 40ml','pc.shot.kpi.l':'Certifié',
   'pc1.tier':'Premium · Fine Dining',
   'pc2.tier':'Premium · Programme chefs',
   'pc3.tier':'Premium · Service de table',
@@ -3302,6 +3313,8 @@ es:{
   'form.estab.ph':'Restaurante / Hotel',
   'form.msg.ph':'Cuéntenos sobre su cocina u operación...'
 ,
+  'fmt.glass':'◈ VIDRIO','fmt.tin':'▣ LATA',
+  'pc.shot.tier':'◉ Ritual · Protocolo Diario','pc.shot.spec':'40ml · Pack 6 · Memecik prensado en frío','pc.shot.body':'Extracción única. 40ml por shot. El requerimiento diario de aceite de oliva en una dosis — carga polifenólica intacta, acidez libre certificada. Se vende en pack de 6.','pc.shot.tag1':'Pack 6','pc.shot.tag2':'Shot 40ml','pc.shot.kpi.l':'Certificado',
   'pc1.tier':'Premium · Fine Dining',
   'pc2.tier':'Premium · Programa de chefs',
   'pc3.tier':'Premium · Servicio de mesa',
@@ -3510,6 +3523,8 @@ it:{
   'form.estab.ph':'Ristorante / Hotel',
   'form.msg.ph':'Raccontaci della tua cucina o operazione...'
 ,
+  'fmt.glass':'◈ VETRO','fmt.tin':'▣ LATTINA',
+  'pc.shot.tier':'◉ Ritual · Protocollo Quotidiano','pc.shot.spec':'40ml · Confezione 6 · Memecik spremitura a freddo','pc.shot.body':'Estrazione singola. 40ml per shot. Il fabbisogno quotidiano di olio d\'oliva in un\'unica dose — carico polifenolico intatto, acidità libera certificata. Venduto in confezione da 6.','pc.shot.tag1':'Confezione 6','pc.shot.tag2':'Shot 40ml','pc.shot.kpi.l':'Certificato',
   'pc1.tier':'Premium · Fine Dining',
   'pc2.tier':'Premium · Programma chef',
   'pc3.tier':'Premium · Servizio al tavolo',
