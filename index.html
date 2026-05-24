@@ -6,7 +6,7 @@
   <title>Olivekala — The Professional's Oil</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Montserrat:wght@300;400;500;600;700&family=Caveat:wght@500;700&display=swap" rel="stylesheet" />
 
   <style>
 /* ═══════════════════════════════════════════════════════════════════════════
@@ -82,7 +82,7 @@ nav{
   border-bottom:1px solid rgba(201,168,76,.12);
   transition:box-shadow .3s
 }
-.nav-logo{font-family:var(--serif);font-size:1.35rem;font-weight:600;letter-spacing:.18em;color:var(--cream)}
+.nav-logo{font-family:var(--serif);font-size:1.35rem;font-weight:600;letter-spacing:.18em;color:var(--cream);display:flex;flex-direction:column;align-items:flex-start;line-height:1}.nav-since{font-family:'Caveat',cursive;font-size:.78rem;font-weight:500;color:var(--gold);letter-spacing:.02em;margin-top:-.1rem;text-transform:none;opacity:.85}
 .nav-logo span{color:var(--gold)}
 .nav-center{display:flex;gap:0;position:relative}
 .nav-item{position:relative}
@@ -410,7 +410,7 @@ footer{
   padding:5rem var(--M) 2.5rem
 }
 .footer-grid{display:grid;grid-template-columns:2.2fr 1fr 1fr 1fr 1fr;gap:3.5rem;margin-bottom:4rem}
-.footer-logo-name{font-family:var(--serif);font-size:1.5rem;font-weight:600;letter-spacing:.14em;color:var(--cream);margin-bottom:.4rem}
+.footer-logo-name{font-family:var(--serif);font-size:1.5rem;font-weight:600;letter-spacing:.14em;color:var(--cream);margin-bottom:.1rem}.footer-since{font-family:'Caveat',cursive;font-size:.95rem;font-weight:500;color:var(--gold);letter-spacing:.02em;margin-bottom:.5rem;opacity:.85}
 .footer-logo-name span{color:var(--gold)}
 .footer-tagline{font-size:.62rem;letter-spacing:.18em;text-transform:uppercase;color:var(--stone);margin-bottom:1.1rem}
 .footer-about{font-size:.75rem;color:rgba(245,240,232,.35);line-height:1.8}
@@ -755,7 +755,7 @@ nav.nav-open .ham-btn span:nth-child(3){transform:translateY(-6.5px) rotate(-45d
 
 <!-- ═══════════════════════════════ NAV ═══════════════════════════════════ -->
 <nav id="mainNav">
-  <a class="nav-logo" href="#hero">OLIVE<span>KALA</span></a>
+  <a class="nav-logo" href="#hero">OLIVE<span>KALA</span><span class="nav-since">Since 1961</span></a>
 
   <div class="nav-center">
     <div class="nav-item">
@@ -817,7 +817,7 @@ nav.nav-open .ham-btn span:nth-child(3){transform:translateY(-6.5px) rotate(-45d
     </div>
 
     <h1 class="hero-h1" data-i18n="hero.title">The<br><em>Professional's</em><br><strong>Oil.</strong></h1>
-    <p class="hero-sub" data-i18n="hero.sub">Memecik · Early Harvest · Certified 0.2% Free Acidity</p>
+    <p class="hero-sub" data-i18n="hero.sub">Memecik · Early Harvest · Certified 0.3% Free Acidity</p>
     <p class="hero-body" data-i18n="hero.body">
       Extra virgin olive oil engineered for kitchens that set the standard.
       Cold-extracted within four hours. Tested, batch-numbered, uncompromising.
@@ -844,12 +844,36 @@ nav.nav-open .ham-btn span:nth-child(3){transform:translateY(-6.5px) rotate(-45d
       <span class="tin-vol">ml</span>
       <span class="tin-badge" style="color:var(--gold)"># Numbered</span>
     </div>
+
+      <!-- Morning Shot 40ml -->
+      <div class="prod-card fi" style="--fi-d:3" id="pc-shot">
+        <div class="prod-card-inner" style="padding:1.6rem;display:flex;flex-direction:column;gap:1rem">
+          <div style="display:flex;justify-content:space-between;align-items:flex-start">
+            <div class="prod-card-tier" data-i18n="pc.shot.tier" style="color:var(--gold)">◉ Ritual · Daily Protocol</div>
+            <span class="prod-tag" style="color:var(--gold);border-color:rgba(201,168,76,.3)" data-i18n="pc.shot.tag1">6-Pack</span>
+          </div>
+          <div>
+            <div style="font-family:var(--serif);font-size:1.15rem;color:var(--cream);line-height:1.15" data-i18n="pc.shot.name">KALA Morning Shot</div>
+            <div style="font-family:var(--serif);font-size:.85rem;color:rgba(245,240,232,.45);margin-top:.1rem">40ml Ritual</div>
+          </div>
+          <p style="font-size:.75rem;color:rgba(245,240,232,.5);line-height:1.7" data-i18n="pc.shot.body">Single-extraction. 40ml per shot. The day's olive oil requirement in one dose — polyphenol load intact, free acidity certified. Sold as a 6-pack.</p>
+          <div style="display:flex;gap:.5rem">
+            <span class="prod-tag" data-i18n="pc.shot.tag1">6-Pack</span>
+            <span class="prod-tag" data-i18n="pc.shot.tag2">40ml Shot</span>
+          </div>
+          <div>
+            <div class="prod-card-kpi" style="color:var(--gold)" data-i18n="pc.shot.kpi">0.3%</div>
+            <div class="prod-card-kpi-label" data-i18n="pc.shot.kpi.l">Certified</div>
+          </div>
+          <a class="btn" href="#trade" style="text-align:center;font-size:.58rem;letter-spacing:.16em;background:rgba(201,168,76,.08);border:1px solid rgba(201,168,76,.2);color:var(--gold);padding:.6rem 1rem" data-i18n="nav.cta">Request Sample</a>
+        </div>
+      </div>
     <!-- Standard 5L -->
     <div class="tin tin-lg">
       <span class="tin-brand" style="font-size:.95rem">KALA</span>
       <div class="tin-line"></div>
       <span class="tin-vol">Reserve · 5 L</span>
-      <span class="tin-size" style="font-size:2.6rem">5L</span>
+      <span class="tin-size" style="font-size:2rem">1–5L</span>
       <div class="tin-line"></div>
       <span class="tin-vol">Extra Virgin</span>
     </div>
@@ -858,7 +882,7 @@ nav.nav-open .ham-btn span:nth-child(3){transform:translateY(-6.5px) rotate(-45d
       <span class="drum-brand">KALA</span>
       <div class="drum-line"></div>
       <span class="drum-label">Catering Supply</span>
-      <span class="drum-size">15L</span>
+      <span class="drum-size" style="font-size:1.6rem">5L·15L</span>
       <div class="drum-line"></div>
       <span class="drum-label" data-i18n="cert.ioc">IOC Certified</span>
     </div>
@@ -867,10 +891,10 @@ nav.nav-open .ham-btn span:nth-child(3){transform:translateY(-6.5px) rotate(-45d
 
 <!-- ═══════════════════════════════ STATS ══════════════════════════════════ -->
 <div id="stats">
-  <div class="stat fi"><div class="stat-n">0.2%</div><div class="stat-l" data-i18n="stat.1">Free Acidity</div></div>
+  <div class="stat fi"><div class="stat-n">0.3%</div><div class="stat-l" data-i18n="stat.1">Free Acidity</div></div>
   <div class="stat fi fi-d1"><div class="stat-n">&lt;4h</div><div class="stat-l" data-i18n="stat.2">Grove to Press</div></div>
   <div class="stat fi fi-d2"><div class="stat-n">3000</div><div class="stat-l" data-i18n="stat.3">Years Cultivated</div></div>
-  <div class="stat fi fi-d3"><div class="stat-n">18°C</div><div class="stat-l" data-i18n="stat.4">Cold Extraction</div></div>
+  <div class="stat fi fi-d3"><div class="stat-n">24°C</div><div class="stat-l" data-i18n="stat.4">Cold Extraction</div></div>
   <div class="stat fi fi-d3" style="transition-delay:.4s"><div class="stat-n">IOC</div><div class="stat-l" data-i18n="stat.5">Certified</div></div>
 </div>
 
@@ -901,7 +925,7 @@ nav.nav-open .ham-btn span:nth-child(3){transform:translateY(-6.5px) rotate(-45d
 
       <div class="prod-card">
         <div class="prod-card-tier" style="color:var(--gold)" data-i18n="pc1.tier">Premium · Fine Dining</div>
-        <div class="prod-card-name">KALA 500ml<br>Harvest Edition</div>
+        <div class="prod-card-name">KALA Premium<br>Harvest Edition</div>
         <div class="prod-card-spec" data-i18n="pc1.spec">Memecik · Single Grove · Limited Release</div>
         <div class="prod-card-hr"></div>
         <div class="prod-card-body">
@@ -909,7 +933,7 @@ nav.nav-open .ham-btn span:nth-child(3){transform:translateY(-6.5px) rotate(-45d
           on the plate the guest never sees but always tastes. Cold-extracted the morning of harvest.
           Available October only.</span>
         </div>
-        <div class="prod-card-kpi" style="color:var(--gold)">0.18% <span data-i18n="kpi.fa">Free Acidity</span></div>
+        <div class="prod-card-kpi" style="color:var(--gold)">0.3% <span data-i18n="kpi.fa">Free Acidity</span></div>
         <div class="prod-card-tags">
           <span class="prod-tag" style="color:var(--gold);border-color:rgba(201,168,76,.3)" data-i18n="tag.batch">Batch Numbered</span>
           <span class="prod-tag" style="color:var(--gold);border-color:rgba(201,168,76,.3)" data-i18n="tag.limoct">Limited Oct</span>
@@ -966,7 +990,7 @@ nav.nav-open .ham-btn span:nth-child(3){transform:translateY(-6.5px) rotate(-45d
 
       <div class="prod-card" style="grid-column:span 2">
         <div class="prod-card-tier" style="color:var(--stone)" data-i18n="pc4.tier">Standard · Professional Kitchen</div>
-        <div class="prod-card-name">KALA 5L Reserve Tin</div>
+        <div class="prod-card-name">KALA Standard<br>Professional Tin</div>
         <div class="prod-card-spec" data-i18n="pc4.spec">Memecik · Early Harvest · Ayvalık · October 2025</div>
         <div class="prod-card-hr"></div>
         <div class="prod-card-body">
@@ -977,7 +1001,7 @@ nav.nav-open .ham-btn span:nth-child(3){transform:translateY(-6.5px) rotate(-45d
         </div>
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:2rem;margin-top:.8rem">
           <div>
-            <div class="prod-card-kpi" style="color:var(--stone)">0.2% <span data-i18n="kpi.fa">Free Acidity</span></div>
+            <div class="prod-card-kpi" style="color:var(--stone)">0.3% <span data-i18n="kpi.fa">Free Acidity</span></div>
             <div style="margin-top:.8rem;font-size:.75rem;color:rgba(245,240,232,.4);line-height:1.8">
               Peroxide value &lt;12 meq O₂/kg<br>
               Polyphenols &gt;300 mg/kg<br>
@@ -1020,17 +1044,17 @@ nav.nav-open .ham-btn span:nth-child(3){transform:translateY(-6.5px) rotate(-45d
 
       <div class="prod-card" style="background:#0a120e">
         <div class="prod-card-tier" style="color:#5fa882" data-i18n="pc6.tier">Catering · High Volume</div>
-        <div class="prod-card-name">KALA 15L<br>Catering Drum</div>
+        <div class="prod-card-name">KALA Catering<br>5L Tin · 15L Drum</div>
         <div class="prod-card-spec" data-i18n="pc6.spec">Stainless-Steel Drum · IOC Certified</div>
         <div class="prod-card-hr" style="background:rgba(46,107,82,.3)"></div>
         <div class="prod-card-body">
           <span data-i18n="pc6.body">Built for event catering, institutional kitchens, and high-throughput operations.
-          Drum-format with dispensing tap. Same certified Memecik oil — same 0.2% free acidity — at
+          Drum-format with dispensing tap. Same certified Memecik oil — same 0.3% free acidity — at
           the volume a catering operation requires. Zero compromise on specification.</span>
         </div>
-        <div class="prod-card-kpi" style="color:#5fa882">0.2% <span data-i18n="kpi.cert">Certified</span></div>
+        <div class="prod-card-kpi" style="color:#5fa882">0.3% <span data-i18n="kpi.cert">Certified</span></div>
         <div class="prod-card-tags">
-          <span class="prod-tag" style="color:#5fa882;border-color:rgba(46,107,82,.4)" data-i18n="tag.15l">15L Drum</span>
+          <span class="prod-tag" style="color:#5fa882;border-color:rgba(46,107,82,.4)" data-i18n="tag.15l">5L · 15L</span>
           <span class="prod-tag" style="color:#5fa882;border-color:rgba(46,107,82,.4)" data-i18n="tag.tap">Tap Dispensing</span>
           <span class="prod-tag" style="color:#5fa882;border-color:rgba(46,107,82,.4)" data-i18n="tag.bulk">Bulk Pricing</span>
         </div>
@@ -1062,7 +1086,7 @@ nav.nav-open .ham-btn span:nth-child(3){transform:translateY(-6.5px) rotate(-45d
     <!-- Catering spec strip -->
     <div class="cat-spec-row fi fi-d2">
       <div class="cat-spec">
-        <div class="cat-spec-n">0.2%</div>
+        <div class="cat-spec-n">0.3%</div>
         <div class="cat-spec-l" data-i18n="cstrip.l1">Free Acidity — all volumes</div>
       </div>
       <div class="cat-spec">
@@ -1107,7 +1131,7 @@ nav.nav-open .ham-btn span:nth-child(3){transform:translateY(-6.5px) rotate(-45d
       </p>
       <p data-i18n="origin.p2">
         We harvest at 10–20% ripeness — before the olive has completed its sugar cycle — to
-        fix free acidity below 0.2% and capture a bitterness and pepper finish that professional
+        fix free acidity below 0.3% and capture a bitterness and pepper finish that professional
         palates recognise immediately. The oil is pressed cold, within four hours of leaving the grove.
         No overnight storage. No fermentation. No shortcuts.
       </p>
@@ -1143,7 +1167,7 @@ nav.nav-open .ham-btn span:nth-child(3){transform:translateY(-6.5px) rotate(-45d
     <div class="ps">
       <div class="ps-num">02</div>
       <div class="ps-title" data-i18n="ps2.title">Same-Day Press</div>
-      <div class="ps-detail" data-i18n="ps2.detail">Fruit moves from grove to press within four hours. No overnight storage, no fermentation. Cold extraction at 18°C — temperature never exceeded. Continuous two-phase decanter.</div>
+      <div class="ps-detail" data-i18n="ps2.detail">Fruit moves from grove to press within four hours. No overnight storage, no fermentation. Cold extraction at 24°C — temperature never exceeded. Continuous two-phase decanter.</div>
       <span class="ps-badge">&lt;4 hours</span>
     </div>
     <div class="ps">
@@ -1178,12 +1202,12 @@ nav.nav-open .ham-btn span:nth-child(3){transform:translateY(-6.5px) rotate(-45d
       The KALA Catering range applies the same extraction standards, the same lab certification,
       and the same Ayvalık Memecik grove to high-volume operations.
       Whether you are running 200 covers a night or supplying a hotel group across three cities,
-      the number on the certificate does not change: 0.2%.
+      the number on the certificate does not change: 0.3%.
     </p>
 
     <div class="cat-specs fi fi-d1">
-      <div class="cs-item"><div class="cs-n">0.2%</div><div class="cs-l" data-i18n="cs1.l">Free Acidity · All Formats</div></div>
-      <div class="cs-item"><div class="cs-n">15L</div><div class="cs-l" data-i18n="cs2.l">Standard Catering Drum</div></div>
+      <div class="cs-item"><div class="cs-n">0.3%</div><div class="cs-l" data-i18n="cs1.l">Free Acidity · All Formats</div></div>
+      <div class="cs-item"><div class="cs-n">5–15L</div><div class="cs-l" data-i18n="cs2.l">Catering Formats</div></div>
       <div class="cs-item"><div class="cs-n">200L+</div><div class="cs-l" data-i18n="cs3.l">Bulk Minimum</div></div>
       <div class="cs-item"><div class="cs-n">Q4</div><div class="cs-l" data-i18n="cs4.l">Annual Allocation Lock</div></div>
     </div>
@@ -1211,7 +1235,7 @@ nav.nav-open .ham-btn span:nth-child(3){transform:translateY(-6.5px) rotate(-45d
     <div style="font-size:.78rem;color:rgba(245,240,232,.55);line-height:1.9;margin-bottom:2rem">
       <span data-i18n="cat.note">Annual supply contracts include fixed-harvest pricing, preferred allocation from the October press,
       dedicated batch certification documentation, and the option to white-label under your own brand.
-      A sample kit (3 × 500ml, certified) ships within 5 working days.</span>
+      A sample kit (175ml tasting tin, certified) ships within 5 working days.</span>
     </div>
 
     <div style="display:flex;gap:1rem;flex-wrap:wrap">
@@ -1298,9 +1322,9 @@ nav.nav-open .ham-btn span:nth-child(3){transform:translateY(-6.5px) rotate(-45d
         <div><label class="fl" data-i18n="form.tier">Tier of Interest</label>
           <select class="fi-sel">
             <option value="">Select...</option>
-            <option>Premium (500ml / Tasting Set)</option>
-            <option>Standard (5L Reserve)</option>
-            <option>Catering (15L / Bulk)</option>
+            <option>Premium — Glass 500ml·1L / Tin 1·3·5L</option>
+            <option>Standard Tin — 1L / 3L / 5L</option>
+            <option>Catering — 5L Tin / 15L Drum</option>
             <option>Multiple Tiers</option>
           </select>
         </div>
@@ -1348,7 +1372,7 @@ nav.nav-open .ham-btn span:nth-child(3){transform:translateY(-6.5px) rotate(-45d
         </div>
       </div>
       <div class="blog-body">
-        <div class="blog-excerpt" data-i18n="a1.excerpt">Most producers wait for the Memecik olive to reach maximum yield. We do the opposite. At 10–20% ripeness, free acidity sits below 0.2% and polyphenol concentration peaks. Here is the chemistry behind the decision.</div>
+        <div class="blog-excerpt" data-i18n="a1.excerpt">Most producers wait for the Memecik olive to reach maximum yield. We do the opposite. At 10–20% ripeness, free acidity sits below 0.3% and polyphenol concentration peaks. Here is the chemistry behind the decision.</div>
         <div class="blog-meta"><span class="blog-date" data-i18n="a1.blog.date">October 2025</span><span class="blog-read" data-i18n="blog.read">Read →</span></div>
       </div>
     </div>
@@ -1463,7 +1487,7 @@ nav.nav-open .ham-btn span:nth-child(3){transform:translateY(-6.5px) rotate(-45d
     <div class="ig-cell" style="background:#111">
       <div class="ig-inner">
         <span class="ig-lbl" style="color:var(--stone)">RESERVE</span>
-        <span class="ig-main" style="font-size:2.4rem;color:var(--gold);font-weight:600">0.2%</span>
+        <span class="ig-main" style="font-size:2.4rem;color:var(--gold);font-weight:600">0.3%</span>
         <span class="ig-lbl" style="color:var(--gold)">FREE ACIDITY</span>
         <span class="ig-sub" style="color:var(--stone)">EARLY HARVEST</span>
       </div>
@@ -1484,7 +1508,7 @@ nav.nav-open .ham-btn span:nth-child(3){transform:translateY(-6.5px) rotate(-45d
     <div class="ig-cell" style="background:#0a120e">
       <div class="ig-inner">
         <span class="ig-lbl" style="color:#5fa882">CATERING</span>
-        <span class="ig-main" style="font-size:1.8rem;color:#5fa882;font-weight:600">15L</span>
+        <span class="ig-main" style="font-size:1.8rem;color:#5fa882;font-weight:600">5–15L</span>
         <span class="ig-sub" style="color:rgba(95,168,130,.6)">BULK CERTIFIED</span>
       </div>
     </div>
@@ -1513,7 +1537,7 @@ nav.nav-open .ham-btn span:nth-child(3){transform:translateY(-6.5px) rotate(-45d
       <p>Free acidity in olive oil is a measure of degradation — specifically the proportion of free fatty acids produced when the fruit's cell walls break down. A freshly picked, undamaged green olive has minimal enzymatic activity and almost no cell-wall breakdown. Its free fatty acid content is correspondingly low. By the time the same fruit reaches full purple-black ripeness, enzymatic activity has been running for weeks. Every bruise, every delay, every degree of temperature above ambient accelerates the process.</p>
       <p>Polyphenols — specifically oleocanthal, oleuropein, and hydroxytyrosol — are the compounds responsible for the peppery, bitter finish that distinguishes premium EVOO from neutral commercial oil. They are also potent antioxidants, which means they protect the oil's structure during cooking and storage. Early-picked Memecik registers polyphenol concentrations above 300 mg/kg. The same grove's oil at full ripeness: typically 80–120 mg/kg.</p>
       <div class="data-row">
-        <div class="data-cell"><div class="data-n">0.2%</div><div class="data-l">Free Acidity · Early Pick</div></div>
+        <div class="data-cell"><div class="data-n">0.3%</div><div class="data-l">Free Acidity · Early Pick</div></div>
         <div class="data-cell"><div class="data-n">300+</div><div class="data-l">mg/kg Polyphenols</div></div>
         <div class="data-cell"><div class="data-n">10–20%</div><div class="data-l">Ripeness at Harvest</div></div>
       </div>
@@ -1524,7 +1548,7 @@ nav.nav-open .ham-btn span:nth-child(3){transform:translateY(-6.5px) rotate(-45d
     </div>
     <div class="modal-footer">
       <span class="lbl" data-i18n="modal.next.lbl">Next article:</span>
-      <button class="btn btn-ghost" style="padding:.5rem 1.2rem;font-size:.6rem" onclick="closeArticle('a1');openArticle('a2')" data-i18n="a1.next.btn">What 0.2% means on the pass →</button>
+      <button class="btn btn-ghost" style="padding:.5rem 1.2rem;font-size:.6rem" onclick="closeArticle('a1');openArticle('a2')" data-i18n="a1.next.btn">What 0.3% means on the pass →</button>
     </div>
   </div>
 </div>
@@ -1545,7 +1569,7 @@ nav.nav-open .ham-btn span:nth-child(3){transform:translateY(-6.5px) rotate(-45d
       <div class="data-row">
         <div class="data-cell"><div class="data-n">0.8%</div><div class="data-l">IOC EVOO Maximum</div></div>
         <div class="data-cell"><div class="data-n">0.5–0.7%</div><div class="data-l">Typical Commercial</div></div>
-        <div class="data-cell"><div class="data-n">0.2%</div><div class="data-l">KALA Standard</div></div>
+        <div class="data-cell"><div class="data-n">0.3%</div><div class="data-l">KALA Standard</div></div>
       </div>
       <h3>On the pass: what actually changes</h3>
       <p>A chef working with an oil at 0.2% is working with a structurally intact product. The polyphenols that drive flavour complexity are present and active. The oil tolerates moderate heat better than a higher-acidity alternative — the antioxidant load that accompanies low acidity provides genuine structural protection at temperature. The finish is longer, with a measurable pepper note at the back of the throat that trained palates associate with freshness and polyphenol density.</p>
@@ -1659,10 +1683,10 @@ nav.nav-open .ham-btn span:nth-child(3){transform:translateY(-6.5px) rotate(-45d
       <p>The assumption is structural: catering format implies bulk pricing implies reduced specification. This is the logic that has produced an entire category of catering oils — technically extra virgin, commercially functional, professionally indistinguishable from neutral vegetable oil at temperature. The category exists because someone, somewhere in each supply chain, accepted the trade-off.</p>
       <p>We do not accept it as structurally necessary. Our argument is that the trade-off is a choice, not an inevitability — and that the choice has almost always been made on the wrong side of the quality line because the buyers in institutional procurement are not the people eating the food.</p>
       <h3>The specification argument</h3>
-      <p>KALA's 15L catering drum is filled from the same October press as the numbered 500ml Harvest Edition. The same Memecik fruit, the same cold-extraction run, the same batch tested against the same IOC parameters. Free acidity: 0.2%. Polyphenols: above 300 mg/kg. Peroxide value: below 12 meq O₂/kg. The certificate that accompanies the 15L drum and the certificate that accompanies the 500ml bottle are drawn from the same batch data.</p>
+      <p>KALA's 15L catering drum is filled from the same October press as the numbered 500ml Harvest Edition. The same Memecik fruit, the same cold-extraction run, the same batch tested against the same IOC parameters. Free acidity: 0.3%. Polyphenols: above 300 mg/kg. Peroxide value: below 12 meq O₂/kg. The certificate that accompanies the 15L drum and the certificate that accompanies the 500ml bottle are drawn from the same batch data.</p>
       <p>The format changes. The oil does not.</p>
       <div class="data-row">
-        <div class="data-cell"><div class="data-n">0.2%</div><div class="data-l">Free Acidity · All Formats</div></div>
+        <div class="data-cell"><div class="data-n">0.3%</div><div class="data-l">Free Acidity · All Formats</div></div>
         <div class="data-cell"><div class="data-n">15L</div><div class="data-l">Catering Drum</div></div>
         <div class="data-cell"><div class="data-n">Same</div><div class="data-l">Batch Certified</div></div>
       </div>
@@ -1683,7 +1707,7 @@ nav.nav-open .ham-btn span:nth-child(3){transform:translateY(-6.5px) rotate(-45d
 <footer>
   <div class="footer-grid">
     <div>
-      <div class="footer-logo-name">OLIVE<span>KALA</span></div>
+      <div class="footer-logo-name">OLIVE<span>KALA</span></div><div class="footer-since">Since 1961</div>
       <div class="footer-tagline" data-i18n="footer.tagline">The Professional's Oil</div>
       <div class="footer-about" data-i18n="footer.about">
         Extra virgin olive oil from Ayvalık, Aegean Turkey.<br>
@@ -1699,7 +1723,7 @@ nav.nav-open .ham-btn span:nth-child(3){transform:translateY(-6.5px) rotate(-45d
     <div>
       <div class="fc-title" data-i18n="footer.col.prem">Premium</div>
       <ul class="fc-links">
-        <li><a href="#products" onclick="switchTab('prem')">KALA 500ml Harvest Edition <span class="tier-tag" style="color:var(--gold);border-color:rgba(201,168,76,.3)">new</span></a></li>
+        <li><a href="#products" onclick="switchTab('prem')">KALA Premium — Glass &amp; Tin <span class="tier-tag" style="color:var(--gold);border-color:rgba(201,168,76,.3)">new</span></a></li>
         <li><a href="#products" onclick="switchTab('prem')">KALA 250ml Tasting Set</a></li>
         <li><a href="#products" onclick="switchTab('prem')">KALA 100ml Table Bottle</a></li>
         <li><a href="#trade" data-i18n="footer.l.alloc">Allocation Enquiry</a></li>
@@ -1709,7 +1733,7 @@ nav.nav-open .ham-btn span:nth-child(3){transform:translateY(-6.5px) rotate(-45d
     <div>
       <div class="fc-title" data-i18n="footer.col.std">Standard</div>
       <ul class="fc-links">
-        <li><a href="#products" onclick="switchTab('std')">KALA 5L Reserve Tin</a></li>
+        <li><a href="#products" onclick="switchTab('std')">KALA Standard Tin — 1L · 3L · 5L</a></li>
         <li><a href="#products" onclick="switchTab('std')">KALA 10L Twin Pack</a></li>
         <li><a href="#trade" data-i18n="footer.l.vol">Volume Pricing</a></li>
         <li><a href="#trade" data-i18n="footer.l.certs">Batch Certificates</a></li>
@@ -1719,7 +1743,7 @@ nav.nav-open .ham-btn span:nth-child(3){transform:translateY(-6.5px) rotate(-45d
     <div>
       <div class="fc-title" data-i18n="footer.col.cat">Catering</div>
       <ul class="fc-links">
-        <li><a href="#products" onclick="switchTab('cat')" data-i18n="footer.catlink">KALA 15L Catering Drum <span class="tier-tag" style="color:#5fa882;border-color:rgba(46,107,82,.35)">new</span></a></li>
+        <li><a href="#products" onclick="switchTab('cat')" data-i18n="footer.catlink">KALA Catering — 5L · 15L <span class="tier-tag" style="color:#5fa882;border-color:rgba(46,107,82,.35)">new</span></a></li>
         <li><a href="#products" onclick="switchTab('cat')" data-i18n="footer.bulk">Bulk Supply Programme</a></li>
         <li><a href="#catering" data-i18n="footer.l.catpage">Catering Page</a></li>
         <li><a href="#trade" data-i18n="footer.l.supply">Supply Contract</a></li>
@@ -1881,9 +1905,9 @@ en:{
   'nav.products':'Products','nav.origin':'Origin','nav.process':'Process',
   'nav.catering':'Catering','nav.trade':'Trade','nav.journal':'Journal',
   'nav.cta':'Request Sample',
-  'nav.drop.prem':'KALA 500ml · Tasting Set','nav.drop.std':'KALA 5L Reserve','nav.drop.cat':'KALA 15L · Bulk Supply',
+  'nav.drop.prem':'KALA Premium · Glass &amp; Tin','nav.drop.std':'KALA Standard · 1L · 3L · 5L','nav.drop.cat':'KALA Catering · 5L · 15L',
   'hero.eyebrow':'Ayvalık · Aegean Turkey · Est. 2025',
-  'hero.sub':'Memecik · Early Harvest · Certified 0.2% Free Acidity',
+  'hero.sub':'Memecik · Early Harvest · Certified 0.3% Free Acidity',
   'hero.body':'Extra virgin olive oil engineered for kitchens that set the standard. Cold-extracted within four hours. Tested, batch-numbered, uncompromising.',
   'hero.cta1':'Explore Range','hero.cta2':'Trade Enquiry',
   'pill.prem':'Premium','pill.std':'Standard','pill.cat':'Catering',
@@ -1917,7 +1941,7 @@ en:{
   'sec.blog.title':'The craft,<br><em>explained.</em>',
   'sec.blog.desc':'We write for professionals. No wellness copy. No lifestyle claims. Just the science, the geography, and the decisions that produce the oil in your kitchen.',
   'a1.title':'The case for early harvest — why we pick before peak ripeness',
-  'a2.title':'What 0.2% free acidity actually means on the pass',
+  'a2.title':'What 0.3% free acidity actually means on the pass',
   'a3.title':'Ayvalık: why 38.7° north latitude is the point',
   'a4.title':'Cooking with high-polyphenol oil — what the heat does',
   'a5.title':'Why four hours matters — the oxidation window',
@@ -1942,14 +1966,14 @@ en:{
 ,
   'origin.quote':'"Three thousand years<br>of cultivation.<br><em>One harvest.</em><br>No compromises."',
   'origin.p1':'Ayvalık sits at the northern edge of the olive\'s natural growing range. The cool nights slow ripening of the Memecik variety — concentrating polyphenols, building a complexity that warm-climate oils rarely achieve. It is not the easiest place to grow olives. That is precisely the point.',
-  'origin.p2':'We harvest at 10–20% ripeness — before the olive has completed its sugar cycle — to fix free acidity below 0.2% and capture a bitterness and pepper finish that professional palates recognise immediately. The oil is pressed cold, within four hours of leaving the grove. No overnight storage. No fermentation. No shortcuts.',
+  'origin.p2':'We harvest at 10–20% ripeness — before the olive has completed its sugar cycle — to fix free acidity below 0.3% and capture a bitterness and pepper finish that professional palates recognise immediately. The oil is pressed cold, within four hours of leaving the grove. No overnight storage. No fermentation. No shortcuts.',
   'origin.p3':'The result is not wellness oil. It is not a lifestyle product. It is the ingredient a chef reaches for when the dish depends on it.',
   'ps1.detail':'Picked at 10–20% ripeness. Green fruit, high polyphenols, low free acidity. Hand-combed where terrain demands it. No mechanical damage to the fruit surface.',
-  'ps2.detail':'Fruit moves from grove to press within four hours. No overnight storage, no fermentation. Cold extraction at 18°C — temperature never exceeded. Continuous two-phase decanter.',
+  'ps2.detail':'Fruit moves from grove to press within four hours. No overnight storage, no fermentation. Cold extraction at 24°C — temperature never exceeded. Continuous two-phase decanter.',
   'ps3.detail':'Every batch tested for free acidity, peroxide value, UV absorption, and polyphenol concentration. IOC-standard methodology. Certificates available on request — no exceptions.',
   'ps4.detail':'Filled into nitrogen-flushed tins and drums. Batch-numbered. Temperature-controlled logistics to the professional kitchen\'s door. Shelf life: 18 months from press date.',
   'cat.title':'Built for<br><em>volume.</em><br><strong>Certified for</strong><br><strong>excellence.</strong>',
-  'cat.body':'The KALA Catering range applies the same extraction standards, the same lab certification, and the same Ayvalık Memecik grove to high-volume operations. Whether you are running 200 covers a night or supplying a hotel group across three cities, the number on the certificate does not change: 0.2%.',
+  'cat.body':'The KALA Catering range applies the same extraction standards, the same lab certification, and the same Ayvalık Memecik grove to high-volume operations. Whether you are running 200 covers a night or supplying a hotel group across three cities, the number on the certificate does not change: 0.3%.',
   'cs1.l':'Free Acidity · All Formats',
   'cs2.l':'Standard Catering Drum',
   'cs3.l':'Bulk Minimum',
@@ -1960,10 +1984,10 @@ en:{
   'cat.li4':'Institutional and hospital food service',
   'cat.li5':'Corporate cafeteria and staff dining',
   'cat.li6':'Distributor and import partners (EMEA)',
-  'cat.note':'Annual supply contracts include fixed-harvest pricing, preferred allocation from the October press, dedicated batch certification documentation, and the option to white-label under your own brand. A sample kit (3 × 500ml, certified) ships within 5 working days.',
+  'cat.note':'Annual supply contracts include fixed-harvest pricing, preferred allocation from the October press, dedicated batch certification documentation, and the option to white-label under your own brand. A sample kit (175ml tasting tin, certified) ships within 5 working days.',
   'trade.body':'Direct supply. No intermediaries, no shelf markups on integrity. We work with restaurants, hotels, caterers, and distributors on a direct-from-grove basis. Full traceability. Competitive pricing for volume commitments.',
-  'tl1':'5L tins — standard HoReCa format',
-  'tl2':'15L catering drums — dispensing tap',
+  'tl1':'Tin formats: 1L · 3L · 5L',
+  'tl2':'Catering: 5L tin · 15L drum (dispensing tap)',
   'tl3':'Annual allocation contracts (Q4 harvest)',
   'tl4':'Sample kit dispatched within 5 working days',
   'tl5':'Batch certificates on every order',
@@ -1989,7 +2013,7 @@ en:{
   'pc1.spec':'Memecik · Single Grove · Limited Release',
   'pc2.spec':'Three Expressions · Gift Packaged',
   'pc3.spec':'Branded Glass · Restaurant Exclusive',
-  'pc4.spec':'Memecik · Early Harvest · Ayvalık · October 2025',
+  'pc4.spec':'Tin 1L · 3L · 5L · Memecik · Early Harvest · Ayvalık',
   'pc5.spec':'2 × 5L · Volume Pricing',
   'pc6.spec':'Stainless-Steel Drum · IOC Certified',
   'pc7.spec':'Custom Volume · Direct from Grove',
@@ -1998,7 +2022,7 @@ en:{
   'pc3.body':'Restaurant-branded table bottles. Custom label programme available. Refillable format — fill from the 5L reserve in-house. The brand at the table.',
   'pc4.body':'The workhorse. Cold-extracted, unfiltered, pressed within four hours of harvest. Nitrogen-flushed tins lock freshness from grove to kitchen. Designed for volume without compromise on acidity, polyphenol count, or flavour profile. The oil a professional kitchen relies on from first prep to last service.',
   'pc5.body':'Double-pack for medium-volume kitchens. Same specification as the 5L Reserve. Volume pricing reflects the working relationship, not a premium shelf.',
-  'pc6.body':'Built for event catering, institutional kitchens, and high-throughput operations. Drum-format with dispensing tap. Same certified Memecik oil — same 0.2% free acidity — at the volume a catering operation requires. Zero compromise on specification.',
+  'pc6.body':'Built for event catering, institutional kitchens, and high-throughput operations. Drum-format with dispensing tap. Same certified Memecik oil — same 0.3% free acidity — at the volume a catering operation requires. Zero compromise on specification.',
   'pc7.body':'Direct-from-grove annual contracts for hotel groups, hospital catering, military and institutional supply chains. Quarterly harvest allocations. Full traceability, custom documentation, and white-label packaging available. Minimum 200L per order.',
   'kpi.fa':'Free Acidity',
   'kpi.expr':'Expressions',
@@ -2013,11 +2037,11 @@ en:{
   'tag.horeca':'HoReCa Format',
   'tag.bcert':'Batch Cert.',
   'tag.n2':'N₂ Flushed',
-  'tag.15l':'15L Drum',
+  'tag.15l':'5L · 15L',
   'tag.tap':'Tap Dispensing',
   'tag.bulk':'Bulk Pricing',
   'tag.wl':'White Label',
-  'tag.anncon':'Annual Contract','cert.ioc':'IOC Certified','cert.iso':'ISO Food Safety','cert.trace':'Batch Traceable','cert.wl':'White Label Available','coming.tag':'Coming 2026','notify.btn':'Notify Me','notify.submit':'Notify Me When Available','notify.thanks':'You\'re on the list — we\'ll be in touch.','t1.text':'"The best finishing oil I have used. Consistent batch after batch — which is what you need at this level. The acidity holds up to what the certificate says."','t1.author':'Executive Chef','t1.role':'Fine Dining Restaurant, Istanbul','t2.text':'"We use the 5L Reserve across the entire kitchen. For that price-point and that acidity, there is nothing comparable in this market. Our guests notice it."','t2.author':'Head Chef &amp; Co-owner','t2.role':'Bistrot, Izmir','t3.text':'"We switched the entire group — five properties — to the KALA catering supply. The spec sheet was compelling. The oil confirmed it."','t3.author':'Head of Procurement','t3.role':'Luxury Hotel Group, Bodrum',
+  'tag.anncon':'Annual Contract','cert.ioc':'IOC Certified','cert.iso':'ISO Food Safety','cert.trace':'Batch Traceable','cert.wl':'White Label Available','pc.shot.name':'KALA Morning Shot','pc.shot.tier':'◉ Ritual · Daily Protocol','pc.shot.spec':'40ml · 6-Pack · Cold-pressed Memecik','pc.shot.body':'Single-extraction. 40ml per shot. The day\'s olive oil requirement in one dose — polyphenol load intact, free acidity certified. Sold as a 6-pack. No compromise on specification.','pc.shot.tag1':'6-Pack','pc.shot.tag2':'40ml Shot','pc.shot.kpi':'0.3%','pc.shot.kpi.l':'Certified','coming.tag':'Coming 2026','notify.btn':'Notify Me','notify.submit':'Notify Me When Available','notify.thanks':'You\'re on the list — we\'ll be in touch.','t1.text':'"The best finishing oil I have used. Consistent batch after batch — which is what you need at this level. The acidity holds up to what the certificate says."','t1.author':'Executive Chef','t1.role':'Fine Dining Restaurant, Istanbul','t2.text':'"We use the 5L Reserve across the entire kitchen. For that price-point and that acidity, there is nothing comparable in this market. Our guests notice it."','t2.author':'Head Chef &amp; Co-owner','t2.role':'Bistrot, Izmir','t3.text':'"We switched the entire group — five properties — to the KALA catering supply. The spec sheet was compelling. The oil confirmed it."','t3.author':'Head of Procurement','t3.role':'Luxury Hotel Group, Bodrum',
   'tag.trace':'Full Trace',
   'std.btn.order':'Order / Sample',
   'std.btn.spec':'Spec Sheet',
@@ -2025,8 +2049,8 @@ en:{
   'cstrip.l2':'Minimum Bulk Order',
   'cstrip.l3':'Annual Harvest Allocation',
   'cstrip.l4':'Food Safety Compliant',
-  'a1.excerpt':'Most producers wait for the Memecik olive to reach maximum yield. We do the opposite. At 10–20% ripeness, free acidity sits below 0.2% and polyphenol concentration peaks. Here is the chemistry behind the decision.',
-  'a2.excerpt':'The IOC ceiling is 0.8%. Most commercial oils sit at 0.5–0.7% — technically compliant, perceptibly mediocre. At 0.2%, the chemistry changes in ways a trained palate detects immediately: cleaner finish, longer pepper, structural intensity.',
+  'a1.excerpt':'Most producers wait for the Memecik olive to reach maximum yield. We do the opposite. At 10–20% ripeness, free acidity sits below 0.3% and polyphenol concentration peaks. Here is the chemistry behind the decision.',
+  'a2.excerpt':'The IOC ceiling is 0.8%. Most commercial oils sit at 0.5–0.7% — technically compliant, perceptibly mediocre. At 0.3%, the chemistry changes in ways a trained palate detects immediately: cleaner finish, longer pepper, structural intensity.',
   'a3.excerpt':'Ayvalık is not the obvious place to grow olives. Cooler nights, slower sugar accumulation — a fruit that struggles. That struggle is the specification. Latitude is not just geography; it is flavour.',
   'a4.excerpt':'The conventional wisdom is to reserve premium EVOO for finishing. That advice was written for fragile mass-market oil. High-polyphenol structure handles heat differently. We ran the tests. The data is below.',
   'a5.excerpt':'Between the moment the olive breaks from the branch and the moment the oil is sealed in a nitrogen-flushed tin, every hour is a liability. The four-hour rule is not a marketing claim. It is chemistry.',
@@ -2053,9 +2077,9 @@ tr:{
   'nav.products':'Ürünler','nav.origin':'Köken','nav.process':'Süreç',
   'nav.catering':'Toplu Tedarik','nav.trade':'Ticaret','nav.journal':'Dergi',
   'nav.cta':'Numune Talep Et',
-  'nav.drop.prem':'KALA 500ml · Tadım Seti','nav.drop.std':'KALA 5L Rezerv','nav.drop.cat':'KALA 15L · Toplu Tedarik',
+  'nav.drop.prem':'KALA Premium · Cam &amp; Teneke','nav.drop.std':'KALA Standart · 1L · 3L · 5L','nav.drop.cat':'KALA Catering · 5L · 15L',
   'hero.eyebrow':'Ayvalık · Ege Türkiye · Est. 2025',
-  'hero.sub':'MEMECİK · ERKEN HASAT · SERTİFİKALI %0,2 SERBEST ASİT',
+  'hero.sub':'MEMECİK · ERKEN HASAT · SERTİFİKALI %0,3 SERBEST ASİT',
   'hero.body':'Standartları belirleyen mutfaklar için özel üretilmiş natürel sızma zeytinyağı. Dört saat içinde soğuk sıkım. Test edilmiş, parti numaralı, taviz vermez.',
   'hero.cta1':'Ürünleri Keşfet','hero.cta2':'Ticari Bilgi Al',
   'pill.prem':'PREMIUM','pill.std':'STANDART','pill.cat':'TOPLU TEDARİK',
@@ -2104,7 +2128,7 @@ tr:{
   'origin.p2':'%10–20 olgunlukta hasat ediyoruz — zeytin şeker döngüsünü tamamlamadan — serbest asitliği %0,2\'nin altına sabitlemek ve profesyonel damakların hemen fark ettiği acılık ve biber bitiş notasını yakalamak için. Yağ, bahçeyi terk ettikten sonraki dört saat içinde soğuk olarak preslenir. Gece boyunca depolama yok. Fermantasyon yok. Kısayol yok.',
   'origin.p3':'Sonuç wellness yağı değildir. Lifestyle ürünü değildir. Yemeğin ona bağlı olduğu anlarda bir şefin uzandığı malzemedir.',
   'ps1.detail':'%10–20 olgunlukta toplanır. Yeşil meyve, yüksek polifenol, düşük serbest asit. Arazi gerektirdiğinde el tarağı ile. Meyve yüzeyine mekanik hasar yok.',
-  'ps2.detail':'Meyve, dört saat içinde bahçeden prese ulaşır. Gece boyunca depolama yok, fermantasyon yok. 18°C\'de soğuk ekstraksiyon — sıcaklık hiçbir zaman aşılmaz. Sürekli iki fazlı dekatör.',
+  'ps2.detail':'Meyve, dört saat içinde bahçeden prese ulaşır. Gece boyunca depolama yok, fermantasyon yok. 24°C\'de soğuk ekstraksiyon — sıcaklık hiçbir zaman aşılmaz. Sürekli iki fazlı dekatör.',
   'ps3.detail':'Her parti; serbest asitlik, peroksit değeri, UV absorpsiyonu ve polifenol konsantrasyonu için test edilir. IOC standart metodolojisi. Sertifikalar talep üzerine — istisnasız.',
   'ps4.detail':'Azot gazıyla doldurulmuş teneke ve varillere doldurulur. Parti numaralı. Profesyonel mutfak kapısına kadar sıcaklık kontrollü lojistik. Raf ömrü: pres tarihinden itibaren 18 ay.',
   'cat.title':'Hacim için<br><em>üretildi.</em><br><strong>Mükemmellik için</strong><br><strong>sertifikalandı.</strong>',
@@ -2121,8 +2145,8 @@ tr:{
   'cat.li6':'Distrbüytör ve ithalat ortakları (EMEA)',
   'cat.note':'Yıllık tedarik sözleşmeleri; sabit hasat fiyatlandırması, Ekim presinden öncelikli tahsis, özel parti sertifikasyon belgeleri ve kendi markanız altında beyaz etiket seçeneğini içerir. 3 × 500 ml\'lik sertifikalı numune kiti 5 iş günü içinde kargoya verilir.',
   'trade.body':'Doğrudan tedarik. Aracı yok, raf üzerine dürüstlük payı yok. Restoranlar, oteller, caterer\'larla doğrudan bahçeden tedarik esasıyla çalışıyoruz. Tam izlenebilirlik. Hacim taahhitleri için rekabetçi fiyatlandırma.',
-  'tl1':'5L teneke — standart HoReCa formatı',
-  'tl2':'15L catering bidonu — dispensing musluk',
+  'tl1':'Teneke: 1L · 3L · 5L',
+  'tl2':'Catering: 5L teneke · 15L bidon (musluk)',
   'tl3':'Yıllık tahsis sözleşmeleri (Q4 hasat)',
   'tl4':'Numune kiti 5 iş günü içinde kargoya verilir',
   'tl5':'Her siparişte parti sertifikaları',
@@ -2148,8 +2172,8 @@ tr:{
   'pc1.spec':'MEMECİK · TEK BAHÇE · SINIRLI ÜRETİM',
   'pc2.spec':'ÜÇ EKSPRESYON · HEDİYE PAKET',
   'pc3.spec':'MARKALI CAM · RESTORAN ÖZEL',
-  'pc4.spec':'MEMECİK · ERKEN HASAT · AYVALIK · EKİM 2025',
-  'pc5.spec':'2 × 5L · TOPLU FİYAT',
+  'pc4.spec':'TENEKE 1L · 3L · 5L · MEMECİK · ERKEN HASAT · AYVALIK',
+  'pc5.spec':'STANDART TENEKE · 1L · 3L · 5L',
   'pc6.spec':'PASLANMAZ ÇELİK BİDON · IOC SERTİFİKALI',
   'pc7.spec':'ÖZEL HACİM · DOĞRUDAN BAHÇEDEN',
   'pc1.body':'Tek bahçe, tek hasat. Birinci şişeden numaralı. Bir bitirme yağı — tabaktaki detay, misafirin görmediği ama her zaman tattığı. Hasat sabahı soğuk sıkım. Yalnızca Ekim\'de.',
@@ -2172,7 +2196,7 @@ tr:{
   'tag.horeca':'HORECA FORMAT',
   'tag.bcert':'PARTİ TAKİBİ',
   'tag.n2':'N₂ DOLDURmali',
-  'tag.15l':'15L BİDON',
+  'tag.15l':'5L · 15L',
   'tag.tap':'DISPENSING MUSLUK',
   'tag.bulk':'TOPLU FİYAT',
   'tag.wl':'BEYAZ ETİKET ŞİŞE İMKANI',
@@ -2224,7 +2248,7 @@ tr:{
 'a5.blog.date':'Şubat 2026',
 'a6.blog.date':'Mart 2026',
 'tag.new':'YENİ',
-'footer.catlink':'KALA 15L Catering Bidonu',
+'footer.catlink':'KALA Catering — 5L · 15L <span class="tier-tag" style="color:#5fa882;border-color:rgba(46,107,82,.35)">new</span>',
 'footer.bulk':'Toplu Tedarik Programı',
 'modal.next.lbl':'Sonraki makale:',
 'a6.foot.lbl':'Catering tedarikini keşfet:',
@@ -2259,7 +2283,7 @@ de:{
   'nav.products':'Produkte','nav.origin':'Herkunft','nav.process':'Prozess',
   'nav.catering':'Catering','nav.trade':'Handel','nav.journal':'Journal',
   'nav.cta':'Muster Anfragen',
-  'nav.drop.prem':'KALA 500ml · Verkostungsset','nav.drop.std':'KALA 5L Reserve','nav.drop.cat':'KALA 15L · Großlieferung',
+  'nav.drop.prem':'KALA Premium · Glas &amp; Dose','nav.drop.std':'KALA Standard · 1L · 3L · 5L','nav.drop.cat':'KALA Catering · 5L · 15L',
   'hero.eyebrow':'Ayvalık · Ägäische Türkei · Gegr. 2025',
   'hero.sub':'Memecik · Frühernte · Zertifiziert 0,2% Freie Säure',
   'hero.body':'Natives Olivenöl Extra, entwickelt für Küchen, die Maßstäbe setzen. Kaltgepresst innerhalb von vier Stunden. Geprüft, chargennummeriert, kompromisslos.',
@@ -2310,7 +2334,7 @@ de:{
   'origin.p2':'Wir ernten bei 10–20% Reife — bevor die Olive ihren Zuckerzyklus abgeschlossen hat — um die freie Säure unter 0,2% zu fixieren und einen Bitterkeits- und Pfefferfinish zu erzielen, den professionelle Gaumen sofort erkennen. Das Öl wird kalt gepresst, innerhalb von vier Stunden nach dem Verlassen des Hains. Keine Übernachtlagerung. Keine Fermentation. Keine Abkürzungen.',
   'origin.p3':'Das Ergebnis ist kein Wellness-Öl. Es ist kein Lifestyle-Produkt. Es ist die Zutat, nach der ein Koch greift, wenn das Gericht davon abhängt.',
   'ps1.detail':'Bei 10–20% Reife geernöpflückt. Grüne Frucht, hohe Polyphenole, niedrige freie Säure. Handbetrieben, wo das Gelände es erfordert. Kein mechanischer Schaden an der Fruchtoberfläche.',
-  'ps2.detail':'Die Frucht gelangt innerhalb von vier Stunden vom Hain zur Presse. Keine Übernachtlagerung, keine Fermentation. Kaltextraktion bei 18°C — Temperatur nie überschritten. Kontinuierlicher Zweiphasen-Dekanter.',
+  'ps2.detail':'Die Frucht gelangt innerhalb von vier Stunden vom Hain zur Presse. Keine Übernachtlagerung, keine Fermentation. Kaltextraktion bei 24°C — Temperatur nie überschritten. Kontinuierlicher Zweiphasen-Dekanter.',
   'ps3.detail':'Jede Charge wird auf freie Säure, Peroxidwert, UV-Absorption und Polyphenolkonzentration geprüft. IOC-Standardmethodik. Zertifikate auf Anfrage — keine Ausnahmen.',
   'ps4.detail':'Abgefüllt in stickstoffgespülte Dosen und Fässer. Chargennummeriert. Temperaturgeführte Logistik bis zur Tür der professionellen Küche. Haltbarkeit: 18 Monate ab Pressdatum.',
   'cat.title':'Für das<br><em>Volumen gebaut.</em><br><strong>Für Exzellenz</strong><br><strong>zertifiziert.</strong>',
@@ -2325,7 +2349,7 @@ de:{
   'cat.li4':'Institutionelle und Krankenhaus-Verpflegung',
   'cat.li5':'Betriebskantine und Mitarbeiterverpflegung',
   'cat.li6':'Distributions- und Importpartner (EMEA)',
-  'cat.note':'Jahreslieferverträge beinhalten Festpreise für die Ernte, bevorzugte Zuteilung aus der Oktober-Pressung, dedizierte Chargenzertifizierungsdokumentation und die Möglichkeit des White-Labelings unter Ihrer eigenen Marke. Ein Probenkit (3 × 500 ml, zertifiziert) wird innerhalb von 5 Werktagen versendet.',
+  'cat.note':'Jahreslieferverträge beinhalten Festpreise für die Ernte, bevorzugte Zuteilung aus der Oktober-Pressung, dedizierte Chargenzertifizierungsdokumentation und die Möglichkeit des White-Labelings unter Ihrer eigenen Marke. Ein Probenkit (175-ml-Verkostungsdose, zertifiziert) wird innerhalb von 5 Werktagen versendet.',
   'trade.body':'Direktlieferung. Keine Zwischenhändler, keine Regalaufschläge auf Integrität. Wir arbeiten mit Restaurants, Hotels, Caterern und Distributoren auf direkter Basis aus dem Hain. Vollständige Rückverf. Wettbewerbsfähige Preise für Volumenverpflichtungen.',
   'tl1':'5-L-Dosen — Standard-HoReCa-Format',
   'tl2':'15-L-Catering-Trommeln — Zapfhahn',
@@ -2378,7 +2402,7 @@ de:{
   'tag.horeca':'HoReCa-Format',
   'tag.bcert':'Chargen-Zertif.',
   'tag.n2':'N₂-gespült',
-  'tag.15l':'15-L-Fass',
+  'tag.15l':'5L · 15L',
   'tag.tap':'Zapfhahn',
   'tag.bulk':'Mengenpreis',
   'tag.wl':'White Label',
@@ -2465,7 +2489,7 @@ ar:{
   'nav.products':'المنتجات','nav.origin':'المنشأ','nav.process':'العملية',
   'nav.catering':'التموين','nav.trade':'التجارة','nav.journal':'المجلة',
   'nav.cta':'طلب عينة',
-  'nav.drop.prem':'KALA 500ml · طقم التذوق','nav.drop.std':'KALA 5L احتياطي','nav.drop.cat':'KALA 15L · توريد بالجملة',
+  'nav.drop.prem':'KALA Premium · زجاج &amp; علبة','nav.drop.std':'KALA Standard · 1L · 3L · 5L','nav.drop.cat':'KALA Catering · 5L · 15L',
   'hero.eyebrow':'أيفاليك · تركيا الإيجية · تأسست 2025',
   'hero.sub':'ميميجيك · حصاد مبكر · حموضة حرة معتمدة 0.2%',
   'hero.body':'زيت زيتون بكر ممتاز مصنَّع للمطابخ التي تضع المعايير. يُستخلص بالبرودة في أقل من أربع ساعات. مُختبَر، مُرقَّم بالدفعات، لا تنازلات.',
@@ -2513,14 +2537,14 @@ ar:{
 ,
   'origin.quote':'"ثلاثة آلاف عام<br>من الزراعة.<br><em>حصاد واحد.</em><br>لا تنازلات."',
   'origin.p1':'تقع أيفاليك على الحافة الشمالية لنطاق زيتون الزيتون الطبيعي. الليالي الباردة تُبطئ نضج صنف ميميجيك — تركّز البوليفينول وتبني تعقيداً نادراً ما تحققه زيوت المناخ الدافئ. إنه ليس أسهل مكان لزراعة الزيتون. وهذا بالضبط هو المقصود.',
-  'origin.p2':'نحصد عند نضج 10–20% — قبل أن تكتمل دورة السكر — لتثبيت الحموضة الحرة دون 0.2% والتقاط مرارة ونكهة فلفلية. يُعصر الزيت بارداً خلال أربع ساعات. لا تخزين ليلي. لا تخمر. لا اختصارات.',
+  'origin.p2':'نحصد عند نضج 10–20% — قبل أن تكتمل دورة السكر — لتثبيت الحموضة الحرة دون 0.3% والتقاط مرارة ونكهة فلفلية. يُعصر الزيت بارداً خلال أربع ساعات. لا تخزين ليلي. لا تخمر. لا اختصارات.',
   'origin.p3':'النتيجة ليست زيت عافية. إنها ليست منتج أسلوب حياة. إنها المكوّن الذي يمد الطاهي يده إليه حين يعتمد الطبق عليه.',
   'ps1.detail':'يُقطف عند نضج 10–20%. ثمرة خضراء، بوليفينول مرتفع، حموضة حرة منخفضة. يُجمع يدوياً. لا ضرر ميكانيكي على سطح الثمرة.',
   'ps2.detail':'تنتقل الثمرة من البستان إلى المعصرة خلال أربع ساعات. لا تخزين ليلي، لا تخمر. عصر بارد عند 18°C.',
   'ps3.detail':'يُختبر كل دفعة للحموضة الحرة وقيمة البيروكسيد وامتصاص UV وتركيز البوليفينول. منهجية معيار IOC. الشهادات متاحة عند الطلب.',
   'ps4.detail':'تُعبأ في علب وبراميل مغسولة بالنيتروجين. مُرقّمة بالدفعة. لوجستيات محكومة بالحرارة حتى باب المطبخ. مدة الصلاحية: 18 شهراً.',
   'cat.title':'مصنوع للحجم<br><em>الكبير.</em><br><strong>معتمد</strong><br><strong>للتميز.</strong>',
-  'cat.body':'تطبّق مجموعة KALA للتموين نفس معايير الاستخلاص ونفس اعتماد المختبر ونفس بستان ميميجيك أيفاليك. الرقم على الشهادة لا يتغير: 0.2%.',
+  'cat.body':'تطبّق مجموعة KALA للتموين نفس معايير الاستخلاص ونفس اعتماد المختبر ونفس بستان ميميجيك أيفاليك. الرقم على الشهادة لا يتغير: 0.3%.',
   'cs1.l':'الحموضة الحرة · جميع الصيغ',
   'cs2.l':'برميل التموين القياسي',
   'cs3.l':'الحد الأدنى للشراء بالجملة',
@@ -2584,7 +2608,7 @@ ar:{
   'tag.horeca':'صيغة HoReCa',
   'tag.bcert':'شهادة الدفعة',
   'tag.n2':'مغسول بالنيتروجين',
-  'tag.15l':'برميل 15 لتر',
+  'tag.15l':'5 لتر · 15 لتر',
   'tag.tap':'صنبور توزيع',
   'tag.bulk':'تسعير الجملة',
   'tag.wl':'وسم أبيض',
@@ -2664,14 +2688,14 @@ ar:{
 'a5.body':'<p>تبدأ عملية التدهور لحظة انفصال الزيتونة عن غصنها. هذا ليس مجازًا ولا خطابًا تسويقيًا — إنه الكيمياء الحيوية لثمرة تطورت لتبدأ التخمر والتحلل فور انفصالها عن شجرتها الأم. تتشقق جدران الخلايا تحت ضغط المناولة. يبدأ إنزيم أكسيداز البوليفينول الموجود في لبّ الثمرة بتحويل البوليفينولات إلى ميلانين — عملية التحول للون البني ذاتها التي تبدو حين تقطع تفاحة. تبدأ إنزيمات الليباز في فصل الأحماض الدهنية عن روابط الثلاثي الغليسيريد مما يرفع الحموضة الحرة تدريجيًا.</p> <p>كل ذلك يحدث سواء رأيته أم لا. الزيتون في وعاء الحصاد يبدو بخير. العملية جارية.</p> <h3>ما يحدث في كل ساعة</h3> <p>تحديد معدل التدهور كميًا ليس أمرًا مباشرًا — إذ تؤثر درجة الحرارة وطريقة مناولة الحصاد والرطوبة المحيطة كلها في السرعة. كتقدير عام مبني على أبحاث مجلس زيت الزيتون الدولي المنشورة واختبارات دُفعاتنا الخاصة خلال حصاد 2025: ترتفع الحموضة الحرة بنحو 0.03–0.06 نقطة مئوية في الساعة في ظروف أكتوبر الإيجية المحيطة (نحو 18–22 درجة مئوية). تنخفض تركيزات البوليفينول بشكل أسرع — انخفاض مُقدَّر بـ 8–12% لكل نافذة أربع ساعات تتجاوز أول فرصة عصر.</p> <div class="data-row"><div class="data-cell"><div class="data-n">&lt;4س</div><div class="data-l">هدف من البستان إلى المعصرة</div></div><div class="data-cell"><div class="data-n">+0.05%</div><div class="data-l">ارتفاع الحموضة / ساعة (تقدير)</div></div><div class="data-cell"><div class="data-n">−10%</div><div class="data-l">فقدان البوليفينول / 4س تأخير</div></div></div> <h3>التخزين الليلي — المعيار الصناعي</h3> <p>الممارسة الصناعية القياسية هي تخزين الثمار طوال الليل — يُجمع المحصود خلال النهار ويُعصر في الصباح التالي. هذا منطقي لوجستيًا وفعّال اقتصاديًا. يعني أيضًا أن الثمرة كانت تتدهور ثمانية إلى ستة عشر ساعة قبل أن تصل إلى المعصرة. لمنتج يُحسّن للامتثال لمعايير المجلس لا للمواصفة، هذا مقبول تمامًا.</p> <blockquote>"كل ساعة بين البستان والمعصرة قرار — بتقديم اللوجستيات على المواصفة. اتخذنا هذا القرار مرة، في اتجاه واحد، ولم نراجعه."</blockquote> <p>تستلزم قاعدة الأربع ساعات تشغيل المعصرة بنظام الورديات أثناء الحصاد، وتحمّل التكلفة التشغيلية الأعلى للاستخلاص المستمر، وقبول القيود اللوجستية لالتزام اليوم ذاته. البديل حصاد أفضل تنظيمًا ينتج زيتًا أدنى جودة. اخترنا الجدول الأصعب.</p>',
 'a6.cat':'التموين &amp; الحجم · مارس 2026',
 'a6.meta':'مجلة أوليف كالا &nbsp;·&nbsp; 6 دقائق قراءة &nbsp;·&nbsp; أيفاليك، تركيا',
-'a6.body':'<p>الافتراض بنيوي: تعني صيغة التموين التسعير بالجملة، ويعني التسعير بالجملة مواصفات مخفّضة. هذا هو المنطق الذي أنتج فئة كاملة من زيوت التموين — بكر ممتاز تقنيًا، وظيفي تجاريًا، غير قابل للتمييز مهنيًا عن الزيت النباتي المحايد عند الحرارة. الفئة موجودة لأن أحدًا ما، في مكان ما في كل سلسلة توريد، قَبِل المقايضة.</p> <p>لا نقبلها ضرورةً بنيوية. حجتنا أن المقايضة خيار لا حتمية — وأن الخيار اتُخذ دائمًا تقريبًا على الجانب الخاطئ من خط الجودة لأن صانعي القرار في المشتريات المؤسسية ليسوا من يأكل الطعام.</p> <h3>حجة المواصفة</h3> <p>يُملأ برميل التموين 15 لتر من KALA من المعصرة ذاتها لأكتوبر مثل طبعة الحصاد المرقّمة 500 مل. الثمرة ذاتها من ميميجيك، والاستخلاص البارد ذاته، والدُفعة ذاتها المختبرة وفق معايير المجلس ذاتها. الحموضة الحرة: 0.2%. البوليفينولات: فوق 300 ملغ/كغ. قيمة البيروكسيد: أقل من 12 ميللي مكافئ O₂/كغ. الشهادة المرافقة لبرميل 15 لتر والشهادة المرافقة لزجاجة 500 مل مُستقاتان من بيانات الدُفعة ذاتها.</p> <p>الصيغة تتغير. الزيت لا يتغير.</p> <div class="data-row"><div class="data-cell"><div class="data-n">0.2%</div><div class="data-l">الحموضة الحرة · جميع الصيغ</div></div><div class="data-cell"><div class="data-n">15L</div><div class="data-l">برميل التموين</div></div><div class="data-cell"><div class="data-n">نفس</div><div class="data-l">معتمد بالدُفعة</div></div></div> <h3>لماذا يهم هذا للعمليات الكبيرة</h3> <p>مجموعة فنادق تُدير خمس منشآت عبر وظيفة شراء مركزية تتخذ قرار زيت يؤثر على كل طبق طعام يُقدَّم عبر تلك المنشآت طوال العام. إذا تخلّفت هذه القرار إلى مواصفة الفئة القياسية للتموين — حموضة حرة عند 0.6%، بوليفينولات عند 80 ملغ/كغ — تكون الفجوة بين ما يمكن للمطبخ إنتاجه وما يُنتجه فعلًا كبيرة وقابلة للقياس وغير مرئية لوظيفة الشراء التي اتخذت القرار.</p> <blockquote>"الشيف عند التقديم غير متورط في قرار الشراء. الشخص الذي اتخذ ذلك القرار ليس عند التقديم. هذه الفجوة المعلوماتية هي حيث تموت الجودة."</blockquote> <p>نُزوّد عمليات التموين مباشرةً بتوثيق كامل للدُفعات، على أساس أن صانع القرار ينبغي أن يرى الأرقام ذاتها التي سيهتم بها الشيف لو استُشير. في تجربتنا، حين يرى مدير المشتريات مقارنة المواصفات الفعلية لا مجرد جدول سعر لكل لتر، تتغير المحادثة. الزيت في برميل 15 لتر هو الحجة. السعر هو الحاشية.</p>',
+'a6.body':'<p>الافتراض بنيوي: تعني صيغة التموين التسعير بالجملة، ويعني التسعير بالجملة مواصفات مخفّضة. هذا هو المنطق الذي أنتج فئة كاملة من زيوت التموين — بكر ممتاز تقنيًا، وظيفي تجاريًا، غير قابل للتمييز مهنيًا عن الزيت النباتي المحايد عند الحرارة. الفئة موجودة لأن أحدًا ما، في مكان ما في كل سلسلة توريد، قَبِل المقايضة.</p> <p>لا نقبلها ضرورةً بنيوية. حجتنا أن المقايضة خيار لا حتمية — وأن الخيار اتُخذ دائمًا تقريبًا على الجانب الخاطئ من خط الجودة لأن صانعي القرار في المشتريات المؤسسية ليسوا من يأكل الطعام.</p> <h3>حجة المواصفة</h3> <p>يُملأ برميل التموين 15 لتر من KALA من المعصرة ذاتها لأكتوبر مثل طبعة الحصاد المرقّمة 500 مل. الثمرة ذاتها من ميميجيك، والاستخلاص البارد ذاته، والدُفعة ذاتها المختبرة وفق معايير المجلس ذاتها. الحموضة الحرة: 0.3%. البوليفينولات: فوق 300 ملغ/كغ. قيمة البيروكسيد: أقل من 12 ميللي مكافئ O₂/كغ. الشهادة المرافقة لبرميل 15 لتر والشهادة المرافقة لزجاجة 500 مل مُستقاتان من بيانات الدُفعة ذاتها.</p> <p>الصيغة تتغير. الزيت لا يتغير.</p> <div class="data-row"><div class="data-cell"><div class="data-n">0.2%</div><div class="data-l">الحموضة الحرة · جميع الصيغ</div></div><div class="data-cell"><div class="data-n">15L</div><div class="data-l">برميل التموين</div></div><div class="data-cell"><div class="data-n">نفس</div><div class="data-l">معتمد بالدُفعة</div></div></div> <h3>لماذا يهم هذا للعمليات الكبيرة</h3> <p>مجموعة فنادق تُدير خمس منشآت عبر وظيفة شراء مركزية تتخذ قرار زيت يؤثر على كل طبق طعام يُقدَّم عبر تلك المنشآت طوال العام. إذا تخلّفت هذه القرار إلى مواصفة الفئة القياسية للتموين — حموضة حرة عند 0.6%، بوليفينولات عند 80 ملغ/كغ — تكون الفجوة بين ما يمكن للمطبخ إنتاجه وما يُنتجه فعلًا كبيرة وقابلة للقياس وغير مرئية لوظيفة الشراء التي اتخذت القرار.</p> <blockquote>"الشيف عند التقديم غير متورط في قرار الشراء. الشخص الذي اتخذ ذلك القرار ليس عند التقديم. هذه الفجوة المعلوماتية هي حيث تموت الجودة."</blockquote> <p>نُزوّد عمليات التموين مباشرةً بتوثيق كامل للدُفعات، على أساس أن صانع القرار ينبغي أن يرى الأرقام ذاتها التي سيهتم بها الشيف لو استُشير. في تجربتنا، حين يرى مدير المشتريات مقارنة المواصفات الفعلية لا مجرد جدول سعر لكل لتر، تتغير المحادثة. الزيت في برميل 15 لتر هو الحجة. السعر هو الحاشية.</p>',
 },
 
 ru:{
   'nav.products':'Продукты','nav.origin':'Происхождение','nav.process':'Процесс',
   'nav.catering':'Кейтеринг','nav.trade':'Торговля','nav.journal':'Журнал',
   'nav.cta':'Запросить образец',
-  'nav.drop.prem':'KALA 500мл · Дегустационный набор','nav.drop.std':'KALA 5L Резерв','nav.drop.cat':'KALA 15L · Оптовые поставки',
+  'nav.drop.prem':'KALA Premium · Стекло &amp; Банка','nav.drop.std':'KALA 5L Резерв','nav.drop.cat':'KALA Catering · 5L · 15L',
   'hero.eyebrow':'Айвалык · Эгейская Турция · Осн. 2025',
   'hero.sub':'Memecik · Ранний урожай · Сертиф. кислотность 0,2%',
   'hero.body':'Оливковое масло Extra Virgin для кухонь, задающих стандарты. Холодная экстракция в течение четырёх часов. Протестировано, пронумеровано по партиям, без компромиссов.',
@@ -2790,7 +2814,7 @@ ru:{
   'tag.horeca':'Формат HoReCa',
   'tag.bcert':'Партионный серт.',
   'tag.n2':'Промывка N₂',
-  'tag.15l':'Бочка 15 л',
+  'tag.15l':'5 л · 15 л',
   'tag.tap':'Кран-дозатор',
   'tag.bulk':'Оптовая цена',
   'tag.wl':'Частная марка',
@@ -2877,7 +2901,7 @@ fr:{
   'nav.products':'Produits','nav.origin':'Origine','nav.process':'Procédé',
   'nav.catering':'Restauration','nav.trade':'Commerce','nav.journal':'Journal',
   'nav.cta':'Demander un échantillon',
-  'nav.drop.prem':'KALA 500ml · Coffret dégustation','nav.drop.std':'KALA 5L Réserve','nav.drop.cat':'KALA 15L · Approvisionnement',
+  'nav.drop.prem':'KALA Premium · Verre &amp; Boîte','nav.drop.std':'KALA 5L Réserve','nav.drop.cat':'KALA Catering · 5L · 15L',
   'hero.eyebrow':'Ayvalık · Turquie Égéenne · Est. 2025',
   'hero.sub':'Memecik · Récolte précoce · Acidité libre certifiée 0,2%',
   'hero.body':'Huile d\'olive extra vierge conçue pour les cuisines qui définissent la norme. Extraite à froid en moins de quatre heures. Testée, numérotée par lot, sans compromis.',
@@ -2996,7 +3020,7 @@ fr:{
   'tag.horeca':'Format HoReCa',
   'tag.bcert':'Cert. lot',
   'tag.n2':'Rincé N₂',
-  'tag.15l':'Bidon 15 L',
+  'tag.15l':'5L · 15L',
   'tag.tap':'Robinet de soutirage',
   'tag.bulk':'Tarif vrac',
   'tag.wl':'White Label',
@@ -3061,7 +3085,7 @@ fr:{
 'a2.cat':'Qualité &amp; Spécification · Novembre 2025',
 'a2.meta':'Olivekala Journal &nbsp;·&nbsp; 6 min de lecture &nbsp;·&nbsp; Ayvalık, Turquie',
 'a2.next.btn':'Ayvalık — l\'argument de la latitude →',
-'a2.body':'<p>Le chiffre 0,2 % apparaît sur la boîte KALA, sur chaque certificat de lot et dans chaque conversation que nous avons avec les acheteurs. Il nécessite une explication — non pas parce qu\'il est compliqué, mais parce que la plupart des gens n\'ont pas de point de référence pour ce qu\'il signifie en pratique.</p> <p>Le Conseil oléicole international fixe 0,8 % comme acidité libre maximale autorisée pour la classification extra vierge. C\'est un plafond généreux. Un examinateur de rayons constaterait que la plupart des huiles commercialisées comme extra vierge premium se situent entre 0,5 % et 0,7 % — conformes, mais loin du haut de la plage réalisable. À 0,2 %, nous nous situons à environ un quart de ce plafond.</p> <h3>Ce qu\'est exactement l\'acidité libre</h3> <p>L\'acidité libre n\'est pas directement un composé de saveur — c\'est un marqueur de dégradation. L\'acide oléique, le principal acide gras de l\'huile d\'olive, reste lié sous forme de triglycéride dans une olive intacte fraîchement pressée. À partir du moment où la dégradation commence — par l\'activité enzymatique dans les fruits meurtris, l\'oxydation lors du stockage ou une chaleur excessive lors de l\'extraction — les acides gras se séparent de leur squelette glycérol et deviennent « libres ». Le pourcentage de ces acides gras non liés est le chiffre d\'acidité libre.</p> <p>Une huile à 0,7 % a subi une dégradation nettement plus importante qu\'une huile à 0,2 %. Le palais le perçoit indirectement : comme une qualité plate et légèrement grasse en milieu de bouche, une finale courte, une absence d\'amertume structurelle qui caractérise une huile vraiment fraîche.</p> <div class="data-row"><div class="data-cell"><div class="data-n">0,8%</div><div class="data-l">Maximum COI</div></div><div class="data-cell"><div class="data-n">0,5–0,7%</div><div class="data-l">Commercial typique</div></div><div class="data-cell"><div class="data-n">0,2%</div><div class="data-l">Standard KALA</div></div></div> <h3>Au pass : ce qui change réellement</h3> <p>Un chef travaillant avec une huile à 0,2 % travaille avec un produit structurellement intact. Les polyphénols qui pilotent la complexité aromatique sont présents et actifs. L\'huile tolère mieux la chaleur modérée qu\'une alternative à plus haute acidité — la charge antioxydante qui accompagne la faible acidité fournit une protection structurelle réelle à la température. La finale est plus longue, avec une note de poivre mesurable en fond de gorge que les palais entraînés associent à la fraîcheur et à la densité en polyphénols.</p> <blockquote>« La différence entre 0,4 % et 0,2 % n\'est pas un chiffre sur un certificat. C\'est une décision de qualité prise à chaque point entre le verger et la boîte. »</blockquote> <p>Chaque lot KALA est testé et certifié de manière indépendante. Le certificat accompagne chaque commande commerciale. Le chiffre ne change pas entre les saisons parce que les décisions qui le produisent — récolte précoce, pressage le jour même, extraction à froid — ne changent pas non plus. La spécification n\'est pas une aspiration. C\'est le résultat d\'un processus contrôlé, répété selon le même standard chaque octobre.</p>',
+'a2.body':'<p>Le chiffre 0,3 % apparaît sur la boîte KALA, sur chaque certificat de lot et dans chaque conversation que nous avons avec les acheteurs. Il nécessite une explication — non pas parce qu\'il est compliqué, mais parce que la plupart des gens n\'ont pas de point de référence pour ce qu\'il signifie en pratique.</p> <p>Le Conseil oléicole international fixe 0,8 % comme acidité libre maximale autorisée pour la classification extra vierge. C\'est un plafond généreux. Un examinateur de rayons constaterait que la plupart des huiles commercialisées comme extra vierge premium se situent entre 0,5 % et 0,7 % — conformes, mais loin du haut de la plage réalisable. À 0,3 %, nous nous situons à environ un quart de ce plafond.</p> <h3>Ce qu\'est exactement l\'acidité libre</h3> <p>L\'acidité libre n\'est pas directement un composé de saveur — c\'est un marqueur de dégradation. L\'acide oléique, le principal acide gras de l\'huile d\'olive, reste lié sous forme de triglycéride dans une olive intacte fraîchement pressée. À partir du moment où la dégradation commence — par l\'activité enzymatique dans les fruits meurtris, l\'oxydation lors du stockage ou une chaleur excessive lors de l\'extraction — les acides gras se séparent de leur squelette glycérol et deviennent « libres ». Le pourcentage de ces acides gras non liés est le chiffre d\'acidité libre.</p> <p>Une huile à 0,7 % a subi une dégradation nettement plus importante qu\'une huile à 0,3 %. Le palais le perçoit indirectement : comme une qualité plate et légèrement grasse en milieu de bouche, une finale courte, une absence d\'amertume structurelle qui caractérise une huile vraiment fraîche.</p> <div class="data-row"><div class="data-cell"><div class="data-n">0,8%</div><div class="data-l">Maximum COI</div></div><div class="data-cell"><div class="data-n">0,5–0,7%</div><div class="data-l">Commercial typique</div></div><div class="data-cell"><div class="data-n">0,2%</div><div class="data-l">Standard KALA</div></div></div> <h3>Au pass : ce qui change réellement</h3> <p>Un chef travaillant avec une huile à 0,3 % travaille avec un produit structurellement intact. Les polyphénols qui pilotent la complexité aromatique sont présents et actifs. L\'huile tolère mieux la chaleur modérée qu\'une alternative à plus haute acidité — la charge antioxydante qui accompagne la faible acidité fournit une protection structurelle réelle à la température. La finale est plus longue, avec une note de poivre mesurable en fond de gorge que les palais entraînés associent à la fraîcheur et à la densité en polyphénols.</p> <blockquote>« La différence entre 0,4 % et 0,3 % n\'est pas un chiffre sur un certificat. C\'est une décision de qualité prise à chaque point entre le verger et la boîte. »</blockquote> <p>Chaque lot KALA est testé et certifié de manière indépendante. Le certificat accompagne chaque commande commerciale. Le chiffre ne change pas entre les saisons parce que les décisions qui le produisent — récolte précoce, pressage le jour même, extraction à froid — ne changent pas non plus. La spécification n\'est pas une aspiration. C\'est le résultat d\'un processus contrôlé, répété selon le même standard chaque octobre.</p>',
 'a3.cat':'Géographie · Décembre 2025',
 'a3.meta':'Olivekala Journal &nbsp;·&nbsp; 5 min de lecture &nbsp;·&nbsp; Ayvalık, Turquie',
 'a3.next.btn':'Cuisiner avec une huile riche en polyphénols →',
@@ -3069,7 +3093,7 @@ fr:{
 'a4.cat':'Application en cuisine · Janvier 2026',
 'a4.meta':'Olivekala Journal &nbsp;·&nbsp; 7 min de lecture &nbsp;·&nbsp; Ayvalık, Turquie',
 'a4.next.btn':'La fenêtre d\'oxydation de quatre heures →',
-'a4.body':'<p>Le conseil standard est de garder l\'huile d\'olive vierge extra premium à l\'écart de la chaleur. L\'utiliser pour finir, pour les vinaigrettes, pour la table — mais pas pour cuisiner. Ce conseil a été écrit pour l\'huile commerciale standard et a été appliqué en bloc à toutes les vierges extra, quelle que soit leur spécification. Pour les huiles riches en polyphénols, il est partiellement faux.</p> <p>Le point de fumée de l\'huile d\'olive vierge extra est généralement cité à 190–210°C. C\'est exact pour la plupart des EVOO commerciales, où l\'acidité libre est de 0,5–0,8 % et le nombre de polyphénols est faible. À 0,2 % d\'acidité libre et 300+ mg/kg de polyphénols, la chimie structurelle est différente.</p> <h3>Pourquoi les polyphénols sont importants à la température</h3> <p>Les polyphénols dans l\'EVOO fonctionnent comme des antioxydants naturels. Leur rôle dans la bouteille est de ralentir la dégradation oxydative pendant le stockage. Leur rôle dans la poêle est analogue : ils captent les radicaux libres produits lors du chauffage, protégeant la structure des acides gras de l\'huile de l\'oxydation. Une huile avec une charge élevée en polyphénols — notamment l\'oléocanthal et l\'hydroxytyrosol — se dégrade plus lentement sous la chaleur qu\'une huile structurellement équivalente avec une teneur en polyphénols plus faible.</p> <p>Cela ne signifie pas que l\'huile KALA doit être utilisée pour la friture profonde à 180°C comme milieu de cuisson principal. Cela signifie que les applications à chaleur modérée — faire revenir des aromates, créer une base de sauce, finir une protéine à la poêle — ne détruisent pas le caractère de l\'huile comme c\'est le cas avec un produit fragile de spécification inférieure.</p> <div class="data-row"><div class="data-cell"><div class="data-n">190°C</div><div class="data-l">Point de fumée approx.</div></div><div class="data-cell"><div class="data-n">300+</div><div class="data-l">mg/kg Polyphénols</div></div><div class="data-cell"><div class="data-n">Stable</div><div class="data-l">jusqu\'à 160°C continu</div></div></div> <h3>Applications pratiques en cuisine</h3> <p>Là où nous avons vu les chefs utiliser KALA le plus efficacement sous la chaleur : la construction de bases soffritto où le caractère olive doit persister dans le plat final ; la finition du poisson à la poêle, où un contact de 30 secondes à haute chaleur nécessite une huile qui ne brûle pas avant que la protéine soit cuite ; dans l\'eau de cuisson des pâtes — une petite addition qui assaisonne sans la qualité savonneuse d\'une huile de qualité inférieure à la température.</p> <blockquote>« L\'argument du finissage a été surestimé. Une huile structurellement solide se comporte différemment dans une poêle chaude qu\'une huile fragile. Testez avant de supposer. »</blockquote> <p>Nous ne prétendons pas que KALA fonctionne comme une huile de cuisson neutre. Nous prétendons que sa spécification la rend plus polyvalente que le conseil standard ne le suggère — et qu\'une cuisine qui ne l\'utilise que comme huile de finissage laisse la moitié de son potentiel sur l\'étagère.</p>',
+'a4.body':'<p>Le conseil standard est de garder l\'huile d\'olive vierge extra premium à l\'écart de la chaleur. L\'utiliser pour finir, pour les vinaigrettes, pour la table — mais pas pour cuisiner. Ce conseil a été écrit pour l\'huile commerciale standard et a été appliqué en bloc à toutes les vierges extra, quelle que soit leur spécification. Pour les huiles riches en polyphénols, il est partiellement faux.</p> <p>Le point de fumée de l\'huile d\'olive vierge extra est généralement cité à 190–210°C. C\'est exact pour la plupart des EVOO commerciales, où l\'acidité libre est de 0,5–0,8 % et le nombre de polyphénols est faible. À 0,3 % d\'acidité libre et 300+ mg/kg de polyphénols, la chimie structurelle est différente.</p> <h3>Pourquoi les polyphénols sont importants à la température</h3> <p>Les polyphénols dans l\'EVOO fonctionnent comme des antioxydants naturels. Leur rôle dans la bouteille est de ralentir la dégradation oxydative pendant le stockage. Leur rôle dans la poêle est analogue : ils captent les radicaux libres produits lors du chauffage, protégeant la structure des acides gras de l\'huile de l\'oxydation. Une huile avec une charge élevée en polyphénols — notamment l\'oléocanthal et l\'hydroxytyrosol — se dégrade plus lentement sous la chaleur qu\'une huile structurellement équivalente avec une teneur en polyphénols plus faible.</p> <p>Cela ne signifie pas que l\'huile KALA doit être utilisée pour la friture profonde à 180°C comme milieu de cuisson principal. Cela signifie que les applications à chaleur modérée — faire revenir des aromates, créer une base de sauce, finir une protéine à la poêle — ne détruisent pas le caractère de l\'huile comme c\'est le cas avec un produit fragile de spécification inférieure.</p> <div class="data-row"><div class="data-cell"><div class="data-n">190°C</div><div class="data-l">Point de fumée approx.</div></div><div class="data-cell"><div class="data-n">300+</div><div class="data-l">mg/kg Polyphénols</div></div><div class="data-cell"><div class="data-n">Stable</div><div class="data-l">jusqu\'à 160°C continu</div></div></div> <h3>Applications pratiques en cuisine</h3> <p>Là où nous avons vu les chefs utiliser KALA le plus efficacement sous la chaleur : la construction de bases soffritto où le caractère olive doit persister dans le plat final ; la finition du poisson à la poêle, où un contact de 30 secondes à haute chaleur nécessite une huile qui ne brûle pas avant que la protéine soit cuite ; dans l\'eau de cuisson des pâtes — une petite addition qui assaisonne sans la qualité savonneuse d\'une huile de qualité inférieure à la température.</p> <blockquote>« L\'argument du finissage a été surestimé. Une huile structurellement solide se comporte différemment dans une poêle chaude qu\'une huile fragile. Testez avant de supposer. »</blockquote> <p>Nous ne prétendons pas que KALA fonctionne comme une huile de cuisson neutre. Nous prétendons que sa spécification la rend plus polyvalente que le conseil standard ne le suggère — et qu\'une cuisine qui ne l\'utilise que comme huile de finissage laisse la moitié de son potentiel sur l\'étagère.</p>',
 'a5.cat':'Chaîne d\'approvisionnement · Février 2026',
 'a5.meta':'Olivekala Journal &nbsp;·&nbsp; 6 min de lecture &nbsp;·&nbsp; Ayvalık, Turquie',
 'a5.next.btn':'L\'huile de restauration peut-elle être qualitative? →',
@@ -3082,7 +3106,7 @@ es:{
   'nav.products':'Productos','nav.origin':'Origen','nav.process':'Proceso',
   'nav.catering':'Restauración','nav.trade':'Comercio','nav.journal':'Diario',
   'nav.cta':'Solicitar muestra',
-  'nav.drop.prem':'Prensado en frío Premium','nav.drop.std':'Estándar Profesional','nav.drop.cat':'Suministro para restauración',
+  'nav.drop.prem':'KALA Premium · Vidrio &amp; Lata','nav.drop.std':'Estándar Profesional','nav.drop.cat':'Suministro para restauración',
   'hero.eyebrow':'Prensado en frío · Ayvalık, Turquía',
   'hero.sub':'Aceite de oliva virgen extra para cocinas profesionales.',
   'hero.body':'Poliphenol alto. Acidez libre 0,2%. Prensado el mismo día de la cosecha. Entrega directa a cocinas con estrella Michelin, hoteles boutique y operadores de restauración.',
@@ -3135,7 +3159,7 @@ es:{
   'origin.p2':'Cosechamos con un 10–20% de madurez — antes de que la aceituna haya completado su ciclo de azúcar — para fijar la acidez libre por debajo del 0,2% y capturar un amargor y un final de pimienta que los paladares profesionales reconocen inmediatamente. El aceite se prensa en frío, dentro de las cuatro horas siguientes a la salida del olivar. Sin almacenamiento nocturno. Sin fermentación. Sin atajos.',
   'origin.p3':'El resultado no es un aceite de bienestar. No es un producto de estilo de vida. Es el ingrediente al que un chef recurre cuando el plato depende de él.',
   'ps1.detail':'Recogido al 10–20% de madurez. Fruto verde, polifenoles altos, baja acidez libre. Recogido a mano donde el terreno lo exige. Sin daño mecánico en la superficie del fruto.',
-  'ps2.detail':'El fruto va del olivar a la prensa en cuatro horas. Sin almacenamiento nocturno, sin fermentación. Extracción en frío a 18°C — temperatura nunca superada. Decantador continuo de dos fases.',
+  'ps2.detail':'El fruto va del olivar a la prensa en cuatro horas. Sin almacenamiento nocturno, sin fermentación. Extracción en frío a 24°C — temperatura nunca superada. Decantador continuo de dos fases.',
   'ps3.detail':'Cada lote se analiza para la acidez libre, valor de peróxido, absorción UV y concentración de polifenoles. Metodología estándar COI. Certificados disponibles bajo petición — sin excepciones.',
   'ps4.detail':'Envasado en latas y bidones lavados con nitrógeno. Numerado por lote. Logística con control de temperatura hasta la puerta de la cocina profesional. Vida útil: 18 meses desde la fecha de prensado.',
   'cat.title':'Fabricado para<br><em>el volumen.</em><br><strong>Certificado para</strong><br><strong>la excelencia.</strong>',
@@ -3150,7 +3174,7 @@ es:{
   'cat.li4':'Servicio de alimentación institucional y hospitalario',
   'cat.li5':'Cafetería corporativa y comedor de personal',
   'cat.li6':'Distribuidores y socios de importación (EMEA)',
-  'cat.note':'Los contratos de suministro anual incluyen precios fijos de cosecha, asignación preferente de la prensa de octubre, documentación dedicada de certificación por lote y la opción de white-label bajo su propia marca. Un kit de muestras (3 × 500 ml, certificado) se envía en 5 días hábiles.',
+  'cat.note':'Los contratos de suministro anual incluyen precios fijos de cosecha, asignación preferente de la prensa de octubre, documentación dedicada de certificación por lote y la opción de white-label bajo su propia marca. Un kit de muestras (175 ml (lata degustación, certif.) se envía en 5 días hábiles.',
   'trade.body':'Suministro directo. Sin intermediarios, sin márgenes de estante sobre la integridad. Trabajamos con restaurantes, hoteles, empresas de catering y distribuidores en base directa desde el olivar. Trazabilidad completa. Precios competitivos para compromisos de volumen.',
   'tl1':'Latas de 5L — formato HoReCa estándar',
   'tl2':'Bidones de catering de 15L — grifo dispensador',
@@ -3203,7 +3227,7 @@ es:{
   'tag.horeca':'Formato HoReCa',
   'tag.bcert':'Cert. lote',
   'tag.n2':'Lavado N₂',
-  'tag.15l':'Bidón 15 L',
+  'tag.15l':'5 L · 15 L',
   'tag.tap':'Grifo dispensador',
   'tag.bulk':'Precio granel',
   'tag.wl':'Marca blanca',
@@ -3268,7 +3292,7 @@ es:{
 'a2.cat':'Calidad &amp; Especificación · Noviembre 2025',
 'a2.meta':'Olivekala Journal &nbsp;·&nbsp; 6 min de lectura &nbsp;·&nbsp; Ayvalık, Turquía',
 'a2.next.btn':'Ayvalık — el argumento de la latitud →',
-'a2.body':'<p>El número 0,2 % aparece en la lata de KALA, en cada certificado de lote y en cada conversación que mantenemos con los compradores. Requiere explicación — no porque sea complicado, sino porque la mayoría de las personas no tienen un punto de referencia para lo que significa en la práctica.</p> <p>El Consejo Oleícola Internacional establece el 0,8 % como la máxima acidez libre permitida para la clasificación virgen extra. Es un techo generoso. Un examinador de estantes encontraría que la mayoría de los aceites comercializados como virgen extra premium se sitúan entre el 0,5 % y el 0,7 % — conformes, pero lejos del extremo superior del rango alcanzable. Al 0,2 %, estamos en aproximadamente un cuarto de ese techo.</p> <h3>Qué es exactamente la acidez libre</h3> <p>La acidez libre no es directamente un compuesto de sabor — es un marcador de degradación. El ácido oleico, el principal ácido graso del aceite de oliva, permanece unido en forma de triglicérido en una aceituna intacta recién prensada. En el momento en que comienza la degradación — por la actividad enzimática en frutos magullados, oxidación durante el almacenamiento o calor excesivo durante la extracción — los ácidos grasos se separan de su esqueleto de glicerol y se vuelven «libres». El porcentaje de estos ácidos grasos no unidos es la cifra de acidez libre.</p> <p>Un aceite al 0,7 % ha sufrido una degradación significativamente mayor que un aceite al 0,2 %. El paladar lo detecta indirectamente: como una calidad plana y ligeramente grasa en el mediado del paladar, un final corto, una ausencia de la amargura estructural que marca el aceite genuinamente fresco.</p> <div class="data-row"><div class="data-cell"><div class="data-n">0,8%</div><div class="data-l">Máximo COI EVOO</div></div><div class="data-cell"><div class="data-n">0,5–0,7%</div><div class="data-l">Comercial típico</div></div><div class="data-cell"><div class="data-n">0,2%</div><div class="data-l">Estándar KALA</div></div></div> <h3>En el pase: qué cambia realmente</h3> <p>Un chef que trabaja con un aceite al 0,2 % trabaja con un producto estructuralmente intacto. Los polifenoles que impulsan la complejidad del sabor están presentes y activos. El aceite tolera mejor el calor moderado que una alternativa de mayor acidez — la carga antioxidante que acompaña a la baja acidez proporciona protección estructural real a la temperatura. El final es más largo, con una nota de pimienta medible en la parte posterior de la garganta que los paladares entrenados asocian con la frescura y la densidad de polifenoles.</p> <blockquote>«La diferencia entre el 0,4 % y el 0,2 % no es un número en un certificado. Es una decisión de calidad tomada en cada punto entre el olivar y la lata.»</blockquote> <p>Cada lote de KALA se prueba y certifica de forma independiente. El certificado acompaña a cada pedido comercial. El número no cambia entre temporadas porque las decisiones que lo producen — cosecha temprana, prensado el mismo día, extracción en frío — tampoco cambian. La especificación no es una aspiración. Es el resultado de un proceso controlado, repetido con el mismo estándar cada octubre.</p>',
+'a2.body':'<p>El número 0,3 % aparece en la lata de KALA, en cada certificado de lote y en cada conversación que mantenemos con los compradores. Requiere explicación — no porque sea complicado, sino porque la mayoría de las personas no tienen un punto de referencia para lo que significa en la práctica.</p> <p>El Consejo Oleícola Internacional establece el 0,8 % como la máxima acidez libre permitida para la clasificación virgen extra. Es un techo generoso. Un examinador de estantes encontraría que la mayoría de los aceites comercializados como virgen extra premium se sitúan entre el 0,5 % y el 0,7 % — conformes, pero lejos del extremo superior del rango alcanzable. Al 0,3 %, estamos en aproximadamente un cuarto de ese techo.</p> <h3>Qué es exactamente la acidez libre</h3> <p>La acidez libre no es directamente un compuesto de sabor — es un marcador de degradación. El ácido oleico, el principal ácido graso del aceite de oliva, permanece unido en forma de triglicérido en una aceituna intacta recién prensada. En el momento en que comienza la degradación — por la actividad enzimática en frutos magullados, oxidación durante el almacenamiento o calor excesivo durante la extracción — los ácidos grasos se separan de su esqueleto de glicerol y se vuelven «libres». El porcentaje de estos ácidos grasos no unidos es la cifra de acidez libre.</p> <p>Un aceite al 0,7 % ha sufrido una degradación significativamente mayor que un aceite al 0,3 %. El paladar lo detecta indirectamente: como una calidad plana y ligeramente grasa en el mediado del paladar, un final corto, una ausencia de la amargura estructural que marca el aceite genuinamente fresco.</p> <div class="data-row"><div class="data-cell"><div class="data-n">0,8%</div><div class="data-l">Máximo COI EVOO</div></div><div class="data-cell"><div class="data-n">0,5–0,7%</div><div class="data-l">Comercial típico</div></div><div class="data-cell"><div class="data-n">0,2%</div><div class="data-l">Estándar KALA</div></div></div> <h3>En el pase: qué cambia realmente</h3> <p>Un chef que trabaja con un aceite al 0,3 % trabaja con un producto estructuralmente intacto. Los polifenoles que impulsan la complejidad del sabor están presentes y activos. El aceite tolera mejor el calor moderado que una alternativa de mayor acidez — la carga antioxidante que acompaña a la baja acidez proporciona protección estructural real a la temperatura. El final es más largo, con una nota de pimienta medible en la parte posterior de la garganta que los paladares entrenados asocian con la frescura y la densidad de polifenoles.</p> <blockquote>«La diferencia entre el 0,4 % y el 0,3 % no es un número en un certificado. Es una decisión de calidad tomada en cada punto entre el olivar y la lata.»</blockquote> <p>Cada lote de KALA se prueba y certifica de forma independiente. El certificado acompaña a cada pedido comercial. El número no cambia entre temporadas porque las decisiones que lo producen — cosecha temprana, prensado el mismo día, extracción en frío — tampoco cambian. La especificación no es una aspiración. Es el resultado de un proceso controlado, repetido con el mismo estándar cada octubre.</p>',
 'a3.cat':'Geografía · Diciembre 2025',
 'a3.meta':'Olivekala Journal &nbsp;·&nbsp; 5 min de lectura &nbsp;·&nbsp; Ayvalık, Turquía',
 'a3.next.btn':'Cocinar con aceite rico en polifenoles →',
@@ -3276,20 +3300,20 @@ es:{
 'a4.cat':'Aplicación en cocina · Enero 2026',
 'a4.meta':'Olivekala Journal &nbsp;·&nbsp; 7 min de lectura &nbsp;·&nbsp; Ayvalık, Turquía',
 'a4.next.btn':'La ventana de oxidación de cuatro horas →',
-'a4.body':'<p>El consejo estándar es mantener el aceite de oliva virgen extra premium alejado del calor. Usarlo para acabados, aderezos, para la mesa — pero no para cocinar. Este consejo fue escrito para el aceite comercial estándar y se ha aplicado en bloque a todos los vírgenes extra, independientemente de su especificación. Para el aceite rico en polifenoles, es parcialmente incorrecto.</p> <p>El punto de humo del aceite de oliva virgen extra se cita típicamente en 190–210°C. Esto es preciso para la mayoría de los EVOO comerciales, donde la acidez libre es del 0,5–0,8 % y el recuento de polifenoles es bajo. Con un 0,2 % de acidez libre y 300+ mg/kg de polifenoles, la química estructural es diferente.</p> <h3>Por qué los polifenoles importan a temperatura</h3> <p>Los polifenoles en el EVOO funcionan como antioxidantes naturales. Su papel en la botella es ralentizar la degradación oxidativa durante el almacenamiento. Su papel en la sartén es análogo: eliminan los radicales libres producidos durante el calentamiento, protegiendo la estructura de ácidos grasos del aceite de la oxidación. Un aceite con una alta carga de polifenoles — especialmente oleocantal e hidroxitirosol — se degrada más lentamente bajo el calor que un aceite estructuralmente equivalente con menor contenido de polifenoles.</p> <p>Esto no significa que el aceite KALA deba usarse para freír a 180°C como medio de cocción principal. Significa que las aplicaciones de calor moderado — saltear aromáticos, construir una base de salsa, acabar una proteína en la sartén — no destruyen el carácter del aceite como lo harían con un producto frágil de menor especificación.</p> <div class="data-row"><div class="data-cell"><div class="data-n">190°C</div><div class="data-l">Punto de humo aprox.</div></div><div class="data-cell"><div class="data-n">300+</div><div class="data-l">mg/kg Polifenoles</div></div><div class="data-cell"><div class="data-n">Estable</div><div class="data-l">hasta 160°C continuo</div></div></div> <h3>Aplicaciones prácticas en cocina</h3> <p>Donde hemos visto a los chefs usar KALA más efectivamente bajo calor: construyendo bases de sofrito donde el carácter del olivo debe persistir en el plato terminado; acabando pescado en la sartén, donde un contacto de 30 segundos a alta temperatura necesita un aceite que no se queme antes de que la proteína esté lista; en el agua de cocción de la pasta — una pequeña adición que sazona sin la calidad jabonosa del aceite de calidad inferior a temperatura.</p> <blockquote>«El argumento del acabado ha sido exagerado. Un aceite estructuralmente sólido se comporta de manera diferente en una sartén caliente que uno frágil. Pruébalo antes de asumir.»</blockquote> <p>No afirmamos que KALA funcione como un aceite de cocina neutro. Afirmamos que su especificación lo hace más versátil de lo que el consejo estándar sugiere — y que una cocina que lo usa solo como aceite de acabado está dejando la mitad de su potencial en el estante.</p>',
+'a4.body':'<p>El consejo estándar es mantener el aceite de oliva virgen extra premium alejado del calor. Usarlo para acabados, aderezos, para la mesa — pero no para cocinar. Este consejo fue escrito para el aceite comercial estándar y se ha aplicado en bloque a todos los vírgenes extra, independientemente de su especificación. Para el aceite rico en polifenoles, es parcialmente incorrecto.</p> <p>El punto de humo del aceite de oliva virgen extra se cita típicamente en 190–210°C. Esto es preciso para la mayoría de los EVOO comerciales, donde la acidez libre es del 0,5–0,8 % y el recuento de polifenoles es bajo. Con un 0,3 % de acidez libre y 300+ mg/kg de polifenoles, la química estructural es diferente.</p> <h3>Por qué los polifenoles importan a temperatura</h3> <p>Los polifenoles en el EVOO funcionan como antioxidantes naturales. Su papel en la botella es ralentizar la degradación oxidativa durante el almacenamiento. Su papel en la sartén es análogo: eliminan los radicales libres producidos durante el calentamiento, protegiendo la estructura de ácidos grasos del aceite de la oxidación. Un aceite con una alta carga de polifenoles — especialmente oleocantal e hidroxitirosol — se degrada más lentamente bajo el calor que un aceite estructuralmente equivalente con menor contenido de polifenoles.</p> <p>Esto no significa que el aceite KALA deba usarse para freír a 180°C como medio de cocción principal. Significa que las aplicaciones de calor moderado — saltear aromáticos, construir una base de salsa, acabar una proteína en la sartén — no destruyen el carácter del aceite como lo harían con un producto frágil de menor especificación.</p> <div class="data-row"><div class="data-cell"><div class="data-n">190°C</div><div class="data-l">Punto de humo aprox.</div></div><div class="data-cell"><div class="data-n">300+</div><div class="data-l">mg/kg Polifenoles</div></div><div class="data-cell"><div class="data-n">Estable</div><div class="data-l">hasta 160°C continuo</div></div></div> <h3>Aplicaciones prácticas en cocina</h3> <p>Donde hemos visto a los chefs usar KALA más efectivamente bajo calor: construyendo bases de sofrito donde el carácter del olivo debe persistir en el plato terminado; acabando pescado en la sartén, donde un contacto de 30 segundos a alta temperatura necesita un aceite que no se queme antes de que la proteína esté lista; en el agua de cocción de la pasta — una pequeña adición que sazona sin la calidad jabonosa del aceite de calidad inferior a temperatura.</p> <blockquote>«El argumento del acabado ha sido exagerado. Un aceite estructuralmente sólido se comporta de manera diferente en una sartén caliente que uno frágil. Pruébalo antes de asumir.»</blockquote> <p>No afirmamos que KALA funcione como un aceite de cocina neutro. Afirmamos que su especificación lo hace más versátil de lo que el consejo estándar sugiere — y que una cocina que lo usa solo como aceite de acabado está dejando la mitad de su potencial en el estante.</p>',
 'a5.cat':'Cadena de suministro · Febrero 2026',
 'a5.meta':'Olivekala Journal &nbsp;·&nbsp; 6 min de lectura &nbsp;·&nbsp; Ayvalık, Turquía',
 'a5.next.btn':'¿Puede un aceite de restauración ser de calidad? →',
 'a5.body':'<p>En el momento en que una aceituna se separa de su rama, comienza la degradación. Esto no es metáfora ni lenguaje de marketing — es la bioquímica de un fruto que ha evolucionado para comenzar a fermentar y descomponerse en cuanto se separa de su árbol madre. Las paredes celulares se rompen bajo la presión del manejo. La polifenol oxidasa, una enzima presente en la pulpa, comienza a convertir los polifenoles en melanina — el mismo proceso de oscurecimiento visible cuando se corta una manzana. Las enzimas lipasas comienzan a escindir los ácidos grasos de sus enlaces triglicéridos, aumentando progresivamente la acidez libre.</p> <p>Todo esto sucede tanto si se puede ver como si no. Las aceitunas en el recipiente de la cosecha parecen bien. El proceso está en marcha.</p> <h3>Qué ocurre cada hora</h3> <p>Cuantificar la tasa de degradación no es sencillo — la temperatura, el método de manejo de la cosecha y la humedad ambiental afectan todos a la velocidad. Como aproximación general basada en investigaciones publicadas del COI y nuestras propias pruebas de lotes durante la cosecha de 2025: la acidez libre aumenta aproximadamente 0,03–0,06 puntos porcentuales por hora en condiciones ambientales egeas de octubre (aproximadamente 18–22°C). La concentración de polifenoles cae más rápido — una reducción estimada del 8–12 % por cada ventana de cuatro horas más allá de la primera oportunidad de prensado.</p> <div class="data-row"><div class="data-cell"><div class="data-n">&lt;4h</div><div class="data-l">Objetivo olivar a prensa</div></div><div class="data-cell"><div class="data-n">+0,05%</div><div class="data-l">Subida acidez / h (est.)</div></div><div class="data-cell"><div class="data-n">−10%</div><div class="data-l">Pérdida polifenoles / 4h</div></div></div> <h3>Almacenamiento nocturno — la norma de la industria</h3> <p>La práctica estándar de la industria es el almacenamiento nocturno de fruta — la fruta cosechada durante el día se prensa a la mañana siguiente. Esto es lógísticamente sensato y económicamente eficiente. También significa que la fruta ha estado degradándose durante ocho a dieciséis horas antes de llegar a la prensa. Para un productor que optimiza el cumplimiento del COI en lugar de la especificación, esto es completamente aceptable.</p> <blockquote>«Cada hora entre el olivar y la prensa es una decisión — de priorizar la logística sobre la especificación. Tomamos esa decisión una vez, en una dirección, y no la hemos revisado.»</blockquote> <p>La regla de las cuatro horas requiere hacer funcionar la prensa en turnos durante la cosecha, absorber el mayor coste operativo de la extracción continua y aceptar las restricciones logísticas de un compromiso el mismo día. La alternativa es una cosecha mejor organizada que produce aceite de calidad inferior. Elegimos el calendario más difícil.</p>',
 'a6.cat':'Restauración &amp; Volumen · Marzo 2026',
 'a6.meta':'Olivekala Journal &nbsp;·&nbsp; 6 min de lectura &nbsp;·&nbsp; Ayvalık, Turquía',
-'a6.body':'<p>La suposición es estructural: el formato de restauración implica precios al por mayor, los precios al por mayor implican especificaciones reducidas. Esa es la lógica que ha producido toda una categoría de aceites de restauración — técnicamente virgen extra, comercialmente funcionales, profesionalmente indistinguibles del aceite vegetal neutro a temperatura. La categoría existe porque alguien, en algún lugar de cada cadena de suministro, aceptó el compromiso.</p> <p>No lo aceptamos como estructuralmente necesario. Nuestro argumento es que el compromiso es una elección, no una inevitabilidad — y que esa elección casi siempre se ha tomado del lado equivocado de la línea de calidad porque los responsables de la toma de decisiones en las compras institucionales no son las personas que comen la comida.</p> <h3>El argumento de la especificación</h3> <p>El tambor de restauración de 15L de KALA se llena del mismo prensado de octubre que la edición Harvest numerada de 500 ml. La misma fruta Memecik, la misma extracción en frío, el mismo lote probado según los mismos parámetros del COI. Acidez libre: 0,2 %. Polifenoles: por encima de 300 mg/kg. Índice de peróxido: por debajo de 12 meq O₂/kg. El certificado que acompaña al tambor de 15L y el certificado que acompaña a la botella de 500 ml proceden de los mismos datos de lote.</p> <p>El formato cambia. El aceite no.</p> <div class="data-row"><div class="data-cell"><div class="data-n">0,2%</div><div class="data-l">Acidez libre · Todos los formatos</div></div><div class="data-cell"><div class="data-n">15L</div><div class="data-l">Tambor restauración</div></div><div class="data-cell"><div class="data-n">Mismo</div><div class="data-l">Certificado por lote</div></div></div> <h3>Por qué esto importa para grandes operaciones</h3> <p>Un grupo hotelero que gestiona cinco propiedades a través de una función de compras centralizada toma una decisión de aceite que afecta a cada plato servido en esas propiedades durante el año. Si esa decisión se revierte por defecto a la especificación estándar de la categoría de restauración — acidez libre al 0,6 %, polifenoles a 80 mg/kg — la diferencia entre lo que la cocina podría producir y lo que produce es significativa, medible e invisible para la función de compras que tomó la decisión.</p> <blockquote>«El chef en el pase no está involucrado en la decisión de compra. La persona que tomó esa decisión no está en el pase. Esta brecha de información es donde la calidad va a morir.»</blockquote> <p>Suministramos operaciones de restauración directamente, con documentación completa de lotes, sobre la base de que el responsable de la toma de decisiones debería ver los mismos números que le importarían a un chef si fuera consultado. En nuestra experiencia, cuando un director de compras ve la comparación real de especificaciones en lugar de una simple tabla de precio por litro, la conversación cambia. El aceite en el tambor de 15L es el argumento. El precio es la nota al pie.</p>',
+'a6.body':'<p>La suposición es estructural: el formato de restauración implica precios al por mayor, los precios al por mayor implican especificaciones reducidas. Esa es la lógica que ha producido toda una categoría de aceites de restauración — técnicamente virgen extra, comercialmente funcionales, profesionalmente indistinguibles del aceite vegetal neutro a temperatura. La categoría existe porque alguien, en algún lugar de cada cadena de suministro, aceptó el compromiso.</p> <p>No lo aceptamos como estructuralmente necesario. Nuestro argumento es que el compromiso es una elección, no una inevitabilidad — y que esa elección casi siempre se ha tomado del lado equivocado de la línea de calidad porque los responsables de la toma de decisiones en las compras institucionales no son las personas que comen la comida.</p> <h3>El argumento de la especificación</h3> <p>El tambor de restauración de 15L de KALA se llena del mismo prensado de octubre que la edición Harvest numerada de 500 ml. La misma fruta Memecik, la misma extracción en frío, el mismo lote probado según los mismos parámetros del COI. Acidez libre: 0,3 %. Polifenoles: por encima de 300 mg/kg. Índice de peróxido: por debajo de 12 meq O₂/kg. El certificado que acompaña al tambor de 15L y el certificado que acompaña a la botella de 500 ml proceden de los mismos datos de lote.</p> <p>El formato cambia. El aceite no.</p> <div class="data-row"><div class="data-cell"><div class="data-n">0,2%</div><div class="data-l">Acidez libre · Todos los formatos</div></div><div class="data-cell"><div class="data-n">15L</div><div class="data-l">Tambor restauración</div></div><div class="data-cell"><div class="data-n">Mismo</div><div class="data-l">Certificado por lote</div></div></div> <h3>Por qué esto importa para grandes operaciones</h3> <p>Un grupo hotelero que gestiona cinco propiedades a través de una función de compras centralizada toma una decisión de aceite que afecta a cada plato servido en esas propiedades durante el año. Si esa decisión se revierte por defecto a la especificación estándar de la categoría de restauración — acidez libre al 0,6 %, polifenoles a 80 mg/kg — la diferencia entre lo que la cocina podría producir y lo que produce es significativa, medible e invisible para la función de compras que tomó la decisión.</p> <blockquote>«El chef en el pase no está involucrado en la decisión de compra. La persona que tomó esa decisión no está en el pase. Esta brecha de información es donde la calidad va a morir.»</blockquote> <p>Suministramos operaciones de restauración directamente, con documentación completa de lotes, sobre la base de que el responsable de la toma de decisiones debería ver los mismos números que le importarían a un chef si fuera consultado. En nuestra experiencia, cuando un director de compras ve la comparación real de especificaciones en lugar de una simple tabla de precio por litro, la conversación cambia. El aceite en el tambor de 15L es el argumento. El precio es la nota al pie.</p>',
 },
 it:{
   'nav.products':'Prodotti','nav.origin':'Origine','nav.process':'Processo',
   'nav.catering':'Ristorazione','nav.trade':'Commercio','nav.journal':'Diario',
   'nav.cta':'Richiedi campione',
-  'nav.drop.prem':'Premium Spremitura a freddo','nav.drop.std':'Standard Professionale','nav.drop.cat':'Fornitura ristorazione',
+  'nav.drop.prem':'KALA Premium · Vetro &amp; Lattina','nav.drop.std':'Standard Professionale','nav.drop.cat':'Fornitura ristorazione',
   'hero.eyebrow':'Spremitura a freddo · Ayvalık, Turchia',
   'hero.sub':'Olio extravergine di oliva per cucine professionali.',
   'hero.body':'Alto contenuto di polifenoli. Acidità libera 0,2%. Spremitura il giorno della raccolta. Consegna diretta a cucine stellate Michelin, hotel boutique e operatori della ristorazione.',
@@ -3342,7 +3366,7 @@ it:{
   'origin.p2':'Raccogliamo al 10–20% di maturità — prima che l\'oliva abbia completato il suo ciclo di zuccheri — per fissare l\'acidità libera al di sotto dello 0,2% e catturare un\'amarezza e un finale pepato che i palati professionali riconoscono immediatamente. L\'olio viene pressato a freddo, entro quattro ore dall\'uscita dal campo. Nessuno stoccaggio notturno. Nessuna fermentazione. Nessuna scorciatoia.',
   'origin.p3':'Il risultato non è un olio benessere. Non è un prodotto lifestyle. È l\'ingrediente a cui uno chef si rivolge quando il piatto dipende da esso.',
   'ps1.detail':'Raccolto al 10–20% di maturità. Frutto verde, polifenoli alti, bassa acidità libera. Raccolto a mano dove il terreno lo richiede. Nessun danno meccanico alla superficie del frutto.',
-  'ps2.detail':'Il frutto va dal campo alla pressa in quattro ore. Nessuno stoccaggio notturno, nessuna fermentazione. Estrazione a freddo a 18°C — temperatura mai superata. Decanter continuo a due fasi.',
+  'ps2.detail':'Il frutto va dal campo alla pressa in quattro ore. Nessuno stoccaggio notturno, nessuna fermentazione. Estrazione a freddo a 24°C — temperatura mai superata. Decanter continuo a due fasi.',
   'ps3.detail':'Ogni lotto viene testato per acidità libera, numero di perossido, assorbimento UV e concentrazione di polifenoli. Metodologia standard COI. Certificati disponibili su richiesta — nessuna eccezione.',
   'ps4.detail':'Confezionato in lattine e fusti lavati con azoto. Numerato per lotto. Logistica a temperatura controllata fino alla porta della cucina professionale. Durata: 18 mesi dalla data di spremitura.',
   'cat.title':'Costruito per<br><em>il volume.</em><br><strong>Certificato per</strong><br><strong>l\'eccellenza.</strong>',
@@ -3357,7 +3381,7 @@ it:{
   'cat.li4':'Ristorazione collettiva istituzionale e ospedaliera',
   'cat.li5':'Mensa aziendale e ristorazione per il personale',
   'cat.li6':'Distributori e partner all\'importazione (EMEA)',
-  'cat.note':'I contratti di fornitura annuali includono prezzi fissi del raccolto, allocazione preferenziale dalla pressa di ottobre, documentazione dedicata per la certificazione del lotto e l\'opzione di white label con il proprio marchio. Un kit campione (3 × 500 ml, certificato) viene spedito entro 5 giorni lavorativi.',
+  'cat.note':'I contratti di fornitura annuali includono prezzi fissi del raccolto, allocazione preferenziale dalla pressa di ottobre, documentazione dedicata per la certificazione del lotto e l\'opzione di white label con il proprio marchio. Un kit campione (175 ml (lattina degustazione, certif.) viene spedito entro 5 giorni lavorativi.',
   'trade.body':'Fornitura diretta. Nessun intermediario. Piena tracciabilità. Prezzi competitivi per impegni di volume.',
   'tl1':'Lattine da 5L — formato HoReCa standard',
   'tl2':'Fusti catering da 15L — rubinetto dispensatore',
@@ -3410,7 +3434,7 @@ it:{
   'tag.horeca':'Formato HoReCa',
   'tag.bcert':'Cert. lotto',
   'tag.n2':'Lavato N₂',
-  'tag.15l':'Fusto 15 L',
+  'tag.15l':'5 L · 15 L',
   'tag.tap':'Rubinetto dispensatore',
   'tag.bulk':'Prezzo sfuso',
   'tag.wl':'White Label',
@@ -3471,11 +3495,11 @@ it:{
 'a1.cat':'Origine &amp; Scienza · Ottobre 2025',
 'a1.meta':'Olivekala Journal &nbsp;·&nbsp; 5 min di lettura &nbsp;·&nbsp; Ayvalık, Turchia',
 'a1.next.btn':'Cosa significa 0,2% di acidità in sala →',
-'a1.body':'<p>Il Memorandum della Carta di Atene del 1959 — la prima definizione internazionale di categoria per l\'olio extravergine di oliva — fissò il limite di acidità libera allo 0,8 %. Questo standard non era basato su ricerche che identificavano lo 0,8 % come parametro ottimale. Era una soglia pratica costruita attorno a ciò che i mercati olivicoli della metà del XX secolo potevano produrre in modo affidabile, tenendo conto dell\'infrastruttura di raccolta, della logistica di trasporto e della capacità dei frantoi dell\'epoca.</p> <p>Quella soglia dell\'0,8 % è sopravvissuta quasi invariata per oltre sessant\'anni. Il limite COI attuale di 0,8 % rappresenta ancora una soglia di conformità, non un parametro di qualità.</p> <h3>Cosa misura realmente l\'acidità libera</h3> <p>L\'acidità libera è una misura della degradazione trigliceridica — quanti acidi grassi si sono separati dalla loro struttura gliceridica attraverso l\'idrolisi enzimatica. L\'idrolisi si verifica quando le pareti cellulari delle olive si rompono sotto pressione meccanica, per danno o per fermentazione, rilasciando lipasi che scindono i legami esterei. Più bassa è l\'acidità libera, più intatta è la struttura dell\'olio — e più vicino alla spremitura immediata di frutta sana e intatta.</p> <p>Al 0,2 % di acidità libera, KALA opera a circa un quarto della soglia di conformità COI. Questo non è il risultato dell\'ottimizzazione della specifica — è il risultato di una catena di approvvigionamento costruita attorno a zero compromessi sul tempo di raccolta-pressa, sull\'integrità della frutta e sulla temperatura di estrazione.</p> <div class="data-row"><div class="data-cell"><div class="data-n">0,2%</div><div class="data-l">Acidità libera KALA</div></div><div class="data-cell"><div class="data-n">0,8%</div><div class="data-l">Soglia conformità COI</div></div><div class="data-cell"><div class="data-n">300+</div><div class="data-l">mg/kg Polifenoli</div></div></div> <h3>Perché questo è importante in sala</h3> <p>L\'acidità libera non è percepita direttamente al palato alla maniera in cui viene percepita l\'acidità citrica. Influenza invece la stabilità dell\'olio — la sua suscettibilità all\'ossidazione nel tempo, il suo comportamento sotto calore e la sua qualità al palato attraverso le proprietà di instabilità strutturale che si manifestano come sapori rancidi o piatti.</p> <blockquote>«L\'oliveto è qui da tremila anni. Siamo semplicemente le ultime persone a capire cosa produce quando viene raccolto correttamente.»</blockquote> <p>La combinazione della latitudine di Ayvalık, la naturale tendenza ai polifenoli del cultivar Memecik e un protocollo di raccolta precoce produce un olio che non potrebbe essere replicato spostando la produzione più a sud o cambiando la varietà. La geografia non è accessoria alla specifica. È la specifica.</p>',
+'a1.body':'<p>Il Memorandum della Carta di Atene del 1959 — la prima definizione internazionale di categoria per l\'olio extravergine di oliva — fissò il limite di acidità libera allo 0,8 %. Questo standard non era basato su ricerche che identificavano lo 0,8 % come parametro ottimale. Era una soglia pratica costruita attorno a ciò che i mercati olivicoli della metà del XX secolo potevano produrre in modo affidabile, tenendo conto dell\'infrastruttura di raccolta, della logistica di trasporto e della capacità dei frantoi dell\'epoca.</p> <p>Quella soglia dell\'0,8 % è sopravvissuta quasi invariata per oltre sessant\'anni. Il limite COI attuale di 0,8 % rappresenta ancora una soglia di conformità, non un parametro di qualità.</p> <h3>Cosa misura realmente l\'acidità libera</h3> <p>L\'acidità libera è una misura della degradazione trigliceridica — quanti acidi grassi si sono separati dalla loro struttura gliceridica attraverso l\'idrolisi enzimatica. L\'idrolisi si verifica quando le pareti cellulari delle olive si rompono sotto pressione meccanica, per danno o per fermentazione, rilasciando lipasi che scindono i legami esterei. Più bassa è l\'acidità libera, più intatta è la struttura dell\'olio — e più vicino alla spremitura immediata di frutta sana e intatta.</p> <p>Al 0,3 % di acidità libera, KALA opera a circa un quarto della soglia di conformità COI. Questo non è il risultato dell\'ottimizzazione della specifica — è il risultato di una catena di approvvigionamento costruita attorno a zero compromessi sul tempo di raccolta-pressa, sull\'integrità della frutta e sulla temperatura di estrazione.</p> <div class="data-row"><div class="data-cell"><div class="data-n">0,2%</div><div class="data-l">Acidità libera KALA</div></div><div class="data-cell"><div class="data-n">0,8%</div><div class="data-l">Soglia conformità COI</div></div><div class="data-cell"><div class="data-n">300+</div><div class="data-l">mg/kg Polifenoli</div></div></div> <h3>Perché questo è importante in sala</h3> <p>L\'acidità libera non è percepita direttamente al palato alla maniera in cui viene percepita l\'acidità citrica. Influenza invece la stabilità dell\'olio — la sua suscettibilità all\'ossidazione nel tempo, il suo comportamento sotto calore e la sua qualità al palato attraverso le proprietà di instabilità strutturale che si manifestano come sapori rancidi o piatti.</p> <blockquote>«L\'oliveto è qui da tremila anni. Siamo semplicemente le ultime persone a capire cosa produce quando viene raccolto correttamente.»</blockquote> <p>La combinazione della latitudine di Ayvalık, la naturale tendenza ai polifenoli del cultivar Memecik e un protocollo di raccolta precoce produce un olio che non potrebbe essere replicato spostando la produzione più a sud o cambiando la varietà. La geografia non è accessoria alla specifica. È la specifica.</p>',
 'a2.cat':'Applicazione in cucina · Novembre 2025',
 'a2.meta':'Olivekala Journal &nbsp;·&nbsp; 4 min di lettura &nbsp;·&nbsp; Ayvalık, Turchia',
 'a2.next.btn':'La finestra di ossidazione di quattro ore →',
-'a2.body':'<p>La denominazione «extravergine» esiste in un sistema di classificazione che non è stato progettato per distinguere all\'interno della categoria, ma per escludere ciò che ne è al di sotto. Un olio può soddisfare ogni parametro COI per l\'extravergine — acidità libera sotto lo 0,8 %, perossidi sotto 20 meq O₂/kg, superando i pannelli organolettici — e avere comunque un profilo sensoriale piatto, poca struttura antiossidante e una shelf life che si misura in mesi anziché in anni.</p> <p>Lo 0,2 % di acidità libera di KALA non è un dettaglio di marketing. È il risultato di specifiche decisioni operative: raccolta nella prima finestra, pressa entro quattro ore, estrazione a freddo sotto i 27°C, stoccaggio in acciaio inox sotto azoto.</p> <h3>Cosa l\'acidità libera significa in sala</h3> <p>Per i professionisti che lavorano con l\'olio come ingrediente funzionale piuttosto che come condimento, il numero di acidità libera è un indicatore affidabile di ciò che c\'è nella bottiglia. Sotto lo 0,3 % significa che si sta lavorando con la struttura più intatta possibile; sopra lo 0,5 % inizia il territorio del compromesso, dove i fattori logistici della catena di approvvigionamento hanno iniziato a erodere la qualità prima del confezionamento.</p> <div class="data-row"><div class="data-cell"><div class="data-n">0,2%</div><div class="data-l">Acidità libera KALA</div></div><div class="data-cell"><div class="data-n">&lt;27°C</div><div class="data-l">Temp. estrazione</div></div><div class="data-cell"><div class="data-n">N₂</div><div class="data-l">Stoccaggio sotto azoto</div></div></div> <h3>La finestra dell\'acidità libera in pratica</h3> <p>In applicazioni ad alta temperatura — saltare proteine, costruire riduzioni — un olio con bassa acidità libera e alto contenuto di polifenoli si comporta diversamente da uno strutturalmente più debole. I polifenoli funzionano come antiossidanti naturali sotto calore, riducendo la velocità di degradazione durante la cottura. Ciò che il cuoco percepisce è un olio che porta il suo carattere fino al completamento del piatto, piuttosto che svanire nella prima fase di cottura.</p> <blockquote>«L\'argomento del solo-finitura è stato esagerato. Un olio strutturalmente solido si comporta diversamente in una padella calda rispetto a uno fragile. Provalo prima di assumere.»</blockquote> <p>Non stiamo dicendo che KALA dovrebbe essere usato come olio da cucina neutro. Stiamo dicendo che la sua specifica lo rende più versatile di quanto la saggezza convenzionale suggerisca — e che una cucina che lo usa esclusivamente come olio da finitura sta lasciando metà del suo potenziale nello scaffale.</p>',
+'a2.body':'<p>La denominazione «extravergine» esiste in un sistema di classificazione che non è stato progettato per distinguere all\'interno della categoria, ma per escludere ciò che ne è al di sotto. Un olio può soddisfare ogni parametro COI per l\'extravergine — acidità libera sotto lo 0,8 %, perossidi sotto 20 meq O₂/kg, superando i pannelli organolettici — e avere comunque un profilo sensoriale piatto, poca struttura antiossidante e una shelf life che si misura in mesi anziché in anni.</p> <p>Lo 0,3 % di acidità libera di KALA non è un dettaglio di marketing. È il risultato di specifiche decisioni operative: raccolta nella prima finestra, pressa entro quattro ore, estrazione a freddo sotto i 27°C, stoccaggio in acciaio inox sotto azoto.</p> <h3>Cosa l\'acidità libera significa in sala</h3> <p>Per i professionisti che lavorano con l\'olio come ingrediente funzionale piuttosto che come condimento, il numero di acidità libera è un indicatore affidabile di ciò che c\'è nella bottiglia. Sotto lo 0,3 % significa che si sta lavorando con la struttura più intatta possibile; sopra lo 0,5 % inizia il territorio del compromesso, dove i fattori logistici della catena di approvvigionamento hanno iniziato a erodere la qualità prima del confezionamento.</p> <div class="data-row"><div class="data-cell"><div class="data-n">0,2%</div><div class="data-l">Acidità libera KALA</div></div><div class="data-cell"><div class="data-n">&lt;27°C</div><div class="data-l">Temp. estrazione</div></div><div class="data-cell"><div class="data-n">N₂</div><div class="data-l">Stoccaggio sotto azoto</div></div></div> <h3>La finestra dell\'acidità libera in pratica</h3> <p>In applicazioni ad alta temperatura — saltare proteine, costruire riduzioni — un olio con bassa acidità libera e alto contenuto di polifenoli si comporta diversamente da uno strutturalmente più debole. I polifenoli funzionano come antiossidanti naturali sotto calore, riducendo la velocità di degradazione durante la cottura. Ciò che il cuoco percepisce è un olio che porta il suo carattere fino al completamento del piatto, piuttosto che svanire nella prima fase di cottura.</p> <blockquote>«L\'argomento del solo-finitura è stato esagerato. Un olio strutturalmente solido si comporta diversamente in una padella calda rispetto a uno fragile. Provalo prima di assumere.»</blockquote> <p>Non stiamo dicendo che KALA dovrebbe essere usato come olio da cucina neutro. Stiamo dicendo che la sua specifica lo rende più versatile di quanto la saggezza convenzionale suggerisca — e che una cucina che lo usa esclusivamente come olio da finitura sta lasciando metà del suo potenziale nello scaffale.</p>',
 'a3.cat':'Terroir &amp; Varietà · Dicembre 2025',
 'a3.meta':'Olivekala Journal &nbsp;·&nbsp; 5 min di lettura &nbsp;·&nbsp; Ayvalık, Turchia',
 'a3.next.btn':'Temperatura, calore e comportamento in cucina →',
@@ -3483,14 +3507,14 @@ it:{
 'a4.cat':'Applicazione in cucina · Gennaio 2026',
 'a4.meta':'Olivekala Journal &nbsp;·&nbsp; 7 min di lettura &nbsp;·&nbsp; Ayvalık, Turchia',
 'a4.next.btn':'La finestra di ossidazione di quattro ore →',
-'a4.body':'<p>Il consiglio standard è di tenere l\'extravergine premium lontano dal calore. Usarlo per la finitura, i condimenti, per la tavola — ma non per cucinare. Questo consiglio è stato scritto per l\'olio commerciale standard ed è stato applicato uniformemente a tutti gli extravergini, indipendentemente dalla loro specifica. Per l\'olio ricco di polifenoli, è parzialmente sbagliato.</p> <p>Il punto di fumo dell\'extravergine viene citato tipicamente a 190–210°C. Questo è preciso per la maggior parte degli EVOO commerciali, dove l\'acidità libera è 0,5–0,8 % e il conteggio dei polifenoli è basso. Con 0,2 % di acidità libera e 300+ mg/kg di polifenoli, la chimica strutturale è diversa.</p> <h3>Perché i polifenoli contano a temperatura</h3> <p>I polifenoli nell\'EVOO funzionano come antiossidanti naturali. Il loro ruolo nella bottiglia è rallentare la degradazione ossidativa durante lo stoccaggio. Il loro ruolo in padella è analogo: eliminano i radicali liberi prodotti durante il riscaldamento, proteggendo la struttura degli acidi grassi dell\'olio dall\'ossidazione. Un olio con un alto carico di polifenoli — in particolare oleocantale e idrossitirosolo — si degrada più lentamente sotto il calore rispetto a un olio strutturalmente equivalente con minore contenuto di polifenoli.</p> <p>Questo non significa che l\'olio KALA dovrebbe essere usato per friggere a 180°C come mezzo di cottura principale. Significa che le applicazioni a calore moderato — saltare aromi, costruire una base per salsa, finire una proteina in padella — non distruggono il carattere dell\'olio come farebbero con un prodotto fragile di specifica inferiore.</p> <div class="data-row"><div class="data-cell"><div class="data-n">190°C</div><div class="data-l">Punto fumo approx.</div></div><div class="data-cell"><div class="data-n">300+</div><div class="data-l">mg/kg Polifenoli</div></div><div class="data-cell"><div class="data-n">Stabile</div><div class="data-l">fino a 160°C continuo</div></div></div> <h3>Applicazioni pratiche in cucina</h3> <p>Dove abbiamo visto gli chef usare KALA più efficacemente sotto calore: costruire basi di soffritto dove il carattere dell\'olivo deve persistere nel piatto finito; finire il pesce in padella, dove un contatto di 30 secondi ad alta temperatura richiede un olio che non bruci prima che la proteina sia pronta; nell\'acqua di cottura della pasta — una piccola aggiunta che condisce senza la qualità saponosa dell\'olio di qualità inferiore a temperatura.</p> <blockquote>«L\'argomento della finitura è stato esagerato. Un olio strutturalmente solido si comporta diversamente in una padella calda rispetto a uno fragile. Provalo prima di assumere.»</blockquote> <p>Non affermiamo che KALA funzioni come olio da cucina neutro. Affermiamo che la sua specifica lo rende più versatile di quanto il consiglio standard suggerisca — e che una cucina che lo usa esclusivamente come olio da finitura sta lasciando metà del suo potenziale nello scaffale.</p>',
+'a4.body':'<p>Il consiglio standard è di tenere l\'extravergine premium lontano dal calore. Usarlo per la finitura, i condimenti, per la tavola — ma non per cucinare. Questo consiglio è stato scritto per l\'olio commerciale standard ed è stato applicato uniformemente a tutti gli extravergini, indipendentemente dalla loro specifica. Per l\'olio ricco di polifenoli, è parzialmente sbagliato.</p> <p>Il punto di fumo dell\'extravergine viene citato tipicamente a 190–210°C. Questo è preciso per la maggior parte degli EVOO commerciali, dove l\'acidità libera è 0,5–0,8 % e il conteggio dei polifenoli è basso. Con 0,3 % di acidità libera e 300+ mg/kg di polifenoli, la chimica strutturale è diversa.</p> <h3>Perché i polifenoli contano a temperatura</h3> <p>I polifenoli nell\'EVOO funzionano come antiossidanti naturali. Il loro ruolo nella bottiglia è rallentare la degradazione ossidativa durante lo stoccaggio. Il loro ruolo in padella è analogo: eliminano i radicali liberi prodotti durante il riscaldamento, proteggendo la struttura degli acidi grassi dell\'olio dall\'ossidazione. Un olio con un alto carico di polifenoli — in particolare oleocantale e idrossitirosolo — si degrada più lentamente sotto il calore rispetto a un olio strutturalmente equivalente con minore contenuto di polifenoli.</p> <p>Questo non significa che l\'olio KALA dovrebbe essere usato per friggere a 180°C come mezzo di cottura principale. Significa che le applicazioni a calore moderato — saltare aromi, costruire una base per salsa, finire una proteina in padella — non distruggono il carattere dell\'olio come farebbero con un prodotto fragile di specifica inferiore.</p> <div class="data-row"><div class="data-cell"><div class="data-n">190°C</div><div class="data-l">Punto fumo approx.</div></div><div class="data-cell"><div class="data-n">300+</div><div class="data-l">mg/kg Polifenoli</div></div><div class="data-cell"><div class="data-n">Stabile</div><div class="data-l">fino a 160°C continuo</div></div></div> <h3>Applicazioni pratiche in cucina</h3> <p>Dove abbiamo visto gli chef usare KALA più efficacemente sotto calore: costruire basi di soffritto dove il carattere dell\'olivo deve persistere nel piatto finito; finire il pesce in padella, dove un contatto di 30 secondi ad alta temperatura richiede un olio che non bruci prima che la proteina sia pronta; nell\'acqua di cottura della pasta — una piccola aggiunta che condisce senza la qualità saponosa dell\'olio di qualità inferiore a temperatura.</p> <blockquote>«L\'argomento della finitura è stato esagerato. Un olio strutturalmente solido si comporta diversamente in una padella calda rispetto a uno fragile. Provalo prima di assumere.»</blockquote> <p>Non affermiamo che KALA funzioni come olio da cucina neutro. Affermiamo che la sua specifica lo rende più versatile di quanto il consiglio standard suggerisca — e che una cucina che lo usa esclusivamente come olio da finitura sta lasciando metà del suo potenziale nello scaffale.</p>',
 'a5.cat':'Filiera di approvvigionamento · Febbraio 2026',
 'a5.meta':'Olivekala Journal &nbsp;·&nbsp; 6 min di lettura &nbsp;·&nbsp; Ayvalık, Turchia',
 'a5.next.btn':'Un olio per la ristorazione può essere di qualità? →',
 'a5.body':'<p>Nel momento in cui un\'oliva si separa dal ramo, inizia la degradazione. Questo non è metafora o linguaggio di marketing — è la biochimica di un frutto che si è evoluto per iniziare a fermentare e decomporsi nel momento in cui si separa dall\'albero madre. Le pareti cellulari si rompono sotto la pressione della raccolta. La polifenolo ossidasi, un enzima presente nella polpa, inizia a convertire i polifenoli in melanina — lo stesso processo di imbrunimento visibile quando si taglia una mela. Gli enzimi lipasi iniziano a scindere gli acidi grassi dai loro legami trigliceridici, aumentando progressivamente l\'acidità libera.</p> <p>Tutto questo avviene sia che lo si veda o meno. Le olive nel raccoglitore sembrano a posto. Il processo è in corso.</p> <h3>Cosa succede ogni ora</h3> <p>Quantificare il tasso di degradazione non è semplice — la temperatura, il metodo di raccolta e l\'umidità ambientale influenzano tutti la velocità. Come approssimazione generale basata su ricerche pubblicate del COI e sui nostri test di lotto durante la raccolta 2025: l\'acidità libera aumenta di circa 0,03–0,06 punti percentuali all\'ora in condizioni ambientali egee di ottobre (circa 18–22°C). La concentrazione di polifenoli cala più velocemente — una riduzione stimata dell\'8–12 % per ogni finestra di quattro ore oltre la prima opportunità di spremitura.</p> <div class="data-row"><div class="data-cell"><div class="data-n">&lt;4h</div><div class="data-l">Obiettivo oliveto-frantoio</div></div><div class="data-cell"><div class="data-n">+0,05%</div><div class="data-l">Aumento acidità / h (est.)</div></div><div class="data-cell"><div class="data-n">−10%</div><div class="data-l">Perdita polifenoli / 4h</div></div></div> <h3>Stoccaggio notturno — la norma del settore</h3> <p>La pratica standard del settore è lo stoccaggio notturno della frutta — la frutta raccolta durante il giorno viene spremuta la mattina successiva. Questo è logisticamente sensato ed economicamente efficiente. Significa anche che la frutta si è degradata per otto-sedici ore prima di raggiungere il frantoio. Per un produttore che ottimizza la conformità COI piuttosto che la specifica, questo è del tutto accettabile.</p> <blockquote>«Ogni ora tra l\'oliveto e il frantoio è una decisione — di dare priorità alla logistica rispetto alla specifica. Abbiamo preso quella decisione una volta, in una direzione, e non l\'abbiamo riesaminata.»</blockquote> <p>La regola delle quattro ore richiede di far funzionare il frantoio a turni durante la raccolta, di assorbire il maggiore costo operativo dell\'estrazione continua e di accettare i vincoli logistici di un impegno nello stesso giorno. L\'alternativa è una raccolta più comoda che produce olio di qualità inferiore. Abbiamo scelto il calendario più difficile.</p>',
 'a6.cat':'Ristorazione &amp; Volumi · Marzo 2026',
 'a6.meta':'Olivekala Journal &nbsp;·&nbsp; 6 min di lettura &nbsp;·&nbsp; Ayvalık, Turchia',
-'a6.body':'<p>Il presupposto è strutturale: il formato per la ristorazione implica prezzi all\'ingrosso, i prezzi all\'ingrosso implicano specifiche ridotte. Questa è la logica che ha prodotto un\'intera categoria di oli per ristorazione — tecnicamente extravergini, commercialmente funzionali, professionalmente indistinguibili dall\'olio vegetale neutro a temperatura. La categoria esiste perché qualcuno, da qualche parte in ogni catena di fornitura, ha accettato il compromesso.</p> <p>Non lo accettiamo come strutturalmente necessario. Il nostro argomento è che il compromesso è una scelta, non una inevitabilità — e che quella scelta è stata quasi sempre fatta dal lato sbagliato della linea di qualità perché i decisori negli acquisti istituzionali non sono le persone che mangiano il cibo.</p> <h3>L\'argomento della specifica</h3> <p>Il tamburo da ristorazione KALA da 15L viene riempito con la stessa spremitura di ottobre dell\'edizione Harvest numerata da 500 ml. La stessa frutta Memecik, la stessa estrazione a freddo, lo stesso lotto testato secondo gli stessi parametri COI. Acidità libera: 0,2 %. Polifenoli: sopra 300 mg/kg. Indice di perossido: sotto 12 meq O₂/kg. Il certificato che accompagna il tamburo da 15L e il certificato che accompagna la bottiglia da 500 ml provengono dagli stessi dati di lotto.</p> <p>Il formato cambia. L\'olio no.</p> <div class="data-row"><div class="data-cell"><div class="data-n">0,2%</div><div class="data-l">Acidità libera · Tutti i formati</div></div><div class="data-cell"><div class="data-n">15L</div><div class="data-l">Tamburo per ristorazione</div></div><div class="data-cell"><div class="data-n">Stesso</div><div class="data-l">Certificato per lotto</div></div></div> <h3>Perché questo conta per le grandi operazioni</h3> <p>Un gruppo alberghiero che gestisce cinque proprietà attraverso una funzione acquisti centralizzata prende una decisione sull\'olio che riguarda ogni piatto servito in quelle proprietà durante l\'anno. Se quella decisione ricade per default sulla specifica standard della categoria ristorazione — acidità libera allo 0,6 %, polifenoli a 80 mg/kg — la differenza tra ciò che la cucina potrebbe produrre e ciò che produce è significativa, misurabile e invisibile alla funzione acquisti che ha preso la decisione.</p> <blockquote>«Lo chef al pass non è coinvolto nella decisione d\'acquisto. La persona che ha preso quella decisione non è al pass. Questo divario informativo è dove la qualità va a morire.»</blockquote> <p>Forniamo operazioni di ristorazione direttamente, con documentazione completa del lotto, sulla base che il decisore dovrebbe vedere gli stessi numeri che importerebbero a uno chef se fosse consultato. Nella nostra esperienza, quando un responsabile acquisti vede il confronto reale delle specifiche invece di una semplice tabella prezzo-per-litro, la conversazione cambia. L\'olio nel tamburo da 15L è l\'argomento. Il prezzo è la nota a piè di pagina.</p>',
+'a6.body':'<p>Il presupposto è strutturale: il formato per la ristorazione implica prezzi all\'ingrosso, i prezzi all\'ingrosso implicano specifiche ridotte. Questa è la logica che ha prodotto un\'intera categoria di oli per ristorazione — tecnicamente extravergini, commercialmente funzionali, professionalmente indistinguibili dall\'olio vegetale neutro a temperatura. La categoria esiste perché qualcuno, da qualche parte in ogni catena di fornitura, ha accettato il compromesso.</p> <p>Non lo accettiamo come strutturalmente necessario. Il nostro argomento è che il compromesso è una scelta, non una inevitabilità — e che quella scelta è stata quasi sempre fatta dal lato sbagliato della linea di qualità perché i decisori negli acquisti istituzionali non sono le persone che mangiano il cibo.</p> <h3>L\'argomento della specifica</h3> <p>Il tamburo da ristorazione KALA da 15L viene riempito con la stessa spremitura di ottobre dell\'edizione Harvest numerata da 500 ml. La stessa frutta Memecik, la stessa estrazione a freddo, lo stesso lotto testato secondo gli stessi parametri COI. Acidità libera: 0,3 %. Polifenoli: sopra 300 mg/kg. Indice di perossido: sotto 12 meq O₂/kg. Il certificato che accompagna il tamburo da 15L e il certificato che accompagna la bottiglia da 500 ml provengono dagli stessi dati di lotto.</p> <p>Il formato cambia. L\'olio no.</p> <div class="data-row"><div class="data-cell"><div class="data-n">0,2%</div><div class="data-l">Acidità libera · Tutti i formati</div></div><div class="data-cell"><div class="data-n">15L</div><div class="data-l">Tamburo per ristorazione</div></div><div class="data-cell"><div class="data-n">Stesso</div><div class="data-l">Certificato per lotto</div></div></div> <h3>Perché questo conta per le grandi operazioni</h3> <p>Un gruppo alberghiero che gestisce cinque proprietà attraverso una funzione acquisti centralizzata prende una decisione sull\'olio che riguarda ogni piatto servito in quelle proprietà durante l\'anno. Se quella decisione ricade per default sulla specifica standard della categoria ristorazione — acidità libera allo 0,6 %, polifenoli a 80 mg/kg — la differenza tra ciò che la cucina potrebbe produrre e ciò che produce è significativa, misurabile e invisibile alla funzione acquisti che ha preso la decisione.</p> <blockquote>«Lo chef al pass non è coinvolto nella decisione d\'acquisto. La persona che ha preso quella decisione non è al pass. Questo divario informativo è dove la qualità va a morire.»</blockquote> <p>Forniamo operazioni di ristorazione direttamente, con documentazione completa del lotto, sulla base che il decisore dovrebbe vedere gli stessi numeri che importerebbero a uno chef se fosse consultato. Nella nostra esperienza, quando un responsabile acquisti vede il confronto reale delle specifiche invece di una semplice tabella prezzo-per-litro, la conversazione cambia. L\'olio nel tamburo da 15L è l\'argomento. Il prezzo è la nota a piè di pagina.</p>',
 }
 };
 
@@ -3508,8 +3532,8 @@ const SELECT_OPTIONS = {
     it:['Seleziona...','Ristorante gastronomico','Hotel e Resort','Catering per eventi','Istituzionale / Aziendale','Distributore / Importatore','Vendita al dettaglio','Altro'],
   },
   'tier': {
-    en:['Select...','Premium (500ml / Tasting Set)','Standard (5L Reserve)','Catering (15L / Bulk)','Multiple Tiers'],
-    tr:['Seçiniz...','Premium (500ml / Tatma Seti)','Standart (5L Reserve)','Catering (15L / Bulk)','Birden Fazla Tier'],
+    en:['Select...','Premium — Glass 500ml·1L / Tin 1·3·5L','Standard Tin — 1L / 3L / 5L','Catering — 5L Tin / 15L Drum','Multiple Tiers'],
+    tr:['Seçiniz...','Premium — Cam 500ml·1L / Teneke 1·3·5L','Standart Teneke — 1L / 3L / 5L','Catering — 5L Tin / 15L Drum','Birden Fazla Tier'],
     de:['Auswählen...','Premium (500 ml / Tasting Set)','Standard (5-L-Reserve)','Catering (15 L / Bulk)','Mehrere Tiers'],
     ar:['اختر...','بريميوم (500 مل / طقم تذوق)','ستاندرد (5 لتر)','تموين (15 لتر / جملة)','مستويات متعددة'],
     ru:['Выбрать...','Премиум (500 мл / дегустационный набор)','Стандарт (5 л)','Кейтеринг (15 л / оптом)','Несколько уровней'],
