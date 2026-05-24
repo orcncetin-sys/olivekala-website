@@ -1826,9 +1826,9 @@ nav.nav-open .ham-btn span:nth-child(3){transform:translateY(-6.5px) rotate(-45d
     <div>
       <div class="fc-title" data-i18n="footer.col.prem">Premium</div>
       <ul class="fc-links">
-        <li><a href="#products" onclick="switchTab('prem')">KALA Premium — Glass &amp; Tin <span class="tier-tag" style="color:var(--gold);border-color:rgba(201,168,76,.3)">new</span></a></li>
-        <li><a href="#products" onclick="switchTab('prem')">KALA 175ml Tasting Set</a></li>
-        <li><a href="#products" onclick="switchTab('prem')">KALA 100ml Table Bottle</a></li>
+        <li><a href="#products" onclick="switchTab('prem')"><span data-i18n="footer.l.prem1">KALA Premium — Glass &amp; Tin</span> <span class="tier-tag" style="color:var(--gold);border-color:rgba(201,168,76,.3)" data-i18n="footer.new">new</span></a></li>
+        <li><a href="#products" onclick="switchTab('prem')" data-i18n="footer.l.prem2">KALA 175ml Tasting Set</a></li>
+        <li><a href="#products" onclick="switchTab('prem')" data-i18n="footer.l.prem3">KALA 100ml Table Bottle</a></li>
         <li><a href="#trade" data-i18n="footer.l.alloc">Allocation Enquiry</a></li>
       </ul>
     </div>
@@ -1836,8 +1836,8 @@ nav.nav-open .ham-btn span:nth-child(3){transform:translateY(-6.5px) rotate(-45d
     <div>
       <div class="fc-title" data-i18n="footer.col.std">Standard</div>
       <ul class="fc-links">
-        <li><a href="#products" onclick="switchTab('std')">KALA Standard Tin — 1L · 3L · 5L</a></li>
-        <li><a href="#products" onclick="switchTab('std')">KALA 10L Twin Pack</a></li>
+        <li><a href="#products" onclick="switchTab('std')" data-i18n="footer.l.std1">KALA Standard Tin — 1L · 3L · 5L</a></li>
+        <li><a href="#products" onclick="switchTab('std')" data-i18n="footer.l.std2">KALA 10L Twin Pack</a></li>
         <li><a href="#trade" data-i18n="footer.l.vol">Volume Pricing</a></li>
         <li><a href="#trade" data-i18n="footer.l.certs">Batch Certificates</a></li>
       </ul>
@@ -1846,7 +1846,7 @@ nav.nav-open .ham-btn span:nth-child(3){transform:translateY(-6.5px) rotate(-45d
     <div>
       <div class="fc-title" data-i18n="footer.col.cat">Catering</div>
       <ul class="fc-links">
-        <li><a href="#products" onclick="switchTab('cat')" data-i18n="footer.catlink">KALA Catering — 5L · 15L <span class="tier-tag" style="color:#5fa882;border-color:rgba(46,107,82,.35)">new</span></a></li>
+        <li><a href="#products" onclick="switchTab('cat')"><span data-i18n="footer.l.cat1">KALA Catering — 5L · 15L</span> <span class="tier-tag" style="color:#5fa882;border-color:rgba(46,107,82,.35)" data-i18n="footer.new">new</span></a></li>
         <li><a href="#products" onclick="switchTab('cat')" data-i18n="footer.bulk">Bulk Supply Programme</a></li>
         <li><a href="#catering" data-i18n="footer.l.catpage">Catering Page</a></li>
         <li><a href="#trade" data-i18n="footer.l.supply">Supply Contract</a></li>
@@ -1861,7 +1861,7 @@ nav.nav-open .ham-btn span:nth-child(3){transform:translateY(-6.5px) rotate(-45d
         <li><a href="#blog" data-i18n="footer.l.journal">Journal</a></li>
         <li><a href="#trade" data-i18n="footer.l.trade">Trade Enquiry</a></li>
         <li><a href="mailto:trade@olivekala.com">trade@olivekala.com</a></li>
-        <li><a href="#">Ayvalık, Turkey</a></li>
+        <li><a href="#" data-i18n="footer.l.location">Ayvalık, Turkey</a></li>
       </ul>
     </div>
   </div>
@@ -2177,7 +2177,8 @@ en:{
   'footer.l.journal':'Journal',
   'footer.l.trade':'Trade Enquiry',
   'footer.cert1':'Ayvalık · Aegean',
-  'footer.cert2':'IOC Member'
+  'footer.cert2':'IOC Member',
+  'footer.new':'new','footer.l.prem1':'KALA Premium — Glass &amp; Tin','footer.l.prem2':'KALA 175ml Tasting Set','footer.l.prem3':'KALA 100ml Table Bottle','footer.l.std1':'KALA Standard Tin — 1L · 3L · 5L','footer.l.std2':'KALA 10L Twin Pack','footer.l.cat1':'KALA Catering — 5L · 15L','footer.l.location':'Ayvalık, Turkey'
 },
 
 tr:{
@@ -2342,6 +2343,7 @@ tr:{
   'footer.l.trade':'Ticaret Talebi',
   'footer.cert1':'AYVALIK · EGE',
   'footer.cert2':'IOC ÜYESİ',
+  'footer.new':'yeni','footer.l.prem1':'KALA Premium — Cam &amp; Teneke','footer.l.prem2':'KALA 175ml Tadım Seti','footer.l.prem3':'KALA 100ml Masa Şişesi','footer.l.std1':'KALA Standart Teneke — 1L · 3L · 5L','footer.l.std2':'KALA 10L İkili Paket','footer.l.cat1':'KALA Catering — 5L · 15L','footer.l.location':'Ayvalık, Türkiye',
 't1.tier':'⬡ Premium · Fine Dining',
 't2.tier':'◈ Standart · Profesyonel',
 't3.tier':'▣ Catering · Otel Grubu',
@@ -2553,6 +2555,7 @@ de:{
   'footer.l.trade':'Handelsanfrage',
   'footer.cert1':'Ayvalık · Ägäis',
   'footer.cert2':'IOC-Mitglied',
+  'footer.new':'neu','footer.l.prem1':'KALA Premium — Glas &amp; Dose','footer.l.prem2':'KALA 175ml Verkostungsset','footer.l.prem3':'KALA 100ml Tischflasche','footer.l.std1':'KALA Standard Dose — 1L · 3L · 5L','footer.l.std2':'KALA 10L Doppelpack','footer.l.cat1':'KALA Catering — 5L · 15L','footer.l.location':'Ayvalık, Türkei',
 't1.tier':'⬡ Premium · Fine Dining',
 't2.tier':'◈ Standard · Professionell',
 't3.tier':'▣ Catering · Hotelgruppe',
@@ -2764,6 +2767,7 @@ ar:{
   'footer.l.trade':'استفسار تجاري',
   'footer.cert1':'أيفاليك · إيجه',
   'footer.cert2':'عضو IOC',
+  'footer.new':'جديد','footer.l.prem1':'KALA بريميوم — زجاج &amp; علبة','footer.l.prem2':'KALA طقم تذوق 175ml','footer.l.prem3':'KALA زجاجة طاولة 100ml','footer.l.std1':'KALA ستاندارد علبة — 1L · 3L · 5L','footer.l.std2':'KALA باك مزدوج 10L','footer.l.cat1':'KALA كاترينج — 5L · 15L','footer.l.location':'أيفاليك، تركيا',
 't1.tier':'⬡ بريميوم · فاين دايننج',
 't2.tier':'◈ ستاندارد · احترافي',
 't3.tier':'▣ تموين · مجموعة فندقية',
@@ -2975,6 +2979,7 @@ ru:{
   'footer.l.trade':'Торговый запрос',
   'footer.cert1':'Айвалык · Эгей',
   'footer.cert2':'Член МСО',
+  'footer.new':'новинка','footer.l.prem1':'KALA Премиум — Стекло &amp; Банка','footer.l.prem2':'KALA Набор для дегустации 175мл','footer.l.prem3':'KALA Столовая бутылка 100мл','footer.l.std1':'KALA Стандарт Банка — 1Л · 3Л · 5Л','footer.l.std2':'KALA Двойной пак 10Л','footer.l.cat1':'KALA Кейтеринг — 5Л · 15Л','footer.l.location':'Айвалык, Турция',
 't1.tier':'⬡ Премиум · Файн-дайнинг',
 't2.tier':'◈ Стандарт · Профессионал',
 't3.tier':'▣ Кейтеринг · Отельная группа',
@@ -3186,6 +3191,7 @@ fr:{
   'footer.l.trade':'Demande commerciale',
   'footer.cert1':'Ayvalık · Égée',
   'footer.cert2':'Membre COI',
+  'footer.new':'nouveau','footer.l.prem1':'KALA Premium — Verre &amp; Boîte','footer.l.prem2':'KALA Coffret Dégustation 175ml','footer.l.prem3':'KALA Bouteille de Table 100ml','footer.l.std1':'KALA Standard Boîte — 1L · 3L · 5L','footer.l.std2':'KALA Pack Double 10L','footer.l.cat1':'KALA Catering — 5L · 15L','footer.l.location':'Ayvalık, Turquie',
 't1.tier':'⬡ Premium · Fine Dining',
 't2.tier':'◈ Standard · Professionnel',
 't3.tier':'▣ Restauration · Groupe hôtelier',
@@ -3398,6 +3404,7 @@ es:{
   'footer.l.trade':'Consulta comercial',
   'footer.cert1':'Ayvalık · Egeo',
   'footer.cert2':'Miembro COI',
+  'footer.new':'nuevo','footer.l.prem1':'KALA Premium — Vidrio &amp; Lata','footer.l.prem2':'KALA Set de Cata 175ml','footer.l.prem3':'KALA Botella de Mesa 100ml','footer.l.std1':'KALA Standard Lata — 1L · 3L · 5L','footer.l.std2':'KALA Pack Doble 10L','footer.l.cat1':'KALA Catering — 5L · 15L','footer.l.location':'Ayvalık, Turquía',
 't1.tier':'⬡ Premium · Fine Dining',
 't2.tier':'◈ Estándar · Profesional',
 't3.tier':'▣ Restauración · Grupo hotelero',
@@ -3610,6 +3617,7 @@ it:{
   'footer.l.trade':'Richiesta commerciale',
   'footer.cert1':'Ayvalık · Egeo',
   'footer.cert2':'Membro COI',
+  'footer.new':'nuovo','footer.l.prem1':'KALA Premium — Vetro &amp; Lattina','footer.l.prem2':'KALA Set Degustazione 175ml','footer.l.prem3':'KALA Bottiglia da Tavola 100ml','footer.l.std1':'KALA Standard Lattina — 1L · 3L · 5L','footer.l.std2':'KALA Pack Doppio 10L','footer.l.cat1':'KALA Catering — 5L · 15L','footer.l.location':'Ayvalık, Turchia',
 't1.tier':'⬡ Premium · Fine Dining',
 't2.tier':'◈ Standard · Professionale',
 't3.tier':'▣ Ristorazione · Gruppo alberghiero',
