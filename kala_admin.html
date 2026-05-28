@@ -1,0 +1,2662 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>KALA Admin</title>
+<style>
+:root{--bg:#090907;--surf:#111110;--surf2:#18180f;--surf3:#1f1f14;--border:rgba(255,255,255,.07);--border2:rgba(255,255,255,.13);--gold:#c9a84c;--g2:rgba(201,168,76,.15);--g3:rgba(201,168,76,.07);--stone:#8a8478;--cream:#f4f0e8;--green:#5fa882;--gn2:rgba(95,168,130,.15);--red:#c0504a;--rd2:rgba(192,80,74,.15);--sw:210px}
+*{box-sizing:border-box;margin:0;padding:0}html,body{height:100%;overflow:hidden}
+body{background:var(--bg);color:var(--cream);font-family:'Helvetica Neue',Arial,sans-serif;font-size:13px;display:flex;-webkit-font-smoothing:antialiased}
+/* SIDEBAR */
+.sb{width:var(--sw);flex-shrink:0;background:var(--surf);border-right:1px solid var(--border);display:flex;flex-direction:column;height:100vh;overflow-y:auto}
+.sb-logo{padding:1.4rem 1.2rem 1rem;border-bottom:1px solid var(--border);display:flex;align-items:baseline;gap:.4rem}
+.sb-kala{font-family:Georgia,serif;font-size:1.1rem;letter-spacing:.12em;color:var(--cream)}
+.sb-sub{font-size:.55rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold)}
+.sb-sec{padding:.65rem 1.2rem .25rem;font-size:.52rem;letter-spacing:.18em;text-transform:uppercase;color:var(--stone)}
+.sb-nav{display:flex;flex-direction:column;padding:.3rem .6rem}
+.si{display:flex;align-items:center;gap:.6rem;padding:.5rem .65rem;border-radius:.3rem;color:var(--stone);cursor:pointer;font-size:.7rem;letter-spacing:.04em;transition:all .15s;border:none;background:none;text-align:left;white-space:nowrap;width:100%}
+.si:hover{background:rgba(255,255,255,.04);color:var(--cream)}
+.si.active{background:var(--g3);color:var(--gold);border:1px solid var(--g2)}
+.si .ic{font-size:.8rem;width:.9rem;text-align:center;flex-shrink:0}
+.sb-bot{margin-top:auto;padding:.9rem 1rem;border-top:1px solid var(--border)}
+.sb-status{display:flex;align-items:center;gap:.5rem;font-size:.62rem;color:var(--stone)}
+.dot{width:6px;height:6px;border-radius:50%;background:var(--stone);flex-shrink:0;transition:background .3s}
+.dot.ok{background:var(--green)}.dot.err{background:var(--red)}.dot.spin2{background:var(--gold);animation:blink 1s infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
+/* MAIN */
+.main{flex:1;display:flex;flex-direction:column;height:100vh;overflow:hidden}
+.topbar{display:flex;align-items:center;justify-content:space-between;padding:.7rem 1.6rem;background:var(--surf);border-bottom:1px solid var(--border);flex-shrink:0;gap:1rem}
+.topbar-title{font-size:.9rem;font-weight:500;letter-spacing:.03em;flex-shrink:0}
+.topbar-acts{display:flex;gap:.5rem;align-items:center;flex-wrap:wrap}
+.content{flex:1;overflow-y:auto;padding:1.6rem}
+/* TABS */
+.tab{display:none}.tab.active{display:block}
+/* CARDS */
+.card{background:var(--surf);border:1px solid var(--border);border-radius:.5rem;padding:1.3rem;margin-bottom:1.1rem}
+.ct{font-size:.58rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin-bottom:1rem;display:flex;align-items:center;gap:.5rem}
+/* GRIDS */
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:1.1rem}
+.g3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:1.1rem}
+.g4{display:grid;grid-template-columns:repeat(4,1fr);gap:.9rem}
+/* STATS */
+.stat{background:var(--surf);border:1px solid var(--border);border-radius:.5rem;padding:1.1rem;display:flex;flex-direction:column;gap:.35rem}
+.sv{font-size:1.5rem;color:var(--cream);font-family:Georgia,serif}.sl{font-size:.58rem;letter-spacing:.14em;text-transform:uppercase;color:var(--stone)}.ss{font-size:.65rem;color:var(--stone);margin-top:.15rem}
+.stat.gld{border-color:var(--g2);background:var(--g3)}.stat.gld .sv{color:var(--gold)}
+.stat.grn{border-color:rgba(95,168,130,.2);background:var(--gn2)}.stat.grn .sv{color:var(--green)}
+/* FORMS */
+.field{margin-bottom:.85rem}
+.field label{display:block;font-size:.58rem;letter-spacing:.14em;text-transform:uppercase;color:var(--stone);margin-bottom:.3rem}
+input[type=text],input[type=password],input[type=url],input[type=number],input[type=datetime-local],textarea,select{width:100%;background:var(--surf2);border:1px solid var(--border);border-radius:.3rem;color:var(--cream);font-size:.78rem;font-family:inherit;padding:.5rem .7rem;outline:none;transition:border-color .15s}
+input:focus,textarea:focus,select:focus{border-color:rgba(201,168,76,.35)}
+textarea{resize:vertical;min-height:66px;line-height:1.5}
+select{cursor:pointer}select option{background:var(--surf2)}
+/* BUTTONS */
+.btn{display:inline-flex;align-items:center;gap:.4rem;padding:.45rem 1rem;border-radius:.28rem;font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;font-family:inherit;cursor:pointer;border:none;transition:all .15s;white-space:nowrap}
+.bg{background:var(--gold);color:#0a0a08;font-weight:600}.bg:hover{background:#d4b55a}
+.bgh{background:transparent;color:var(--gold);border:1px solid var(--g2)}.bgh:hover{background:var(--g3)}
+.bgn{background:var(--green);color:#0a0a08;font-weight:600}.bgn:hover{opacity:.85}
+.brd{background:var(--red);color:#fff}.brd:hover{opacity:.85}
+.bsf{background:var(--surf2);color:var(--stone);border:1px solid var(--border)}.bsf:hover{color:var(--cream);border-color:var(--border2)}
+.glb{background:transparent;color:var(--stone);border:none;border-right:1px solid var(--border);padding:.28rem .42rem;font-size:.58rem;font-weight:700;letter-spacing:.06em;cursor:pointer;transition:background .15s,color .15s}.glb:last-child{border-right:none}.glb:hover{background:var(--surf2);color:var(--cream)}.glb.active{background:var(--gold);color:#0a0a08}
+.btn:disabled{opacity:.4;cursor:not-allowed}
+.spin{display:inline-block;animation:rot .7s linear infinite}@keyframes rot{to{transform:rotate(360deg)}}
+/* BADGES */
+.bdg{display:inline-block;font-size:.56rem;letter-spacing:.1em;text-transform:uppercase;padding:.18rem .55rem;border-radius:2rem}
+.bgld{background:var(--g2);color:var(--gold)}.bgrn{background:var(--gn2);color:var(--green)}.brd2{background:var(--rd2);color:var(--red)}.bst{background:rgba(255,255,255,.06);color:var(--stone)}
+/* LANG TABS */
+.ltabs{display:flex;gap:.3rem;flex-wrap:wrap;margin-bottom:.9rem}
+.ltab{font-size:.6rem;letter-spacing:.09em;text-transform:uppercase;padding:.3rem .75rem;border-radius:.25rem;cursor:pointer;border:1px solid var(--border);background:transparent;color:var(--stone);transition:all .15s;font-family:inherit}
+.ltab:hover{color:var(--cream)}.ltab.active{background:var(--g3);border-color:var(--g2);color:var(--gold)}
+/* TRANSLATION EDITOR */
+.tr-row{display:grid;grid-template-columns:180px 1fr;gap:.6rem;align-items:start;padding:.4rem 0;border-bottom:1px solid rgba(255,255,255,.03)}
+.tr-key{font-size:.65rem;color:var(--stone);font-family:monospace;padding-top:.42rem;word-break:break-all}
+.tr-grp{margin-bottom:1.3rem}.tr-gtitle{font-size:.56rem;letter-spacing:.18em;text-transform:uppercase;color:var(--stone);padding:.45rem 0;border-bottom:1px solid var(--border);margin-bottom:.6rem}
+/* DIFF */
+.diff-add{background:rgba(95,168,130,.08);border-left:3px solid var(--green);padding:.15rem .5rem;font-family:monospace;font-size:.7rem;color:var(--green)}
+.diff-del{background:rgba(192,80,74,.08);border-left:3px solid var(--red);padding:.15rem .5rem;font-family:monospace;font-size:.7rem;color:var(--red)}
+.diff-ctx{padding:.15rem .5rem;font-family:monospace;font-size:.7rem;color:var(--stone)}
+.diff-sep{padding:.15rem .5rem;font-family:monospace;font-size:.65rem;color:rgba(255,255,255,.15)}
+/* COMMIT LOG */
+.clog{background:var(--surf2);border:1px solid var(--border);border-radius:.3rem;padding:.8rem;max-height:200px;overflow-y:auto;font-family:monospace;font-size:.68rem;line-height:1.9;color:var(--stone)}
+.crow{display:flex;gap:.6rem;padding:.15rem 0;border-bottom:1px solid rgba(255,255,255,.03)}
+.crow:last-child{border:none}.csha{color:var(--gold);flex-shrink:0;width:55px}.cmsg{color:var(--cream)}.cdt{color:var(--stone);flex-shrink:0;font-size:.62rem}
+/* PROD TABS */
+.ptabs{display:flex;gap:.35rem;flex-wrap:wrap;margin-bottom:1.1rem}
+.ptab{font-size:.62rem;letter-spacing:.09em;padding:.4rem .9rem;border-radius:.28rem;cursor:pointer;border:1px solid var(--border);background:transparent;color:var(--stone);font-family:inherit;transition:all .15s}
+.ptab:hover{color:var(--cream)}.ptab.active{background:var(--g3);border-color:var(--g2);color:var(--gold)}
+.ppanel{display:none}.ppanel.active{display:block}
+/* THEME SWATCHES */
+.swatch-row{display:flex;gap:.7rem;align-items:center;margin-bottom:.7rem}
+.swatch{width:28px;height:28px;border-radius:.3rem;border:1px solid var(--border);cursor:pointer;flex-shrink:0}
+/* IMAGE UPLOAD */
+.img-drop{border:2px dashed var(--border);border-radius:.4rem;padding:2rem;text-align:center;cursor:pointer;transition:border-color .2s;font-size:.75rem;color:var(--stone)}
+.img-drop:hover{border-color:var(--g2);color:var(--gold)}
+.img-preview{width:100%;max-height:180px;object-fit:contain;border-radius:.3rem;background:var(--surf2);padding:.5rem;display:none}
+/* SNAPSHOT LIST */
+.snap-row{display:flex;align-items:center;justify-content:space-between;padding:.6rem .8rem;border-bottom:1px solid var(--border);font-size:.75rem}
+.snap-row:last-child{border:none}
+/* AVAILABILITY TOGGLE */
+.avail-row{display:flex;align-items:center;justify-content:space-between;padding:.65rem .8rem;border-bottom:1px solid rgba(255,255,255,.04)}
+.avail-row:last-child{border:none}
+.toggle{position:relative;width:38px;height:20px;flex-shrink:0}
+.toggle input{opacity:0;width:0;height:0}
+.toggle-sl{position:absolute;inset:0;background:rgba(255,255,255,.1);border-radius:20px;cursor:pointer;transition:.2s}
+.toggle-sl::before{content:'';position:absolute;width:16px;height:16px;left:2px;bottom:2px;background:var(--stone);border-radius:50%;transition:.2s}
+.toggle input:checked+.toggle-sl{background:rgba(95,168,130,.3)}
+.toggle input:checked+.toggle-sl::before{transform:translateX(18px);background:var(--green)}
+/* COLOR PICKER */
+.cpick{display:flex;gap:.6rem;align-items:center}
+.cpick input[type=color]{width:36px;height:36px;padding:2px;border:1px solid var(--border);border-radius:.3rem;background:var(--surf2);cursor:pointer}
+.cpick input[type=text]{width:90px}
+/* ALERT */
+.alert{padding:.7rem .9rem;border-radius:.3rem;font-size:.75rem;margin-bottom:.9rem;line-height:1.5}
+.alert-gld{background:var(--g3);border:1px solid var(--g2);color:var(--gold)}
+.dz-over{background:var(--g3)!important;border-color:var(--gold2)!important}
+.alert-grn{background:var(--gn2);border:1px solid rgba(95,168,130,.25);color:var(--green)}
+.alert-red{background:var(--rd2);border:1px solid rgba(192,80,74,.2);color:var(--red)}
+/* ROW */
+.row{display:flex;gap:.6rem;align-items:flex-start}.row .field{flex:1}
+hr.sep{border:none;border-top:1px solid var(--border);margin:1rem 0}
+.dimmed{color:var(--stone)}
+/* CONNECT OVERLAY */
+#cov{position:fixed;inset:0;background:rgba(9,9,7,.92);display:flex;align-items:center;justify-content:center;z-index:500;backdrop-filter:blur(6px)}
+.cbox{background:var(--surf);border:1px solid var(--border);border-radius:.55rem;padding:2.2rem;width:420px;max-width:92vw}
+.ctitle{font-family:Georgia,serif;font-size:1.25rem;margin-bottom:.35rem}
+.csub{font-size:.76rem;color:var(--stone);margin-bottom:1.6rem;line-height:1.6}
+.csep{text-align:center;font-size:.6rem;color:var(--stone);letter-spacing:.12em;text-transform:uppercase;margin:1rem 0;position:relative}
+.csep::before,.csep::after{content:'';position:absolute;top:50%;width:40%;height:1px;background:var(--border)}
+.csep::before{left:0}.csep::after{right:0}
+/* TOAST */
+#toast{position:fixed;bottom:1.3rem;right:1.3rem;background:var(--surf2);border:1px solid var(--border);padding:.65rem 1.1rem;border-radius:.38rem;font-size:.76rem;color:var(--cream);display:none;z-index:999;max-width:300px;box-shadow:0 4px 20px rgba(0,0,0,.5)}
+#toast.show{display:block}#toast.ok{border-color:rgba(95,168,130,.3);color:var(--green)}#toast.err{border-color:rgba(192,80,74,.3);color:var(--red)}
+/* SCROLLBAR */
+::-webkit-scrollbar{width:3px;height:3px}::-webkit-scrollbar-track{background:transparent}::-webkit-scrollbar-thumb{background:rgba(255,255,255,.09);border-radius:2px}
+/* PREVIEW IFRAME */
+#previewFrame{width:100%;height:calc(100vh - 180px);border:none;border-radius:.4rem;background:#0d0d0b}
+/* MISC */
+.mono{font-family:monospace}.ellipsis{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.mt{margin-top:.7rem}.flex-row{display:flex;gap:.6rem;align-items:center;flex-wrap:wrap}
+</style>
+</head>
+<body>
+
+<!-- SIDEBAR -->
+<aside class="sb">
+  <div class="sb-logo"><span class="sb-kala">KALA</span><span class="sb-sub">Admin</span></div>
+
+  <div class="sb-sec">Overview</div>
+  <nav class="sb-nav">
+    <button class="si active" data-tab="dash"><span class="ic">◈</span>Dashboard</button>
+  </nav>
+
+  <div class="sb-sec">Content</div>
+  <nav class="sb-nav">
+    <button class="si" data-tab="products"><span class="ic">▣</span>Products</button>
+    <button class="si" data-tab="avail"><span class="ic">◉</span>Availability</button>
+    <button class="si" data-tab="blog"><span class="ic">⬡</span>Blog / Journal</button>
+    <button class="si" data-tab="testi"><span class="ic">❝</span>Testimonials</button>
+    <button class="si" data-tab="hok"><span class="ic">✦</span>House of KALA</button>
+    <button class="si" data-tab="tradeform"><span class="ic">◫</span>Trade Form</button>
+    <button class="si" data-tab="legal"><span class="ic">§</span>Legal Pages</button>
+  </nav>
+
+  <div class="sb-sec">Site</div>
+  <nav class="sb-nav">
+    <button class="si" data-tab="translations"><span class="ic">⬡</span>Translations</button>
+    <button class="si" data-tab="seo"><span class="ic">⊕</span>SEO</button>
+    <button class="si" data-tab="theme"><span class="ic">◑</span>Theme</button>
+    <button class="si" data-tab="images"><span class="ic">⊞</span>Images</button>
+  </nav>
+
+  <div class="sb-sec">Commerce</div>
+  <nav class="sb-nav">
+    <button class="si" data-tab="settings"><span class="ic">⚙</span>Settings</button>
+    <button class="si" data-tab="membership"><span class="ic">◉</span>Membership</button>
+    <button class="si" data-tab="shopify"><span class="ic">⬡</span>Shopify</button>
+  </nav>
+
+  <div class="sb-sec">Deploy</div>
+  <nav class="sb-nav">
+    <button class="si" data-tab="preview"><span class="ic">▷</span>Preview</button>
+    <button class="si" data-tab="diff"><span class="ic">⊟</span>Diff Viewer</button>
+    <button class="si" data-tab="snapshots"><span class="ic">◫</span>Snapshots</button>
+    <button class="si" data-tab="deploy"><span class="ic">↑</span>GitHub Deploy</button>
+  </nav>
+
+  <div class="sb-bot">
+    <div class="sb-status" style="margin-bottom:.6rem"><div class="dot" id="sDot"></div><span id="sTxt">Not connected</span></div>
+    <button class="btn bsf" style="width:100%;font-size:.6rem;padding:.35rem" onclick="disconnectGH()">⚡ Change Token</button>
+  </div>
+</aside>
+
+<!-- MAIN -->
+<main class="main">
+  <div class="topbar">
+    <div class="topbar-title" id="tabTitle">Dashboard</div>
+    <div class="topbar-acts">
+      <span id="dirtyBadge" style="display:none;font-size:.6rem;padding:.25rem .6rem;border-radius:2rem;background:rgba(201,168,76,.18);color:var(--gold);letter-spacing:.08em"></span>
+      <div id="global-lang-bar" style="display:flex;gap:2px;border:1px solid var(--border);border-radius:.35rem;overflow:hidden;flex-shrink:0">
+        <span style="font-size:.55rem;color:var(--stone);padding:.28rem .45rem;display:flex;align-items:center;letter-spacing:.06em;border-right:1px solid var(--border)">LANG</span>
+        <button class="glb active" data-l="en"  onclick="setGlobalLang('en')">EN</button>
+        <button class="glb"        data-l="tr"  onclick="setGlobalLang('tr')">TR</button>
+        <button class="glb"        data-l="de"  onclick="setGlobalLang('de')">DE</button>
+        <button class="glb"        data-l="ar"  onclick="setGlobalLang('ar')">AR</button>
+        <button class="glb"        data-l="ru"  onclick="setGlobalLang('ru')">RU</button>
+        <button class="glb"        data-l="fr"  onclick="setGlobalLang('fr')">FR</button>
+        <button class="glb"        data-l="es"  onclick="setGlobalLang('es')">ES</button>
+        <button class="glb"        data-l="it"  onclick="setGlobalLang('it')">IT</button>
+      </div>
+      <a href="https://orcncetin-sys.github.io/olivekala-website/" target="_blank"><button class="btn bsf">↗ Live Site</button></a>
+      <button class="btn bsf" onclick="openPreviewNow()" title="⌘P">▷ Preview</button>
+      <button class="btn bsf" onclick="revertAll()" id="revertBtn" style="display:none">↩ Revert</button>
+      <button class="btn bgh" onclick="document.getElementById('cov').style.display='flex'" id="connectBtn">⚡ Connect</button>
+      <button class="btn bg" id="saveBtn" onclick="saveAndDeploy(document.getElementById('dep-msg')?.value||'Admin panel update')" disabled title="⌘S">↑ Deploy</button>
+    </div>
+  </div>
+
+  <div class="content">
+
+<!-- ═══════════ DASHBOARD ═══════════ -->
+<div class="tab active" id="tab-dash">
+  <div class="g4" style="margin-bottom:1.2rem">
+    <div class="stat gld"><div class="sv">8</div><div class="sl">Languages</div><div class="ss">EN TR DE AR RU FR ES IT</div></div>
+    <div class="stat"><div class="sv" id="d-keys">—</div><div class="sl">Trans. Keys</div><div class="ss">Per language</div></div>
+    <div class="stat"><div class="sv" id="d-prods">6</div><div class="sl">Products</div><div class="ss">Premium · Std · Cat…</div></div>
+    <div class="stat grn"><div class="sv" id="d-sha">—</div><div class="sl">Last Commit</div><div class="ss" id="d-msg">—</div></div>
+  </div>
+  <div class="g2">
+    <div class="card">
+      <div class="ct">◈ Site Status</div>
+      <div style="display:flex;flex-direction:column;gap:.55rem;font-size:.76rem">
+        <div style="display:flex;justify-content:space-between"><span class="dimmed">GitHub Pages</span><span class="bdg bgrn">Live</span></div>
+        <div style="display:flex;justify-content:space-between"><span class="dimmed">Connection</span><span class="bdg bst" id="d-conn">—</span></div>
+        <div style="display:flex;justify-content:space-between"><span class="dimmed">Shop URL</span><span class="bdg bst" id="d-shop">—</span></div>
+        <div style="display:flex;justify-content:space-between"><span class="dimmed">Unsaved Changes</span><span class="bdg bst" id="d-dirty">None</span></div>
+        <div style="display:flex;justify-content:space-between"><span class="dimmed">SEO Tags</span><span class="bdg bst" id="d-seo">—</span></div>
+        <div style="display:flex;justify-content:space-between"><span class="dimmed">Google Analytics</span><span class="bdg bst" id="d-ga">—</span></div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="ct">↑ Recent Commits</div>
+      <div class="clog" id="d-commits"><span class="dimmed">Connect to load history.</span></div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="ct">⚡ Quick Actions</div>
+    <div class="flex-row">
+      <button class="btn bsf" onclick="sw('products')">▣ Products</button>
+      <button class="btn bsf" onclick="sw('blog')">⬡ Blog</button>
+      <button class="btn bsf" onclick="sw('translations')">⬡ Translations</button>
+      <button class="btn bsf" onclick="sw('seo')">⊕ SEO</button>
+      <button class="btn bsf" onclick="sw('theme')">◑ Theme</button>
+      <button class="btn bsf" onclick="sw('avail')">◉ Availability</button>
+      <button class="btn bsf" onclick="sw('snapshots')">◫ Snapshots</button>
+      <button class="btn bsf" onclick="sw('deploy')">↑ Deploy</button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════ PRODUCTS ═══════════ -->
+<div class="tab" id="tab-products">
+  <div style="display:flex;align-items:center;gap:.6rem;margin-bottom:.9rem;flex-wrap:wrap">
+    <div class="ptabs" id="prod-tabs" style="flex:1;margin-bottom:0;flex-wrap:wrap">
+      <!-- rebuilt by buildProductTabs() after connect; fallback shown before -->
+      <span style="font-size:.72rem;color:var(--stone)" id="prod-tabs-hint">Connect to load products</span>
+    </div>
+    <button class="btn bg" onclick="addNewProduct()" style="font-size:.68rem;white-space:nowrap;padding:.4rem .9rem">＋ Add Product</button>
+  </div>
+  <div id="prod-panels">
+    <!-- dynamically built by buildProductTabs() -->
+  </div>
+</div>
+
+<!-- ═══════════ AVAILABILITY ═══════════ -->
+<div class="tab" id="tab-avail">
+  <div class="card">
+    <div class="ct">◉ Product Availability</div>
+    <div class="alert alert-gld" style="margin-bottom:1rem">Hiding a product sets it to "Coming Soon" style — it stays in the DOM but gets <code>opacity:.3;pointer-events:none</code> via a CSS class. Deploy to apply.</div>
+    <div id="avail-list">
+      <!-- populated by JS -->
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════ BLOG ═══════════ -->
+<div class="tab" id="tab-blog">
+  <div class="ptabs" id="blog-tabs">
+    <button class="ptab active" onclick="sb2(1,this)">Article 1</button>
+    <button class="ptab" onclick="sb2(2,this)">Article 2</button>
+    <button class="ptab" onclick="sb2(3,this)">Article 3</button>
+    <button class="ptab" onclick="sb2(4,this)">Article 4</button>
+    <button class="ptab" onclick="sb2(5,this)">Article 5</button>
+    <button class="ptab" onclick="sb2(6,this)">Article 6</button>
+  </div>
+  <div id="blog-panel">
+    <div class="g2" style="margin-bottom:1rem">
+      <div class="card">
+        <div class="ct">Metadata</div>
+        <div class="field"><label>Category</label><input type="text" id="b-cat" oninput="blogField('cat',this.value)" placeholder="e.g. Origin &amp; Science"></div>
+        <div class="field"><label>Date</label><input type="text" id="b-date" oninput="blogField('date',this.value)" placeholder="e.g. October 2025"></div>
+        <div class="field"><label>Title</label><input type="text" id="b-title" oninput="blogField('title',this.value)"></div>
+        <div class="field"><label>Excerpt <span style="color:var(--stone);font-weight:400">(card preview text)</span></label><textarea id="b-excerpt" rows="3" oninput="blogField('excerpt',this.value)"></textarea></div>
+      </div>
+      <div class="card">
+        <div class="ct">Language</div>
+        <div class="ltabs" id="blog-ltabs"></div>
+        <div class="alert alert-gld">Body contains HTML. Use &lt;p&gt;, &lt;h3&gt;, &lt;blockquote&gt;, &lt;div class="data-row"&gt; tags.</div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="ct">Article Body (HTML)</div>
+      <textarea id="b-body" rows="16" oninput="blogBody(this.value)" style="font-family:monospace;font-size:.72rem"></textarea>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════ TESTIMONIALS ═══════════ -->
+<div class="tab" id="tab-testi">
+  <div class="ptabs">
+    <button class="ptab active" onclick="st(1,this)">Testimonial 1</button>
+    <button class="ptab" onclick="st(2,this)">Testimonial 2</button>
+    <button class="ptab" onclick="st(3,this)">Testimonial 3</button>
+  </div>
+  <div id="testi-panel">
+    <div class="g2">
+      <div class="card">
+        <div class="ct">Identity <span class="dimmed" style="text-transform:none;font-size:.65rem">— EN</span></div>
+        <div class="field"><label>Tier / Series Label</label><input type="text" id="ti-tier" oninput="testiField('tier',this.value)"></div>
+        <div class="field"><label>Author Name</label><input type="text" id="ti-author" oninput="testiField('author',this.value)"></div>
+        <div class="field"><label>Role / Location</label><input type="text" id="ti-role" oninput="testiField('role',this.value)"></div>
+      </div>
+      <div class="card">
+        <div class="ct">Quote <span id="testi-ltabs" style="display:inline-flex;gap:.3rem;flex-wrap:wrap;margin-left:.4rem"></span></div>
+        <textarea id="ti-text" rows="7" oninput="mdl('t'+curTesti+'.text',curL.testi,this.value)"></textarea>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════ HOUSE OF KALA ═══════════ -->
+<div class="tab" id="tab-hok">
+  <div class="g2">
+    <div class="card">
+      <div class="ct">HOK Content <span class="dimmed" style="text-transform:none;font-size:.65rem">— select language:</span>
+        <div class="ltabs" id="hok-ltabs" style="margin-top:.5rem;margin-bottom:0"></div>
+      </div>
+      <div class="field"><label>Eyebrow</label><input type="text" id="hok-eyebrow" oninput="mdl('hok.eyebrow',curL.hok,this.value)"></div>
+      <div class="field"><label>Title</label><input type="text" id="hok-title" oninput="mdl('hok.title',curL.hok,this.value)"></div>
+      <div class="field"><label>Tagline</label><input type="text" id="hok-tagline" oninput="mdl('hok.tagline',curL.hok,this.value)"></div>
+      <div class="field"><label>Quote</label><input type="text" id="hok-quote" oninput="mdl('hok.quote',curL.hok,this.value)"></div>
+      <div class="field"><label>CTA Button</label><input type="text" id="hok-cta" oninput="mdl('hok.cta',curL.hok,this.value)"></div>
+    </div>
+    <div class="card">
+      <div class="ct">Series Pillars</div>
+      <div class="field"><label>Pillar 1</label><input type="text" id="hok-p1" oninput="mdl('hok.p1',curL.hok,this.value)"></div>
+      <div class="field"><label>Pillar 2</label><input type="text" id="hok-p2" oninput="mdl('hok.p2',curL.hok,this.value)"></div>
+      <div class="field"><label>Pillar 3</label><input type="text" id="hok-p3" oninput="mdl('hok.p3',curL.hok,this.value)"></div>
+      <div class="field"><label>Pillar 4</label><input type="text" id="hok-p4" oninput="mdl('hok.p4',curL.hok,this.value)"></div>
+      <div class="field"><label>Pillar 5</label><input type="text" id="hok-p5" oninput="mdl('hok.p5',curL.hok,this.value)"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════ TRADE FORM ═══════════ -->
+<div class="tab" id="tab-tradeform">
+  <div class="alert alert-gld">These are the dropdown option lists in the Trade Enquiry form. Each row is one option. Add/remove lines. Changes apply to all languages separately.</div>
+  <div class="field"><label>Language</label>
+    <select id="tf-lang" onchange="loadTradeForm()">
+      <option value="en">🇬🇧 English</option><option value="tr">🇹🇷 Türkçe</option>
+      <option value="de">🇩🇪 Deutsch</option><option value="ar">🇸🇦 العربية</option>
+      <option value="ru">🇷🇺 Русский</option><option value="fr">🇫🇷 Français</option>
+      <option value="es">🇪🇸 Español</option><option value="it">🇮🇹 Italiano</option>
+    </select>
+  </div>
+  <div class="g3">
+    <div class="card">
+      <div class="ct">Venue / Sector Types</div>
+      <textarea id="tf-venue" rows="10" style="font-family:monospace;font-size:.75rem" oninput="saveTradeOpts('venue',this.value)"></textarea>
+      <div class="dimmed" style="font-size:.65rem;margin-top:.4rem">One option per line</div>
+    </div>
+    <div class="card">
+      <div class="ct">Tier / Product Options</div>
+      <textarea id="tf-tier" rows="10" style="font-family:monospace;font-size:.75rem" oninput="saveTradeOpts('tier',this.value)"></textarea>
+      <div class="dimmed" style="font-size:.65rem;margin-top:.4rem">One option per line</div>
+    </div>
+    <div class="card">
+      <div class="ct">Volume Options</div>
+      <textarea id="tf-vol" rows="10" style="font-family:monospace;font-size:.75rem" oninput="saveTradeOpts('vol',this.value)"></textarea>
+      <div class="dimmed" style="font-size:.65rem;margin-top:.4rem">One option per line</div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="ct">Form Backend</div>
+    <div class="field"><label>Formspree Endpoint URL</label><input type="url" id="tf-formspree" placeholder="https://formspree.io/f/XXXXXX" oninput="mdrw('formspreeUrl',this.value)"></div>
+    <div class="dimmed" style="font-size:.72rem">Create a free form at formspree.io, paste the endpoint URL above. Trade enquiries will be emailed to you.</div>
+  </div>
+</div>
+
+<!-- ═══════════ LEGAL PAGES ═══════════ -->
+<div class="tab" id="tab-legal">
+  <div class="alert alert-gld">Legal pages are injected as hidden modal sections in the site HTML. They open via footer links. Currently missing — adding them here will embed them into the deployed site.</div>
+  <div class="ptabs">
+    <button class="ptab active" onclick="slg('privacy',this)">Privacy Policy</button>
+    <button class="ptab" onclick="slg('terms',this)">Terms of Service</button>
+    <button class="ptab" onclick="slg('refund',this)">Refund Policy</button>
+  </div>
+  <div class="card">
+    <div class="ct" id="legal-ct">Privacy Policy</div>
+    <div class="field"><label>Language</label>
+      <select id="legal-lang" onchange="loadLegal()">
+        <option value="en">🇬🇧 English</option><option value="tr">🇹🇷 Türkçe</option>
+        <option value="de">🇩🇪 Deutsch</option>
+      </select>
+    </div>
+    <div class="field"><label>Content (HTML allowed)</label>
+      <textarea id="legal-body" rows="16" style="font-family:monospace;font-size:.72rem" oninput="saveLegal(this.value)"></textarea>
+    </div>
+    <div class="flex-row mt"><button class="btn bsf" onclick="fillDefaultLegal()">↙ Fill Default Template</button></div>
+  </div>
+</div>
+
+<!-- ═══════════ TRANSLATIONS ═══════════ -->
+<div class="tab" id="tab-translations">
+  <div style="display:flex;gap:.6rem;flex-wrap:wrap;align-items:center;margin-bottom:.9rem">
+    <div style="position:relative;flex:1;min-width:160px">
+      <input type="text" id="trSearch" placeholder="Search key or value…" oninput="filterTr()" style="padding-left:1.8rem">
+      <span style="position:absolute;left:.6rem;top:50%;transform:translateY(-50%);color:var(--stone);font-size:.9rem;pointer-events:none">⌕</span>
+    </div>
+    <select id="trGroup" onchange="filterTr()" style="width:auto;padding:.45rem .7rem;font-size:.72rem">
+      <option value="">All keys</option>
+      <option value="nav">nav.*</option><option value="hero">hero.*</option>
+      <option value="pc">pc* (products)</option><option value="t1,t2,t3">testimonials</option>
+      <option value="hok">hok.*</option><option value="meta,og">SEO</option>
+      <option value="footer">footer.*</option><option value="blog">blog*</option>
+    </select>
+    <button class="btn bsf" style="font-size:.62rem" onclick="copyEnToLang()" title="Fill all empty keys in selected language from EN">⬇ Fill from EN</button>
+    <div class="ltabs" id="tr-ltabs" style="margin-bottom:0"></div>
+  </div>
+  <div style="display:flex;gap:.5rem;margin-bottom:.7rem;align-items:center">
+    <input type="text" id="trFindInput" placeholder="Find…" style="flex:1;font-size:.72rem">
+    <input type="text" id="trReplaceInput" placeholder="Replace with…" style="flex:1;font-size:.72rem">
+    <button class="btn bsf" style="font-size:.62rem" onclick="findReplaceTr()">Replace All</button>
+  </div>
+  <div class="card" style="padding:0;overflow:hidden">
+    <div id="trEditor" style="padding:.9rem;max-height:calc(100vh - 270px);overflow-y:auto">
+      <div class="dimmed" style="font-size:.75rem">Connect to load translations.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════ SEO ═══════════ -->
+<div class="tab" id="tab-seo">
+  <div class="alert alert-gld">The site currently has no SEO meta tags. These will be injected into &lt;head&gt; on deploy.</div>
+  <div class="field"><label>Language</label>
+    <select id="seo-lang" onchange="loadSEO()">
+      <option value="en">🇬🇧 English</option><option value="tr">🇹🇷 Türkçe</option>
+      <option value="de">🇩🇪 Deutsch</option><option value="ar">🇸🇦 العربية</option>
+      <option value="ru">🇷🇺 Русский</option><option value="fr">🇫🇷 Français</option>
+      <option value="es">🇪🇸 Español</option><option value="it">🇮🇹 Italiano</option>
+    </select>
+  </div>
+  <div class="g2">
+    <div class="card">
+      <div class="ct">Core Meta Tags</div>
+      <div class="field"><label>Page Title</label><input type="text" id="seo-title" placeholder="KALA — Cold-Extracted Olive Oil from Ayvalık" oninput="saveSEO()"></div>
+      <div class="field"><label>Meta Description (max 160 chars)</label><textarea id="seo-desc" rows="3" oninput="saveSEO()"></textarea><div class="dimmed" style="font-size:.65rem;margin-top:.25rem" id="seo-count">0 / 160</div></div>
+      <div class="field"><label>Canonical URL</label><input type="url" id="seo-canonical" placeholder="https://orcncetin-sys.github.io/olivekala-website/" oninput="saveSEO()"></div>
+    </div>
+    <div class="card">
+      <div class="ct">Open Graph (Social Sharing)</div>
+      <div class="field"><label>OG Title</label><input type="text" id="seo-og-title" oninput="saveSEO()"></div>
+      <div class="field"><label>OG Description</label><textarea id="seo-og-desc" rows="3" oninput="saveSEO()"></textarea></div>
+      <div class="field"><label>OG Image URL</label><input type="url" id="seo-og-img" placeholder="https://…/og-image.jpg (1200×630)" oninput="saveSEO()"></div>
+      <div class="field"><label>Twitter Card Type</label>
+        <select id="seo-tw-card" onchange="saveSEO()"><option value="summary_large_image">summary_large_image</option><option value="summary">summary</option></select>
+      </div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="ct">Structured Data (JSON-LD) — Auto-generated</div>
+    <pre id="seo-jsonld" style="font-family:monospace;font-size:.68rem;color:var(--stone);line-height:1.6;white-space:pre-wrap;max-height:200px;overflow-y:auto"></pre>
+  </div>
+</div>
+
+<!-- ═══════════ THEME ═══════════ -->
+<div class="tab" id="tab-theme">
+  <div class="g2">
+    <div class="card">
+      <div class="ct">◑ Brand Colors</div>
+      <div id="theme-vars"></div>
+      <div class="mt flex-row">
+        <button class="btn bsf" onclick="resetTheme()">↺ Reset to Default</button>
+        <button class="btn bg" onclick="applyTheme()">Apply to Site</button>
+      </div>
+    </div>
+    <div class="card">
+      <div class="ct">Preview</div>
+      <div id="theme-preview" style="padding:1.5rem;border-radius:.4rem;background:var(--prev-bg,#0d0d0b)">
+        <div style="font-family:Georgia,serif;font-size:1.3rem;color:var(--prev-cream,#f4f0e8);margin-bottom:.5rem">KALA Premium</div>
+        <div style="font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;color:var(--prev-gold,#c9a84c);margin-bottom:.8rem">Premium · Fine Dining</div>
+        <div style="font-size:.78rem;color:var(--prev-stone,#8a8478);margin-bottom:.9rem;line-height:1.6">Cold-extracted Memecik. October 2025 harvest.<br>Free acidity 0.3%. Polyphenols ≥300 mg/kg.</div>
+        <div style="display:inline-block;padding:.5rem 1.2rem;background:var(--prev-gold,#c9a84c);color:#0a0a08;font-size:.62rem;letter-spacing:.15em;text-transform:uppercase;border-radius:.25rem;font-weight:600">Shop Now</div>
+        <div style="display:inline-block;padding:.5rem 1.2rem;border:1px solid var(--prev-gold,#c9a84c);color:var(--prev-gold,#c9a84c);font-size:.62rem;letter-spacing:.15em;text-transform:uppercase;border-radius:.25rem;margin-left:.5rem">Enquire</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════ IMAGES ═══════════ -->
+<div class="tab" id="tab-images">
+  <!-- Upload drop zone -->
+  <div id="img-dropzone" ondragover="event.preventDefault();this.classList.add('dz-over')" ondragleave="this.classList.remove('dz-over')" ondrop="imgDrop(event)"
+    style="border:2px dashed var(--gold);border-radius:.6rem;padding:2rem;text-align:center;cursor:pointer;transition:background .2s;margin-bottom:1.2rem"
+    onclick="document.getElementById('img-file-input').click()">
+    <div style="font-size:1.4rem;margin-bottom:.4rem">📁</div>
+    <div style="font-size:.82rem;color:var(--gold);font-weight:600">Drop images here or click to upload</div>
+    <div style="font-size:.7rem;color:var(--stone);margin-top:.3rem">JPG / PNG / WebP · Keep under 200KB each · <a href="https://squoosh.app" target="_blank" style="color:var(--gold)">squoosh.app</a> to compress</div>
+    <input type="file" id="img-file-input" accept="image/*" multiple style="display:none" onchange="imgFilesPicked(this.files)">
+  </div>
+  <!-- Pending (just-uploaded) images waiting to be assigned -->
+  <div id="img-pending" style="display:none;margin-bottom:1.2rem">
+    <div style="font-size:.72rem;color:var(--gold);font-weight:700;letter-spacing:.08em;text-transform:uppercase;margin-bottom:.6rem">⬆ Uploaded — click an existing image below to replace it, or use "Add as new"</div>
+    <div class="g3" id="img-pending-grid"></div>
+  </div>
+  <!-- Existing images in HTML -->
+  <div style="font-size:.72rem;color:var(--stone);font-weight:700;letter-spacing:.08em;text-transform:uppercase;margin-bottom:.6rem" id="img-existing-label">Images in HTML</div>
+  <div class="g3" id="img-grid"><!-- populated by JS --></div>
+</div>
+
+<!-- ═══════════ SETTINGS ═══════════ -->
+<div class="tab" id="tab-settings">
+  <div class="g2">
+    <div class="card">
+      <div class="ct">🛒 Shopify</div>
+      <div class="field"><label>Shop Now URL</label><input type="url" id="set-shopurl" placeholder="https://olivekala.myshopify.com/pages/shop" oninput="mdrw('shopUrl',this.value)"></div>
+      <div class="field"><label>Store Domain</label><input type="text" id="set-domain" placeholder="olivekala.myshopify.com"></div>
+    </div>
+    <div class="card">
+      <div class="ct">⊕ Google Analytics</div>
+      <div class="field"><label>GA4 Measurement ID</label><input type="text" id="set-ga" placeholder="G-XXXXXXXXXX" oninput="mdrw('gaId',this.value)"></div>
+      <div class="field"><label>Status</label><div class="bdg bst" id="ga-status" style="font-size:.7rem;padding:.3rem .7rem">Not configured</div></div>
+      <div class="mt"><button class="btn bg" onclick="injectGA()">Inject GA Snippet</button></div>
+    </div>
+    <div class="card">
+      <div class="ct">◈ Harvest Info</div>
+      <div class="row">
+        <div class="field"><label>Harvest Year</label><input type="text" id="set-year" placeholder="2025"></div>
+        <div class="field"><label>Free Acidity %</label><input type="text" id="set-acid" placeholder="0.3"></div>
+      </div>
+      <div class="row">
+        <div class="field"><label>Extraction °C</label><input type="text" id="set-temp" placeholder="24"></div>
+        <div class="field"><label>Polyphenols</label><input type="text" id="set-poly" placeholder="≥300 mg/kg"></div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="ct">⚙ Site Identity</div>
+      <div class="field"><label>Contact Email</label><input type="text" id="set-email" placeholder="info@olivekala.com"></div>
+      <div class="field"><label>Custom Domain</label><input type="text" id="set-cdom" placeholder="olivekala.com"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════ MEMBERSHIP ═══════════ -->
+<div class="tab" id="tab-membership">
+  <div class="alert alert-gld">These are display prices in the HTML preview. Set real prices in Shopify Admin → Products after setup.</div>
+  <div class="g3">
+    <div class="card">
+      <div class="ct" style="color:var(--stone)">◉ Ritual</div>
+      <div class="row"><div class="field"><label>Monthly €</label><input type="number" id="m-r-mo" placeholder="28" oninput="mdrw('mem_ritual_monthly',this.value)"></div></div>
+      <div class="row"><div class="field"><label>Quarterly € /mo</label><input type="number" id="m-r-qu" placeholder="26" oninput="mdrw('mem_ritual_quarterly',this.value)"></div></div>
+      <div class="row"><div class="field"><label>Annual € /mo</label><input type="number" id="m-r-an" placeholder="24" oninput="mdrw('mem_ritual_annual',this.value)"></div></div>
+    </div>
+    <div class="card" style="border-color:var(--g2)">
+      <div class="ct">◈ Reserve <span class="bdg bgld" style="margin-left:.3rem">Featured</span></div>
+      <div class="row"><div class="field"><label>Monthly €</label><input type="number" id="m-rs-mo" placeholder="68" oninput="mdrw('mem_reserve_monthly',this.value)"></div></div>
+      <div class="row"><div class="field"><label>Quarterly € /mo</label><input type="number" id="m-rs-qu" placeholder="63" oninput="mdrw('mem_reserve_quarterly',this.value)"></div></div>
+      <div class="row"><div class="field"><label>Annual € /mo</label><input type="number" id="m-rs-an" placeholder="58" oninput="mdrw('mem_reserve_annual',this.value)"></div></div>
+    </div>
+    <div class="card">
+      <div class="ct" style="color:var(--stone)">▣ Estate</div>
+      <div class="row"><div class="field"><label>Monthly €</label><input type="number" id="m-es-mo" placeholder="160" oninput="mdrw('mem_estate_monthly',this.value)"></div></div>
+      <div class="row"><div class="field"><label>Quarterly € /mo</label><input type="number" id="m-es-qu" placeholder="148" oninput="mdrw('mem_estate_quarterly',this.value)"></div></div>
+      <div class="row"><div class="field"><label>Annual € /mo</label><input type="number" id="m-es-an" placeholder="136" oninput="mdrw('mem_estate_annual',this.value)"></div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════ SHOPIFY ═══════════ -->
+<div class="tab" id="tab-shopify">
+  <div class="g2">
+    <div class="card">
+      <div class="ct">⬡ Shopify Status Check</div>
+      <div class="field"><label>Store URL to Check</label><input type="url" id="sh-url" placeholder="https://olivekala.myshopify.com/pages/shop"></div>
+      <button class="btn bg" onclick="checkShopify()">Check Status</button>
+      <div id="sh-result" style="margin-top:1rem;font-size:.78rem;line-height:1.6;color:var(--stone)">Enter your Shopify URL and click Check.</div>
+    </div>
+    <div class="card">
+      <div class="ct">⚡ Shopify Checklist</div>
+      <div id="sh-checklist" style="display:flex;flex-direction:column;gap:.5rem;font-size:.76rem">
+        <div class="dimmed">Complete the checklist items after setting up Shopify.</div>
+      </div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="ct">KURULUM Reminder</div>
+    <div style="font-size:.76rem;color:var(--stone);line-height:1.8">
+      <strong style="color:var(--cream)">Step 1</strong> — Create Shopify account &amp; upload Liquid section files<br>
+      <strong style="color:var(--cream)">Step 2</strong> — Create <code>kala</code> collection, add 6 products with tags<br>
+      <strong style="color:var(--cream)">Step 3</strong> — Install Shopify Subscriptions app, add Selling Plans<br>
+      <strong style="color:var(--cream)">Step 4</strong> — Create page with template <code>page.shop</code><br>
+      <strong style="color:var(--cream)">Step 5</strong> — Update Shop Now URL in Settings tab<br>
+      <strong style="color:var(--cream)">Step 6</strong> — Add legal pages in Shopify Admin → Pages
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════ PREVIEW ═══════════ -->
+<div class="tab" id="tab-preview">
+  <div class="flex-row" style="margin-bottom:1rem;flex-wrap:wrap">
+    <button class="btn bg" onclick="openPreviewNow()">▷ Render Preview</button>
+    <button class="btn bsf" onclick="document.getElementById('previewFrame').src='https://orcncetin-sys.github.io/olivekala-website/'">↗ Load Live Site</button>
+    <button class="btn bsf" onclick="togglePreviewWidth('desktop')" id="pvDesk">🖥 Desktop</button>
+    <button class="btn bsf" onclick="togglePreviewWidth('mobile')" id="pvMob">📱 Mobile</button>
+    <span class="dimmed" style="font-size:.72rem">Preview renders current HTML with your unsaved changes applied.</span>
+  </div>
+  <iframe id="previewFrame" sandbox="allow-scripts allow-same-origin allow-forms allow-modals" style="width:100%;height:calc(100vh - 220px);border:1px solid var(--border);border-radius:.4rem;background:#fff"></iframe>
+</div>
+
+<!-- ═══════════ DIFF ═══════════ -->
+<div class="tab" id="tab-diff">
+  <div class="flex-row" style="margin-bottom:1rem">
+    <button class="btn bg" onclick="buildDiff()">⊟ Compute Diff</button>
+    <span class="dimmed" style="font-size:.72rem" id="diff-stat">Compare loaded (original) vs. current (with changes applied).</span>
+  </div>
+  <div id="diff-out" style="background:var(--surf2);border:1px solid var(--border);border-radius:.4rem;padding:.9rem;max-height:calc(100vh - 230px);overflow-y:auto;font-size:.7rem;line-height:1.7">
+    <div class="dimmed">Click "Compute Diff" to see changes.</div>
+  </div>
+</div>
+
+<!-- ═══════════ SNAPSHOTS ═══════════ -->
+<div class="tab" id="tab-snapshots">
+  <div class="g2">
+    <div class="card">
+      <div class="ct">◫ Save Snapshot</div>
+      <div class="field"><label>Snapshot Name</label><input type="text" id="snap-name" placeholder="Before price update · May 2026"></div>
+      <button class="btn bg" onclick="saveSnap()">◫ Save Current State</button>
+      <div class="dimmed mt" style="font-size:.7rem">Snapshots saved in browser localStorage. Max 10 stored.</div>
+    </div>
+    <div class="card">
+      <div class="ct">◫ Saved Snapshots</div>
+      <div id="snap-list"><div class="dimmed" style="font-size:.75rem">No snapshots yet.</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════ DEPLOY ═══════════ -->
+<div class="tab" id="tab-deploy">
+  <div class="g2">
+    <div>
+      <div class="card">
+        <div class="ct">↑ Push to GitHub Pages</div>
+        <div class="field"><label>Commit Message</label><input type="text" id="dep-msg" value="Admin: update content via KALA Admin Panel"></div>
+        <div class="field"><label>Schedule Deploy (optional)</label><input type="datetime-local" id="dep-sched"></div>
+        <div class="flex-row mt">
+          <button class="btn bgn" id="dep-btn" onclick="saveAndDeploy()">↑ Deploy Now</button>
+          <button class="btn bsf" onclick="schedDeploy()">⏱ Schedule</button>
+          <button class="btn bsf" onclick="dlHTML()">↓ Download</button>
+          <button class="btn bsf" onclick="autoChangelog('Manual entry')">⬡ Auto Changelog</button>
+        </div>
+        <div id="dep-status" style="margin-top:.9rem;font-size:.74rem;color:var(--stone);line-height:1.6"></div>
+      </div>
+      <div class="card">
+        <div class="ct">⬡ Pending Changes</div>
+        <div id="changes-list" style="font-size:.73rem;color:var(--stone);line-height:2;max-height:180px;overflow-y:auto">No changes.</div>
+        <div class="mt"><button class="btn bsf" onclick="revertAll()">↺ Revert All</button></div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="ct">◈ Commit History</div>
+      <div class="clog" id="dep-commits"><span class="dimmed">Connect to load.</span></div>
+      <div class="mt"><a href="https://github.com/orcncetin-sys/olivekala-website/commits/main" target="_blank"><button class="btn bsf">View on GitHub →</button></a></div>
+    </div>
+  </div>
+</div>
+
+  </div><!-- /content -->
+</main>
+
+<!-- CONNECT OVERLAY -->
+<div id="cov" style="position:fixed;inset:0;background:rgba(9,9,7,.92);display:flex;align-items:center;justify-content:center;z-index:500;backdrop-filter:blur(6px)">
+  <div class="cbox" style="background:var(--surf);border:1px solid var(--border);border-radius:.55rem;padding:2.2rem;width:420px;max-width:92vw">
+    <div style="font-family:Georgia,serif;font-size:1.25rem;margin-bottom:.35rem">Connect to GitHub</div>
+    <p style="font-size:.76rem;color:var(--stone);margin-bottom:1.5rem;line-height:1.6">Enter your GitHub token to load and deploy the KALA website directly.</p>
+    <div class="field"><label>GitHub Token</label><input type="password" id="gh-tok" placeholder="ghp_…" autocomplete="off"></div>
+    <div class="field"><label>Repository</label><input type="text" id="gh-repo" value="orcncetin-sys/olivekala-website"></div>
+    <div class="field"><label>File</label><input type="text" id="gh-file" value="index.html"></div>
+    <div class="flex-row mt">
+      <button class="btn bsf" onclick="testConnection()">Test</button>
+      <button class="btn bg" style="flex:1" onclick="connectGH()">Connect &amp; Load</button>
+      <button class="btn bsf" onclick="document.getElementById('cov').style.display='none'">Skip</button>
+    </div>
+    <div id="cov-err" style="margin-top:.7rem;font-size:.73rem;color:var(--red);display:none"></div>
+    <div style="text-align:center;font-size:.6rem;color:var(--stone);letter-spacing:.12em;text-transform:uppercase;margin:1rem 0;position:relative">
+      <span style="background:var(--surf);padding:0 .7rem;position:relative;z-index:1">or</span>
+      <div style="position:absolute;top:50%;left:0;right:0;height:1px;background:var(--border)"></div>
+    </div>
+    <div class="field" style="margin-bottom:0"><label>Upload HTML file</label>
+      <input type="file" accept=".html" onchange="loadFile(this)" style="font-size:.76rem;padding:.4rem;border:1px solid var(--border);border-radius:.28rem;background:var(--surf2);color:var(--stone);width:100%">
+    </div>
+  </div>
+</div>
+<div id="toast"></div>
+
+<script>
+/* ═══════════════════════════════════════════════════════
+   KALA ADMIN PANEL — FULL JAVASCRIPT
+   ═══════════════════════════════════════════════════════ */
+
+/* ── STATE ── */
+let state = {
+  token:'', repo:'orcncetin-sys/olivekala-website', file:'index.html',
+  sha:'', html:'', originalHtml:'',
+  T:{}, dirty:{}, connected:false, commits:[],
+  snapshots:[], availability:{}, images:[],
+  seoData:{}, legalData:{}, themeVars:{}
+};
+const LANGS = ['en','tr','de','ar','ru','fr','es','it'];
+const LANG_NAMES = {en:'EN',tr:'TR',de:'DE',ar:'AR',ru:'RU',fr:'FR',es:'ES',it:'IT'};
+let globalLang = 'en';
+// Decode HTML entities (&amp; → &, &lt; → <, etc.) before putting T values into form inputs.
+// Uses regex — NOT the textarea trick — so HTML tags like <br> are left intact.
+function htmlDecode(s) {
+  if(!s) return '';
+  return s.replace(/&amp;/g,'&').replace(/&lt;/g,'<').replace(/&gt;/g,'>').replace(/&quot;/g,'"').replace(/&#0*39;|&#x27;/g,"'");
+}
+
+// Global language switcher — updates topbar pill and syncs all open sections
+function setGlobalLang(lang) {
+  globalLang = lang;
+  // Update topbar pill buttons
+  document.querySelectorAll('.glb').forEach(b => b.classList.toggle('active', b.dataset.l === lang));
+  // Products: switch all loaded product panels
+  if(state.T && state.T[lang]) {
+    document.querySelectorAll('[id^="pp-"][id$="-ltabs"]').forEach(el => {
+      const btn = el.querySelector(`[data-lang="${lang}"]`);
+      if(btn) btn.click();
+    });
+  }
+  // Blog
+  const blogBtn = document.querySelector(`#blog-ltabs .ltab[data-lang="${lang}"]`);
+  if(blogBtn) { blogBtn.click(); }
+  else if(typeof setBlogLang === 'function' && state.T) { setBlogLang(lang); }
+  // HOK
+  const hokBtn = document.querySelector(`#hok-ltabs .ltab[data-lang="${lang}"]`);
+  if(hokBtn) { hokBtn.click(); }
+  else if(typeof renderHOK === 'function' && state.T) { renderHOK(lang); }
+  // Translations tab
+  if(typeof filterTr === 'function') {
+    trLang = lang;
+    document.querySelectorAll('#tr-ltabs .ltab').forEach(b => b.classList.toggle('active', b.dataset.trlang === lang));
+    filterTr();
+  }
+  // Testimonials
+  const testiBtn = document.querySelector(`#testi-ltabs .ltab[data-lang="${lang}"]`);
+  if(testiBtn) testiBtn.click();
+}
+let curTL = {}; // current lang per multi-lang editor
+let curBlog = 0, curTesti = 0;
+let curLegal = 'privacy';
+let trLang = 'en', trFilter = '';
+
+/* ── INIT ── */
+window.addEventListener('DOMContentLoaded', () => {
+  loadLocalState();
+  sw('dash');
+  document.getElementById('cov').style.display = state.connected ? 'none' : 'flex';
+  updateDashboard();
+});
+
+function loadLocalState() {
+  try {
+    const s = JSON.parse(localStorage.getItem('kala_admin_state')||'{}');
+    if (s.token) state.token = s.token;
+    if (s.repo)  state.repo  = s.repo;
+    if (s.file)  state.file  = s.file;
+    if (s.snapshots) state.snapshots = s.snapshots;
+    if (s.token) {
+      document.getElementById('gh-tok').value = s.token;
+      document.getElementById('gh-repo').value = s.repo || state.repo;
+    }
+  } catch(e){}
+}
+
+function saveLocalState() {
+  localStorage.setItem('kala_admin_state', JSON.stringify({
+    token:state.token, repo:state.repo, file:state.file,
+    snapshots:state.snapshots
+  }));
+}
+
+/* ── TAB SWITCHER ── */
+const TAB_NAMES={'dash':'Dashboard','products':'Products','avail':'Availability','blog':'Blog / Journal','testi':'Testimonials','hok':'House of KALA','tradeform':'Trade Form','legal':'Legal Pages','translations':'Translations','seo':'SEO','theme':'Theme','images':'Images','settings':'Settings','membership':'Membership','shopify':'Shopify','preview':'Preview','diff':'Diff Viewer','snapshots':'Snapshots','deploy':'GitHub Deploy'};
+function sw(id) {
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  document.querySelectorAll('.si').forEach(n=>n.classList.remove('active'));
+  const el = document.getElementById('tab-'+id);
+  if(el) el.classList.add('active');
+  const nav = document.querySelector(`.si[data-tab="${id}"]`);
+  if(nav) nav.classList.add('active');
+  const ttEl = document.getElementById('tabTitle');
+  if(ttEl) ttEl.textContent = TAB_NAMES[id]||id;
+  // Lazy-load tab content
+  if(id==='translations') buildTranslationEditor();
+  if(id==='seo') loadSEO();
+  if(id==='theme') buildThemeVars();
+  if(id==='images') buildImageGrid();
+  if(id==='diff') buildDiff();
+  if(id==='snapshots') listSnaps();
+  if(id==='deploy') renderCommits();
+  if(id==='avail') buildAvailList();
+  if(id==='shopify') renderShopifyStatus();
+  if(id==='membership') populateMembershipPrices();
+}
+
+/* ── CONNECT & LOAD ── */
+async function connectGH() {
+  const tok = document.getElementById('gh-tok').value.trim();
+  const repo = document.getElementById('gh-repo').value.trim();
+  const file = document.getElementById('gh-file').value.trim();
+  if(!tok||!repo||!file) { covErr('Please fill all fields'); return; }
+  state.token=tok; state.repo=repo; state.file=file;
+  covErr('');
+  document.getElementById('cov').style.display='none';
+  toast('Connecting…');
+  await loadFromGitHub();
+  saveLocalState();
+}
+
+async function loadFromGitHub() {
+  try {
+    const r = await ghGet(`/repos/${state.repo}/contents/${state.file}`);
+    state.sha = r.sha;
+    // Proper UTF-8 decode (atob alone gives latin-1 garbage for multi-byte chars)
+    const _b64 = r.content.replace(/\n/g,'');
+    const _bin = atob(_b64);
+    const _bytes = new Uint8Array(_bin.length);
+    for(let _i=0;_i<_bin.length;_i++) _bytes[_i]=_bin.charCodeAt(_i);
+    state.html = new TextDecoder('utf-8').decode(_bytes);
+    state.originalHtml = state.html;
+    state.dirty = {};
+    state.connected = true;
+    parseHTML();
+    updateDashboard();
+    document.getElementById('saveBtn').disabled = false;
+    document.getElementById('sDot').className='dot ok';
+    document.getElementById('sTxt').textContent='Connected';
+    toast('Loaded ✓');
+    document.getElementById('d-conn').textContent = 'Connected';
+    document.getElementById('d-conn').style.color = 'var(--green)';
+    await loadCommits();
+  } catch(e) {
+    toast('Error: '+e.message, true);
+    document.getElementById('cov').style.display='flex';
+    covErr(e.message);
+  }
+}
+
+function loadFile(input) {
+  const f = input.files[0]; if(!f) return;
+  const reader = new FileReader();
+  reader.onload = e => {
+    state.html = e.target.result;
+    state.originalHtml = state.html;
+    state.dirty = {};
+    state.connected = false;
+    parseHTML();
+    updateDashboard();
+    document.getElementById('cov').style.display='none';
+    toast('File loaded ✓');
+  };
+  reader.readAsText(f);
+}
+
+/* ── GITHUB API ── */
+async function ghGet(path) {
+  const r = await fetch('https://api.github.com'+path, {
+    headers:{'Authorization':'Bearer '+state.token,'Accept':'application/vnd.github.v3+json'}
+  });
+  if(!r.ok) throw new Error('GitHub '+r.status+': '+(await r.text()).slice(0,120));
+  return r.json();
+}
+
+async function ghPut(path, body) {
+  const r = await fetch('https://api.github.com'+path, {
+    method:'PUT',
+    headers:{'Authorization':'Bearer '+state.token,'Accept':'application/vnd.github.v3+json','Content-Type':'application/json'},
+    body: JSON.stringify(body)
+  });
+  if(!r.ok) throw new Error('GitHub PUT '+r.status+': '+(await r.text()).slice(0,200));
+  return r.json();
+}
+
+async function loadCommits() {
+  try {
+    const cs = await ghGet(`/repos/${state.repo}/commits?path=${state.file}&per_page=10`);
+    state.commits = cs;
+    renderCommits();
+  } catch(e){}
+}
+
+/* ── PARSE HTML → T object ── */
+function parseHTML() {
+  try {
+    const idx = state.html.indexOf('const T = {');
+    if(idx<0) throw new Error('const T not found');
+    let depth=0, i=idx, start=-1;
+    for(; i<state.html.length; i++){
+      if(state.html[i]==='{'){depth++; if(depth===1) start=i;}
+      else if(state.html[i]==='}'){depth--; if(depth===0) break;}
+    }
+    const tStr = state.html.substring(start, i+1);
+    state.T = (new Function('return '+tStr))();
+    populateAll();
+  } catch(e) {
+    toast('Parse error: '+e.message, true);
+  }
+}
+
+function populateAll() {
+  detectProductPanes();   // must run before buildProductTabs
+  buildBlogList();
+  buildTestiList();
+  buildTradeForm();
+  buildLegalEditor();
+  buildAvailList();
+  updateKeyCount();
+  buildProductLangTabs();
+}
+
+/* ── Detect which pane each product is currently in ── */
+function detectProductPanes() {
+  state.productPanes = {};   // {pc1:'prem', pc4:'std', pc6:'cat', ...}
+  state.categoryTabs = [];   // ['prem','std','cat', ...]
+  if(!state.html) return;
+
+  // Collect pane IDs from HTML (id="pane-xxx")
+  const paneRe = /id="pane-(\w+)"/g;
+  let pm;
+  while((pm=paneRe.exec(state.html))!==null) {
+    if(!state.categoryTabs.includes(pm[1])) state.categoryTabs.push(pm[1]);
+  }
+
+  // For each pane, find which product prefixes are inside it
+  state.categoryTabs.forEach(paneId => {
+    const paneStart = state.html.indexOf(`id="pane-${paneId}"`);
+    if(paneStart<0) return;
+    // Find next pane start (or end of products section)
+    let paneEnd = state.html.length;
+    state.categoryTabs.forEach(other => {
+      if(other===paneId) return;
+      const pos = state.html.indexOf(`id="pane-${other}"`, paneStart+1);
+      if(pos>paneStart && pos<paneEnd) paneEnd = pos;
+    });
+    const paneHtml = state.html.slice(paneStart, paneEnd);
+    // Find all data-i18n="pcX.tier" inside this pane
+    const prodRe = /data-i18n="(pc[\w.]+)\.tier"/g;
+    let qm;
+    while((qm=prodRe.exec(paneHtml))!==null) {
+      state.productPanes[qm[1]] = paneId;
+    }
+  });
+}
+
+function buildProductLangTabs() {
+  buildProductTabs();
+}
+
+/* ── DASHBOARD ── */
+function updateDashboard() {
+  const dc = Object.keys(state.dirty).length;
+  document.getElementById('d-dirty').textContent = dc > 0 ? dc+' unsaved changes' : 'No changes';
+  document.getElementById('d-dirty').style.color = dc>0 ? 'var(--gold)' : 'var(--green)';
+  document.getElementById('d-sha').textContent = state.sha ? state.sha.slice(0,7) : '—';
+  document.getElementById('d-keys').textContent = state.T?.en ? Object.keys(state.T.en).length : '—';
+  document.getElementById('d-seo').textContent = state.T?.en?.['meta.title']||'—';
+  document.getElementById('d-ga').textContent = (state.html||'').includes('gtag/js') ? 'Active' : 'Not set';
+  document.getElementById('d-ga').style.color = (state.html||'').includes('gtag/js') ? 'var(--green)' : 'var(--stone)';
+  document.getElementById('d-shop').textContent = 'myshopify.com';
+}
+
+function updateKeyCount() {
+  const el = document.getElementById('d-keys');
+  if(el && state.T?.en) el.textContent = Object.keys(state.T.en).length;
+}
+
+/* ── MARK DIRTY ── */
+function md(k, v, lang) {
+  // Mark a T key dirty: lang.key
+  state.dirty[lang+'.'+k] = v;
+  updateDirtyBadge();
+}
+
+function mdl(k, v, lang) { md(k,v,lang); }
+
+function mdrw(selector, value) {
+  // raw HTML change — store with special prefix
+  state.dirty['__raw__'+selector] = value;
+  updateDirtyBadge();
+}
+
+function updateDirtyBadge() {
+  const n = Object.keys(state.dirty).length;
+  // Dashboard stat
+  const dd = document.getElementById('d-dirty');
+  if(dd){ dd.textContent = n>0 ? n+' unsaved' : 'None'; dd.className='bdg '+(n>0?'bgld':'bst'); }
+  // Topbar badge
+  const tb = document.getElementById('dirtyBadge');
+  if(tb){ tb.style.display = n>0?'inline':'none'; tb.textContent = n+' unsaved'; }
+  // Revert button
+  const rb = document.getElementById('revertBtn');
+  if(rb) rb.style.display = n>0?'inline-flex':'none';
+  // Deploy button
+  const sb = document.getElementById('saveBtn');
+  if(sb && state.connected) sb.disabled = false;
+  updateSidebarDots();
+}
+
+function updateSidebarDots() {
+  // Show gold dot on sidebar items that have dirty keys
+  const tabDirtyMap = {};
+  Object.keys(state.dirty).forEach(k=>{
+    if(k.startsWith('blog')) tabDirtyMap['blog']=true;
+    else if(k.startsWith('t1.')||k.startsWith('t2.')||k.startsWith('t3.')) tabDirtyMap['testi']=true;
+    else if(k.startsWith('hok.')) tabDirtyMap['hok']=true;
+    else if(k.startsWith('pc')||k.startsWith('prem')||k.startsWith('std')) tabDirtyMap['products']=true;
+    else if(k.startsWith('meta.')||k.startsWith('og.')) tabDirtyMap['seo']=true;
+    else if(k.startsWith('mem_')) tabDirtyMap['membership']=true;
+    else if(k.startsWith('theme')) tabDirtyMap['theme']=true;
+    else if(k.startsWith('avail:')) tabDirtyMap['avail']=true;
+    else tabDirtyMap['translations']=true;
+  });
+  document.querySelectorAll('.si[data-tab]').forEach(el=>{
+    const t = el.dataset.tab;
+    let dot = el.querySelector('.si-dot');
+    if(tabDirtyMap[t]) {
+      if(!dot){ dot=document.createElement('span'); dot.className='si-dot'; dot.style.cssText='width:5px;height:5px;border-radius:50%;background:var(--gold);margin-left:auto;flex-shrink:0'; el.appendChild(dot); }
+    } else { if(dot) dot.remove(); }
+  });
+}
+
+/* ══════════════════════════════════════
+   PRODUCTS TAB
+══════════════════════════════════════ */
+// Product panel map: key → {id, label, panel div id}
+/* ══════════════════════════════════════
+   DYNAMIC PRODUCT SYSTEM
+══════════════════════════════════════ */
+
+// Friendly labels for known T prefixes
+const PROD_KNOWN_LABELS = {
+  pc1:'◈ Premium', pc4:'▣ Standard', pc6:'⬡ Catering',
+  pc2:'◉ Morning Shot', pc3:'◈ Tasting Set'
+};
+
+// Current language per product prefix, e.g. {'pc1':'en', 'pc4':'tr'}
+const prodLang = {};
+
+function buildProductTabs() {
+  if(!state.T || !state.T.en) return;
+  const en = state.T.en;
+
+  // Collect unique product key prefixes (pc1, pc4, pc6, pc2, pc3, pc_new...)
+  const seen = new Set();
+  Object.keys(en).forEach(k => {
+    const m = k.match(/^(pc[\d_][^.]*)\./);
+    if(m) seen.add(m[1]);
+  });
+  // Also include any new products added via dirty state
+  Object.keys(state.dirty).forEach(k => {
+    const m = k.match(/^en\.(pc_new[^.]+)\./);
+    if(m) seen.add(m[1]);
+  });
+
+  const prefixes = [...seen].sort((a,b)=>{
+    // Sort: pc1 < pc2 < pc3 < pc4 < pc6 < pc_new...
+    const na = parseInt(a.replace(/\D/g,''))||999;
+    const nb = parseInt(b.replace(/\D/g,''))||999;
+    return na-nb;
+  });
+
+  if(!prefixes.length) return;
+
+  const tabsEl  = document.getElementById('prod-tabs');
+  const pnlsEl  = document.getElementById('prod-panels');
+  if(!tabsEl || !pnlsEl) return;
+
+  // Remove hint text
+  const hint = document.getElementById('prod-tabs-hint');
+  if(hint) hint.remove();
+
+  // Pane colour hints
+  const PANE_COLOURS = {prem:'var(--gold)',std:'var(--stone)',cat:'#5fa882'};
+
+  // Build tab buttons
+  tabsEl.innerHTML = prefixes.map((pfx, i) => {
+    const rawName = en[pfx+'.name']||en[pfx+'.tier']||pfx;
+    const label = PROD_KNOWN_LABELS[pfx] || rawName.replace(/<[^>]+>/g,'').slice(0,18);
+    const isNew = pfx.startsWith('pc_new');
+    const pane  = state.productPanes?.[pfx] || (isNew ? (state.dirty['catpane:'+pfx]||'prem') : '');
+    const dot   = pane ? `<span style="width:5px;height:5px;border-radius:50%;background:${PANE_COLOURS[pane]||'var(--stone)'};display:inline-block;margin-right:.3rem;vertical-align:middle"></span>` : '';
+    return `<button class="ptab${i===0?' active':''}" data-prod="${pfx}" onclick="spDyn('${pfx}',this)">${dot}${label}${isNew?' ✦':''}</button>`;
+  }).join('');
+
+  // Build panels
+  pnlsEl.innerHTML = prefixes.map((pfx, i) => buildProdPanel(pfx, en, i===0)).join('');
+}
+
+function buildProdPanel(pfx, en, active) {
+  const safeId = pfx.replace('.','__');
+  const isNew  = pfx.startsWith('pc_new');
+  const fields = ['name','tier','spec','cta1','cta2','tag1','tag2'];
+  const hasField = f => f==='body' || Object.keys(en).some(k=>k===pfx+'.'+f);
+
+  // Current pane assignment
+  const currentPane = state.productPanes?.[pfx] || (state.dirty['catpane:'+pfx]||'prem');
+  const tabs = state.categoryTabs?.length ? state.categoryTabs : ['prem','std','cat'];
+  const PANE_LABELS = {prem:'Premium',std:'Standard',cat:'Catering'};
+  const PANE_COLOURS = {prem:'var(--gold)',std:'var(--stone)',cat:'#5fa882'};
+
+  // Category selector — select for existing products, select+note for new
+  const catOptions = tabs.map(t=>`<option value="${t}" ${t===currentPane?'selected':''}>${PANE_LABELS[t]||t}</option>`).join('');
+  const catField = `
+    <div class="field" style="margin-bottom:.8rem">
+      <label style="display:flex;align-items:center;gap:.5rem">
+        <span style="width:8px;height:8px;border-radius:50%;background:${PANE_COLOURS[currentPane]||'var(--stone)'};flex-shrink:0" id="pp-${safeId}-catdot"></span>
+        Tab / Category
+      </label>
+      <div style="display:flex;gap:.4rem;align-items:center">
+        <select id="pp-${safeId}-catsel" onchange="pdSetCat('${pfx}',this.value,'pp-${safeId}-catdot')" style="flex:1;padding:.35rem .5rem;font-size:.75rem;background:var(--surf);color:var(--fg);border:1px solid var(--border);border-radius:.3rem">
+          ${catOptions}
+        </select>
+        <input type="text" id="pp-${safeId}-catnew" placeholder="new-tab-id" title="Type a new tab ID to create a new category"
+          style="width:100px;padding:.35rem .5rem;font-size:.72rem;background:var(--surf);color:var(--fg);border:1px solid var(--border);border-radius:.3rem"
+          onkeydown="if(event.key==='Enter'){pdAddCat('${pfx}','pp-${safeId}-catsel',this);}">
+        <button class="btn" style="font-size:.65rem;padding:.3rem .5rem" onclick="pdAddCat('${pfx}','pp-${safeId}-catsel',document.getElementById('pp-${safeId}-catnew'))">+ Add</button>
+      </div>
+      ${isNew?'<div style="font-size:.65rem;color:var(--stone);margin-top:.25rem">This tab determines which section of the website the product appears in.</div>':''}
+    </div>`;
+
+  const identityFields = fields.filter(hasField).map(f => {
+    const label = {name:'Product Name (HTML)',tier:'Tier Label',spec:'Spec Line',
+                   cta1:'CTA Button 1',cta2:'CTA Button 2',tag1:'Tag 1',tag2:'Tag 2'}[f];
+    const elId = `pp-${safeId}-${f}`;
+    const tag = f==='name'
+      ? `<textarea id="${elId}" rows="2" oninput="pdSet('${pfx}','${f}','en',this.value)"></textarea>`
+      : `<input type="text" id="${elId}" oninput="pdSet('${pfx}','${f}','en',this.value)">`;
+    return `<div class="field"><label>${label}</label>${tag}</div>`;
+  }).join('');
+
+  return `
+  <div class="ppanel${active?' active':''}" id="ppanel-${safeId}" data-pfx="${pfx}">
+    ${isNew?`<div class="alert alert-gld" style="margin-bottom:.8rem">✦ New product — fill in fields, assign a tab, and deploy to add to the website.</div>`:''}
+    <div class="g2">
+      <div class="card">
+        <div class="ct" style="display:flex;justify-content:space-between;align-items:center">
+          <span>Identity — EN</span>
+          ${isNew?`<button class="btn" style="font-size:.65rem;color:var(--red);padding:.25rem .6rem" onclick="removeNewProduct('${pfx}')">✕ Remove</button>`:''}
+        </div>
+        ${catField}
+        ${identityFields}
+        <div class="field" style="border-top:1px solid var(--border);padding-top:.7rem;margin-top:.4rem">
+          <label style="color:var(--gold)">◈ KPI / Harvest Value <span style="color:var(--stone);font-weight:400">(shown on card)</span></label>
+          <div style="display:flex;gap:.5rem;align-items:center">
+            <input type="text" id="pp-${safeId}-kpi" placeholder="e.g. 0.3%" style="flex:1"
+              oninput="mdrw('kpi:${pfx}',this.value);updateDirtyBadge()">
+            <span style="font-size:.65rem;color:var(--stone)">Free Acidity</span>
+          </div>
+          <div style="display:flex;gap:.5rem;margin-top:.4rem;flex-wrap:wrap">
+            <div class="field" style="flex:1;min-width:100px;margin:0"><label style="font-size:.65rem">Polyphenols</label><input type="text" id="pp-${safeId}-poly" placeholder="≥300 mg/kg" oninput="mdrw('poly:${pfx}',this.value);updateDirtyBadge()"></div>
+            <div class="field" style="flex:1;min-width:100px;margin:0"><label style="font-size:.65rem">Extraction °C</label><input type="text" id="pp-${safeId}-temp" placeholder="24" oninput="mdrw('temp:${pfx}',this.value);updateDirtyBadge()"></div>
+            <div class="field" style="flex:1;min-width:100px;margin:0"><label style="font-size:.65rem">Harvest Year</label><input type="text" id="pp-${safeId}-year" placeholder="2025" oninput="mdrw('year:${pfx}',this.value);updateDirtyBadge()"></div>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="ct" style="display:flex;align-items:center;gap:.5rem;flex-wrap:wrap">
+          Description
+          <span style="display:inline-flex;gap:.25rem;flex-wrap:wrap" id="pp-${safeId}-ltabs">
+            ${LANGS.map(l=>`<button class="ltab${l==='en'?' active':''}" data-lang="${l}" onclick="pdLang('${pfx}','${l}',this)">${LANG_NAMES[l]}</button>`).join('')}
+          </span>
+        </div>
+        <textarea id="pp-${safeId}-body" rows="8" oninput="pdSet('${pfx}','body',prodLang['${pfx}']||'en',this.value)"></textarea>
+      </div>
+    </div>
+  </div>`;
+}
+
+function spDyn(pfx, btn) {
+  document.querySelectorAll('#prod-panels .ppanel').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('#prod-tabs .ptab').forEach(b=>b.classList.remove('active'));
+  const safeId = pfx.replace('.','__');
+  const panel = document.getElementById('ppanel-'+safeId);
+  if(panel) {
+    panel.classList.add('active');
+    // Fill all fields for this product (EN by default)
+    pdFill(pfx, prodLang[pfx]||'en');
+  }
+  if(btn) btn.classList.add('active');
+}
+
+// Alias so old code still works
+function sp(key, btn) { spDyn(key, btn); }
+
+function pdLang(pfx, lang, btn) {
+  const safeId = pfx.replace('.','__');
+  document.getElementById('pp-'+safeId+'-ltabs').querySelectorAll('.ltab').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  prodLang[pfx] = lang;
+  const bodyEl = document.getElementById('pp-'+safeId+'-body');
+  if(bodyEl) bodyEl.oninput = function(){ pdSet(pfx,'body',lang,this.value); };
+  pdFill(pfx, lang);
+}
+
+function pdFill(pfx, lang) {
+  if(!state.T) return;
+  const T = state.T[lang]||{};
+  const safeId = pfx.replace('.','__');
+  ['name','tier','spec','cta1','cta2','tag1','tag2','body'].forEach(f => {
+    const el = document.getElementById('pp-'+safeId+'-'+f);
+    if(!el) return;
+    // Check dirty first, then T
+    el.value = htmlDecode(state.dirty[lang+'.'+pfx+'.'+f] !== undefined
+      ? state.dirty[lang+'.'+pfx+'.'+f]
+      : (T[pfx+'.'+f]||''));
+  });
+}
+
+function pdSet(pfx, field, lang, val) {
+  // Store in dirty as "lang.prefix.field"
+  md(pfx+'.'+field, lang, val);
+}
+
+function pdSetCat(pfx, cat, dotElId) {
+  // Store category assignment
+  state.dirty['catpane:'+pfx] = cat;
+  updateDirtyBadge();
+  // Update dot colour
+  const PANE_COLOURS = {prem:'var(--gold)',std:'var(--stone)',cat:'#5fa882'};
+  const dot = document.getElementById(dotElId);
+  if(dot) dot.style.background = PANE_COLOURS[cat]||'var(--stone)';
+  // Rebuild tab button dots
+  buildProductTabs();
+  toast('Category → '+cat);
+}
+
+function pdAddCat(pfx, selId, inputEl) {
+  const val = inputEl.value.trim().toLowerCase().replace(/[^a-z0-9-]/g,'');
+  if(!val) return;
+  // Add to state.categoryTabs if not present
+  if(!state.categoryTabs) state.categoryTabs = ['prem','std','cat'];
+  if(!state.categoryTabs.includes(val)) {
+    state.categoryTabs.push(val);
+    // Mark that we need to inject a new pane + tab button in the website HTML
+    state.dirty['newpane:'+val] = val;
+    updateDirtyBadge();
+  }
+  // Update the select
+  const sel = document.getElementById(selId);
+  if(sel) {
+    if(![...sel.options].some(o=>o.value===val)) {
+      const opt = document.createElement('option');
+      opt.value = val; opt.text = val;
+      sel.appendChild(opt);
+    }
+    sel.value = val;
+    pdSetCat(pfx, val, selId.replace('catsel','catdot'));
+  }
+  inputEl.value = '';
+  toast('New category "'+val+'" created');
+}
+
+function addNewProduct() {
+  const pfx = 'pc_new'+Date.now();
+  // Create stub T entries
+  if(!state.T) state.T = {};
+  LANGS.forEach(l => {
+    if(!state.T[l]) state.T[l] = {};
+    ['name','tier','spec','body'].forEach(f => {
+      state.T[l][pfx+'.'+f] = l==='en'&&f==='name' ? 'New Product' : '';
+      md(pfx+'.'+f, l, state.T[l][pfx+'.'+f]);
+    });
+  });
+  prodLang[pfx] = 'en';
+  buildProductTabs();
+  updateDirtyBadge();
+  // Activate new tab
+  const btn = document.querySelector(`[data-prod="${pfx}"]`);
+  if(btn) spDyn(pfx, btn);
+  toast('✦ New product added — fill in and deploy');
+}
+
+function removeNewProduct(pfx) {
+  if(!pfx.startsWith('pc_new')){ toast('Built-in products cannot be removed'); return; }
+  // Remove from T and dirty
+  LANGS.forEach(l => {
+    if(state.T[l]) ['name','tier','spec','body'].forEach(f => {
+      delete state.T[l][pfx+'.'+f];
+      delete state.dirty[l+'.'+pfx+'.'+f];
+    });
+  });
+  buildProductTabs();
+  updateDirtyBadge();
+  toast('Product removed');
+}
+
+/* ══════════════════════════════════════
+   AVAILABILITY TAB
+══════════════════════════════════════ */
+const AVAIL_ITEMS = [
+  {k:'avail.morning',  label:'Morning Shot'},
+  {k:'avail.tasting',  label:'Tasting Set'},
+  {k:'avail.prem500',  label:'Premium Glass 500ml'},
+  {k:'avail.prem1l',   label:'Premium Glass 1L'},
+  {k:'avail.premtin1', label:'Premium Tin 1L'},
+  {k:'avail.premtin3', label:'Premium Tin 3L'},
+  {k:'avail.premtin5', label:'Premium Tin 5L'},
+  {k:'avail.std1',     label:'Standard 1L'},
+  {k:'avail.std3',     label:'Standard 3L'},
+  {k:'avail.std5',     label:'Standard 5L'},
+  {k:'avail.cat5',     label:'Catering 5L'},
+  {k:'avail.cat15',    label:'Catering 15L'},
+];
+
+function buildAvailList() {
+  const el = document.getElementById('avail-list');
+  if(!el) return;
+  el.innerHTML = AVAIL_ITEMS.map((item,i)=>{
+    const avail = state.availability[item.k] !== false;
+    return `<div class="avail-row flex-row" style="justify-content:space-between;align-items:center;padding:.6rem .8rem;border:1px solid var(--border);border-radius:.3rem;margin-bottom:.4rem;background:var(--surf2)">
+      <span style="font-size:.8rem">${item.label}</span>
+      <label style="display:flex;align-items:center;gap:.5rem;cursor:pointer">
+        <span style="font-size:.72rem;color:${avail?'var(--green)':'var(--red)'}" id="avail-lbl-${i}">${avail?'Available':'Unavailable'}</span>
+        <div style="position:relative;display:inline-block;width:36px;height:20px">
+          <input type="checkbox" style="opacity:0;width:0;height:0" ${avail?'checked':''} onchange="toggleAvail('${item.k}',this.checked,${i})">
+          <span style="position:absolute;inset:0;background:${avail?'var(--gold)':'var(--border)'};border-radius:20px;cursor:pointer;transition:.2s" id="avail-toggle-${i}"></span>
+        </div>
+      </label>
+    </div>`;
+  }).join('');
+}
+
+function loadAvail() { buildAvailList(); }
+
+function toggleAvail(key, val, i) {
+  state.availability[key] = val;
+  document.getElementById('avail-lbl-'+i).textContent = val?'Available':'Unavailable';
+  document.getElementById('avail-lbl-'+i).style.color = val?'var(--green)':'var(--red)';
+  mdrw('avail:'+key, val);
+  toast(val?'Marked available':'Marked unavailable');
+}
+
+/* ══════════════════════════════════════
+   BLOG TAB
+══════════════════════════════════════ */
+const BLOG_KEYS = ['blog.cat','blog.date','blog.title','blog.sub','blog.body'];
+
+/* Blog T-key mapping:
+   a1.cat / a1.blog.cat  → category label (both kept in sync)
+   a1.blog.date          → date shown on card
+   a1.title              → headline
+   a1.excerpt            → card preview text
+   a1.body               → full article HTML (modal)
+*/
+function buildBlogList() {
+  const ltabs = document.getElementById('blog-ltabs');
+  if(!ltabs) return;
+  // Build language tabs if not done yet
+  if(!ltabs.dataset.built) {
+    ltabs.dataset.built='1';
+    ltabs.innerHTML = LANGS.map(l=>`<button class="ltab${l==='en'?' active':''}" data-lang="${l}" onclick="setBlogLang('${l}',this)">${LANG_NAMES[l]}</button>`).join('');
+  }
+  // Discover articles by checking T.en for a1.title, a2.title...
+  const en = (state.T||{}).en||{};
+  const tabs = document.getElementById('blog-tabs');
+  if(tabs) {
+    let count = 0;
+    for(let i=1;i<=12;i++){ if(en[`a${i}.title`]) count=i; }
+    count = Math.max(count,6); // always show at least 6
+    tabs.innerHTML = Array.from({length:count},(_,i)=>i+1).map(n=>{
+      const title = en[`a${n}.title`]||`Article ${n}`;
+      const short = title.slice(0,18)+(title.length>18?'…':'');
+      return `<button class="ptab${n===1?' active':''}" onclick="sb2(${n},this)" title="${esc(title)}">${n}. ${short}</button>`;
+    }).join('') + `<button class="ptab" onclick="addBlogArticle()" style="color:var(--gold)">＋ Add</button>`;
+  }
+  if(curBlog===0) sb2(1, tabs?.querySelector('.ptab'));
+}
+
+function sb2(n, btnOrNew) {
+  curBlog = n;
+  document.querySelectorAll('#blog-tabs .ptab').forEach(b=>b.classList.remove('active'));
+  if(btnOrNew && typeof btnOrNew === 'object') btnOrNew.classList.add('active');
+  const en = (state.T||{}).en||{};
+  const el = id => document.getElementById(id);
+  const hd = htmlDecode;
+  // a-prefix keys
+  if(el('b-cat'))    el('b-cat').value    = hd(en[`a${n}.cat`]||en[`a${n}.blog.cat`]||'');
+  if(el('b-date'))   el('b-date').value   = hd(en[`a${n}.blog.date`]||'');
+  if(el('b-title'))  el('b-title').value  = hd(en[`a${n}.title`]||'');
+  if(el('b-excerpt'))el('b-excerpt').value= hd(en[`a${n}.excerpt`]||'');
+  // Body in current lang
+  const bodyLang = (state.T||{})[curBlogLang]||en;
+  if(el('b-body'))   el('b-body').value   = hd(bodyLang[`a${n}.body`]||en[`a${n}.body`]||'');
+}
+
+let curBlogLang = 'en';
+function blogField(field, val) {
+  const n = curBlog||1;
+  const v = val !== undefined ? val : document.getElementById('b-'+field)?.value||'';
+  // Map admin field names → T key names
+  const keyMap = {cat:'cat', date:'blog.date', title:'title', excerpt:'excerpt', body:'body'};
+  const tKey = `a${n}.`+(keyMap[field]||field);
+  md(tKey, curBlogLang, v);
+  // cat also syncs to blog.cat key (card display)
+  if(field==='cat') md(`a${n}.blog.cat`, curBlogLang, v);
+}
+function blogBody(val) { blogField('body', val); }
+
+function setBlogLang(lang, btn) {
+  curBlogLang = lang;
+  document.querySelectorAll('#blog-ltabs .ltab').forEach(b=>b.classList.remove('active'));
+  if(btn) btn.classList.add('active');
+  const n = curBlog||1;
+  const T = (state.T||{})[lang]||{};
+  const el = document.getElementById('b-body');
+  if(el) el.value = htmlDecode(T[`a${n}.body`]||'');
+}
+
+function addBlogArticle() {
+  const en = (state.T||{}).en||{};
+  let n = 1;
+  while(en[`a${n}.title`]) n++;
+  // Create stub entries for all langs
+  LANGS.forEach(l => {
+    if(!state.T[l]) state.T[l]={};
+    state.T[l][`a${n}.title`] = l==='en'?`Article ${n}`:'';
+    state.T[l][`a${n}.cat`] = '';
+    state.T[l][`a${n}.blog.cat`] = '';
+    state.T[l][`a${n}.blog.date`] = '';
+    state.T[l][`a${n}.excerpt`] = '';
+    state.T[l][`a${n}.body`] = '';
+    md(`a${n}.title`, l, state.T[l][`a${n}.title`]);
+  });
+  buildBlogList();
+  const newBtn = document.querySelectorAll('#blog-tabs .ptab')[n-1];
+  sb2(n, newBtn);
+  toast(`Article ${n} created`);
+}
+
+/* ══════════════════════════════════════
+   TESTIMONIALS TAB
+══════════════════════════════════════ */
+function buildTestiList() {
+  const el = document.getElementById('testi-ltabs');
+  if(!el) return;
+  const en = state.T.en||{};
+  const count = [1,2,3,4,5,6].filter(n=>en[`t${n}.author`]).length || 3;
+  el.innerHTML = Array.from({length:count},(_,i)=>i+1).map(n=>
+    `<button class="ltab ${curTesti===n?'active':''}" onclick="st(${n})">T${n}</button>`
+  ).join('');
+  if(curTesti===0) st(1);
+}
+
+function st(n, btn) {
+  curTesti = n;
+  document.querySelectorAll('#tab-testi .ptab').forEach(b=>b.classList.remove('active'));
+  if(btn && typeof btn==='object') btn.classList.add('active');
+  buildTestiList();
+  const l = document.getElementById('testi-ltabs')?.dataset?.lang || 'en';
+  renderTestiPanel(n, l);
+}
+
+function renderTestiPanel(n, lang='en') {
+  const panel = document.getElementById('testi-panel');
+  if(!panel) return;
+  const T = state.T;
+  panel.innerHTML = `<h4 style="margin-bottom:.8rem;font-size:.8rem;font-weight:600">Testimonial ${n}</h4>
+  <div style="display:flex;gap:.4rem;flex-wrap:wrap;margin-bottom:.8rem">
+    ${LANGS.map(l=>`<button class="ltab ${lang===l?'active':''}" onclick="renderTestiPanel(${n},'${l}')">${LANG_NAMES[l]}</button>`).join('')}
+  </div>
+  ${['tier','author','role','text'].map(f=>`
+    <div class="field">
+      <label>${f.charAt(0).toUpperCase()+f.slice(1)}</label>
+      <${f==='text'?'textarea rows="3" style="width:100%;padding:.45rem;border:1px solid var(--border);border-radius:.25rem;background:var(--surf2);color:var(--fg);font-size:.75rem;resize:vertical"':'input type="text"'}
+        id="ti-${f}" value="${f!=='text'?esc(T[lang]?.['t'+n+'.'+f]||''):''}"
+        onchange="testiField('${f}','${lang}',${n})">${f==='text'?(T[lang]?.['t'+n+'.text']||'')+'</textarea>':''}</div>`).join('')}`;
+}
+
+function testiField(field, lang, n) {
+  const val = field==='text'
+    ? document.getElementById('ti-text').value
+    : document.getElementById('ti-'+field).value;
+  md('t'+n+'.'+field, val, lang);
+}
+
+/* ══════════════════════════════════════
+   HOUSE OF KALA TAB
+══════════════════════════════════════ */
+const HOK_FIELDS = ['eyebrow','title','tagline','quote','cta','p1','p2','p3','p4','p5'];
+
+function slg(section, lang) {
+  curTL[section] = lang;
+  if(section==='hok') renderHOK(lang);
+  if(section==='blog') sb2(curBlog);
+  if(section==='testi') renderTestiPanel(curTesti, lang);
+}
+
+function renderHOK(lang='en') {
+  const T = state.T[lang]||{};
+  document.getElementById('hok-ltabs').querySelectorAll('.ltab').forEach(b=>{
+    b.classList.toggle('active', b.dataset.lang===lang);
+  });
+  HOK_FIELDS.forEach(f => {
+    const el = document.getElementById('hok-'+f);
+    if(el) el.value = htmlDecode(T['hok.'+f]||'');
+  });
+}
+
+function initHOK() {
+  const el = document.getElementById('hok-ltabs');
+  if(!el||el.dataset.built) return;
+  el.innerHTML = LANGS.map(l=>`<button class="ltab ${l==='en'?'active':''}" data-lang="${l}" onclick="slg('hok','${l}')">${LANG_NAMES[l]}</button>`).join('');
+  el.dataset.built='1';
+  renderHOK('en');
+}
+
+/* ══════════════════════════════════════
+   TRADE FORM TAB
+══════════════════════════════════════ */
+function buildTradeForm() {
+  const langSel = document.getElementById('tf-lang');
+  if(!langSel) return;
+  if(!langSel.dataset.built) {
+    langSel.innerHTML = LANGS.map(l=>`<option value="${l}">${LANG_NAMES[l]}</option>`).join('');
+    langSel.dataset.built='1';
+    langSel.addEventListener('change', ()=>loadTradeForm());
+  }
+  loadTradeForm();
+}
+
+function loadTradeForm() {
+  const html = state.html||'';
+  // Find the trade form section and extract each <select>'s options
+  // The form has 3 selects in order: sector/venue, tier/product, volume
+  const selects = extractAllSelectOpts(html);
+  if(selects[0]) document.getElementById('tf-venue').value = selects[0].join('\n');
+  if(selects[1]) document.getElementById('tf-tier').value  = selects[1].join('\n');
+  if(selects[2]) document.getElementById('tf-vol').value   = selects[2].join('\n');
+  // Load formspree URL
+  const fmatch = html.match(/action="(https:\/\/formspree\.io\/f\/[^"]+)"/);
+  if(fmatch) { const el=document.getElementById('tf-formspree'); if(el) el.value=fmatch[1]; }
+}
+
+function extractAllSelectOpts(html) {
+  // Find the trade/enquiry form area
+  const formStart = html.indexOf('trade-form') > 0 ? html.indexOf('trade-form')
+    : (html.indexOf('form.sector') > 0 ? html.indexOf('form.sector') - 200 : -1);
+  if(formStart < 0) return [[],[],[]];
+  const formChunk = html.slice(formStart, formStart+8000);
+  const results = [];
+  const selectRe = /<select\b[^>]*>([\s\S]*?)<\/select>/gi;
+  let sm;
+  while((sm=selectRe.exec(formChunk))!==null) {
+    const opts = [];
+    const optRe = /<option\b[^>]*>([^<]+)<\/option>/gi;
+    let om;
+    while((om=optRe.exec(sm[1]))!==null) {
+      const v = om[1].trim();
+      if(v && !v.startsWith('Select') && v!=='...') opts.push(v);
+    }
+    if(opts.length) results.push(opts);
+  }
+  // Pad to 3 slots
+  while(results.length<3) results.push([]);
+  return results;
+}
+
+function saveTradeOpts(key, val) {
+  // Called on textarea input — save immediately as dirty
+  const opts = val.split('\n').map(s=>s.trim()).filter(Boolean);
+  mdrw('form_opts:'+key, JSON.stringify(opts));
+  updateDirtyBadge();
+}
+
+/* ══════════════════════════════════════
+   LEGAL PAGES TAB
+══════════════════════════════════════ */
+const LEGAL_PAGES = ['privacy','terms','cookies'];
+
+function buildLegalEditor() {
+  const el = document.getElementById('legal-ct');
+  if(!el||el.dataset.built) return;
+  el.innerHTML = LEGAL_PAGES.map(p=>
+    `<button class="ltab ${p===curLegal?'active':''}" onclick="curLegal='${p}';loadLegal()">${p.charAt(0).toUpperCase()+p.slice(1)}</button>`
+  ).join('');
+  el.dataset.built='1';
+  loadLegal();
+}
+
+function loadLegal() {
+  const page = curLegal;
+  const lang = document.getElementById('legal-lang')?.value||'en';
+  // Extract legal content from HTML
+  const marker = `id="legal-${page}"`;
+  const idx = state.html.indexOf(marker);
+  if(idx>0) {
+    const start = state.html.indexOf('>',idx)+1;
+    const end   = state.html.indexOf('</div>',start);
+    document.getElementById('legal-body').value = state.html.substring(start,end).trim();
+  } else {
+    document.getElementById('legal-body').value = state.legalData?.[lang]?.[page]||'';
+  }
+}
+
+function saveLegal() {
+  const page = curLegal;
+  const lang = document.getElementById('legal-lang')?.value||'en';
+  const body = document.getElementById('legal-body')?.value||'';
+  if(!state.legalData[lang]) state.legalData[lang]={};
+  state.legalData[lang][page] = body;
+  mdrw('legal:'+lang+':'+page, body);
+  toast('Legal page saved');
+}
+
+function fillDefaultLegal() {
+  const defaults = {
+    privacy: `<h2>Privacy Policy</h2><p>Last updated: ${new Date().toLocaleDateString()}</p><p>KALA Olive Oil ("we", "our", "us") is committed to protecting your personal data in accordance with GDPR and applicable data protection laws.</p><h3>Data We Collect</h3><p>We collect information you provide when contacting us, including your name, email address, and company details. We use this information solely to respond to your enquiries.</p><h3>Your Rights</h3><p>You have the right to access, correct, or delete your personal data. Contact us at hello@olivekala.com.</p>`,
+    terms: `<h2>Terms of Service</h2><p>Last updated: ${new Date().toLocaleDateString()}</p><p>By accessing this website, you agree to these terms. KALA Olive Oil products are sold subject to our standard commercial terms. All prices are exclusive of VAT unless stated otherwise.</p>`,
+    cookies: `<h2>Cookie Policy</h2><p>This website uses essential cookies for functionality. We do not use tracking or advertising cookies without your consent.</p>`
+  };
+  document.getElementById('legal-body').value = defaults[curLegal]||'';
+}
+
+/* ══════════════════════════════════════
+   TRANSLATIONS TAB
+══════════════════════════════════════ */
+function buildTranslationEditor() {
+  if(!state.T.en) return;
+  const ltabs = document.getElementById('tr-ltabs');
+  if(ltabs && !ltabs.dataset.built) {
+    ltabs.dataset.built='1';
+    ltabs.innerHTML = LANGS.map(l=>'<button class="ltab '+(l==='en'?'active':'')+'" data-trlang="'+l+'" onclick="trLang=\''+l+'\';filterTr()">'+l.toUpperCase()+'</button>').join('');
+    ltabs.innerHTML = LANGS.map(l=>`<button class="ltab ${l==='en'?'active':''}" data-trlang="${l}" onclick="trLang='${l}';filterTr()">${LANG_NAMES[l]}</button>`).join('');
+  }
+  filterTr();
+}
+
+function filterTr() {
+  const searchEl = document.getElementById('trSearch');
+  const search = (searchEl ? searchEl.value : '').toLowerCase();
+  const groupEl = document.getElementById('trGroup');
+  const group = groupEl ? groupEl.value : '';
+  const lang = trLang;
+  const keys = Object.keys(state.T.en||{});
+  const groupParts = group ? group.split(',') : [];
+  const filtered = keys.filter(k=>{
+    if(groupParts.length && !groupParts.some(g=>k.startsWith(g))) return false;
+    if(search && !k.toLowerCase().includes(search) && !(state.T[lang]?.[k]||'').toLowerCase().includes(search)) return false;
+    return true;
+  });
+  const el = document.getElementById('trEditor');
+  if(!el) return;
+  if(!filtered.length){ el.innerHTML='<div style="color:var(--stone);font-size:.78rem;padding:1rem">No keys match.</div>'; return; }
+  el.style.cssText='display:grid;grid-template-columns:200px 1fr;gap:0';
+  el.innerHTML = filtered.slice(0,300).map(k=>{
+    const orig = state.T[lang]?.[k]||'';
+    const dirty = state.dirty[lang+'.'+k];
+    const isDirty = dirty !== undefined;
+    const val = esc(isDirty ? dirty : orig);
+    return `<div style="padding:.4rem .5rem;font-size:.7rem;color:var(--stone);border-bottom:1px solid var(--border);background:var(--surf2);word-break:break-all;display:flex;align-items:center">${esc(k)}</div>`
+      +`<div style="padding:.3rem;border-bottom:1px solid var(--border)">`
+      +`<input type="text" value="${val}" data-key="${esc(k)}" data-lang="${lang}"`
+      +` style="width:100%;padding:.3rem .4rem;border:1px solid ${isDirty?'var(--gold)':'var(--border)'};border-radius:.2rem;font-size:.72rem;background:var(--surf);color:var(--fg)"`
+      +` onchange="md(this.dataset.key,this.value,this.dataset.lang);this.style.borderColor='var(--gold)'">`
+      +`</div>`;
+  }).join('');
+  document.querySelectorAll('[data-trlang]').forEach(b=>b.classList.toggle('active', b.dataset.trlang===lang));
+}
+
+
+/* ══════════════════════════════════════
+   SEO TAB
+══════════════════════════════════════ */
+function loadSEO() {
+  if(!state.html) return;
+  const lang = document.getElementById('seo-lang')?.value||'en';
+  const T = state.T[lang]||{};
+  const fields = {
+    'seo-title':     T['meta.title']    || extractMeta('title'),
+    'seo-desc':      T['meta.desc']     || extractMeta('description'),
+    'seo-canonical': extractMeta('canonical'),
+    'seo-og-title':  T['og.title']      || extractMeta('og:title'),
+    'seo-og-desc':   T['og.desc']       || extractMeta('og:description'),
+    'seo-og-img':    extractMeta('og:image'),
+    'seo-tw-card':   extractMeta('twitter:card'),
+    'seo-jsonld':    extractJsonLd()
+  };
+  Object.entries(fields).forEach(([id,val])=>{
+    const el = document.getElementById(id);
+    if(el) el.value = val||'';
+  });
+  updateSEOCount();
+}
+
+function extractMeta(name) {
+  const html = state.html;
+  const patterns = [
+    `name="${name}" content="`, `property="${name}" content="`,
+    `rel="canonical" href="`, `<title>`
+  ];
+  for(const p of patterns) {
+    const idx = html.indexOf(p);
+    if(idx>0) {
+      const start = idx+p.length;
+      const end = html.indexOf(p.includes('href')||p.includes('title>') ? (p.includes('href')?'"':'</title>') : '"', start);
+      if(end>start) return html.substring(start,end);
+    }
+  }
+  return '';
+}
+
+function extractJsonLd() {
+  const idx = state.html.indexOf('"@context":"https://schema.org"');
+  if(idx<0) return '';
+  const start = state.html.lastIndexOf('<script',idx);
+  const end   = state.html.indexOf('<'+'/script>',start)+9;
+  return state.html.substring(start,end);
+}
+
+function saveSEO() {
+  const lang = document.getElementById('seo-lang')?.value||'en';
+  const map = {
+    'meta.title': 'seo-title', 'meta.desc':'seo-desc',
+    'og.title':'seo-og-title', 'og.desc':'seo-og-desc'
+  };
+  Object.entries(map).forEach(([k,id])=>{
+    const val = document.getElementById(id)?.value||'';
+    if(val) md(k, val, lang);
+  });
+  // Raw: canonical, og:image, twitter:card
+  ['seo-canonical','seo-og-img','seo-tw-card','seo-jsonld'].forEach(id=>{
+    const val = document.getElementById(id)?.value;
+    if(val) mdrw(id, val);
+  });
+  toast('SEO saved ✓');
+}
+
+function updateSEOCount() {
+  const desc = document.getElementById('seo-desc')?.value||'';
+  const title = document.getElementById('seo-title')?.value||'';
+  const el = document.getElementById('seo-count');
+  if(el) el.textContent = `Title: ${title.length}/60 · Desc: ${desc.length}/160`;
+}
+
+/* ══════════════════════════════════════
+   THEME TAB
+══════════════════════════════════════ */
+const DEFAULT_THEME = {
+  '--gold':'#c9a84c','--gold2':'#e0b86a','--ink':'#0a0a0a',
+  '--stone':'#8a7f6e','--bg':'#0d0c0a','--surf':'#141412',
+  '--surf2':'#1c1b18','--border':'rgba(255,255,255,.09)',
+  '--fg':'#f0ede8','--green':'#4caf50','--red':'#e74c3c'
+};
+
+function buildThemeVars() {
+  const el = document.getElementById('theme-vars');
+  if(!el||el.dataset.built) return;
+  el.dataset.built='1';
+  el.innerHTML = Object.entries(DEFAULT_THEME).map(([k,v])=>`
+    <div class="field" style="margin-bottom:.5rem">
+      <label style="display:flex;align-items:center;gap:.5rem">
+        <input type="color" value="${v}" data-var="${k}"
+          oninput="previewThemeVar('${k}',this.value)"
+          onchange="md('theme${k}',this.value,'en')"
+          style="width:32px;height:28px;padding:2px;border:1px solid var(--border);border-radius:.2rem;background:var(--surf2);cursor:pointer">
+        <code style="font-size:.72rem">${k}</code>
+        <span style="font-size:.7rem;color:var(--stone)">${v}</span>
+      </label>
+    </div>`).join('');
+}
+
+function previewThemeVar(varName, value) {
+  document.documentElement.style.setProperty(varName, value);
+  mdrw('theme:'+varName, value);
+}
+
+function applyTheme() {
+  // Apply all theme vars from inputs
+  document.querySelectorAll('[data-var]').forEach(el=>{
+    document.documentElement.style.setProperty(el.dataset.var, el.value);
+    mdrw('theme:'+el.dataset.var, el.value);
+  });
+  toast('Theme applied ✓');
+}
+
+function resetTheme() {
+  Object.entries(DEFAULT_THEME).forEach(([k,v])=>{
+    document.documentElement.style.setProperty(k,v);
+    const inp = document.querySelector(`[data-var="${k}"]`);
+    if(inp) inp.value=v;
+  });
+  toast('Theme reset ✓');
+}
+
+/* ══════════════════════════════════════
+   IMAGES TAB
+══════════════════════════════════════ */
+/* ─── IMAGE MANAGEMENT ─────────────────────────────────────── */
+
+// Pending uploads waiting to be assigned
+let imgPending = []; // [{name, dataUrl, size}]
+
+function buildImageGrid() {
+  const el = document.getElementById('img-grid');
+  if(!el) return;
+  if(!state.html){ el.innerHTML='<div style="color:var(--stone);font-size:.78rem">No images found. Connect and load the HTML file first.</div>'; return; }
+
+  // Extract all img src values
+  const imgs = [];
+  const re = /src="([^"]{4,})"/gi;
+  let m;
+  while((m=re.exec(state.html))!==null) {
+    const s = m[1];
+    if(!imgs.includes(s)) imgs.push(s);
+  }
+  // Also include dirty img: overrides that aren't in HTML yet
+  Object.keys(state.dirty).forEach(k=>{
+    if(k.startsWith('img:')){ const s=state.dirty[k]; if(!imgs.includes(s)) imgs.push(s); }
+  });
+
+  const lbl = document.getElementById('img-existing-label');
+  if(lbl) lbl.textContent = imgs.length ? `Images in HTML (${imgs.length})` : 'Images in HTML';
+
+  if(imgs.length===0){ el.innerHTML='<div style="color:var(--stone);font-size:.78rem">No &lt;img&gt; tags found in the loaded HTML.</div>'; return; }
+
+  el.innerHTML = imgs.map((src,i)=>{
+    const isData = src.startsWith('data:');
+    const label = isData ? `Embedded image #${i+1}` : src.split('/').pop().split('?')[0].slice(0,36);
+    const sizeKb = isData ? Math.round(src.length*0.75/1024)+'KB' : '';
+    const isDirty = !!state.dirty['img:'+src];
+    const effectiveSrc = state.dirty['img:'+src] || src;
+    return `
+    <div class="img-card" id="imgc-${i}" style="border:1px solid ${isDirty?'var(--gold)':'var(--border)'};border-radius:.5rem;overflow:hidden;background:var(--surf2);position:relative">
+      <!-- Preview -->
+      <div style="height:100px;background:var(--surf);display:flex;align-items:center;justify-content:center;overflow:hidden;position:relative">
+        <img id="imgp-${i}" src="${esc(effectiveSrc)}" style="max-height:100px;max-width:100%;object-fit:contain" onerror="this.parentElement.innerHTML='<span style=color:var(--stone);font-size:.7rem>Preview N/A</span>'">
+        ${isDirty?'<span style="position:absolute;top:4px;right:4px;background:var(--gold);color:#000;font-size:.55rem;padding:1px 5px;border-radius:3px">CHANGED</span>':''}
+      </div>
+      <!-- Label + size -->
+      <div style="padding:.35rem .5rem 0;font-size:.62rem;color:var(--stone);word-break:break-all;line-height:1.3">
+        ${esc(label)}${sizeKb?' <span style="color:var(--gold)">'+sizeKb+'</span>':''}
+      </div>
+      <!-- URL input -->
+      <div style="padding:.3rem .4rem 0">
+        <input type="text" value="${esc(effectiveSrc)}" placeholder="https:// or data URI"
+          style="width:100%;font-size:.62rem;padding:.25rem .4rem;border:1px solid var(--border);border-radius:.25rem;background:var(--surf);color:var(--fg);box-sizing:border-box"
+          onchange="imgSetUrl(${i},'${esc(src)}',this.value)" title="Paste a URL or data URI">
+      </div>
+      <!-- Action buttons -->
+      <div style="display:flex;gap:.3rem;padding:.4rem">
+        <label style="flex:1;cursor:pointer">
+          <div class="btn" style="width:100%;text-align:center;font-size:.65rem;padding:.3rem 0">📁 Replace</div>
+          <input type="file" accept="image/*" style="display:none" onchange="imgReplaceFile(${i},'${esc(src)}',this)">
+        </label>
+        <button class="btn" style="flex:1;font-size:.65rem;padding:.3rem 0" onclick="imgAssignPending(${i},'${esc(src)}')" title="Assign a pending upload to this slot">⬆ Assign</button>
+        ${isDirty?`<button class="btn" style="font-size:.65rem;padding:.3rem .5rem;color:var(--stone)" onclick="imgRevertOne('${esc(src)}',${i})" title="Revert change">↩</button>`:''}
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function imgSetUrl(idx, oldSrc, newVal) {
+  if(!newVal.trim()) return;
+  mdrw('img:'+oldSrc, newVal.trim());
+  const card = document.getElementById('imgc-'+idx);
+  if(card) card.style.borderColor='var(--gold)';
+  const prev = document.getElementById('imgp-'+idx);
+  if(prev) prev.src = newVal.trim();
+  toast('Image URL updated — deploy to apply');
+}
+
+function imgReplaceFile(idx, oldSrc, input) {
+  const file = input.files[0];
+  if(!file) return;
+  const MAX = 400*1024;
+  if(file.size > MAX){ toast('Image is '+(file.size/1024|0)+'KB — compress first at squoosh.app (max 400KB)', 5000); input.value=''; return; }
+  const reader = new FileReader();
+  reader.onload = e => {
+    const dataUrl = e.target.result;
+    imgSetUrl(idx, oldSrc, dataUrl);
+    toast('✅ Image replaced as base64 ('+Math.round(file.size/1024)+'KB)');
+  };
+  reader.readAsDataURL(file);
+}
+
+function imgRevertOne(oldSrc, idx) {
+  delete state.dirty['img:'+oldSrc];
+  updateDirtyBadge();
+  buildImageGrid();
+  toast('Image reverted');
+}
+
+// Drop zone handlers
+function imgDrop(e) {
+  e.preventDefault();
+  document.getElementById('img-dropzone').classList.remove('dz-over');
+  imgFilesPicked(e.dataTransfer.files);
+}
+
+function imgFilesPicked(files) {
+  if(!files||!files.length) return;
+  Array.from(files).forEach(file=>{
+    if(!file.type.startsWith('image/')) return;
+    if(file.size > 400*1024){ toast(file.name+' is too large ('+Math.round(file.size/1024)+'KB) — compress at squoosh.app', 5000); return; }
+    const reader = new FileReader();
+    reader.onload = e => {
+      imgPending.push({name:file.name, dataUrl:e.target.result, size:file.size});
+      renderPendingUploads();
+      toast('📁 '+file.name+' uploaded — assign it below or click "Add as new"');
+    };
+    reader.readAsDataURL(file);
+  });
+}
+
+function renderPendingUploads() {
+  const wrap = document.getElementById('img-pending');
+  const grid = document.getElementById('img-pending-grid');
+  if(!wrap||!grid) return;
+  if(!imgPending.length){ wrap.style.display='none'; return; }
+  wrap.style.display='block';
+  grid.innerHTML = imgPending.map((p,i)=>`
+    <div style="border:2px solid var(--gold);border-radius:.5rem;overflow:hidden;background:var(--surf2)">
+      <div style="height:90px;background:var(--surf);display:flex;align-items:center;justify-content:center;overflow:hidden">
+        <img src="${p.dataUrl}" style="max-height:90px;max-width:100%;object-fit:contain">
+      </div>
+      <div style="padding:.35rem .5rem;font-size:.62rem;color:var(--stone)">${esc(p.name)} · ${Math.round(p.size/1024)}KB</div>
+      <div style="display:flex;gap:.3rem;padding:.3rem .4rem .5rem">
+        <button class="btn bg" style="flex:1;font-size:.65rem;padding:.3rem 0" onclick="imgAddAsNew(${i})">+ Add as new</button>
+        <button class="btn" style="font-size:.65rem;padding:.3rem .5rem;color:var(--stone)" onclick="imgPending.splice(${i},1);renderPendingUploads()" title="Discard">✕</button>
+      </div>
+    </div>`).join('');
+}
+
+function imgAssignPending(cardIdx, oldSrc) {
+  if(!imgPending.length){ toast('No pending uploads — drop an image above first'); return; }
+  // If only one pending, assign immediately; otherwise show picker
+  if(imgPending.length===1){
+    const p = imgPending[0];
+    imgSetUrl(cardIdx, oldSrc, p.dataUrl);
+    imgPending = [];
+    renderPendingUploads();
+  } else {
+    // Highlight pending grid and let user click
+    toast('Click "Assign to this slot" on the pending image you want', 3000);
+    const grid = document.getElementById('img-pending-grid');
+    if(!grid) return;
+    imgPending.forEach((_,i)=>{
+      const btn = grid.querySelectorAll('.btn.bg')[i];
+      if(btn){ btn.textContent='→ Assign here'; btn.onclick=()=>{ imgSetUrl(cardIdx,oldSrc,imgPending[i].dataUrl); imgPending.splice(i,1); renderPendingUploads(); }; }
+    });
+  }
+}
+
+function imgAddAsNew(pendingIdx) {
+  const p = imgPending[pendingIdx];
+  if(!p) return;
+  // Inject a new <img> placeholder at end of body — user can then assign via HTML or use URL field
+  mdrw('img:__new__'+Date.now(), p.dataUrl);
+  imgPending.splice(pendingIdx,1);
+  renderPendingUploads();
+  toast('New image stored — it will be embedded when you deploy. Use it in HTML by replacing an existing img src.', 5000);
+  buildImageGrid();
+}
+
+/* ══════════════════════════════════════
+   SHOPIFY TAB
+══════════════════════════════════════ */
+function renderShopifyStatus() {
+  const el = document.getElementById('sh-checklist');
+  if(!el) return;
+  const shopUrl = document.getElementById('set-shopurl')?.value || 'olivekala.myshopify.com';
+  el.innerHTML = [
+    {label:'Shopify URL configured', ok: !!shopUrl, note: shopUrl||'Not set'},
+    {label:'Shop Now links in HTML', ok: (state.html||'').includes('myshopify.com'), note:'Check nav + hero'},
+    {label:'Shop page template (page.shop.liquid)', ok: true, note:'Generated ✓'},
+    {label:'kala-shop-full.liquid', ok: true, note:'Generated ✓'},
+    {label:'kala-membership.liquid', ok: true, note:'Generated ✓'},
+    {label:'Products collection handle: kala', ok: true, note:'Requires manual setup in Shopify'},
+    {label:'Selling Plans (Subscriptions App)', ok: false, note:'Install "Shopify Subscriptions" app'},
+  ].map(row=>`
+    <div style="display:flex;align-items:center;gap:.6rem;padding:.55rem .7rem;border:1px solid var(--border);border-radius:.3rem;margin-bottom:.35rem;background:var(--surf2)">
+      <span style="font-size:.85rem">${row.ok?'✅':'⚠️'}</span>
+      <div>
+        <div style="font-size:.77rem;font-weight:600">${row.label}</div>
+        <div style="font-size:.68rem;color:var(--stone)">${row.note}</div>
+      </div>
+    </div>`).join('');
+}
+
+async function checkShopify() {
+  const url = document.getElementById('set-shopurl')?.value||'olivekala.myshopify.com';
+  const el = document.getElementById('sh-result');
+  if(el) el.textContent = 'Checking…';
+  try {
+    const r = await fetch(`https://${url}/products.json?limit=1`);
+    const d = await r.json();
+    if(el) el.textContent = r.ok ? `✅ Store live · ${d.products?.length||0} product(s) returned` : '❌ Store not reachable';
+  } catch(e) {
+    if(el) el.textContent = '❌ '+e.message;
+  }
+}
+
+/* ══════════════════════════════════════
+   PREVIEW TAB
+══════════════════════════════════════ */
+function openPreviewNow() {
+  const built = applyDirtyToHTML();
+  const blob = new Blob([built], {type:'text/html'});
+  const url  = URL.createObjectURL(blob);
+  const frame = document.getElementById('previewFrame');
+  if(frame) { frame.src=url; return; }
+  window.open(url,'_blank');
+}
+
+/* ══════════════════════════════════════
+   DIFF VIEWER
+══════════════════════════════════════ */
+function buildDiff() {
+  const el = document.getElementById('diff-out');
+  const st = document.getElementById('diff-stat');
+  if(!el) return;
+  if(!state.originalHtml||!state.html){ el.innerHTML='<div style="color:var(--stone);font-size:.78rem">Load the file first to see diff.</div>'; return; }
+  const built = applyDirtyToHTML();
+  if(built===state.originalHtml){ el.innerHTML='<div style="color:var(--green);font-size:.78rem">No changes.</div>'; if(st) st.textContent=''; return; }
+  // Simple line-by-line diff
+  const aLines = state.originalHtml.split('\n');
+  const bLines = built.split('\n');
+  const changes = [];
+  let adds=0, dels=0;
+  const maxLines = Math.max(aLines.length, bLines.length);
+  for(let i=0;i<maxLines;i++){
+    if(aLines[i]!==bLines[i]){
+      if(aLines[i]!==undefined){ changes.push({type:'del',n:i+1,text:aLines[i]}); dels++; }
+      if(bLines[i]!==undefined){ changes.push({type:'add',n:i+1,text:bLines[i]}); adds++; }
+    }
+  }
+  if(st) st.textContent = `+${adds} / -${dels} lines changed`;
+  el.innerHTML = changes.slice(0,400).map(c=>`
+    <div style="display:flex;gap:.4rem;font-family:monospace;font-size:.67rem;line-height:1.4;border-bottom:1px solid var(--border2);padding:.1rem 0">
+      <span style="color:var(--stone);min-width:2.5rem;text-align:right">${c.n}</span>
+      <span style="color:${c.type==='add'?'var(--green)':'var(--red)'}">${c.type==='add'?'+':'-'}</span>
+      <span style="color:${c.type==='add'?'var(--green)':'var(--red)'}; white-space:pre;overflow:hidden;text-overflow:ellipsis;max-width:calc(100% - 5rem)">${esc(c.text)}</span>
+    </div>`).join('');
+}
+
+/* ══════════════════════════════════════
+   SNAPSHOTS
+══════════════════════════════════════ */
+function saveSnap() {
+  const name = document.getElementById('snap-name')?.value || `Snapshot ${new Date().toLocaleString()}`;
+  state.snapshots.unshift({name, html:state.html, dirty:{...state.dirty}, ts:Date.now()});
+  state.snapshots = state.snapshots.slice(0,20);
+  saveLocalState();
+  listSnaps();
+  toast('Snapshot saved ✓');
+}
+
+function listSnaps() {
+  const el = document.getElementById('snap-list');
+  if(!el) return;
+  if(!state.snapshots.length){ el.innerHTML='<div style="color:var(--stone);font-size:.78rem">No snapshots yet.</div>'; return; }
+  el.innerHTML = state.snapshots.map((s,i)=>`
+    <div style="display:flex;justify-content:space-between;align-items:center;padding:.55rem .7rem;border:1px solid var(--border);border-radius:.3rem;margin-bottom:.35rem;background:var(--surf2)">
+      <div>
+        <div style="font-size:.78rem;font-weight:600">${esc(s.name)}</div>
+        <div style="font-size:.67rem;color:var(--stone)">${new Date(s.ts).toLocaleString()}</div>
+      </div>
+      <div style="display:flex;gap:.4rem">
+        <button class="btn bsf" style="font-size:.68rem;padding:.25rem .55rem" onclick="loadSnap(${i})">Restore</button>
+        <button class="btn bsf" style="font-size:.68rem;padding:.25rem .55rem;color:var(--red)" onclick="delSnap(${i})">✕</button>
+      </div>
+    </div>`).join('');
+}
+
+function loadSnap(i) {
+  if(!confirm('Restore this snapshot? Current unsaved changes will be lost.')) return;
+  const s = state.snapshots[i];
+  state.html = s.html;
+  state.dirty = s.dirty||{};
+  parseHTML();
+  updateDirtyBadge();
+  toast('Snapshot restored ✓');
+}
+
+function delSnap(i) {
+  state.snapshots.splice(i,1);
+  saveLocalState();
+  listSnaps();
+}
+
+/* ══════════════════════════════════════
+   DEPLOY TAB
+══════════════════════════════════════ */
+function renderCommits() {
+  const el = document.getElementById('dep-commits');
+  if(!el) return;
+  if(!state.commits.length){ el.innerHTML='<div style="color:var(--stone);font-size:.75rem">No commit history. Connect to GitHub first.</div>'; return; }
+  el.innerHTML = state.commits.map(c=>{
+    const msg = c.commit?.message||'';
+    const ts  = c.commit?.author?.date ? new Date(c.commit.author.date).toLocaleString() : '';
+    const sha = c.sha?.slice(0,7)||'';
+    return `<div style="display:flex;align-items:flex-start;gap:.5rem;padding:.5rem .3rem;border-bottom:1px solid var(--border2)">
+      <code style="font-size:.65rem;color:var(--gold);min-width:3.5rem">${sha}</code>
+      <div>
+        <div style="font-size:.73rem">${esc(msg.split('\n')[0])}</div>
+        <div style="font-size:.64rem;color:var(--stone)">${ts}</div>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+async function saveAndDeploy() {
+  if(!state.connected) { toast('Not connected to GitHub', true); return; }
+  const built = applyDirtyToHTML();
+  const msg   = document.getElementById('dep-msg')?.value || 'Admin panel update';
+  const btn   = document.getElementById('dep-btn');
+  if(btn){ btn.disabled=true; btn.textContent='Deploying…'; }
+  const ds = document.getElementById('dep-status');
+  if(ds) ds.textContent='Pushing to GitHub…';
+  try {
+    const encoded = btoa(unescape(encodeURIComponent(built)));
+    const r = await ghPut(`/repos/${state.repo}/contents/${state.file}`, {
+      message: msg,
+      content: encoded,
+      sha: state.sha
+    });
+    state.sha = r.content.sha;
+    state.html = built;
+    state.originalHtml = built;
+    state.dirty = {};
+    updateDirtyBadge();
+    if(ds) ds.textContent = `✅ Deployed at ${new Date().toLocaleTimeString()}`;
+    if(document.getElementById('dep-msg')) document.getElementById('dep-msg').value='';
+    toast('Deployed ✓');
+    await loadCommits();
+    autoChangelog(msg);
+    updateDirtyBadge();
+  } catch(e) {
+    if(ds) ds.textContent = '❌ '+e.message;
+    toast('Deploy failed: '+e.message, true);
+  } finally {
+    if(btn){ btn.disabled=false; btn.textContent='Push to GitHub'; }
+  }
+}
+
+function schedDeploy() {
+  const dt = document.getElementById('dep-sched')?.value;
+  if(!dt){ toast('Pick a date/time first', true); return; }
+  const ms = new Date(dt).getTime() - Date.now();
+  if(ms<0){ toast('Time is in the past', true); return; }
+  toast(`Scheduled for ${new Date(dt).toLocaleString()}`);
+  setTimeout(saveAndDeploy, ms);
+}
+
+function dlHTML() {
+  const built = applyDirtyToHTML();
+  const a = document.createElement('a');
+  a.href = 'data:text/html;charset=utf-8,'+encodeURIComponent(built);
+  a.download = 'index.html';
+  a.click();
+  toast('Downloaded index.html');
+}
+
+function autoChangelog(msg) {
+  const el = document.getElementById('changes-list');
+  if(!el) return;
+  const dc = Object.keys(state.dirty).length;
+  el.innerHTML = `<div style="font-size:.73rem;padding:.5rem;border:1px solid var(--border);border-radius:.3rem;background:var(--surf2)">
+    <strong>${new Date().toLocaleString()}</strong> — ${esc(msg)} · ${dc} key(s) changed
+  </div>` + el.innerHTML;
+}
+
+function revertAll() {
+  if(!confirm('Revert all unsaved changes?')) return;
+  state.dirty = {};
+  state.html = state.originalHtml;
+  updateDirtyBadge();
+  toast('All changes reverted');
+}
+
+/* ══════════════════════════════════════
+   SETTINGS TAB
+══════════════════════════════════════ */
+function injectGA() {
+  const id = document.getElementById('set-ga')?.value?.trim();
+  if(!id){ toast('Enter GA Measurement ID', true); return; }
+  const sc = '<'+'script', sc2 = '<'+'/script>';
+  const snippet = `${sc} async src="https://www.googletagmanager.com/gtag/js?id=${id}">${sc2}\n${sc}>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','${id}');${sc2}`;
+  if(state.html.includes('gtag/js')){ toast('GA already present — remove old tag first', true); return; }
+  state.html = state.html.replace('</head>', snippet+'\n</head>');
+  mdrw('ga_inject', id);
+  const el = document.getElementById('ga-status');
+  if(el){ el.textContent='Injected ✓'; el.style.color='var(--green)'; }
+  toast('Google Analytics injected ✓');
+}
+
+/* ══════════════════════════════════════
+   APPLY DIRTY → HTML
+══════════════════════════════════════ */
+function applyDirtyToHTML() {
+  if(!state.html) return '';
+  let html = state.html;
+
+  // 1. T object key changes
+  const tDirty = {};
+  const rawDirty = {};
+  Object.entries(state.dirty).forEach(([k,v])=>{
+    if(k.startsWith('__raw__')||k.startsWith('img:')||k.startsWith('theme:')||
+       k.startsWith('legal:')||k.startsWith('form_opts:')||k.startsWith('ga_')||
+       k.startsWith('avail:')||k.startsWith('seo-')||k.startsWith('formspree')||
+       k.startsWith('catpane:')||k.startsWith('newpane:')||k.startsWith('imgslot:')||
+       k.startsWith('kpi:')) {
+      rawDirty[k]=v;
+    } else {
+      // format: "lang.key.subkey..."
+      const dot = k.indexOf('.');
+      const lang = k.slice(0,dot);
+      const key  = k.slice(dot+1);
+      if(!tDirty[lang]) tDirty[lang]={};
+      tDirty[lang][key]=v;
+    }
+  });
+
+  // Update T object in HTML
+  if(Object.keys(tDirty).length>0) {
+    html = applyTChanges(html, tDirty);
+  }
+
+  // 2. Theme vars
+  Object.entries(rawDirty).forEach(([k,v])=>{
+    if(k.startsWith('theme:')) {
+      const varName = k.slice(6);
+      const re = new RegExp(`(${escapeRe(varName)}\\s*:\\s*)[^;]+`, 'g');
+      html = html.replace(re, `$1${v}`);
+    }
+  });
+
+  // 2b. SEO meta injection
+  const seoMap = {
+    'seo-title':    (v,h)=>{ const m=/<title>[^<]*<\/title>/; return h.match(m)?h.replace(m,`<title>${v}<\/title>`):h.replace('</head>',`<title>${v}<\/title>\n</head>`); },
+    'seo-desc':     (v,h)=>injectMeta(h,'name','description',v),
+    'seo-canonical':(v,h)=>{ const m=/rel="canonical" href="[^"]*"/; return h.match(m)?h.replace(m,`rel="canonical" href="${v}"`):h.replace('</head>',`<link rel="canonical" href="${v}">\n</head>`); },
+    'seo-og-title': (v,h)=>injectMeta(h,'property','og:title',v),
+    'seo-og-desc':  (v,h)=>injectMeta(h,'property','og:description',v),
+    'seo-og-img':   (v,h)=>injectMeta(h,'property','og:image',v),
+    'seo-tw-card':  (v,h)=>injectMeta(h,'name','twitter:card',v),
+  };
+  Object.entries(rawDirty).forEach(([k,v])=>{
+    if(seoMap[k]) html = seoMap[k](v,html);
+    if(k==='formspreeUrl') html = html.split('https://formspree.io/f/').map((p,i)=>i===0?p:v.replace('https://formspree.io/f/','')+p).join('');
+  });
+
+  // 3. GA inject
+  if(rawDirty['ga_inject'] && !html.includes('gtag/js')) {
+    const id = rawDirty['ga_inject'];
+    const _s='<'+'script', _e='<'+'/script>';
+    const snippet = `${_s} async src="https://www.googletagmanager.com/gtag/js?id=${id}">${_e}\n${_s}>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','${id}');${_e}`;
+    html = html.replace('</head>', snippet+'\n</head>');
+  }
+
+  // 4. Image URL / slot changes
+  Object.entries(rawDirty).forEach(([k,v])=>{
+    if(k.startsWith('img:')) {
+      const orig = k.slice(4);
+      html = html.split(`src="${orig}"`).join(`src="${v}"`);
+    }
+    if(k.startsWith('imgslot:')) {
+      // Replace or inject <img> for a named section slot
+      const slot = k.slice('imgslot:'.length); // e.g. 'hero-bg', 'prod-pc1', 'blog-a1'
+      const imgTag = `<img data-slot="${slot}" src="${v}" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;z-index:0" alt="">`;
+      const slotRe = new RegExp(`<img[^>]*data-slot="${escapeRe(slot)}"[^>]*>`, 'i');
+      if(slotRe.test(html)) {
+        html = html.replace(slotRe, imgTag);
+      } else {
+        // Inject after the opening tag of the target section
+        const sectionMap = {
+          'hero-bg': 'id="hero"', 'hok-bg': 'id="hok"',
+          'blog-bg': 'id="blog"', 'products-bg': 'id="products"'
+        };
+        const marker = sectionMap[slot] || `id="${slot}"`;
+        const pos = html.indexOf(marker);
+        if(pos>0) {
+          const tagEnd = html.indexOf('>', pos)+1;
+          html = html.slice(0,tagEnd)+'\n  '+imgTag+html.slice(tagEnd);
+        }
+      }
+    }
+  });
+
+  // 4b. Trade form select options
+  Object.entries(rawDirty).forEach(([k,v])=>{
+    if(!k.startsWith('form_opts:')) return;
+    const selectKey = k.slice('form_opts:'.length); // 'venue', 'tier', 'vol'
+    let opts;
+    try { opts = JSON.parse(v); } catch(e){ return; }
+    if(!Array.isArray(opts)) return;
+    const newOptions = '<option value="">Select…</option>\n'+opts.map(o=>`<option value="${esc(o)}">${esc(o)}</option>`).join('\n');
+    // Find the nth select in the trade form (venue=1st, tier=2nd, vol=3rd)
+    const idx = {venue:0, tier:1, vol:2}[selectKey];
+    if(idx===undefined) return;
+    const formStart = html.indexOf('trade-form')>0 ? html.indexOf('trade-form') : html.indexOf('form.sector')-300;
+    if(formStart<0) return;
+    let count=0, searchFrom=formStart;
+    const selectOpenRe = /<select\b[^>]*>/gi;
+    selectOpenRe.lastIndex = formStart;
+    let sm;
+    while((sm=selectOpenRe.exec(html))!==null && count<=idx) {
+      if(count===idx) {
+        const closePos = html.indexOf('</select>', sm.index);
+        if(closePos<0) break;
+        html = html.slice(0,sm.index+sm[0].length)+'\n'+newOptions+'\n'+html.slice(closePos);
+        break;
+      }
+      count++;
+    }
+  });
+
+  // 4c. Per-product KPI value injection
+  Object.entries(rawDirty).forEach(([k,v])=>{
+    if(!k.startsWith('kpi:')) return;
+    const pfx = k.slice(4); // e.g. 'pc1'
+    // Find the prod-card-kpi element inside this product's card
+    const tierMarker = `data-i18n="${pfx}.tier"`;
+    const cardPos = html.indexOf(tierMarker);
+    if(cardPos<0) return;
+    // Walk forward to prod-card-kpi
+    const kpiStart = html.indexOf('prod-card-kpi', cardPos);
+    if(kpiStart<0) return;
+    const kpiTagEnd = html.indexOf('>', kpiStart)+1;
+    const kpiClose = html.indexOf('</div>', kpiTagEnd);
+    if(kpiClose<0) return;
+    const oldKpiContent = html.slice(kpiTagEnd, kpiClose);
+    // Replace the numeric value (keep the <span data-i18n="kpi.fa">...</span> label)
+    const newContent = v+' '+oldKpiContent.replace(/^[\d.,]+%?\s*/,'');
+    html = html.slice(0,kpiTagEnd)+newContent+html.slice(kpiClose);
+  });
+
+  // 5. Category (pane) moves for existing products
+  Object.entries(state.dirty).forEach(([k,v])=>{
+    if(!k.startsWith('catpane:')) return;
+    const pfx = k.slice('catpane:'.length);
+    if(pfx.startsWith('pc_new')) return; // new products handled below
+    const currentPane = state.productPanes?.[pfx];
+    if(!currentPane || currentPane===v) return; // no move needed
+    // Find and extract the product card HTML from current pane
+    const cardStart = html.indexOf(`data-i18n="${pfx}.tier"`);
+    if(cardStart<0) return;
+    // Walk back to find the opening prod-card div
+    const before = html.slice(0, cardStart);
+    const cardOpenIdx = before.lastIndexOf('<div class="prod-card"');
+    if(cardOpenIdx<0) return;
+    // Walk forward to find matching closing </div> by depth
+    let depth=0, ci=cardOpenIdx, cardEnd=-1;
+    for(;ci<html.length;ci++){
+      if(html[ci]==='<' && html.slice(ci,ci+4)==='<div') depth++;
+      if(html[ci]==='<' && html.slice(ci,ci+6)==='</div>') { depth--; if(depth===0){cardEnd=ci+6;break;} }
+    }
+    if(cardEnd<0) return;
+    const cardHtml = html.slice(cardOpenIdx, cardEnd);
+    // Remove from current location
+    html = html.slice(0,cardOpenIdx)+html.slice(cardEnd);
+    // Inject before closing </div> of target pane's prod-grid
+    const targetPaneMarker = `id="pane-${v}"`;
+    const targetPanePos = html.indexOf(targetPaneMarker);
+    if(targetPanePos<0){ toast('Target pane "'+v+'" not found in HTML — add it first', true); return; }
+    const gridClose = html.indexOf('</div>', html.indexOf('prod-grid', targetPanePos));
+    if(gridClose<0) return;
+    html = html.slice(0,gridClose)+'\n      '+cardHtml+'\n    '+html.slice(gridClose);
+    state.productPanes[pfx] = v;
+  });
+
+  // 6. New pane injection (when a new category tab was created)
+  Object.entries(state.dirty).forEach(([k,v])=>{
+    if(!k.startsWith('newpane:')) return;
+    if(html.includes(`id="pane-${v}"`)) return; // already exists
+    const PANE_COLOURS_CSS = {prem:'var(--gold)',std:'var(--stone)',cat:'#5fa882'};
+    const col = PANE_COLOURS_CSS[v]||'var(--stone)';
+    // Add tab button before closing tier-tabs div
+    const tierTabsClose = html.lastIndexOf('</div>', html.indexOf('id="tab-cat"')+200);
+    if(tierTabsClose>0) {
+      const newTabBtn = `\n    <button class="tier-tab" id="tab-${v}" onclick="switchTab('${v}')" data-i18n="tab.${v}">${v.toUpperCase()}</button>`;
+      html = html.slice(0,tierTabsClose)+newTabBtn+html.slice(tierTabsClose);
+    }
+    // Add new pane div before closing products section </section>
+    const prodSection = html.lastIndexOf('</section>', html.indexOf('id="pane-cat"')+5000);
+    if(prodSection>0) {
+      const newPane = `\n  <!-- ── ${v.toUpperCase()} PANE ── -->\n  <div class="tier-pane" id="pane-${v}">\n    <div class="prod-grid fi">\n    </div>\n  </div>\n`;
+      html = html.slice(0,prodSection)+newPane+html.slice(prodSection);
+    }
+    // Extend switchTab() to include new pane
+    html = html.replace(
+      /function switchTab\(tier\)\s*\{[\s\S]*?\['prem','std','cat'\]/,
+      m => m.replace("['prem','std','cat']", `['prem','std','cat','${v}']`)
+    );
+    // Add T keys for the tab label in all languages
+    // (we add as a raw string injection — will be picked up by applyTChanges on next deploy)
+    if(state.T) LANGS.forEach(l => {
+      if(!state.T[l]) state.T[l]={};
+      if(!state.T[l]['tab.'+v]) state.T[l]['tab.'+v] = v.toUpperCase();
+      md('tab.'+v, l, v.toUpperCase());
+    });
+  });
+
+  // 7. New product card injection
+  Object.entries(state.dirty).forEach(([k,v])=>{
+    if(!k.startsWith('catpane:')) return;
+    const pfx = k.slice('catpane:'.length);
+    if(!pfx.startsWith('pc_new')) return;
+    if(html.includes(`data-i18n="${pfx}.tier"`)) return; // already injected
+    const targetPane = v||'prem';
+    const en = state.T?.en||{};
+    const tier = state.dirty['en.'+pfx+'.tier']||en[pfx+'.tier']||'New Product';
+    const name = state.dirty['en.'+pfx+'.name']||en[pfx+'.name']||'New Product';
+    const spec = state.dirty['en.'+pfx+'.spec']||en[pfx+'.spec']||'';
+    const body = state.dirty['en.'+pfx+'.body']||en[pfx+'.body']||'';
+    const cardHtml = `
+      <div class="prod-card" style="grid-column:span 2" data-prod-id="${pfx}">
+        <div class="prod-card-tier" data-i18n="${pfx}.tier">${tier}</div>
+        <div class="prod-card-name" data-i18n="${pfx}.name">${name}</div>
+        <div class="prod-card-spec" data-i18n="${pfx}.spec">${spec}</div>
+        <div class="prod-card-hr"></div>
+        <div class="prod-card-body"><span data-i18n="${pfx}.body">${body}</span></div>
+      </div>`;
+    const paneMarker = `id="pane-${targetPane}"`;
+    const panePos = html.indexOf(paneMarker);
+    if(panePos<0){ toast('Pane "'+targetPane+'" not found — cannot inject card', true); return; }
+    const gridClose = html.indexOf('</div>', html.indexOf('prod-grid', panePos));
+    if(gridClose<0) return;
+    html = html.slice(0,gridClose)+cardHtml+'\n    '+html.slice(gridClose);
+    if(!state.productPanes) state.productPanes={};
+    state.productPanes[pfx] = targetPane;
+  });
+
+  return html;
+}
+
+function injectMeta(html, attr, name, value) {
+  const re = new RegExp(`(${attr}="${escapeRe(name)}"[^>]*content=")[^"]*`,'i');
+  const re2 = new RegExp(`(content="[^"]*"[^>]*${attr}="${escapeRe(name)}")`,'i');
+  if(re.test(html)) return html.replace(re, `$1${value}`);
+  if(re2.test(html)) return html.replace(re2, `${attr}="${name}" content="${value}"`);
+  return html.replace('</head>', `<meta ${attr}="${name}" content="${value}">\n</head>`);
+}
+
+function applyTChanges(html, tDirty) {
+  // Find T object boundaries
+  const tIdx = html.indexOf('const T = {');
+  if(tIdx<0) return html;
+  let depth=0, i=tIdx, start=-1;
+  for(;i<html.length;i++){
+    if(html[i]==='{'){depth++;if(depth===1)start=i;}
+    else if(html[i]==='}'){depth--;if(depth===0)break;}
+  }
+  const tStr = html.substring(start,i+1);
+  let newTStr = tStr;
+
+  // For each dirty lang.key, replace the nth occurrence of 'key':'...' in the T string
+  const langOrder = LANGS;
+  Object.entries(tDirty).forEach(([lang, keys])=>{
+    const langIdx = langOrder.indexOf(lang);
+    if(langIdx<0) return;
+    Object.entries(keys).forEach(([key, val])=>{
+      // Escape the value for JS string (single-quoted)
+      const escaped = String(val).replace(/\\/g,'\\\\').replace(/'/g,"\\'");
+      // Find all occurrences of 'key':
+      const needle = `'${key}':`;
+      let occ=0, pos=0;
+      const positions = [];
+      while((pos=newTStr.indexOf(needle,pos))>=0){ positions.push(pos); pos+=needle.length; }
+      if(positions[langIdx]===undefined) return; // key not found for this lang
+      const p = positions[langIdx];
+      // Find the value after 'key':
+      let vStart = p + needle.length;
+      while(vStart<newTStr.length && (newTStr[vStart]===' '||newTStr[vStart]==='\t')) vStart++;
+      if(newTStr[vStart]!=="'") return; // not a simple string
+      let vEnd = vStart+1;
+      while(vEnd<newTStr.length){
+        if(newTStr[vEnd]==="'" && newTStr[vEnd-1]!=='\\') break;
+        vEnd++;
+      }
+      newTStr = newTStr.slice(0,vStart)+"'"+escaped+"'"+newTStr.slice(vEnd+1);
+    });
+  });
+
+  return html.slice(0,start)+newTStr+html.slice(i+1);
+}
+
+/* ══════════════════════════════════════
+   MEMBERSHIP TAB
+══════════════════════════════════════ */
+function populateMembershipPrices() {
+  // Fill price inputs from state.dirty or placeholder
+  const map = {
+    'r-mo':'mem_ritual_monthly','r-qu':'mem_ritual_quarterly','r-an':'mem_ritual_annual',
+    'rs-mo':'mem_reserve_monthly','rs-qu':'mem_reserve_quarterly','rs-an':'mem_reserve_annual',
+    'e-mo':'mem_estate_monthly','e-qu':'mem_estate_quarterly','e-an':'mem_estate_annual',
+  };
+  Object.entries(map).forEach(([id,k])=>{
+    const el = document.getElementById('m-'+id);
+    if(el && state.dirty['__raw__'+k]) el.value = state.dirty['__raw__'+k];
+  });
+}
+
+function buildMembershipPanel() {
+  const el = document.getElementById('tab-membership');
+  if(!el) return;
+  const plans = [
+    {name:'Ritual', monthly:28, quarterly:26, annual:24, desc:'For the curious palate'},
+    {name:'Reserve', monthly:68, quarterly:62, annual:57, desc:'For the dedicated enthusiast'},
+    {name:'Estate', monthly:160, quarterly:147, annual:136, desc:'For the true connoisseur'},
+  ];
+}
+
+/* ══════════════════════════════════════
+   UTILITY
+══════════════════════════════════════ */
+function esc(s) {
+  return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');
+}
+
+function escapeRe(s) {
+  return s.replace(/[.*+?^${}()|[\]\\]/g,'\\$&');
+}
+
+function toast(msg, isErr=false) {
+  const el = document.getElementById('toast');
+  if(!el) return;
+  el.textContent = msg;
+  el.style.background = isErr ? 'var(--red)' : 'var(--green)';
+  el.style.opacity = '1';
+  el.style.transform = 'translateY(0)';
+  clearTimeout(toast._t);
+  toast._t = setTimeout(()=>{
+    el.style.opacity='0';
+    el.style.transform='translateY(8px)';
+  }, 2800);
+}
+
+function covErr(msg) {
+  const el = document.getElementById('cov-err');
+  if(!el) return;
+  el.textContent=msg;
+  el.style.display=msg?'block':'none';
+}
+
+/* ── NEW FEATURES ── */
+
+function disconnectGH() {
+  state.connected = false;
+  state.token = '';
+  state.html = '';
+  state.originalHtml = '';
+  state.dirty = {};
+  state.T = {};
+  localStorage.removeItem('kala_admin_state');
+  document.getElementById('sDot').className='dot';
+  document.getElementById('sTxt').textContent='Not connected';
+  document.getElementById('saveBtn').disabled=true;
+  document.getElementById('d-conn').textContent='—';
+  document.getElementById('cov').style.display='flex';
+  document.getElementById('gh-tok').value='';
+  toast('Disconnected');
+}
+
+function togglePreviewWidth(mode) {
+  const frame = document.getElementById('previewFrame');
+  if(!frame) return;
+  const pvM = document.getElementById('pvMob');
+  const pvD = document.getElementById('pvDesk');
+  if(mode==='mobile') {
+    frame.style.width='390px'; frame.style.margin='0 auto'; frame.style.display='block';
+    if(pvM) pvM.classList.add('active'); if(pvD) pvD.classList.remove('active');
+  } else {
+    frame.style.width='100%'; frame.style.margin='';
+    if(pvD) pvD.classList.add('active'); if(pvM) pvM.classList.remove('active');
+  }
+}
+
+function copyEnToLang() {
+  const lang = trLang;
+  if(lang==='en'){ toast('Already viewing EN — pick another language first', true); return; }
+  const en = state.T['en']||{};
+  let count=0;
+  Object.keys(en).forEach(k=>{
+    const existing = state.dirty[lang+'.'+k] !== undefined ? state.dirty[lang+'.'+k] : (state.T[lang]?.[k]||'');
+    if(!existing) { md(k, en[k], lang); count++; }
+  });
+  filterTr();
+  toast('Copied '+count+' EN values → '+lang.toUpperCase());
+}
+
+function findReplaceTr() {
+  const find    = document.getElementById('trFindInput')?.value||'';
+  const replace = document.getElementById('trReplaceInput')?.value||'';
+  if(!find){ toast('Enter a search term', true); return; }
+  const lang = trLang;
+  let count=0;
+  Object.keys(state.T[lang]||{}).forEach(k=>{
+    const val = state.dirty[lang+'.'+k] !== undefined ? state.dirty[lang+'.'+k] : (state.T[lang][k]||'');
+    if(val.includes(find)){
+      md(k, val.split(find).join(replace), lang);
+      count++;
+    }
+  });
+  filterTr();
+  toast('Replaced '+count+' occurrence(s)');
+}
+
+function testConnection() {
+  if(!state.token){ toast('Enter token first', true); return; }
+  toast('Testing…');
+  ghGet('/user').then(u=>toast('Connected as '+u.login+' ✓')).catch(e=>toast('Failed: '+e.message, true));
+}
+
+
+/* ── NAV click wiring ── */
+document.querySelectorAll('.si[data-tab]').forEach(el=>{
+  el.addEventListener('click', ()=>sw(el.dataset.tab));
+});
+
+/* ── HOK on tab show ── */
+document.addEventListener('click', e=>{
+  if(e.target.closest('#tab-hok')) initHOK();
+});
+
+/* ── Translation search ── */
+const trSearch = document.getElementById('trSearch');
+if(trSearch) trSearch.addEventListener('input', e=>{ trFilter=e.target.value; filterTr(); });
+
+/* ── SEO desc char count ── */
+const seoDesc = document.getElementById('seo-desc');
+if(seoDesc) seoDesc.addEventListener('input', updateSEOCount);
+const seoTitle = document.getElementById('seo-title');
+if(seoTitle) seoTitle.addEventListener('input', updateSEOCount);
+
+/* ── Keyboard shortcuts ── */
+document.addEventListener('keydown', e=>{
+  if((e.metaKey||e.ctrlKey)&&e.key==='s'){ e.preventDefault(); saveAndDeploy(); }
+  if((e.metaKey||e.ctrlKey)&&e.key==='p'){ e.preventDefault(); openPreviewNow(); }
+});
+</script>
+</body>
+</html>
