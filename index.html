@@ -8,6 +8,88 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Montserrat:wght@300;400;500;600;700&family=Caveat:wght@500;700&display=swap" rel="stylesheet" />
 
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' rx='12' fill='%23080808'/><text x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' font-family='Georgia,serif' font-size='36' fill='%23c9a84c'>K</text></svg>" />
+
+  <!-- SEO Meta -->
+  <meta name="description" content="Olivekala KALA — extra virgin olive oil from Ayvalık, Aegean Turkey. Three tiers: Premium, Standard and Catering. IOC certified, cold-extracted within 4 hours. Direct supply to professional kitchens worldwide." />
+  <meta name="keywords" content="Ayvalık olive oil, extra virgin olive oil, EVOO, catering olive oil, professional kitchen, IOC certified, cold pressed" />
+  <link rel="canonical" href="https://orcncetin-sys.github.io/olivekala-website/" />
+
+  <!-- Open Graph -->
+  <meta property="og:type"        content="website" />
+  <meta property="og:url"         content="https://orcncetin-sys.github.io/olivekala-website/" />
+  <meta property="og:title"       content="Olivekala — The Professional's Oil" />
+  <meta property="og:description" content="Extra virgin olive oil from Ayvalık, Aegean Turkey. IOC certified, cold-extracted within 4 hours. Three tiers for every professional kitchen." />
+  <meta property="og:image"       content="https://orcncetin-sys.github.io/olivekala-website/og-image.jpg" />
+  <meta property="og:locale"      content="en_GB" />
+  <meta name="twitter:card"       content="summary_large_image" />
+  <meta name="twitter:title"      content="Olivekala — The Professional's Oil" />
+  <meta name="twitter:description" content="Extra virgin olive oil from Ayvalık, Aegean Turkey. IOC certified, cold-extracted within 4 hours." />
+
+  <!-- hreflang — 8 languages -->
+  <link rel="alternate" hreflang="en"      href="https://orcncetin-sys.github.io/olivekala-website/?lang=en" />
+  <link rel="alternate" hreflang="tr"      href="https://orcncetin-sys.github.io/olivekala-website/?lang=tr" />
+  <link rel="alternate" hreflang="de"      href="https://orcncetin-sys.github.io/olivekala-website/?lang=de" />
+  <link rel="alternate" hreflang="ar"      href="https://orcncetin-sys.github.io/olivekala-website/?lang=ar" />
+  <link rel="alternate" hreflang="ru"      href="https://orcncetin-sys.github.io/olivekala-website/?lang=ru" />
+  <link rel="alternate" hreflang="fr"      href="https://orcncetin-sys.github.io/olivekala-website/?lang=fr" />
+  <link rel="alternate" hreflang="es"      href="https://orcncetin-sys.github.io/olivekala-website/?lang=es" />
+  <link rel="alternate" hreflang="it"      href="https://orcncetin-sys.github.io/olivekala-website/?lang=it" />
+  <link rel="alternate" hreflang="x-default" href="https://orcncetin-sys.github.io/olivekala-website/" />
+
+  <!-- Google Analytics 4 — replace G-XXXXXXXXXX with your tag -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-XXXXXXXXXX', { anonymize_ip: true });
+  </script>
+
+  <!-- Structured Data — Product catalogue -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "Olivekala",
+    "url": "https://orcncetin-sys.github.io/olivekala-website/",
+    "logo": "https://orcncetin-sys.github.io/olivekala-website/og-image.jpg",
+    "description": "Extra virgin olive oil producer from Ayvalık, Aegean Turkey.",
+    "address": { "@type": "PostalAddress", "addressLocality": "Ayvalık", "addressCountry": "TR" },
+    "hasOfferCatalog": {
+      "@type": "OfferCatalog",
+      "name": "KALA Olive Oil Range",
+      "itemListElement": [
+        {
+          "@type": "Product",
+          "name": "KALA Premium Harvest Edition",
+          "description": "Single-grove, batch-numbered extra virgin olive oil. Polyphenols >400 mg/kg. Free acidity ≤0.3%.",
+          "brand": { "@type": "Brand", "name": "Olivekala" },
+          "category": "Extra Virgin Olive Oil",
+          "offers": { "@type": "Offer", "availability": "https://schema.org/InStock", "priceCurrency": "EUR" }
+        },
+        {
+          "@type": "Product",
+          "name": "KALA Standard 5L Reserve Tin",
+          "description": "Professional kitchen EVOO. Cold-extracted within 4 hours. Free acidity ≤0.2%.",
+          "brand": { "@type": "Brand", "name": "Olivekala" },
+          "category": "Extra Virgin Olive Oil",
+          "offers": { "@type": "Offer", "availability": "https://schema.org/InStock", "priceCurrency": "EUR" }
+        },
+        {
+          "@type": "Product",
+          "name": "KALA Catering 15L Drum",
+          "description": "High-volume catering EVOO. IOC certified. Same specification as retail range.",
+          "brand": { "@type": "Brand", "name": "Olivekala" },
+          "category": "Extra Virgin Olive Oil",
+          "offers": { "@type": "Offer", "availability": "https://schema.org/InStock", "priceCurrency": "EUR" }
+        }
+      ]
+    }
+  }
+  </script>
   <style>
 /* ═══════════════════════════════════════════════════════════════════════════
    TOKENS & RESET
@@ -803,9 +885,55 @@ nav.nav-open .ham-btn span:nth-child(3){transform:translateY(-6.5px) rotate(-45d
 .rtl .footer-bottom{flex-direction:row-reverse}
 .rtl .ham-btn{margin-right:0;margin-left:0}
 .rtl .float-wrap{right:auto;left:1.4rem}
+
+/* ── Cookie consent ── */
+#cookie-banner{position:fixed;bottom:0;left:0;right:0;z-index:9999;background:#111;border-top:1px solid rgba(201,168,76,.25);padding:1.1rem 2rem;display:flex;align-items:center;gap:1.5rem;flex-wrap:wrap;font-family:var(--sans);font-size:.72rem;color:#aaa;transform:translateY(100%);transition:transform .4s ease}
+#cookie-banner.visible{transform:translateY(0)}
+#cookie-banner a{color:var(--gold);text-decoration:underline;cursor:pointer}
+#cookie-banner .cb-btns{display:flex;gap:.7rem;margin-left:auto}
+#cookie-banner button{padding:.45rem 1.1rem;border:none;border-radius:3px;font-size:.7rem;font-family:var(--sans);cursor:pointer;font-weight:600;letter-spacing:.05em}
+#cb-accept{background:var(--gold);color:#080808}
+#cb-decline{background:transparent;color:#aaa;border:1px solid rgba(255,255,255,.15)}
+/* ── Privacy policy modal ── */
+#privacy-modal{display:none;position:fixed;inset:0;z-index:10000;background:rgba(0,0,0,.8);align-items:center;justify-content:center;padding:2rem}
+#privacy-modal.open{display:flex}
+#privacy-modal .pm-box{background:#111;border:1px solid rgba(201,168,76,.2);border-radius:8px;max-width:640px;width:100%;max-height:80vh;overflow-y:auto;padding:2.5rem;position:relative;font-family:var(--sans);font-size:.78rem;color:#bbb;line-height:1.7}
+#privacy-modal h2{font-family:var(--serif);color:var(--gold);margin-bottom:1rem;font-size:1.4rem}
+#privacy-modal h3{color:var(--cream);margin:1.2rem 0 .4rem;font-size:.82rem;letter-spacing:.08em;text-transform:uppercase}
+#privacy-modal .pm-close{position:absolute;top:1rem;right:1.2rem;background:none;border:none;color:#aaa;font-size:1.4rem;cursor:pointer}
 </style>
 </head>
 <body>
+
+<!-- Cookie consent banner -->
+<div id="cookie-banner">
+  <span>We use cookies to improve your experience and analyse site traffic. By clicking Accept, you agree to our <a onclick="openPrivacy()">Privacy Policy</a>.</span>
+  <div class="cb-btns">
+    <button id="cb-decline" onclick="cookieDecline()">Decline</button>
+    <button id="cb-accept"  onclick="cookieAccept()">Accept</button>
+  </div>
+</div>
+
+<!-- Privacy policy modal -->
+<div id="privacy-modal">
+  <div class="pm-box">
+    <button class="pm-close" onclick="closePrivacy()">✕</button>
+    <h2>Privacy Policy</h2>
+    <p>Last updated: May 2026. Olivekala A.Ş. ("we", "us") is committed to protecting your personal data in accordance with GDPR (EU 2016/679) and applicable Turkish data protection law (KVKK).</p>
+    <h3>Data We Collect</h3>
+    <p>When you submit a trade enquiry or sample request, we collect your name, establishment name, email address, and any information you provide in the message field. We use this data solely to respond to your enquiry.</p>
+    <h3>Analytics</h3>
+    <p>With your consent, we use Google Analytics 4 to understand how visitors use this site. All data is anonymised (IP anonymisation enabled). You can opt out at any time by declining cookies or using the <a href="https://tools.google.com/dlpage/gaoptout" target="_blank" rel="noopener">Google Analytics opt-out browser add-on</a>.</p>
+    <h3>Data Storage & Retention</h3>
+    <p>Enquiry data is processed by Formspree Inc. and forwarded to our trade team email. We retain enquiry data for 24 months. We do not sell your data to third parties.</p>
+    <h3>Your Rights</h3>
+    <p>You have the right to access, correct, or delete your personal data. To exercise these rights, contact us at <a href="mailto:trade@olivekala.com">trade@olivekala.com</a>.</p>
+    <h3>Contact</h3>
+    <p>Olivekala A.Ş., Ayvalık, Balıkesir, Turkey · trade@olivekala.com</p>
+    <p style="margin-top:1.5rem"><button onclick="cookieAccept();closePrivacy()" style="background:var(--gold);color:#080808;border:none;padding:.6rem 1.4rem;border-radius:3px;font-weight:700;cursor:pointer;font-family:var(--sans);font-size:.72rem;letter-spacing:.06em">Accept &amp; Close</button></p>
+  </div>
+</div>
+
 
 <!-- ═══════════════════════════════ NAV ═══════════════════════════════════ -->
 <nav id="mainNav">
@@ -910,7 +1038,7 @@ nav.nav-open .ham-btn span:nth-child(3){transform:translateY(-6.5px) rotate(-45d
   <div class="hero-left fi">
     <div class="hero-eyebrow">
       <span class="rule" style="width:36px;opacity:1;"></span>
-      <span class="lbl" data-i18n="hero.eyebrow">Ayvalık · Aegean Turkey · Est. 2025</span>
+      <span class="lbl" data-i18n="hero.eyebrow">Ayvalık · Aegean Turkey · Since 1961</span>
     </div>
 
     <h1 class="hero-h1" data-i18n="hero.title">The<br><em>Professional's</em><br><strong>Oil.</strong></h1>
@@ -1862,7 +1990,7 @@ nav.nav-open .ham-btn span:nth-child(3){transform:translateY(-6.5px) rotate(-45d
         <li><a href="#blog" data-i18n="footer.l.journal">Journal</a></li>
         <li><a href="#trade" data-i18n="footer.l.trade">Trade Enquiry</a></li>
         <li><a href="mailto:trade@olivekala.com">trade@olivekala.com</a></li>
-        <li><a href="#" data-i18n="footer.l.location">Ayvalık, Turkey</a></li>
+        <li><a href="https://maps.google.com/?q=Ayvalık,Turkey" target="_blank" rel="noopener" data-i18n="footer.l.location">Ayvalık, Turkey</a></li>
       </ul>
     </div>
   </div>
@@ -1961,11 +2089,31 @@ function submitNotify(e) {
 /* ── Form submit ── */
 function handleSubmit(e) {
   e.preventDefault();
-  const btn = e.target.querySelector('.form-submit');
-  btn.textContent = 'Sent — we will be in touch.';
-  btn.style.background = 'var(--green)';
-  btn.style.color = 'var(--cream)';
+  const form = e.target;
+  const btn  = form.querySelector('.form-submit');
+  const data = new FormData(form);
+  btn.textContent = 'Sending…';
   btn.disabled = true;
+  // ⚠️  Replace YOUR_FORM_ID with your Formspree form ID (formspree.io)
+  fetch('https://formspree.io/f/YOUR_FORM_ID', {
+    method: 'POST',
+    body: data,
+    headers: { 'Accept': 'application/json' }
+  }).then(r => {
+    if (r.ok) {
+      btn.textContent = 'Sent — we will be in touch.';
+      btn.style.background = 'var(--green)';
+      btn.style.color = 'var(--cream)';
+      form.reset();
+      if (typeof gtag !== 'undefined') gtag('event','form_submit',{event_category:'Trade Enquiry'});
+    } else {
+      btn.textContent = 'Error — please email trade@olivekala.com';
+      btn.disabled = false;
+    }
+  }).catch(() => {
+    btn.textContent = 'Error — please email trade@olivekala.com';
+    btn.disabled = false;
+  });
 }
 
 /* ── Hamburger menu ── */
@@ -1988,6 +2136,34 @@ const backTop = document.getElementById('backToTop');
 window.addEventListener('scroll', () => {
   backTop.classList.toggle('visible', window.scrollY > 400);
 }, {passive: true});
+
+/* ── Cookie consent logic ── */
+(function(){
+  var consent = localStorage.getItem('ok_cookie');
+  if (!consent) {
+    setTimeout(function(){ document.getElementById('cookie-banner').classList.add('visible'); }, 1200);
+  } else if (consent === 'accepted') {
+    enableAnalytics();
+  }
+})();
+function cookieAccept(){
+  localStorage.setItem('ok_cookie','accepted');
+  document.getElementById('cookie-banner').classList.remove('visible');
+  enableAnalytics();
+}
+function cookieDecline(){
+  localStorage.setItem('ok_cookie','declined');
+  document.getElementById('cookie-banner').classList.remove('visible');
+}
+function enableAnalytics(){
+  if (typeof gtag !== 'undefined') gtag('consent','update',{analytics_storage:'granted'});
+}
+function openPrivacy(){
+  document.getElementById('privacy-modal').classList.add('open');
+}
+function closePrivacy(){
+  document.getElementById('privacy-modal').classList.remove('open');
+}
 function scrollToTop(){ window.scrollTo({top:0,behavior:'smooth'}); }
 
 /* ══════════════════════════════════════════════════════════════
@@ -2011,7 +2187,7 @@ en:{
   'nav.cta':'Request Sample','nav.shop':'Shop','nav.shopnow':'Shop Now',
   'nav.drop.prem':'KALA Premium · Glass &amp; Tin','nav.drop.std':'KALA Standard · 1L · 3L · 5L','nav.drop.cat':'KALA Catering · 5L · 15L',
   'hok.eyebrow':'Ayvalık · Aegean · Since 1961','hok.title':'House of KALA','hok.tagline':'A tradition. A brand. A way of life.','hok.p1':'Ritual Series','hok.p2':'Reserve Series','hok.p3':'Chef Series','hok.p4':'Experience','hok.p5':'Membership','hok.quote':'Pure. Raw. Timeless.','hok.cta':'Discover the Range',
-  'hero.eyebrow':'Ayvalık · Aegean Turkey · Est. 2025',
+  'hero.eyebrow':'Ayvalık · Aegean Turkey · Since 1961',
   'hero.sub':'Ayvalık Olive Oil · Early Harvest · Certified 0.3% Free Acidity',
   'hero.body':'Extra virgin olive oil engineered for kitchens that set the standard. Cold-extracted within four hours. Tested, batch-numbered, uncompromising.',
   'hero.cta1':'Explore Range','hero.cta2':'Trade Enquiry',
@@ -2191,7 +2367,7 @@ tr:{
   'nav.cta':'Numune Talep Et','nav.shop':'Mağaza','nav.shopnow':'Alışverişe Başla',
   'nav.drop.prem':'KALA Premium · Cam &amp; Teneke','nav.drop.std':'KALA Standart · 1L · 3L · 5L','nav.drop.cat':'KALA Catering · 5L · 15L',
   'hok.eyebrow':'Ayvalık · Ege · 1961\'den Beri','hok.title':'KALA\'nın Evi','hok.tagline':'Bir gelenek. Bir marka. Bir yaşam biçimi.','hok.p1':'Ritual Serisi','hok.p2':'Reserve Serisi','hok.p3':'Chef Serisi','hok.p4':'Deneyim','hok.p5':'Üyelik','hok.quote':'Saf. Ham. Zamansız.','hok.cta':'Koleksiyonu Keşfet',
-  'hero.eyebrow':'Ayvalık · Ege Türkiye · Est. 2025',
+  'hero.eyebrow':'Ayvalık · Ege Türkiye · Since 1961',
   'hero.sub':'MEMECİK · ERKEN HASAT · SERTİFİKALI %0,3 SERBEST ASİT',
   'hero.body':'Standartları belirleyen mutfaklar için özel üretilmiş natürel sızma zeytinyağı. Dört saat içinde soğuk sıkım. Test edilmiş, parti numaralı, taviz vermez.',
   'hero.cta1':'Ürünleri Keşfet','hero.cta2':'Ticari Bilgi Al',
@@ -3051,7 +3227,7 @@ fr:{
   'nav.cta':'Demander un échantillon','nav.shop':'Boutique','nav.shopnow':'Acheter maintenant',
   'nav.drop.prem':'KALA Premium · Verre &amp; Boîte','nav.drop.std':'KALA 5L Réserve','nav.drop.cat':'KALA Catering · 5L · 15L',
   'hok.eyebrow':'Ayvalık · Égée · Depuis 1961','hok.title':'House of KALA','hok.tagline':'Une tradition. Une marque. Un art de vivre.','hok.p1':'Série Ritual','hok.p2':'Série Reserve','hok.p3':'Série Chef','hok.p4':'Expérience','hok.p5':'Adhésion','hok.quote':'Pur. Brut. Intemporel.','hok.cta':'Découvrir la gamme',
-  'hero.eyebrow':'Ayvalık · Turquie Égéenne · Est. 2025',
+  'hero.eyebrow':'Ayvalık · Turquie Égéenne · Since 1961',
   'hero.sub':'Ayvalık · Récolte précoce · Acidité libre certifiée 0,2%',
   'hero.body':'Huile d\'olive extra vierge conçue pour les cuisines qui définissent la norme. Extraite à froid en moins de quatre heures. Testée, numérotée par lot, sans compromis.',
   'hero.cta1':'Explorer la gamme','hero.cta2':'Demande commerciale',
